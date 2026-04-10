@@ -19,13 +19,21 @@ function normalizeResultFile(filePath) {
 
   const moduleSuiteName = humanizeSuiteName(moduleFolderName);
   const existingLabels = Array.isArray(result.labels) ? result.labels : [];
-  const preservedLabels = existingLabels.filter((label) => label.name !== 'parentSuite' && label.name !== 'suite');
+  const preservedLabels = existingLabels.filter((label) => !['parentSuite', 'suite', 'titlePath'].includes(label.name));
 
   result.labels = [
     ...preservedLabels,
     { name: 'parentSuite', value: moduleSuiteName },
     { name: 'suite', value: moduleSuiteName }
   ];
+
+  if (Array.isArray(result.parameters)) {
+    result.parameters = result.parameters.filter((parameter) => parameter.name !== 'Project');
+  }
+
+  if (Array.isArray(result.titlePath) && result.titlePath[0] === 'chromium') {
+    result.titlePath = result.titlePath.slice(1);
+  }
 
   fs.writeFileSync(filePath, JSON.stringify(result));
   return true;
