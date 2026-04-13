@@ -1,13 +1,13 @@
 const digiteyesreportingSummarysheetdataSelectors = {
-  reportingMenuButton: [
-    { type: 'role', role: 'button', options: { name: /digiteyes reporting/i }, name: 'role:DigitEYES Reporting' },
-    { type: 'text', value: 'DigitEYES Reporting', name: 'text:DigitEYES Reporting' },
-    { type: 'css', value: 'button[data-bs-target="#dereport-collapse"]', name: 'css:#dereport-collapse toggle' }
-  ],
-  summarySheetDataLink: [
+  moduleLink: [
     { type: 'role', role: 'link', options: { name: /summary sheet data/i }, name: 'role:Summary Sheet Data' },
     { type: 'css', value: 'a[href="report-summarysheetdata.php"]', name: 'css:report-summarysheetdata.php' },
     { type: 'text', value: 'Summary Sheet Data', name: 'text:Summary Sheet Data' }
+  ],
+  pageMarker: [
+    { type: 'role', role: 'heading', options: { name: /report:\s*summary data/i }, name: 'role:Report Summary Data heading' },
+    { type: 'text', value: 'Report: Summary Data', name: 'text:Report: Summary Data' },
+    { type: 'xpath', value: '//h3[contains(normalize-space(),"Report: Summary Data")]', name: 'xpath:Report Summary Data heading' }
   ],
   summaryHeading: [
     { type: 'role', role: 'heading', options: { name: /report:\s*summary data/i }, name: 'role:Report Summary Data heading' },
@@ -19,12 +19,24 @@ const digiteyesreportingSummarysheetdataSelectors = {
     { type: 'text', value: 'Refresh', name: 'text:Refresh' }
   ],
   dateFromField: [
-    { type: 'text', value: 'Date From', name: 'text:Date From' },
-    { type: 'xpath', value: '//*[contains(text(),"Date From")]', name: 'xpath:Date From text' }
+    { type: 'css', value: '#search_datefrom', name: 'css:#search_datefrom' },
+    { type: 'css', value: 'input[name="search_datefrom"]', name: 'css:input[name=search_datefrom]' },
+    { type: 'xpath', value: '//*[@id="search_datefrom"]', name: 'xpath:#search_datefrom' }
   ],
   dateToField: [
-    { type: 'text', value: 'Date To', name: 'text:Date To' },
-    { type: 'xpath', value: '//*[contains(text(),"Date To")]', name: 'xpath:Date To text' }
+    { type: 'css', value: '#search_dateto', name: 'css:#search_dateto' },
+    { type: 'css', value: 'input[name="search_dateto"]', name: 'css:input[name=search_dateto]' },
+    { type: 'xpath', value: '//*[@id="search_dateto"]', name: 'xpath:#search_dateto' }
+  ],
+  themeField: [
+    { type: 'css', value: '#search_theme', name: 'css:#search_theme' },
+    { type: 'css', value: 'select[name="search_theme"]', name: 'css:select[name=search_theme]' },
+    { type: 'xpath', value: '//*[@id="search_theme"]', name: 'xpath:#search_theme' }
+  ],
+  countryField: [
+    { type: 'css', value: '#search_countrycode', name: 'css:#search_countrycode' },
+    { type: 'css', value: 'select[name="search_countrycode"]', name: 'css:select[name=search_countrycode]' },
+    { type: 'xpath', value: '//*[@id="search_countrycode"]', name: 'xpath:#search_countrycode' }
   ],
   runReportButton: [
     { type: 'role', role: 'button', options: { name: /run report/i }, name: 'role:Run Report' },
@@ -34,20 +46,9 @@ const digiteyesreportingSummarysheetdataSelectors = {
     { type: 'role', role: 'button', options: { name: /export xls/i }, name: 'role:Export Xls' },
     { type: 'text', value: 'Export Xls', name: 'text:Export Xls' }
   ],
-  countryLabel: [
-    { type: 'xpath', value: '//main//*[normalize-space()="Country"]', name: 'xpath:main Country' },
-    { type: 'text', value: 'Country', name: 'text:Country' },
-    { type: 'xpath', value: '//*[contains(text(),"Country")]', name: 'xpath:Country text' }
-  ],
-  countryValueIndia: [
-    { type: 'xpath', value: '//main//*[normalize-space()="India"]', name: 'xpath:main India' },
-    { type: 'text', value: 'India', name: 'text:India' },
-    { type: 'xpath', value: '//*[normalize-space()="India"]', name: 'xpath:India' }
-  ],
-  assistantManagerLabel: [
-    { type: 'xpath', value: '//main//*[contains(normalize-space(),"Asst. Mgr.")]', name: 'xpath:main Asst. Mgr.' },
-    { type: 'text', value: 'Asst. Mgr.', name: 'text:Asst. Mgr.' },
-    { type: 'xpath', value: '//*[contains(text(),"Asst. Mgr.")]', name: 'xpath:Asst. Mgr.' }
+  resultsTable: [
+    { type: 'css', value: '#tblSummaryData', name: 'css:#tblSummaryData' },
+    { type: 'xpath', value: '//*[@id="tblSummaryData"]', name: 'xpath:#tblSummaryData' }
   ]
 };
 

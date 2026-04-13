@@ -43,6 +43,15 @@ async function closeSearchFilter(page) {
   });
 }
 
+async function verifySearchCountryDropdownVisible(page) {
+  await safeExpectVisible(
+    page,
+    digiteyescampsParticipantsSelectors.searchCountryDropdown,
+    'Search country dropdown',
+    { timeoutPerCandidate: 10000 }
+  );
+}
+
 module.exports = {
   digiteyescampsParticipantsHelpers: {
     selectParticipantsModule,
@@ -50,6 +59,7 @@ module.exports = {
     verifyPageLoaded,
     openSearchFilter,
     closeSearchFilter,
+    verifySearchCountryDropdownVisible,
     selectors: digiteyescampsParticipantsSelectors
   }
 };

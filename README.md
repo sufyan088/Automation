@@ -1,6 +1,6 @@
 # Vision Spring Playwright Automation
 
-This repository is the current AIQ-to-Playwright conversion project for the Vision Spring application. It is no longer a File Processing proof of concept. The active work in this repo is converting Vision Spring AIQ modules into Playwright tests with shared helpers, centralized selectors, fallback locator handling, Allure reporting, and reusable conversion guidance for the remaining intake.
+This repository is the current AIQ-to-Playwright conversion project for the Vision Spring application. It is no longer a File Processing proof of concept. The active work in this repo is maintaining Vision Spring Playwright coverage with shared helpers, centralized selectors, fallback locator handling, and reusable Allure reporting workflows.
 
 ## Project Goal
 
@@ -92,21 +92,11 @@ The repo currently contains module folders for these Vision Spring families:
 
 ## Current Status
 
-This repo is actively mid-conversion, not a fresh scaffold anymore.
+This repo is no longer a fresh scaffold and is no longer mid-conversion for the current tracked intake.
 
 - Shared auth, fallback locator handling, Allure hierarchy, and reporting customization are already in place.
-- The newly added source AIQ files under `source-aiq/TestScripts` are the current source-of-truth delta for remaining conversion work.
-- Latest completed Reporting delta batches:
-  - `DigitEYESReporting_CampTrends` expanded from 6 specs to 15 specs.
-  - `DigitEYESReporting_WorkReportVSTeams` expanded from 9 specs to 18 specs.
-- Latest validated module results from the current delta wave:
-  - `tests/DigitEYESReporting_CampTrends` passed `15/15`.
-  - `tests/DigitEYESReporting_WorkReportVSTeams` passed `18/18`.
-- Latest clean family baseline before the current remaining Reporting intake wave:
-  - `DigitEYESCamps`: `49/49` passed with `--workers=3`
-  - `DigitEYESDataLoader`: `42/42` passed with `--workers=3`
-  - `DigitEYESReporting`: `34/34` passed with `--workers=3`
-  - `DigitEYESSettings`: `20/20` passed with `--workers=3`
+- The previously tracked source AIQ delta modules were completed and validated in Playwright module runs.
+- Current run-level numbers are intentionally maintained in the handoff doc instead of README to keep this file stable.
 
 For the most current module-by-module handoff and remaining conversion guidance, use [docs/vision-spring-conversion-handoff.md](docs/vision-spring-conversion-handoff.md).
 
@@ -160,7 +150,7 @@ npx playwright test tests/DigitEYESReporting_CampTrends/TC_01_To_verify_that_Dig
 
 - Runtime data is loaded through `helpers/dataLoader.js`.
 - The current DPL file is `data/JS_DPL_Camp_Cluster.csv`.
-- That file is not currently parseable as a normal CSV, so the framework falls back to the configured default runtime credentials and URL.
+- The runtime copy under `data/JS_DPL_Camp_Cluster.csv` has been repaired to a valid minimal CSV; default credential fallback remains only as a safety net in `helpers/dataLoader.js` when intake data is malformed.
 - Auth is centralized in `helpers/auth.js` and supports the working Microsoft-backed Vision Spring flow:
   - Microsoft username
   - Microsoft password
@@ -203,6 +193,10 @@ Each spec should usually do only this:
 3. call one helper-driven business verification
 4. call the shared no-op logout
 
+### Match AIQ initialization steps exactly when asserting defaults
+
+If a source AIQ script performs an in-form selection before checking a default, keep that step in the converted helper even if the form already appears open. The latest Country Settings fix depended on selecting `India` in the New Camp Cluster form before asserting reflected checkbox state.
+
 ## Reporting Workflow
 
 - Local and client-shareable reports are generated from `allure-results`.
@@ -237,9 +231,12 @@ npm run scaffold:module -- <ModuleName>
 - [docs/vision-spring-conversion-handoff.md](docs/vision-spring-conversion-handoff.md)
   Current Vision Spring-specific status, latest fixes, completed delta batches, and recommended next modules.
 
+For teammate onboarding and AI agent overviews, start with `docs/vision-spring-conversion-handoff.md` first, then read this README for commands and structure.
+
 ## Notes For Future Work
 
-- Continue remaining delta conversion module by module against `source-aiq/TestScripts`.
-- Prefer starting with the existing helper and selector surfaces already built for each family.
+- Treat this repo as a maintenance and regression-stability workflow for the current converted intake.
+- If new AIQ deltas arrive under `source-aiq/TestScripts`, convert module-by-module using existing shared helper and selector surfaces first.
 - For Reporting specifically, continue through shared `digiteyesreportingCommon.js` behavior rather than introducing module-specific one-off modal logic where the same fix can be centralized.
 - Generated `Result/` artifacts should not be treated as source files for ongoing development work.
+- Temporary audit files (for example `.tmp_*`) should be removed after decisions are captured in durable docs.

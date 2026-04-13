@@ -37,6 +37,21 @@ const digiteyescampsDataforsalesforceSelectors = {
     { type: 'role', role: 'button', options: { name: /mark data imported to salesforce/i }, name: 'role:Mark Data Imported to Salesforce' },
     { type: 'text', value: 'Mark Data Imported to Salesforce', name: 'text:Mark Data Imported to Salesforce' }
   ],
+  pushGeoToSalesforceButton: [
+    { type: 'css', value: '.btnPushGEOToSalesforce', name: 'css:.btnPushGEOToSalesforce' },
+    { type: 'role', role: 'button', options: { name: /push geo to salesforce/i }, name: 'role:Push GEO to Salesforce' },
+    { type: 'text', value: 'Push GEO to Salesforce', name: 'text:Push GEO to Salesforce' }
+  ],
+  pushConsentButton: [
+    { type: 'role', role: 'button', options: { name: /push consent/i }, name: 'role:Push Consent' },
+    { type: 'text', value: 'Push Consent', name: 'text:Push Consent' },
+    { type: 'xpath', value: '//button[normalize-space()="Push Consent"]', name: 'xpath:Push Consent' }
+  ],
+  consentOnSharePointPendingHeading: [
+    { type: 'role', role: 'heading', options: { name: /consent on sharepoint pending/i }, name: 'role:Consent on SharePoint Pending' },
+    { type: 'text', value: 'Consent on SharePoint Pending', name: 'text:Consent on SharePoint Pending' },
+    { type: 'xpath', value: '//h3[contains(normalize-space(),"Consent on SharePoint Pending")]', name: 'xpath:Consent on SharePoint Pending' }
+  ],
   downloadXlsButton: [
     { type: 'css', value: '.btnDownloadXLS', name: 'css:.btnDownloadXLS' },
     { type: 'role', role: 'button', options: { name: /^xls$/i }, name: 'role:XLS' },

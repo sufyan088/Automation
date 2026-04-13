@@ -7,6 +7,7 @@ const {
   fillSearchField,
   selectDropdownValue,
   clickApplySearch,
+  getSelectedOptionText,
   openAddForm,
   fillHospitalForm,
   openFirstRowEdit,
@@ -91,6 +92,37 @@ async function verifyIsActiveYesOption(page, data) {
   await selectDropdownValue(page, digiteyessettingsHospitalsSelectors.searchIsActiveField, 'Yes', 'Is Active');
 }
 
+async function verifyIsActiveNoOption(page, data) {
+  await openModule(page, data);
+  await openSearchFilter(page, digiteyessettingsHospitalsSelectors);
+  await selectDropdownValue(page, digiteyessettingsHospitalsSelectors.searchIsActiveField, 'No', 'Is Active');
+}
+
+async function verifySearchFilterOpen(page, data) {
+  await openModule(page, data);
+  await openSearchFilter(page, digiteyessettingsHospitalsSelectors);
+  await safeExpectVisible(page, digiteyessettingsHospitalsSelectors.searchNameField, 'Hospital Name search field');
+}
+
+async function verifyHospitalNameField(page, data, value = 'Mammoth Hospital') {
+  await openModule(page, data);
+  await openSearchFilter(page, digiteyessettingsHospitalsSelectors);
+  await fillSearchField(page, digiteyessettingsHospitalsSelectors.searchNameField, value, 'Hospital Name');
+}
+
+async function verifyHospitalStateField(page, data, value = 'Rajasthan') {
+  await openModule(page, data);
+  await openSearchFilter(page, digiteyessettingsHospitalsSelectors);
+  await fillSearchField(page, digiteyessettingsHospitalsSelectors.searchStateField, value, 'Hospital State');
+}
+
+async function verifyCountryDropdown(page, data, expectedCountry = 'India') {
+  await openModule(page, data);
+  await openSearchFilter(page, digiteyessettingsHospitalsSelectors);
+  await selectDropdownValue(page, digiteyessettingsHospitalsSelectors.searchCountryField, expectedCountry, 'Country');
+  expect(await getSelectedOptionText(page, digiteyessettingsHospitalsSelectors.searchCountryField)).toContain(expectedCountry);
+}
+
 async function verifyApplySearch(page, data) {
   await openModule(page, data);
   await openSearchFilter(page, digiteyessettingsHospitalsSelectors);
@@ -113,6 +145,19 @@ async function verifyAddHospitalForm(page, data) {
   });
 
   await closeForm(page, digiteyessettingsHospitalsSelectors);
+}
+
+async function verifyNewHospitalButton(page, data) {
+  await openModule(page, data);
+  await openAddForm(page, digiteyessettingsHospitalsSelectors);
+  await safeExpectVisible(page, digiteyessettingsHospitalsSelectors.saveButton, 'Save button on Define Hospital page');
+}
+
+async function verifyDefineHospitalClose(page, data) {
+  await openModule(page, data);
+  await openAddForm(page, digiteyessettingsHospitalsSelectors);
+  await closeForm(page, digiteyessettingsHospitalsSelectors);
+  await safeExpectVisible(page, digiteyessettingsHospitalsSelectors.pageMarker, 'Hospitals listing after closing form');
 }
 
 async function verifyEditHospital(page, data) {
@@ -161,8 +206,15 @@ module.exports = {
     verifyPageSizePagination,
     verifyTableHeaders,
     verifyIsActiveYesOption,
+    verifyIsActiveNoOption,
+    verifySearchFilterOpen,
+    verifyHospitalNameField,
+    verifyHospitalStateField,
+    verifyCountryDropdown,
     verifyApplySearch,
+    verifyNewHospitalButton,
     verifyAddHospitalForm,
+    verifyDefineHospitalClose,
     verifyEditHospital,
     verifyEditCloseButton,
     verifyColumnSorting,

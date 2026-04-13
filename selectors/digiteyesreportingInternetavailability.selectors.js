@@ -6,13 +6,21 @@ const digiteyesreportingInternetavailabilitySelectors = {
   ],
   pageMarker: [
     { type: 'css', value: '#search_datefrom', name: 'css:#search_datefrom' },
-    { type: 'css', value: '#search_dateto', name: 'css:#search_dateto' }
+    { type: 'css', value: '#search_dateto', name: 'css:#search_dateto' },
+    { type: 'role', role: 'button', options: { name: /run report/i }, name: 'role:Run Report' }
   ],
   dateFromField: [
     { type: 'css', value: '#search_datefrom', name: 'css:#search_datefrom' }
   ],
   dateToField: [
     { type: 'css', value: '#search_dateto', name: 'css:#search_dateto' }
+  ],
+  runReportButton: [
+    { type: 'role', role: 'button', options: { name: /run report/i }, name: 'role:Run Report' },
+    { type: 'text', value: 'Run Report', name: 'text:Run Report' }
+  ],
+  sourceDataPanel: [
+    { type: 'css', value: '#Source_data', name: 'css:#Source_data' }
   ]
 };
 

@@ -87,6 +87,16 @@ const commonSelectors = {
     { type: 'text', value: 'DigitEYES Data Loader', name: 'text:DigitEYES Data Loader' },
     { type: 'text', value: 'DigitEYES Camps', name: 'text:DigitEYES Camps' }
   ],
+  digitEyesCampsMenu: [
+    { type: 'role', role: 'button', options: { name: /digiteyes\s*camps/i }, name: 'role:DigitEYES Camps' },
+    { type: 'text', value: 'DigitEYES Camps', name: 'text:DigitEYES Camps' },
+    { type: 'css', value: 'button[data-bs-target="#home-collapse"]', name: 'css:home-collapse toggle' }
+  ],
+  manageCampClusterLink: [
+    { type: 'role', role: 'link', options: { name: /manage camp cluster/i }, name: 'role:Manage Camp Cluster' },
+    { type: 'text', value: 'Manage Camp Cluster', name: 'text:Manage Camp Cluster' },
+    { type: 'css', value: 'a[href="manage-camps.php"]', name: 'css:manage-camps.php' }
+  ],
   loginReadyState: [
     { type: 'css', value: '#i0116', name: 'css:#i0116' },
     { type: 'css', value: 'input[name="loginfmt"]', name: 'css:input[name=loginfmt]' },
