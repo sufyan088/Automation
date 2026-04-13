@@ -21,7 +21,7 @@ For each converted module, use this structure:
 tests/
   <ModuleName>/
     _shared.js
-    TS_XX_<business_name>.spec.js
+    TC_XX_<business_name>.spec.js
 
 helpers/
   <module>.js
@@ -60,8 +60,8 @@ Each module gets its own folder under `tests/`.
 
 Examples:
 
-- `tests/FileProcessing`
-- `tests/CustomerModuleManagement`
+- `tests/DigitEYESCamps_ManageCampsCluster`
+- `tests/DigitEYESDataLoader_SFDataLoaderQueue`
 
 ### 2. Add one `_shared.js` per module
 
