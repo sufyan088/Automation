@@ -67,6 +67,27 @@ const digiteyesdataloaderSfdataloadererrorcasesSelectors = {
     { type: 'css', value: '.fa-upload.cursor-pointer', name: 'css:.fa-upload.cursor-pointer' },
     { type: 'css', value: '.fa-upload', name: 'css:.fa-upload' }
   ],
+  editIconButton: [
+    { type: 'css', value: '.fa-edit.cursor-pointer', name: 'css:.fa-edit.cursor-pointer' },
+    { type: 'css', value: '.fa-edit', name: 'css:.fa-edit' }
+  ],
+  editModalHeading: [
+    { type: 'css', value: '#divEditDataForSalesforce .modal-title', name: 'css:edit modal title' },
+    { type: 'xpath', value: '//div[@id="divEditDataForSalesforce"]//h4[contains(@class,"modal-title")]', name: 'xpath:edit modal title' }
+  ],
+  assignmentDeoCheckbox: [
+    { type: 'css', value: 'input[name="search_assignment[]"][value="1"]', name: 'css:assignment DEO' }
+  ],
+  assignmentSuperDeoCheckbox: [
+    { type: 'css', value: 'input[name="search_assignment[]"][value="2"]', name: 'css:assignment Super DEO' }
+  ],
+  paginationLink: [
+    {
+      type: 'custom',
+      name: 'custom:pagination by page number',
+      factory: (page, pageNumber) => page.locator(`#pg_${pageNumber}`)
+    }
+  ],
   searchTokenHeaders: ['Location', 'Participant Name']
 };
 

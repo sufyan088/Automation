@@ -27,6 +27,10 @@ const digiteyescampsParticipantsSelectors = {
     { type: 'css', value: '#frmSearch', name: 'css:#frmSearch' },
     { type: 'xpath', value: '//form[@id="frmSearch"]', name: 'xpath:#frmSearch' }
   ],
+  searchCountryDropdown: [
+    { type: 'css', value: 'select#search_countrycode', name: 'css:#search_countrycode' },
+    { type: 'xpath', value: '//select[@id="search_countrycode"]', name: 'xpath:#search_countrycode' }
+  ],
   closeButton: [
     { type: 'role', role: 'button', options: { name: /^close$/i }, name: 'role:Close' },
     { type: 'text', value: 'Close', name: 'text:Close' },

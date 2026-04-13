@@ -13,6 +13,13 @@ const digiteyessettingsDesalesforcefieldmappingSelectors = {
     { type: 'css', value: '#datatable', name: 'css:#datatable' },
     { type: 'text', value: 'DE Salesforce Field Mapping', name: 'text:DE Salesforce Field Mapping' }
   ],
+  tableHeaders: [
+    { type: 'css', value: '#datatable thead:nth-of-type(1) tr th', name: 'css:datatable headers' }
+  ],
+  paginationSummary: [
+    { type: 'css', value: '#datatable thead:nth-of-type(2) tr th:first-child', name: 'css:datatable summary' },
+    { type: 'text', value: 'Showing', name: 'text:Showing' }
+  ],
   firstSortableHeader: [
     { type: 'css', value: '#datatable thead:nth-of-type(1) tr th:nth-child(2) span img', name: 'css:sortable column image' },
     { type: 'css', value: '#datatable thead:nth-of-type(1) tr th span img', name: 'css:any sort image' }

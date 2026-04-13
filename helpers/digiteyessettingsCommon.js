@@ -8,7 +8,15 @@ function normalizeText(value) {
 }
 
 async function openSettingsMenu(page, data, selectors) {
-  await digiteyescampsManagecampsclusterHelpers.selectLoginCountry(page, data.visionSpringCountry);
+  const countryModalVisible = await page.locator('#divLoginCountry').isVisible().catch(() => false);
+  const menuAlreadyAvailable = await resolveFirst(page, selectors.settingsMenuButton, {
+    timeoutPerCandidate: 1000
+  }).catch(() => null);
+
+  if (countryModalVisible || !menuAlreadyAvailable) {
+    await digiteyescampsManagecampsclusterHelpers.selectLoginCountry(page, data.visionSpringCountry);
+  }
+
   await safeClick(page, selectors.settingsMenuButton, 'DigitEYES Settings menu');
   await waitForAppToSettle(page, 500);
 }
@@ -91,8 +99,21 @@ async function selectDropdownValue(page, candidates, labelOrValue, label) {
   console.log(`[SELECT] ${label} -> ${target}`);
 }
 
+async function getSelectedOptionText(page, candidates) {
+  const { locator } = await resolveFirst(page, candidates);
+  return locator.evaluate((element) => {
+    const selectedOption = element.options[element.selectedIndex];
+    return selectedOption ? selectedOption.textContent.trim() : '';
+  });
+}
+
 async function clickApplySearch(page, selectors) {
   await safeClick(page, selectors.applyButton, 'Apply Search');
+  await waitForAppToSettle(page, 800);
+}
+
+async function clickCloseSearch(page, selectors) {
+  await safeClick(page, selectors.closeButton, 'Close Search');
   await waitForAppToSettle(page, 800);
 }
 
@@ -159,8 +180,30 @@ async function expectHeaderCountAtLeast(page, selectors, count) {
   expect(headerCount).toBeGreaterThanOrEqual(count);
 }
 
+async function expectTableHeaders(page, selectors, expectedHeaders) {
+  const cssCandidate = (selectors.tableHeaders || []).find((candidate) => candidate.type === 'css')?.value;
+  if (!cssCandidate) {
+    throw new Error('Missing css selector for tableHeaders');
+  }
+
+  const headerLocator = page.locator(cssCandidate);
+  await headerLocator.first().waitFor({ state: 'visible', timeout: 10000 });
+  const actualHeaders = (await headerLocator.allTextContents())
+    .map((value) => normalizeText(value))
+    .filter(Boolean);
+
+  for (const expectedHeader of expectedHeaders) {
+    expect(actualHeaders).toContain(normalizeText(expectedHeader));
+  }
+}
+
 async function clickFirstSortableHeader(page, selectors) {
   await safeClick(page, selectors.firstSortableHeader, 'First sortable header');
+  await waitForAppToSettle(page, 600);
+}
+
+async function clickResultRow(page, selectors, label = 'Result row') {
+  await safeClick(page, selectors.resultRow, label);
   await waitForAppToSettle(page, 600);
 }
 
@@ -184,7 +227,9 @@ module.exports = {
   openSearchFilter,
   fillSearchField,
   selectDropdownValue,
+  getSelectedOptionText,
   clickApplySearch,
+  clickCloseSearch,
   openFirstRowEdit,
   openFirstRowConfigure,
   openAddForm,
@@ -194,6 +239,8 @@ module.exports = {
   clickRefresh,
   clickSyncAndAssertToast,
   expectHeaderCountAtLeast,
+  expectTableHeaders,
   clickFirstSortableHeader,
+  clickResultRow,
   fillHospitalForm
 };

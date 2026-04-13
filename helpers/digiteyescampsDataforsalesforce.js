@@ -256,6 +256,38 @@ async function clickRefresh(page) {
   await verifyPageLoaded(page);
 }
 
+async function clickPushGeoToSalesforce(page) {
+  await safeClick(
+    page,
+    digiteyescampsDataforsalesforceSelectors.pushGeoToSalesforceButton,
+    'Push GEO to Salesforce',
+    {
+      timeoutPerCandidate: 10000,
+      actionTimeout: 10000
+    }
+  );
+  await waitForAppToSettle(page, 1500);
+}
+
+async function clickPushConsentAndVerifyNavigation(page) {
+  await safeClick(
+    page,
+    digiteyescampsDataforsalesforceSelectors.pushConsentButton,
+    'Push Consent',
+    {
+      timeoutPerCandidate: 10000,
+      actionTimeout: 10000
+    }
+  );
+  await waitForAppToSettle(page, 1500);
+  await safeExpectVisible(
+    page,
+    digiteyescampsDataforsalesforceSelectors.consentOnSharePointPendingHeading,
+    'Consent on SharePoint Pending heading',
+    { timeoutPerCandidate: 10000 }
+  );
+}
+
 module.exports = {
   digiteyescampsDataforsalesforceHelpers: {
     openModule,
@@ -273,6 +305,8 @@ module.exports = {
     expectColumnValuesEqual,
     expectColumnValueOccurrenceAtLeast,
     clickRefresh,
+    clickPushGeoToSalesforce,
+    clickPushConsentAndVerifyNavigation,
     selectors: digiteyescampsDataforsalesforceSelectors
   }
 };

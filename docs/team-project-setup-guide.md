@@ -97,10 +97,10 @@ If there is a conflict, keep the target project's helper function names and merg
 
 Use these as working references for how to structure module helpers:
 
-1. [helpers/imremit.js](helpers/imremit.js)
-2. [helpers/fileProcessing.js](helpers/fileProcessing.js)
-3. [helpers/admin.js](helpers/admin.js)
-4. [helpers/customerModuleManagement.js](helpers/customerModuleManagement.js)
+1. [helpers/digiteyescampsManagecampscluster.js](helpers/digiteyescampsManagecampscluster.js)
+2. [helpers/digiteyesdataloaderCommon.js](helpers/digiteyesdataloaderCommon.js)
+3. [helpers/digiteyesreportingCommon.js](helpers/digiteyesreportingCommon.js)
+4. [helpers/digiteyessettingsCommon.js](helpers/digiteyessettingsCommon.js)
 
 ## Required Selector Pattern Files
 
@@ -109,10 +109,10 @@ At minimum, copy the shared selector style and create new module selector files 
 Useful references:
 
 1. [selectors/common.selectors.js](selectors/common.selectors.js)
-2. [selectors/imremit.selectors.js](selectors/imremit.selectors.js)
-3. [selectors/fileProcessing.selectors.js](selectors/fileProcessing.selectors.js)
-4. [selectors/admin.selectors.js](selectors/admin.selectors.js)
-5. [selectors/customerModuleManagement.selectors.js](selectors/customerModuleManagement.selectors.js)
+2. [selectors/digiteyescampsManagecampscluster.selectors.js](selectors/digiteyescampsManagecampscluster.selectors.js)
+3. [selectors/digiteyesdataloaderSfdataloaderqueue.selectors.js](selectors/digiteyesdataloaderSfdataloaderqueue.selectors.js)
+4. [selectors/digiteyesreportingCamptrends.selectors.js](selectors/digiteyesreportingCamptrends.selectors.js)
+5. [selectors/digiteyessettingsCountrysettings.selectors.js](selectors/digiteyessettingsCountrysettings.selectors.js)
 
 ## Required Scripts Folder
 
@@ -134,7 +134,7 @@ Copy the `assets` folder so the Mammoth report branding works.
 
 Required assets:
 
-1. [assets/mammoh-ai-logo.svg](assets/mammoh-ai-logo.svg)
+1. [assets/Mammoth-AI Logo.png](assets/Mammoth-AI Logo.png)
 2. [assets/mammoh-ai-mark.svg](assets/mammoh-ai-mark.svg)
 
 ## Recommended Documentation Files To Copy

@@ -109,6 +109,26 @@ const digiteyesdataloaderDataforsalesforceSelectors = {
       factory: (page) => page.locator('#datatable').locator('button, a').filter({ hasText: /show dates/i })
     }
   ],
+  searchFilterHeading: [
+    { type: 'css', value: '#myModalLabel', name: 'css:#myModalLabel' },
+    { type: 'xpath', value: '//h4[normalize-space()="Camp Cluster Data Search / Filter"]', name: 'xpath:filter heading' }
+  ],
+  searchFilterXButton: [
+    { type: 'css', value: '#Modal_frmSearch .btn-close', name: 'css:modal X close' },
+    { type: 'xpath', value: '//div[@id="Modal_frmSearch"]//button[@class="btn-close"]', name: 'xpath:modal btn-close' }
+  ],
+  dataImportedPendingRadio: [
+    { type: 'css', value: 'input[value="Pending"]', name: 'css:Pending radio' },
+    { type: 'xpath', value: '//form[@id="frmSearch"]//input[@value="Pending"]', name: 'xpath:Pending radio' }
+  ],
+  dataImportedMarkedRadio: [
+    { type: 'css', value: 'input[value="Marked"]', name: 'css:Marked radio' },
+    { type: 'xpath', value: '//form[@id="frmSearch"]//input[@value="Marked"]', name: 'xpath:Marked radio' }
+  ],
+  dataImportedAllRadio: [
+    { type: 'css', value: 'input[value="All"]', name: 'css:All radio' },
+    { type: 'xpath', value: '//form[@id="frmSearch"]//input[@value="All"]', name: 'xpath:All radio' }
+  ],
   pageSizeDropdown: [
     { type: 'css', value: '.dataTables_length select', name: 'css:.dataTables_length select' },
     { type: 'css', value: 'select[name="datatable_length"]', name: 'css:select[name=datatable_length]' }

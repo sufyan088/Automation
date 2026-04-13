@@ -4,16 +4,24 @@ const { resolveFirst } = require('./fallback');
 const { commonSelectors } = require('../selectors/common.selectors');
 const { digiteyescampsManagecampsclusterSelectors } = require('../selectors/digiteyescampsManagecampscluster.selectors');
 
+const COUNTRY_CODE_MAP = {
+  'India': 'IND',
+  'Bangladesh': 'BGD',
+  'Ghana': 'GHA',
+  'Nigeria': 'NGA',
+  'Uganda': 'UGA',
+  'Zambia': 'ZMB',
+};
+
 async function selectLoginCountry(page, country = 'India') {
-  if (country !== 'India') {
-    throw new Error(`Login country helper currently supports India only. Received: ${country}`);
+  const countryCode = COUNTRY_CODE_MAP[country];
+  if (!countryCode) {
+    throw new Error(`Login country helper does not support: ${country}. Supported: ${Object.keys(COUNTRY_CODE_MAP).join(', ')}`);
   }
 
-  const countryVisible = await resolveFirst(page, commonSelectors.loginCountryIndia, {
-    timeoutPerCandidate: 1500
-  }).catch(() => null);
+  const countryPickerVisible = await page.locator('#divLoginCountry').isVisible().catch(() => false);
 
-  if (!countryVisible) {
+  if (!countryPickerVisible) {
     const appSignIn = await safeClickIfFound(page, commonSelectors.appSignIn, 'App Sign In before country selection', {
       timeoutPerCandidate: 2000,
       actionTimeout: 5000
@@ -23,9 +31,7 @@ async function selectLoginCountry(page, country = 'India') {
       await waitForAppToSettle(page, 2000);
     }
 
-    const countryAfterInterstitial = await resolveFirst(page, commonSelectors.loginCountryIndia, {
-      timeoutPerCandidate: 1500
-    }).catch(() => null);
+    const countryAfterInterstitial = await page.locator('#divLoginCountry').isVisible().catch(() => false);
 
     if (!countryAfterInterstitial) {
       const appReady = await resolveFirst(page, commonSelectors.appReady, {
@@ -38,7 +44,14 @@ async function selectLoginCountry(page, country = 'India') {
     }
   }
 
-  await safeClick(page, commonSelectors.loginCountryIndia, 'Login Country India', { timeoutPerCandidate: 5000 });
+  const countryLabelSelectors = [
+    { type: 'css', value: `#divLoginCountry label[for="btnLoginCountry${countryCode}"]`, name: `css:#divLoginCountry ${country} label` },
+    { type: 'xpath', value: `//*[@id="divLoginCountry"]//*[@for="btnLoginCountry${countryCode}"]`, name: `xpath:divLoginCountry ${country} label` },
+    { type: 'xpath', value: `//*[text()="${country}"]`, name: `xpath:${country} text` },
+  ];
+
+  await resolveFirst(page, countryLabelSelectors, { timeoutPerCandidate: 5000 });
+  await safeClick(page, countryLabelSelectors, `Login Country ${country}`, { timeoutPerCandidate: 5000 });
   await waitForAppToSettle(page, 1500);
 }
 
@@ -71,6 +84,43 @@ async function selectDropdownValue(page, candidates, value, label) {
     });
   });
   console.log(`[SELECT] ${label} -> ${matchedBy} -> ${value}`);
+}
+
+async function selectFirstAvailableOption(page, candidates, label) {
+  const { locator, matchedBy } = await resolveFirst(page, candidates, { timeoutPerCandidate: 5000 });
+  const options = await locator.evaluate((element) =>
+    Array.from(element.options).map((option) => ({
+      value: option.value,
+      label: (option.label || option.textContent || '').trim(),
+      disabled: option.disabled
+    }))
+  );
+
+  const selected = options.find((option) => {
+    const value = (option.value || '').trim();
+    const optionLabel = (option.label || '').toLowerCase();
+    if (option.disabled) return false;
+    if (!value || value === '0' || value === '-1') return false;
+    if (optionLabel.includes('select') || optionLabel.includes('choose')) return false;
+    return true;
+  });
+
+  if (!selected) {
+    throw new Error(`${label} has no selectable non-placeholder options`);
+  }
+
+  await locator.selectOption({ value: selected.value });
+  console.log(`[SELECT_FIRST] ${label} -> ${matchedBy} -> ${selected.label}`);
+  return selected;
+}
+
+async function trySelectFirstAvailableOption(page, candidates, label) {
+  try {
+    return await selectFirstAvailableOption(page, candidates, label);
+  } catch (error) {
+    console.log(`[SELECT_FIRST_SKIP] ${label} -> ${error.message}`);
+    return null;
+  }
 }
 
 async function expectSelectedOption(page, candidates, expectedLabel, label) {
@@ -120,6 +170,17 @@ async function expectFieldHasAttribute(page, candidates, attributeName, label) {
   const { locator } = await resolveFirst(page, candidates, { timeoutPerCandidate: 5000 });
   const hasAttribute = await locator.evaluate((element, attribute) => element.hasAttribute(attribute), attributeName);
   expect(hasAttribute, `${label} should expose ${attributeName}`).toBe(true);
+}
+
+async function expectFieldAttributeAbsent(page, candidates, attributeName, label) {
+  const { locator } = await resolveFirst(page, candidates, { timeoutPerCandidate: 5000 });
+  const hasAttribute = await locator.evaluate((element, attribute) => element.hasAttribute(attribute), attributeName);
+  expect(hasAttribute, `${label} should not expose ${attributeName}`).toBe(false);
+}
+
+async function expectFieldDisabledState(page, candidates, expectedDisabled, label) {
+  const { locator } = await resolveFirst(page, candidates, { timeoutPerCandidate: 5000 });
+  await expect(locator, `${label} disabled state mismatch`).toHaveJSProperty('disabled', expectedDisabled);
 }
 
 async function fillAddressInformation(page, values = {}) {
@@ -332,6 +393,78 @@ async function expectFieldValidationFailure(page, candidates, label) {
   expect(validationState.validationMessage, `${label} should expose a validation message`).not.toBe('');
 }
 
+async function expectCheckboxState(page, candidates, expectedChecked, label) {
+  const { locator } = await resolveFirst(page, candidates, { timeoutPerCandidate: 5000 });
+  await expect(locator, `${label} should be ${expectedChecked ? 'checked' : 'unchecked'}`).toHaveJSProperty('checked', expectedChecked);
+}
+
+async function setCheckboxState(page, candidates, checked, label) {
+  const { locator } = await resolveFirst(page, candidates, { timeoutPerCandidate: 5000 });
+  await locator.setChecked(checked, { force: true });
+  await expect(locator, `${label} checkbox state mismatch`).toHaveJSProperty('checked', checked);
+}
+
+function getStatusCheckboxSelectors(statusKey) {
+  const map = {
+    newOpen: digiteyescampsManagecampsclusterSelectors.searchStatusNewOpenCheckbox,
+    running: digiteyescampsManagecampsclusterSelectors.searchStatusRunningCheckbox,
+    closed: digiteyescampsManagecampsclusterSelectors.searchStatusClosedCheckbox
+  };
+
+  const selectors = map[statusKey];
+  if (!selectors) {
+    throw new Error(`Unsupported status key: ${statusKey}`);
+  }
+
+  return selectors;
+}
+
+async function setSearchStatusCheckbox(page, statusKey, checked) {
+  const selectors = getStatusCheckboxSelectors(statusKey);
+  const { locator } = await resolveFirst(page, selectors, { timeoutPerCandidate: 5000 });
+  await locator.setChecked(checked, { force: true });
+  await waitForAppToSettle(page, 300);
+}
+
+async function expectSearchStatusCheckboxState(page, statusKey, checked) {
+  const selectors = getStatusCheckboxSelectors(statusKey);
+  await expectCheckboxState(page, selectors, checked, `Search status ${statusKey}`);
+}
+
+async function getListingStatusValues(page) {
+  const { locator } = await resolveFirst(page, digiteyescampsManagecampsclusterSelectors.listingTable, {
+    timeoutPerCandidate: 5000
+  });
+
+  return locator.locator('tbody tr td:nth-child(5)').evaluateAll((nodes) =>
+    nodes
+      .map((node) => node.textContent.replace(/\s+/g, ' ').trim())
+      .filter(Boolean)
+  );
+}
+
+async function expectListingContainsStatus(page, expectedStatusText) {
+  const statuses = await getListingStatusValues(page);
+  expect(statuses.length, 'Listing should contain at least one status value').toBeGreaterThan(0);
+  expect(
+    statuses.some((status) => status.toLowerCase().includes(expectedStatusText.toLowerCase())),
+    `Listing should include status containing ${expectedStatusText}`
+  ).toBe(true);
+}
+
+async function expectListingStatusesWithinAllowed(page, allowedStatuses) {
+  const statuses = await getListingStatusValues(page);
+  const normalizedAllowed = allowedStatuses.map((status) => status.toLowerCase());
+  expect(statuses.length, 'Listing should contain at least one status value').toBeGreaterThan(0);
+
+  for (const status of statuses) {
+    expect(
+      normalizedAllowed.some((allowed) => status.toLowerCase().includes(allowed)),
+      `Unexpected listing status value: ${status}`
+    ).toBe(true);
+  }
+}
+
 module.exports = {
   digiteyescampsManagecampsclusterHelpers: {
     selectLoginCountry,
@@ -339,12 +472,16 @@ module.exports = {
     openModule,
     openNewCampClusterForm,
     selectDropdownValue,
+    selectFirstAvailableOption,
+    trySelectFirstAvailableOption,
     fillCreateCampClusterForm,
     clickSave,
     fillFieldValue,
     expectFieldValue,
     expectSelectedOption,
     expectFieldHasAttribute,
+    expectFieldAttributeAbsent,
+    expectFieldDisabledState,
     fillAddressInformation,
     getSelectOptions,
     expectDropdownOptions,
@@ -372,6 +509,13 @@ module.exports = {
     applySearchFilter,
     resetSearchFilter,
     expectFieldValidationFailure,
+    expectCheckboxState,
+    setCheckboxState,
+    setSearchStatusCheckbox,
+    expectSearchStatusCheckboxState,
+    getListingStatusValues,
+    expectListingContainsStatus,
+    expectListingStatusesWithinAllowed,
     selectors: digiteyescampsManagecampsclusterSelectors
   }
 };

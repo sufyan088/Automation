@@ -112,6 +112,52 @@ async function expectDropdownOptions(page, fieldSelectors, expectedOptions, labe
   console.log(`[ASSERT_OPTIONS] ${label} -> ${expectedOptions.join(', ')}`);
 }
 
+async function getSelectedOptionText(page, fieldSelectors) {
+  const { locator } = await resolveFirst(page, fieldSelectors);
+  return normalizeText(await locator.locator('option:checked').textContent());
+}
+
+async function getDropdownOptions(page, fieldSelectors) {
+  const { locator } = await resolveFirst(page, fieldSelectors);
+  const options = await locator.locator('option').evaluateAll((elements) => elements.map((element) => ({
+    value: element.value,
+    text: element.textContent || ''
+  })));
+
+  return options.map((option) => ({
+    value: String(option.value || ''),
+    text: normalizeText(option.text)
+  })).filter((option) => option.text);
+}
+
+async function selectDropdownOption(page, fieldSelectors, optionToMatch, label) {
+  const options = await getDropdownOptions(page, fieldSelectors);
+  const normalizedMatcher = typeof optionToMatch === 'string' ? normalizeText(optionToMatch) : optionToMatch;
+  let match = null;
+
+  if (normalizedMatcher instanceof RegExp) {
+    match = options.find((option) => normalizedMatcher.test(option.text));
+  } else {
+    match = options.find((option) => option.text === normalizedMatcher)
+      || options.find((option) => option.text.includes(normalizedMatcher));
+  }
+
+  if (!match) {
+    throw new Error(`${label} option not found for matcher ${String(optionToMatch)}. Available options: ${options.map((option) => option.text).join(', ')}`);
+  }
+
+  const { locator } = await resolveFirst(page, fieldSelectors);
+  if (match.value) {
+    await locator.selectOption({ value: match.value });
+  } else {
+    await locator.selectOption({ label: match.text });
+  }
+
+  await expect(locator.locator('option:checked')).toContainText(match.text, { timeout: 10000 });
+  console.log(`[SELECT] ${label} -> ${match.text}`);
+  return match.text;
+}
+
 async function expectTableHeaders(page, headerSelector, expectedHeaders, label) {
   let actualHeaders = [];
 
@@ -179,6 +225,9 @@ module.exports = {
   resetSearch,
   expectTextVisible,
   expectDropdownOptions,
+  getSelectedOptionText,
+  getDropdownOptions,
+  selectDropdownOption,
   expectTableHeaders,
   clickExportAndAssert
 };
