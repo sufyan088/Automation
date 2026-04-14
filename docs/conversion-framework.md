@@ -51,6 +51,7 @@ Framework-level reusable mechanisms usually include:
 3. runtime data-loader pattern
 4. module `_shared.js` pattern
 5. reporting and portable Allure flow
+6. `helpers/allureHierarchy.js` for Allure suite grouping by module folder
 
 Project-specific helpers usually stay local to the target repo.
 
@@ -123,6 +124,35 @@ Keep environment data in `helpers/dataLoader.js`.
 
 For tests that create data, generate unique entity names to reduce collisions across reruns and future parallel execution.
 
+### 9. Use no-op teardown for shared accounts
+
+When multiple workers share a single application account:
+
+- `closeSession(page)` must be a no-op in every `_shared.js`.
+- Real UI logout during teardown invalidates sibling workers' active sessions.
+- Fix auth-state issues in `helpers/auth.js`; do not compensate by reducing workers.
+
+### 10. Use AIQ-semantic assertions
+
+When an AIQ script verifies that a column *contains* a matching value (not that every row equals it), use a minimum-occurrence assertion instead of a full-column equality check.
+
+- `expectColumnValueOccurrenceAtLeast` is the reference implementation in `helpers/digiteyesdataloaderCommon.js`.
+- Over-constraining with equality on filtered columns causes false failures when live data contains mixed rows.
+
+### 11. Register allureHierarchy in every _shared.js
+
+Add this to every module `_shared.js` `beforeEach`:
+
+```js
+import { stampAllureHierarchy } from '../../helpers/allureHierarchy.js';
+test.beforeEach(async ({ page }, testInfo) => {
+  stampAllureHierarchy(testInfo);
+  // ...
+});
+```
+
+This ensures module-folder grouping appears correctly in the Allure Suites card during whole-project runs.
+
 ## Module Conversion Workflow
 
 ### Step 1. Read the AIQ module
@@ -194,6 +224,18 @@ Use this for client sharing.
 This project already supports Mammoth-branded portable output through:
 
 - `scripts/customize-allure-report.js`
+
+### Suite normalization before full-project report generation
+
+If existing `allure-results` carry Playwright's default `chromium` parentSuite label, the Suites card in the combined report collapses to a single entry.
+
+Fix before generating the portable report:
+
+```bash
+node scripts/normalize-allure-suites.js
+```
+
+This rewrites all `*-result.json` files in `allure-results/` to stamp `parentSuite` and `suite` from the spec's title path, restoring module-folder grouping.
 
 ### Client share workflow
 
