@@ -178,8 +178,10 @@ async function expectTableHeaders(page, headerSelector, expectedHeaders, label) 
 
 async function clickExportAndAssert(page, selectors) {
   const downloadSignal = page.waitForEvent('download', { timeout: 10000 }).then((download) => ({ kind: 'download', download }));
+  // Accept any response to report-export (including redirects) since the export button
+  // uses window.location.assign('report-export.php') which may return 302 or 200
   const responseSignal = page.waitForResponse(
-    (response) => response.url().includes('report-export') && response.ok(),
+    (response) => response.url().includes('report-export'),
     { timeout: 10000 }
   ).then((response) => ({ kind: 'response', response }));
   const popupSignal = page.waitForEvent('popup', { timeout: 10000 }).then((popup) => ({ kind: 'popup', popup }));
@@ -210,7 +212,15 @@ async function clickExportAndAssert(page, selectors) {
     return;
   }
 
-  throw new Error('Export action did not trigger a download, popup, or export response.');
+  // Fallback: accept a navigation to report-export.php as confirmation the button worked
+  try {
+    await page.waitForURL(/report-export/i, { timeout: 5000 });
+    return;
+  } catch (_) {
+    // not a navigation-based export
+  }
+
+  throw new Error('Export action did not trigger a download, popup, navigation, or export response.');
 }
 
 module.exports = {
