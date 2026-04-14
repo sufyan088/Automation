@@ -114,6 +114,9 @@ async function verifyDateFrom(page, value) {
 
 async function verifyDateTo(page, value) {
   await openSearchFilter(page, digiteyesreportingWorkreportvsteamsSelectors);
+  // Clear Date From first to avoid date-range constraint rejecting Date To fill
+  const dateFromLocator = page.locator('#frmSearch:visible #search_datefrom').first();
+  await dateFromLocator.fill('').catch(() => {});
   await fillFieldAndExpectValue(page, digiteyesreportingWorkreportvsteamsSelectors.dateToField, value, 'Date To');
   await applySearch(page, digiteyesreportingWorkreportvsteamsSelectors);
   await expectTextVisible(page, 'Search / Filter', 'VS Teams page after Date To apply');

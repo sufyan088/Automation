@@ -37,6 +37,7 @@ function hasAllureResults() {
 
 function main() {
   cleanResultsDir();
+  fs.mkdirSync(path.join(rootDir, 'Result'), { recursive: true });
 
   const testExitCode = run('npx', [
     'playwright',
@@ -67,6 +68,12 @@ function main() {
     process.exit(testExitCode || 1);
   }
 
+  // Normalize suite labels so the Suites card groups by module folder instead of collapsing to "chromium"
+  const normalizeExitCode = run('node', ['scripts/normalize-allure-suites.js']);
+  if (normalizeExitCode !== 0) {
+    process.exit(normalizeExitCode);
+  }
+
   const generateExitCode = run('npx', [
     'allure',
     'generate',
@@ -74,14 +81,14 @@ function main() {
     '--clean',
     '--single-file',
     '-o',
-    'allure-report-combined-shareable'
+    shareableDir
   ]);
 
   if (generateExitCode !== 0) {
     process.exit(generateExitCode);
   }
 
-  const brandExitCode = run('node', ['scripts/customize-allure-report.js', 'allure-report-combined-shareable']);
+  const brandExitCode = run('node', ['scripts/customize-allure-report.js', shareableDir]);
 
   if (brandExitCode !== 0) {
     process.exit(brandExitCode);
