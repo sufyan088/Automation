@@ -53,8 +53,11 @@ Copy the full `helpers` pattern, at minimum:
 2. [helpers/auth.js](helpers/auth.js)
 3. [helpers/dataLoader.js](helpers/dataLoader.js)
 4. [helpers/fallback.js](helpers/fallback.js)
+5. [helpers/allureHierarchy.js](helpers/allureHierarchy.js)
 
 These are the reusable base pieces that future modules depend on.
+
+`helpers/allureHierarchy.js` stamps Allure `parentSuite` and `suite` from the top-level module folder name so whole-project runs group results by module in the Allure Suites card. Register it in every `_shared.js` via `test.beforeEach`.
 
 ## If The Target Project Already Has Its Own Helpers
 
@@ -121,12 +124,16 @@ Copy the entire `scripts` folder, especially:
 1. [scripts/customize-allure-report.js](scripts/customize-allure-report.js)
 2. [scripts/scaffold-module.js](scripts/scaffold-module.js)
 3. [scripts/run-combined-client-report.js](scripts/run-combined-client-report.js)
+4. [scripts/bootstrap-aiq-structure.js](scripts/bootstrap-aiq-structure.js)
+5. [scripts/normalize-allure-suites.js](scripts/normalize-allure-suites.js)
 
 These cover:
 
 - portable Allure Mammoth branding
 - module scaffolding
 - client-shareable report generation and zip packaging
+- bulk scaffold generation from source AIQ folder structure
+- retroactive Allure suite-label normalization for full-project combined reports
 
 ## Required Branding Assets
 
@@ -380,3 +387,12 @@ npm install
 npx playwright install
 npm run scaffold:module -- <ModuleName>
 ```
+
+## Parallel Execution Stability Rules
+
+- Always make `closeSession(page)` a **no-op** in every module `_shared.js`.
+  Do not perform real UI logout during teardown when tests share a Mammoth/Azure account across workers.
+  Real logout during teardown invalidates the shared session for sibling workers and causes cascading auth failures.
+- Validate stability at `--workers=3` before widening to higher concurrency.
+- Fix auth/session issues in `helpers/auth.js` rather than reducing workers as a permanent workaround.
+- For final client report generation, `--workers=1` is always safe if any doubt remains.

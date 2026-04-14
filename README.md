@@ -11,7 +11,7 @@ Convert the Vision Spring AIQ automation assets under `source-aiq/` into maintai
 - shared helper and selector layers
 - centralized auth, fallback locator, and wait behavior
 - reusable branded Allure reporting
-- a pull-friendly handoff for the remaining module conversions
+- a pull-friendly handoff for ongoing maintenance and future AIQ delta intake
 
 ## Current Repository Structure
 
@@ -92,10 +92,11 @@ The repo currently contains module folders for these Vision Spring families:
 
 ## Current Status
 
-This repo is no longer a fresh scaffold and is no longer mid-conversion for the current tracked intake.
+Conversion parity is complete for the current tracked intake (all 18 source module folders under `source-aiq/TestScripts/DigitEYESCampsCluster`).
 
 - Shared auth, fallback locator handling, Allure hierarchy, and reporting customization are already in place.
-- The previously tracked source AIQ delta modules were completed and validated in Playwright module runs.
+- All four module families are validated clean at `--workers=3`.
+- Any new AIQ scripts arriving under `source-aiq/TestScripts` are future delta conversions; use the recommended workflow in the handoff doc.
 - Current run-level numbers are intentionally maintained in the handoff doc instead of README to keep this file stable.
 
 For the most current module-by-module handoff and remaining conversion guidance, use [docs/vision-spring-conversion-handoff.md](docs/vision-spring-conversion-handoff.md).

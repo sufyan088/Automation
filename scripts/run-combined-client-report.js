@@ -4,8 +4,8 @@ const { spawnSync } = require('child_process');
 
 const rootDir = path.resolve(__dirname, '..');
 const resultsDir = path.join(rootDir, 'allure-results');
-const shareableDir = path.join(rootDir, 'allure-report-combined-shareable');
-const zipPath = path.join(rootDir, 'allure-report-combined-shareable.zip');
+const shareableDir = path.join(rootDir, 'Result', 'allure-report-combined-shareable');
+const zipPath = path.join(rootDir, 'Result', 'allure-report-combined-shareable.zip');
 
 function run(command, args, options = {}) {
   const result = spawnSync(command, args, {
@@ -41,9 +41,25 @@ function main() {
   const testExitCode = run('npx', [
     'playwright',
     'test',
-    'tests/FileProcessing',
-    'tests/CustomerModuleManagement',
-    '--workers=2',
+    'tests/DigitEYESCamps_ManageCampsCluster',
+    'tests/DigitEYESCamps_DataForSalesforce',
+    'tests/DigitEYESCamps_Participants',
+    'tests/DigitEYESDataLoader_DataForSalesForce',
+    'tests/DigitEYESDataLoader_ParticipantConsents',
+    'tests/DigitEYESDataLoader_SFDataLoaderChangeLog',
+    'tests/DigitEYESDataLoader_SFDataLoaderErrorCases',
+    'tests/DigitEYESDataLoader_SFDataLoaderQueue',
+    'tests/DigitEYESReporting_CampTrends',
+    'tests/DigitEYESReporting_InternetAvailability',
+    'tests/DigitEYESReporting_PopinAvailability',
+    'tests/DigitEYESReporting_SummarySheetData',
+    'tests/DigitEYESReporting_WorkReportIPTeams',
+    'tests/DigitEYESReporting_WorkReportVSTeams',
+    'tests/DigitEYESSettings_CountrySettings',
+    'tests/DigitEYESSettings_DESalesforceFieldMapping',
+    'tests/DigitEYESSettings_Hospitals',
+    'tests/DigitEYESSettings_ImplementationPartners',
+    '--workers=3',
     '--reporter=allure-playwright'
   ]);
 

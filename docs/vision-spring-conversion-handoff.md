@@ -103,3 +103,89 @@ This document captures the latest working conversion logic for this repository s
 - Reporting source parity is complete across Camp Trends, Internet Availability, Popin Availability, Summary Sheet Data, Work Report IP Teams, and Work Report VS Teams.
 - If Reporting is rerun as a full family and a failure appears, treat auth/session timing first as a shared-layer issue before assuming a missing conversion.
 - Keep exact pass/fail numbers out of this file to reduce maintenance churn.
+
+## Parallel Execution Stability
+
+### Shared-account no-op logout rule
+
+- `closeSession(page)` must be a **no-op** in every module `_shared.js`.
+- Real UI logout invalidates the shared Mammoth account session for sibling workers and causes cascading auth failures.
+- This rule applies to all families (Camps, DataLoader, Reporting, Settings).
+- Do not reintroduce UI logout as a teardown even if auth failures reappear; instead investigate auth state detection in `helpers/auth.js`.
+
+### Parallel safety confirmed
+
+- All four families have been validated clean at `--workers=3`:
+  - DigitEYESCamps (49 specs)
+  - DigitEYESDataLoader (42 specs)
+  - DigitEYESReporting (34 specs)
+  - DigitEYESSettings (20 specs)
+- Use `--workers=3` as the default parallel setting for module-scoped runs and family runs.
+- For final client report generation, `--workers=1` is always safe if stability concerns arise.
+
+### Reporting-specific parallel hardening (helpers layer)
+
+- `helpers/fallback.js` resolveFirst checks multiple matched elements instead of assuming first hidden match is correct.
+- `helpers/digiteyesreportingCommon.js` openSearchFilter retries until `#frmSearch` is visible.
+- Apply preferentially targets visible modal footer buttons.
+- Table header assertions briefly poll until headers are populated.
+
+## Allure Suite Grouping
+
+### allureHierarchy.js
+
+- `helpers/allureHierarchy.js` stamps `parentSuite` and `suite` from the top-level module folder name.
+- It is registered in every `tests/*/_shared.js` via `test.beforeEach`.
+- This enables whole-project runs to group results by the 18 module folders in the Allure Suites card.
+
+### normalize-allure-suites.js (retroactive fix)
+
+- Use `node scripts/normalize-allure-suites.js` to rewrite allure-results `*-result.json` files before report generation.
+- Required when existing result files still carry Playwright's default `chromium` parentSuite label, which collapses the Suites card to 1 entry.
+- Run before calling `scripts/customize-allure-report.js` when generating a full-project combined report.
+
+## ManageCampsCluster Specific Lessons
+
+- The module is fully converted at 63 specs.
+- Currency country-mapping specs (TC_30–TC_34 for BDT, GHS, NGN, KES, ZMW) required extending the shared country-selection helper in `helpers/digiteyescampsManagecampscluster.js` to support Bangladesh, Ghana, Nigeria, Uganda, and Zambia in addition to India.
+- Currency assertion stabilization: wait for a non-empty currency field before asserting the expected currency code.
+- Checkbox locator strategy for TC_19: scope inside the Camp Cluster Settings fieldset, resolve the row by visible label fallback (e.g., Revised Adult Screening Protocol or Ask Blood Pressure), then toggle only the visible checkbox in that row to avoid hidden or duplicate checkbox collisions.
+
+## CountrySettings Source-Alignment Lesson
+
+- TC_05 through TC_08 verify reflected checkbox defaults for the selected country.
+- The AIQ source selects India *inside* the New Camp Cluster form before reading the checkbox state.
+- The converted helper must reproduce that in-form country selection before asserting defaults; skipping it causes false failures.
+- After asserting defaults, navigate back to Settings to avoid the open-form overlay blocking sidebar clicks.
+
+## DataLoader Module Specific Lessons
+
+### Table parsing conventions (helpers/digiteyesdataloaderCommon.js)
+
+- Preserve blank header columns when reading table headers; do not strip them.
+- Read direct cell children instead of descendant matches to avoid double-counting nested content.
+- Use visible-row filtering for row counts and table assertions.
+- Scope Data for Salesforce modal controls to the visible modal footer.
+
+### AIQ semantic assertions
+
+- Several AIQ scripts verify presence of repeated matching cells, not that every visible row equals the same value.
+- Use `expectColumnValueOccurrenceAtLeast` for those cases instead of `expectColumnValuesEqual`.
+- Applies to DataForSalesForce and Queue status/sync-pending columns.
+
+### Queue specifics
+
+- TC_3: assert that Ref values are populated numeric identifiers, not globally unique across the full dataset.
+- Pending/Marked/All apply handling is centralized in the Queue helper.
+
+### ErrorCases specifics
+
+- Assignment filter controls in live UI data can diverge from source assumptions.
+- Validate against a captured page snapshot and assert stable assignment-column semantics (DEO/Super DEO pattern) after Apply.
+
+## Full Project Parity Milestone (Apr 13, 2026)
+
+- All 18 source module folders under `source-aiq/TestScripts/DigitEYESCampsCluster` are represented under `tests/` with full source parity.
+- No testcase gaps remain from the previously tracked delta intake.
+- Full project run produced 145 specs; all four families are clean at `--workers=3` in module-scoped runs.
+- New AIQ intake arriving under `source-aiq/TestScripts` after this date should be treated as future delta conversions using the standard recommended workflow below.
