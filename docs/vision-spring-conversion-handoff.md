@@ -2,6 +2,8 @@
 
 This document captures the latest working conversion logic for this repository so ongoing maintenance and any future AIQ deltas can be handled after pulling the project without depending on chat memory.
 
+Camp Server is now documented separately in `docs/vision-spring-camp-server-handoff.md` because it is a separate `source-aiq2` intake track, not part of the fully converted `source-aiq/TestScripts/DigitEYESCampsCluster` family.
+
 ## Current Position
 
 - Source-of-truth intake is under source-aiq/TestScripts.

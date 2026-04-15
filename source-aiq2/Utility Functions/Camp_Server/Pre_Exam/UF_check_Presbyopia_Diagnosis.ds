@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testcase   name= 'UF_check_Presbyopia_Diagnosis.ds' description= '' author= '' version= ''>
+<dpl filename='' exectype='runstepbystep' errorhandling='' type='JsDPL' locale='null'/>
+<fallback useFallback='true'/>
+<shadowDOM useShadowDOM='true'/>
+<step action='setChecked' value='true' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='span(&quot;Presbyopia&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='span(0, _in(section({&apos;id&apos;:&apos;step3&apos;})))' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='span(&quot;label-text&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//section[@id=&apos;step3&apos;]/div[1]/div/table/tbody/tr[1]/td[1]/label/span&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Presbyopia&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div/form/section[3]/div/div/table/tbody/tr/td/label/span&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;step3&apos;)/div[@class=&apos;row mb0&apos;]/div[@class=&apos;offset-md-3 col-md-6 offset-md-3 form-group&apos;]/table[@class=&apos;display table&apos;]/tbody[1]/tr[1]/td[@class=&apos;text-start&apos;]/label[@class=&apos;toggle&apos;]/span[@class=&apos;label-text&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[1]//td[1]//label//span[@class=&quot;label-text&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[1]//td[1]//label//span[text()=&quot;Presbyopia&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;td[class=&quot;text-start&quot;] &gt; label[class=&quot;toggle&quot;] &gt; span[class=&quot;label-text&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;.text-start &gt; .toggle &gt; .label-text&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='span(0, _in(section(&quot;step3&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+</testcase>

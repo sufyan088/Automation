@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testcase   name= 'server_Test.ds' description= '' author= '' version= ''>
+<dpl filename='' exectype='runstepbystep' errorhandling='' type='JsDPL' locale='null'/>
+<fallback useFallback='true'/>
+<shadowDOM useShadowDOM='true'/>
+<step action='click' value='""' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='button(&quot;Run as Station&quot;)' fallback='true' selected='true'/>
+   <accessor type='XPath' value='byXPath(&apos;//div/div/div/div/div[3]/div[9]/div/button[3]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Run as Station&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div/div/div/div[3]/div[9]/div/button[3]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='button({&apos;onclick&apos;:&quot;location.href=&apos;index.php&apos;&quot;})' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='button(&quot;btn btn-primary btn-sm[1]&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+</testcase>

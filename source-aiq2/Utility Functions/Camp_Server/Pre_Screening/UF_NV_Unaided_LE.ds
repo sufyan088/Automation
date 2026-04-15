@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testcase   name= 'UF_NV_Unaided_LE.ds' description= '' author= '' version= ''>
+<dpl filename='{ds}/../../../Resources/Digit_Eyes_JS_DPL.csv' exectype='runstepbystep' errorhandling='' type='HashDPL' locale='null'/>
+<fallback useFallback='true'/>
+<shadowDOM useShadowDOM='true'/>
+<step action='setSelected' value='"N8"' type='web' desc=' Near Vision : Select N8 in LE Unaided' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Id' value='select(&quot;de_exa_va_nv_le_unaided&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='select(5, _in(section({&apos;id&apos;:&apos;step2&apos;})))' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;de_exa_va_nv_le_unaided&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='select(&quot;form-select[5]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathName' value='byXPath(&apos;//*[@name=&quot;de_exa_va_nv_le_unaided&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrName' value='select(&quot;de_exa_va_nv_le_unaided&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//select[@id=&apos;de_exa_va_nv_le_unaided&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div/form/section[2]/div/div/table/tbody/tr[5]/td[3]/select&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;de_exa_va_nv_le_unaided&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[5]//td[3]//select[@id=&quot;de_exa_va_nv_le_unaided&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[5]//td[3]//select[@class=&quot;form-select&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[5]//td[3]//select[@name=&quot;de_exa_va_nv_le_unaided&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='select({&apos;defieldlabel&apos;:&apos;NV Left Eye Unaided&apos;})' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;#de_exa_va_nv_le_unaided&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;select[name=&quot;de_exa_va_nv_le_unaided&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='select(5, _in(section(&quot;step2&quot;)))' fallback='true' selected='false'/>
+   <accessor type='Id' value='select(&quot;de_exa_va_nv_le_unaided&quot;)' fallback='true' selected='false'/>
+   <accessor type='Id' value='select(&quot;de_exa_va_nv_le_unaided&quot;)' fallback='true' selected='false'/>
+   <accessor type='Id' value='select(&quot;de_exa_va_nv_le_unaided&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+</testcase>

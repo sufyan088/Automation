@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testcase   name= 'server_Test_Newa.ds' description= '' author= '' version= ''>
+<dpl filename='' exectype='runstepbystep' errorhandling='' type='JsDPL' locale='null'/>
+<fallback useFallback='true'/>
+<shadowDOM useShadowDOM='true'/>
+<step action='click' value='""' type='web' desc='click on Good 6/6 (Right Eye Prescription)' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='button(&quot;Good 6/6&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='button(1, _in(section({&apos;id&apos;:&apos;step3&apos;})))' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='button(&quot;btn btn-sm btndena[1]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//section[@id=&apos;step3&apos;]/div/div/table/tbody/tr[1]/td[1]/button&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Good 6/6&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div/form/section[3]/div/div/table/tbody/tr/td/button&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;step3&apos;)/div[@class=&apos;row rowmb18&apos;]/div[@class=&apos;offset-md-3 col-md-5 offset-md-3 form-group&apos;]/table[@class=&apos;display table table-bordered&apos;]/tbody[1]/tr[1]/td[@class=&apos;text-start&apos;]/button[@class=&apos;btn btn-sm btndena&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[1]//td[1]//button[text()=&quot;Good 6/6&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='button({&apos;onclick&apos;:&quot;$(&apos;#de_exa_re_sph&apos;).val(&apos;0.00&apos;); $(&apos;#de_exa_re_cyl&apos;).val(&apos;0.00&apos;); $(&apos;#de_exa_re_axis&apos;).val(&apos;0&apos;); $(&apos;#de_exa_re_vision&apos;).val(&apos;6/6&apos;);&quot;})' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;td[class=&quot;text-start&quot;] &gt; button[class=&quot;btn btn-sm btndena&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;.text-start &gt; .btn.btn-sm.btndena&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='button(1, _in(section(&quot;step3&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+</testcase>

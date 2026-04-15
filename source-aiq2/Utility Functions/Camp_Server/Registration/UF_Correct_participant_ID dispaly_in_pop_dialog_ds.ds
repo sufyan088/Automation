@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testcase   name= 'server_Test.ds' description= '' author= '' version= ''>
+<dpl filename='' exectype='runstepbystep' errorhandling='' type='JsDPL' locale='null'/>
+<fallback useFallback='true'/>
+<shadowDOM useShadowDOM='true'/>
+<step action='assertExists' value='""' type='web' desc='participant Name dispaly in pop dialog' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='bold(&quot;Firstname Last Name&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='bold(0, _in(paragraph({&apos;id&apos;:&apos;lblLine3&apos;})))' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//p[@id=&apos;lblLine3&apos;]/b&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Firstname Last Name&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div[2]/div/div/div/div/div/p/b&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;lblLine3&apos;)/b[1]&quot;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='bold(0, _in(paragraph(&quot;lblLine3&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+</testcase>

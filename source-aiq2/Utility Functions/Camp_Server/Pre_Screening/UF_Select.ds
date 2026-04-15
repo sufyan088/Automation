@@ -1,0 +1,177 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testcase   name= 'server_Test.ds' description= '' author= '' version= ''>
+<dpl filename='' exectype='runstepbystep' errorhandling='' type='JsDPL' locale='null'/>
+<fallback useFallback='true'/>
+<shadowDOM useShadowDOM='true'/>
+<step action='setSelected' value='"6/9"' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Id' value='select(&quot;de_exa_va_dv_re_unaided&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='select(0, _in(section({&apos;id&apos;:&apos;step2&apos;})))' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;de_exa_va_dv_re_unaided&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='select(&quot;form-select&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathName' value='byXPath(&apos;//*[@name=&quot;de_exa_va_dv_re_unaided&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrName' value='select(&quot;de_exa_va_dv_re_unaided&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//select[@id=&apos;de_exa_va_dv_re_unaided&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;form-select&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div/form/section[2]/div/div/table/tbody/tr/td[2]/select&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;de_exa_va_dv_re_unaided&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[1]//td[2]//select[@id=&quot;de_exa_va_dv_re_unaided&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[1]//td[2]//select[@class=&quot;form-select&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[1]//td[2]//select[@name=&quot;de_exa_va_dv_re_unaided&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='select({&apos;defieldlabel&apos;:&apos;DV Right Eye Unaided&apos;})' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;td[class=&quot;text-center&quot;] &gt; select[class=&quot;form-select&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;#de_exa_va_dv_re_unaided&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;select[name=&quot;de_exa_va_dv_re_unaided&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='select(0, _in(section(&quot;step2&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='setSelected' value='"6/4"' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Id' value='select(&quot;de_exa_va_dv_re_glasses&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='select(2, _in(section({&apos;id&apos;:&apos;step2&apos;})))' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;de_exa_va_dv_re_glasses&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='select(&quot;form-select[2]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathName' value='byXPath(&apos;//*[@name=&quot;de_exa_va_dv_re_glasses&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrName' value='select(&quot;de_exa_va_dv_re_glasses&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//select[@id=&apos;de_exa_va_dv_re_glasses&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div/form/section[2]/div/div/table/tbody/tr[2]/td[2]/select&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;de_exa_va_dv_re_glasses&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[2]//td[2]//select[@id=&quot;de_exa_va_dv_re_glasses&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[2]//td[2]//select[@class=&quot;form-select&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[2]//td[2]//select[@name=&quot;de_exa_va_dv_re_glasses&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='select({&apos;defieldlabel&apos;:&apos;DV Right Eye With Glasses&apos;})' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;#de_exa_va_dv_re_glasses&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;select[name=&quot;de_exa_va_dv_re_glasses&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='select(2, _in(section(&quot;step2&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='setSelected' value='"6/4"' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Id' value='select(&quot;de_exa_va_dv_le_glasses&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='select(3, _in(section({&apos;id&apos;:&apos;step2&apos;})))' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;de_exa_va_dv_le_glasses&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='select(&quot;form-select[3]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathName' value='byXPath(&apos;//*[@name=&quot;de_exa_va_dv_le_glasses&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrName' value='select(&quot;de_exa_va_dv_le_glasses&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//select[@id=&apos;de_exa_va_dv_le_glasses&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div/form/section[2]/div/div/table/tbody/tr[2]/td[3]/select&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;de_exa_va_dv_le_glasses&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[2]//td[3]//select[@id=&quot;de_exa_va_dv_le_glasses&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[2]//td[3]//select[@class=&quot;form-select&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[2]//td[3]//select[@name=&quot;de_exa_va_dv_le_glasses&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='select({&apos;defieldlabel&apos;:&apos;DV Left Eye With Glasses&apos;})' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;#de_exa_va_dv_le_glasses&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;select[name=&quot;de_exa_va_dv_le_glasses&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='select(3, _in(section(&quot;step2&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='setSelected' value='"N8"' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Id' value='select(&quot;de_exa_va_nv_re_unaided&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='select(4, _in(section({&apos;id&apos;:&apos;step2&apos;})))' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;de_exa_va_nv_re_unaided&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='select(&quot;form-select[4]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathName' value='byXPath(&apos;//*[@name=&quot;de_exa_va_nv_re_unaided&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrName' value='select(&quot;de_exa_va_nv_re_unaided&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//select[@id=&apos;de_exa_va_nv_re_unaided&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div/form/section[2]/div/div/table/tbody/tr[5]/td[2]/select&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;de_exa_va_nv_re_unaided&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[5]//td[2]//select[@id=&quot;de_exa_va_nv_re_unaided&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[5]//td[2]//select[@class=&quot;form-select&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[5]//td[2]//select[@name=&quot;de_exa_va_nv_re_unaided&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='select({&apos;defieldlabel&apos;:&apos;NV Right Eye Unaided&apos;})' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;#de_exa_va_nv_re_unaided&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;select[name=&quot;de_exa_va_nv_re_unaided&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='select(4, _in(section(&quot;step2&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='setSelected' value='"N8"' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Id' value='select(&quot;de_exa_va_nv_le_unaided&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='select(5, _in(section({&apos;id&apos;:&apos;step2&apos;})))' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;de_exa_va_nv_le_unaided&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='select(&quot;form-select[5]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathName' value='byXPath(&apos;//*[@name=&quot;de_exa_va_nv_le_unaided&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrName' value='select(&quot;de_exa_va_nv_le_unaided&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//select[@id=&apos;de_exa_va_nv_le_unaided&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div/form/section[2]/div/div/table/tbody/tr[5]/td[3]/select&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;de_exa_va_nv_le_unaided&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[5]//td[3]//select[@id=&quot;de_exa_va_nv_le_unaided&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[5]//td[3]//select[@class=&quot;form-select&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[5]//td[3]//select[@name=&quot;de_exa_va_nv_le_unaided&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='select({&apos;defieldlabel&apos;:&apos;NV Left Eye Unaided&apos;})' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;#de_exa_va_nv_le_unaided&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;select[name=&quot;de_exa_va_nv_le_unaided&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='select(5, _in(section(&quot;step2&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='setSelected' value='"N10"' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Id' value='select(&quot;de_exa_va_nv_re_glasses&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='select(6, _in(section({&apos;id&apos;:&apos;step2&apos;})))' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;de_exa_va_nv_re_glasses&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='select(&quot;form-select[6]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathName' value='byXPath(&apos;//*[@name=&quot;de_exa_va_nv_re_glasses&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrName' value='select(&quot;de_exa_va_nv_re_glasses&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//select[@id=&apos;de_exa_va_nv_re_glasses&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div/form/section[2]/div/div/table/tbody/tr[6]/td[2]/select&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;de_exa_va_nv_re_glasses&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[6]//td[2]//select[@id=&quot;de_exa_va_nv_re_glasses&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[6]//td[2]//select[@class=&quot;form-select&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[6]//td[2]//select[@name=&quot;de_exa_va_nv_re_glasses&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='select({&apos;defieldlabel&apos;:&apos;NV Right Eye With Glasses&apos;})' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;#de_exa_va_nv_re_glasses&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;select[name=&quot;de_exa_va_nv_re_glasses&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='select(6, _in(section(&quot;step2&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='setSelected' value='"N10"' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Id' value='select(&quot;de_exa_va_nv_le_glasses&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='select(7, _in(section({&apos;id&apos;:&apos;step2&apos;})))' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;de_exa_va_nv_le_glasses&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='select(&quot;form-select[7]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathName' value='byXPath(&apos;//*[@name=&quot;de_exa_va_nv_le_glasses&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrName' value='select(&quot;de_exa_va_nv_le_glasses&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//select[@id=&apos;de_exa_va_nv_le_glasses&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div/form/section[2]/div/div/table/tbody/tr[6]/td[3]/select&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;de_exa_va_nv_le_glasses&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[6]//td[3]//select[@id=&quot;de_exa_va_nv_le_glasses&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[6]//td[3]//select[@class=&quot;form-select&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[6]//td[3]//select[@name=&quot;de_exa_va_nv_le_glasses&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='select({&apos;defieldlabel&apos;:&apos;NV Left Eye With Glasses&apos;})' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;#de_exa_va_nv_le_glasses&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;select[name=&quot;de_exa_va_nv_le_glasses&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='select(7, _in(section(&quot;step2&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='span(&quot;No&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='span(6, _in(section({&apos;id&apos;:&apos;step2&apos;})))' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='span(&quot;label-text[1]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//section[@id=&apos;step2&apos;]/div[2]/div/label[3]/span&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;No&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div/form/section[2]/div[2]/div/label[3]/span&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='span(6, _in(section(&quot;step2&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='button(&quot;Finish&quot;)' fallback='true' selected='true'/>
+   <accessor type='AttrClass' value='button(&quot;btn btn-primary btn-sm&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathName' value='byXPath(&apos;//*[@name=&quot;btnFinish&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Id' value='button(&quot;btnFinish&quot;)' fallback='true' selected='false'/>
+   <accessor type='AttrName' value='button(&quot;btnFinish&quot;)' fallback='true' selected='false'/>
+   <accessor type='AttrValue' value='button(&quot;Finish&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//button[@id=&apos;btnFinish&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Finish &quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div/form/div[2]/div[2]/button[3]&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;btnFinish&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;#btnFinish&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;button[name=&quot;btnFinish&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;button[value=&quot;Finish&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;btnFinish&quot;]&apos;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+</testcase>

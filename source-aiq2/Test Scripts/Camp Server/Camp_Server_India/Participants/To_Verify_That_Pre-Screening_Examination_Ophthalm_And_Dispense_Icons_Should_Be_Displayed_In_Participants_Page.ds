@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testcase   name= 'To_Verify_That_Pre-Screening_Examination_Ophthalm_And_Dispense_Icons_Should_Be_Displayed_In_Participants_Page.ds' description= '' author= '' version= ''>
+<dpl filename='REPOSITORY/VisionSpring/DigitEYES-VisionSpring/Resources/Digit_Eyes_JS_DPL.csv' exectype='runstepbystep' errorhandling='' type='JsDPL' locale='null'/>
+<fallback useFallback='true'/>
+<shadowDOM useShadowDOM='true'/>
+<step action='include' value='' type='web' desc='Login to the camp server and redirects to camp server home page' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../Camp_Server_Login/Login_To_The_Camp_Server.ds"' fallback='true' selected='true'/>
+   <accessor type='unknown' value='"REPOSITORY/VisionSpring/DigitEYES-VisionSpring/Test Scripts/Camp Server/Camp_Server_Login/Login_To_The_Camp_Server.ds"' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='link(&quot;Participants&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='link(8, _in(div({&apos;id&apos;:&apos;navbars&apos;})))' fallback='true' selected='false'/>
+   <accessor type='AttrHref' value='link(&quot;patients.php&quot;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;a[href=&quot;patients.php&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='link(&quot;nav-link[8]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Participants&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;navbars&apos;]/ul/li[9]/a&quot;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/nav/div/div/ul/li[9]/a&apos;)' fallback='true' selected='false'/>
+   <accessor type='Image' value='byImg(imgSection(readImg(&apos;{resources}/img-8102349.png&apos;),{x:0,y:0,w:1,h:1,cx:0.50,cy:0.50}))' coords='{x:0,y:0,w:1,h:1,cx:0.50,cy:0.50}' imgPath='img-8102349.png' fallback='true' selected='false'/>
+   <accessor type='Parent' value='link(8, _in(div(&quot;navbars&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='assertExists' value='"10,10"' type='web' desc='Verify the Pre-screening icon is displayed.' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Parent' value='image(0, _in(div(&quot;Source_data&quot;)))' fallback='true' selected='true'/>
+   <accessor type='Parent' value='image(0, _in(div({&apos;id&apos;:&apos;Source_data&apos;})))' fallback='true' selected='false'/>
+   <accessor type='Src' value='image(&quot;https://dealphacamp.visionspring.org/assets/img/prescreening-black.png&quot;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;Source_data&apos;)/table[@class=&apos;display table&apos;]/thead[1]/tr[1]/th[@class=&apos;text-center&apos;]/img[1]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;Source_data&apos;]/table/thead/tr/th[6]/img&quot;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div/section/div/div/table/thead/tr/th[6]/img&apos;)' fallback='true' selected='false'/>
+   <accessor type='Image' value='byImg(imgSection(readImg(&apos;{resources}/img-562646.png&apos;),{x:0,y:0,w:1,h:1,cx:0.50,cy:0.50}))' coords='{x:0,y:0,w:1,h:1,cx:0.50,cy:0.50}' imgPath='img-562646.png' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='assertExists' value='"10,12"' type='web' desc='Verify the Examination icon is displayed.' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Parent' value='image(1, _in(div(&quot;Source_data&quot;)))' fallback='true' selected='true'/>
+   <accessor type='Parent' value='image(1, _in(div({&apos;id&apos;:&apos;Source_data&apos;})))' fallback='true' selected='false'/>
+   <accessor type='Src' value='image(&quot;https://dealphacamp.visionspring.org/assets/img/examination-black.png&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;Source_data&apos;]/table/thead/tr/th[7]/img&quot;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div/section/div/div/table/thead/tr/th[7]/img&apos;)' fallback='true' selected='false'/>
+   <accessor type='Image' value='byImg(imgSection(readImg(&apos;{resources}/img-4499971.png&apos;),{x:0,y:0,w:1,h:1,cx:0.50,cy:0.50}))' coords='{x:0,y:0,w:1,h:1,cx:0.50,cy:0.50}' imgPath='img-4499971.png' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='assertExists' value='"10,12"' type='web' desc='Verify the Ophthalm icon is displayed.' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Parent' value='image(2, _in(div(&quot;Source_data&quot;)))' fallback='true' selected='true'/>
+   <accessor type='Parent' value='image(2, _in(div({&apos;id&apos;:&apos;Source_data&apos;})))' fallback='true' selected='false'/>
+   <accessor type='Src' value='image(&quot;https://dealphacamp.visionspring.org/assets/img/doctor-black.png&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;Source_data&apos;]/table/thead/tr/th[8]/img&quot;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div/section/div/div/table/thead/tr/th[8]/img&apos;)' fallback='true' selected='false'/>
+   <accessor type='Image' value='byImg(imgSection(readImg(&apos;{resources}/img-8553774.png&apos;),{x:0,y:0,w:1,h:1,cx:0.50,cy:0.50}))' coords='{x:0,y:0,w:1,h:1,cx:0.50,cy:0.50}' imgPath='img-8553774.png' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='assertExists' value='"13,9"' type='web' desc='Verify the Dispense icon is displayed.' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Parent' value='image(3, _in(div(&quot;Source_data&quot;)))' fallback='true' selected='true'/>
+   <accessor type='Parent' value='image(3, _in(div({&apos;id&apos;:&apos;Source_data&apos;})))' fallback='true' selected='false'/>
+   <accessor type='Src' value='image(&quot;https://dealphacamp.visionspring.org/assets/img/dispatch-black.png&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;Source_data&apos;]/table/thead/tr/th[9]/img&quot;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div/section/div/div/table/thead/tr/th[9]/img&apos;)' fallback='true' selected='false'/>
+   <accessor type='Image' value='byImg(imgSection(readImg(&apos;{resources}/img-6082544.png&apos;),{x:0,y:0,w:1,h:1,cx:0.50,cy:0.50}))' coords='{x:0,y:0,w:1,h:1,cx:0.50,cy:0.50}' imgPath='img-6082544.png' fallback='true' selected='false'/>
+</dialect>
+</step>
+</testcase>

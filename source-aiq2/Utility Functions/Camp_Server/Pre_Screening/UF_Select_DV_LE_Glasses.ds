@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testcase   name= 'UF_Select.ds' description= '' author= '' version= ''>
+<dpl filename='REPOSITORY/VisionSpring/DigitEYES-VisionSpring/Resources/Digit_Eyes_JS_DPL.csv' exectype='runstepbystep' errorhandling='' type='HashDPL' locale='null'/>
+<fallback useFallback='true'/>
+<shadowDOM useShadowDOM='true'/>
+<step action='setSelected' value='"6/4"' type='web' desc='Select DV LE 6/4 Glasses' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='select(&quot;de_exa_va_dv_le_glasses&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='select(2, _in(section({&apos;id&apos;:&apos;step2&apos;})))' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;de_exa_va_dv_re_glasses&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='select(&quot;form-select[2]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathName' value='byXPath(&apos;//*[@name=&quot;de_exa_va_dv_re_glasses&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrName' value='select(&quot;de_exa_va_dv_re_glasses&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//select[@id=&apos;de_exa_va_dv_re_glasses&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div/form/section[2]/div/div/table/tbody/tr[2]/td[2]/select&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;de_exa_va_dv_re_glasses&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[2]//td[2]//select[@id=&quot;de_exa_va_dv_re_glasses&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[2]//td[2]//select[@class=&quot;form-select&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[2]//td[2]//select[@name=&quot;de_exa_va_dv_re_glasses&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='select({&apos;defieldlabel&apos;:&apos;DV Right Eye With Glasses&apos;})' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;#de_exa_va_dv_re_glasses&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;select[name=&quot;de_exa_va_dv_re_glasses&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='select(2, _in(section(&quot;step2&quot;)))' fallback='true' selected='false'/>
+   <accessor type='Id' value='select(&quot;de_exa_va_dv_re_glasses&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+</testcase>

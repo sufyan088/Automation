@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testcase   name= 'Test_Script_no4.ds' description= '' author= 'null' version= ''>
+<dpl filename='REPOSITORY/Vision/DigitEYES-VisionSpring/Resources/Digit_Eyes_JS_DPL.csv' exectype='runstepbystep' errorhandling='' type='JsDPL' locale='null'/>
+<fallback useFallback='true'/>
+<shadowDOM useShadowDOM='true'/>
+<step action='include' value='' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../Camp_Server_Login/Login_To_The_Camp_Server.ds"' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='button(&quot;Summary&quot;)' fallback='true' selected='true'/>
+   <accessor type='XPath' value='byXPath(&apos;//div[1]/div/div/div[9]/div/button[9]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;btn btn-sm btn-summary&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div/div/div[9]/div/button[9]&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;/html[1]/body[1]/div[@class=&apos;container-fluid main-container&apos;]/div[@class=&apos;col-sm-12 content&apos;]/div[@class=&apos;panel&apos;]/div[@class=&apos;row text-center&apos;]/div[@class=&apos;col-md-12&apos;]/button[@class=&apos;btn btn-sm btn-summary&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='button({&apos;onclick&apos;:&quot;location.href=&apos;summary.php&apos;&quot;})' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;col-sm-12 content&quot;] &gt; div[class=&quot;panel&quot;] &gt; div[class=&quot;row text-center&quot;] &gt; div[class=&quot;col-md-12&quot;] &gt; button[class=&quot;btn btn-sm btn-summary&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;.col-sm-12.content &gt; .panel &gt; .row.text-center &gt; .col-md-12 &gt; .btn.btn-sm.btn-summary&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='button(&quot;btn btn-sm btn-summary&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='assertExists' value='""' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='tableHeader(&quot;Camp Date&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='tableHeader(0, _in(div({&apos;id&apos;:&apos;Source_data&apos;})))' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;Source_data&apos;]/table/thead/tr/th[1]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Camp Date&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div/section/div/div[2]/table/thead/tr/th&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;Source_data&apos;)/table[@class=&apos;display table&apos;]/thead[1]/tr[1]/th[1]&quot;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='tableHeader(0, _in(div(&quot;Source_data&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='tableHeader(&quot;#RegisteredParticipants&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='tableHeader(1, _in(div({&apos;id&apos;:&apos;Source_data&apos;})))' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='tableHeader(&quot;text-center&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;Source_data&apos;]/table/thead/tr/th[2]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;text-center&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div/section/div/div[2]/table/thead/tr/th[2]&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;Source_data&apos;)/table[@class=&apos;display table&apos;]/thead[1]/tr[1]/th[@class=&apos;text-center&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;th[class=&quot;text-center&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='tableHeader(1, _in(div(&quot;Source_data&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='tableHeader(&quot;#ScreenedParticipants&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='tableHeader(2, _in(div({&apos;id&apos;:&apos;Source_data&apos;})))' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='tableHeader(&quot;text-center[1]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;Source_data&apos;]/table/thead/tr/th[3]&quot;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div/section/div/div[2]/table/thead/tr/th[3]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='tableHeader(2, _in(div(&quot;Source_data&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='tableHeader(&quot;#DispensedParticipants&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='tableHeader(3, _in(div({&apos;id&apos;:&apos;Source_data&apos;})))' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='tableHeader(&quot;text-center[2]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;Source_data&apos;]/table/thead/tr/th[4]&quot;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div/section/div/div[2]/table/thead/tr/th[4]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='tableHeader(3, _in(div(&quot;Source_data&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='tableHeader(&quot;Date Closures&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='tableHeader(4, _in(div({&apos;id&apos;:&apos;Source_data&apos;})))' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='tableHeader(&quot;text-center[3]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;Source_data&apos;]/table/thead/tr/th[5]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Date Closures&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div/section/div/div[2]/table/thead/tr/th[5]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='tableHeader(4, _in(div(&quot;Source_data&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='assertExists' value='' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='button(&quot;class==btn btn-primary btn-sm&quot;)' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='assertExists' value='""' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='AttrValue' value='button(&quot;Refresh&quot;)' fallback='true' selected='true'/>
+   <accessor type='AttrClass' value='button(&quot;btn btn-primary btn-sm&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathName' value='byXPath(&apos;//*[@name=&quot;btnRefresh&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Id' value='button(&quot;btnRefresh&quot;)' fallback='true' selected='false'/>
+   <accessor type='AttrName' value='button(&quot;btnRefresh&quot;)' fallback='true' selected='false'/>
+   <accessor type='Text' value='button(&quot;Refresh&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//button[@id=&apos;btnRefresh&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;btn btn-sm btn-primary&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot; Refresh&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div/form/div/div[2]/button&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;btnRefresh&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='button({&apos;type&apos;:&apos;button&apos;})' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;col-md-12 content&quot;] &gt; form[class=&quot;form-inline&quot;] &gt; div[class=&quot;row rowmb18&quot;] &gt; div[class=&quot;col-sm-6 text-end&quot;] &gt; button[class=&quot;btn btn-sm btn-primary&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;#btnRefresh&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;button[name=&quot;btnRefresh&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;button[value=&quot;Refresh&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;btnRefresh&quot;]&apos;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+</testcase>

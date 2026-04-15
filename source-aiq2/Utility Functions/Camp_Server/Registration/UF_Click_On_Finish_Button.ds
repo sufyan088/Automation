@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testcase   name= 'server_Test.ds' description= '' author= '' version= ''>
+<dpl filename='' exectype='runstepbystep' errorhandling='' type='JsDPL' locale='null'/>
+<fallback useFallback='true'/>
+<shadowDOM useShadowDOM='true'/>
+<step action='click' value='""' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='button(&quot;Finish&quot;)' fallback='true' selected='true'/>
+   <accessor type='AttrClass' value='button(&quot;btn btn-primary btn-sm&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathName' value='byXPath(&apos;//*[@name=&quot;btnFinish&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Id' value='button(&quot;btnFinish&quot;)' fallback='true' selected='false'/>
+   <accessor type='AttrName' value='button(&quot;btnFinish&quot;)' fallback='true' selected='false'/>
+   <accessor type='AttrValue' value='button(&quot;Finish&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//button[@id=&apos;btnFinish&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Finish &quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div/form/div[2]/div[2]/button[3]&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;btnFinish&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;#btnFinish&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;button[name=&quot;btnFinish&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;button[value=&quot;Finish&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;btnFinish&quot;]&apos;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+</testcase>

@@ -1,0 +1,51 @@
+const campServerIndiaRegistrationSelectors = {
+  navbars: '#navbars',
+  registrationLink: 'a[href="registration.php"], button:has-text("Registration")',
+  dashboardLink: 'a[href="dashboard.php"], button:has-text("Dashboard")',
+  logoutLink: 'a[href*="opt=logout"]',
+  firstNameField: '#de_reg_firstname',
+  lastNameField: '#de_reg_lastname',
+  nextButton: '#btnNext',
+  contactNumberField: '#de_reg_contactno',
+  ageField: '#de_reg_age',
+  maleLabel: 'section#step3 span:text-is("Male")',
+  secondaryContactNameField: '#de_reg_fathername',
+  secondaryContactPhoneField: '#de_reg_secondno',
+  addressLine1Field: '#de_reg_address1',
+  addressLine2Field: '#de_reg_address2',
+  stateField: '#de_reg_state',
+  districtField: '#de_reg_district',
+  districtOtherField: '#de_reg_distother',
+  cityField: '#de_reg_city',
+  postalCodeField: '#de_reg_postalcode',
+  departmentField: '#de_reg_sublocation, input[name="de_reg_sublocation"], input[defieldlabel="Department"]',
+  departmentLabel: 'text=Department*',
+  covidTemperatureField: '#de_reg_covtemp',
+  covidNoOptions: 'section#step4 span:text-is("No")',
+  covidEntryAllowedYes: 'section#step4 span:text-is("Yes")',
+  vaccinationTwoDoseLabel: 'section#step5 span:text-is("2 Dose")',
+  secondaryContactNaButton: 'button[denafor="de_reg_fathername"]',
+  secondaryContactNoPhoneButton: 'button:has-text("-No Phone Number-")',
+  villageNaButton: 'button[denafor="de_reg_village"]',
+  districtNaButton: 'button[denafor="de_reg_district"]',
+  departmentNaButton: 'button[denafor="de_reg_sublocation"]',
+  aadhaarField: '#de_reg_aadhaarno',
+  otherIdTypeField: '#de_reg_otheridtype',
+  otherIdValueField: '#de_reg_otheridvalue',
+  toastTitle: '#toast-container .toast.toast-error .toast-title',
+  dashboardContainer: '#dashboardcontent',
+  dashboardCardLabels: [
+    'Registration',
+    'Pre-Screening',
+    'Examination',
+    'Opthalm',
+    'Need Glasses',
+    'Dispense',
+    'Referrals',
+    'Data Sync to Cloud'
+  ]
+};
+
+module.exports = {
+  campServerIndiaRegistrationSelectors
+};

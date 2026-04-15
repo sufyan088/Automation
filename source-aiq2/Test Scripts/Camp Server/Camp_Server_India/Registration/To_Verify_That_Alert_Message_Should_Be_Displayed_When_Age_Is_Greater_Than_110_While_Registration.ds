@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testcase   name= 'To_Verify_That_Alert_Message_Should_Be_Displayed_When_Age_Is_Greater_Than_110_While_Registration.ds' description= '' author= '' version= ''>
+<dpl filename='{ds}/../../../../Resources/Digit_Eyes_JS_DPL.csv' exectype='runstepbystep' errorhandling='' type='JsDPL' locale='en_US'/>
+<fallback useFallback='true'/>
+<shadowDOM useShadowDOM='true'/>
+<step action='include' value='$Camp_Server_URL' type='web' desc='Login to the DigitEYES VisionSpring server' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../Camp_Server_Login/Login_To_The_Camp_Server.ds"' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='Click on Registration button' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Registration/UF_Click_On_Registration_Button.ds"' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='Enter Participant first name and last name' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Registration/UF_Enter_First_Name_And_Last_Name.ds"' fallback='true' selected='true'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Registration/UF_Enter_Empty_Participant_First_Name.ds"' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='Click on next button' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Registration/UF_Click_On_Next_Button.ds"' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='Enter contact number' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Registration/UF_Enter_Contact_Number.ds"' fallback='true' selected='true'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Registration/UF_Verify_That_Participant_Name_Cannot_Be_Left_Blank.ds"' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='Click on next button' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Registration/UF_Click_On_Next_Button.ds"' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='Enter participant age: 112' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Registration/UF_Enter_Participants_Age_112.ds"' fallback='true' selected='true'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Registration/UF_Enter_Participant_Age.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Registration/UF_Enter_Participant_Age_101.ds"' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='Select gender: Male' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Registration/UF_Click_On_Male_Radio_Button.ds"' fallback='true' selected='true'/>
+   <accessor type='unknown' value='"REPOSITORY/VisionSpring/DigitEYES-VisionSpring/Utility Functions/Camp_Server/Registration/UF_Click_On_Male_Radio_Button.ds"' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='Click on next button' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Registration/UF_Click_On_Next_Button.ds"' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='assertExists' value='"88,31"' type='web' desc='Verify that the alter (Age should be between 0 and 110) will be shown' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='div(&quot;Age should be between 0 and 110&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='div(2, _in(div({&apos;id&apos;:&apos;toast-container&apos;})))' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='div(&quot;toast-title&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;toast-container&apos;]/div/div[2]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;toast-title&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Age should be between 0 and 110&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div[5]/div/div[2]&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;toast-container&apos;)/div[@class=&apos;toast toast-error&apos;]/div[@class=&apos;toast-title&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;toast-bottom-right&quot;] &gt; div[class=&quot;toast toast-error&quot;] &gt; div[class=&quot;toast-title&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;#toast-container &gt; .toast.toast-error &gt; .toast-title&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='div(2, _in(div(&quot;toast-container&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+</testcase>

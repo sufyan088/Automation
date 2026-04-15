@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testcase   name= 'UF_Enter_Username.ds' description= '' author= '' version= ''>
+<dpl filename='REPOSITORY/VisionSpring/DigitEYES-VisionSpring/Resources/Digit_Eyes_JS_DPL.csv' exectype='runstepbystep' errorhandling='' type='JsDPL' locale='null'/>
+<fallback useFallback='true'/>
+<shadowDOM useShadowDOM='false'/>
+<step action='setValue' value='$Email' type='web' desc='Enter vision spring email' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Id' value='textbox(&quot;emailid&quot;)' fallback='true' selected='true'/>
+   <accessor type='AttrClass' value='textbox(&quot;form-control[1]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathName' value='byXPath(&apos;//*[@name=&quot;emailid&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrName' value='textbox(&quot;emailid&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//input[@id=&apos;emailid&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;form-control&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div/div/div/div[3]/div/div/form/div/div/input&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;emailid&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='textbox({&apos;type&apos;:&apos;emailid&apos;})' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;col-sm-12 text-center&quot;] &gt; form[class=&quot;form-inline&quot;] &gt; div[class=&quot;col-sm-12 text-left&quot;] &gt; div[class=&quot;input-group&quot;] &gt; input[class=&quot;form-control&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;#emailid&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;input[name=&quot;emailid&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;input[value=&quot;&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;emailid&quot;]&apos;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+</testcase>

@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testcase   name= 'server_Test.ds' description= '' author= '' version= ''>
+<dpl filename='' exectype='runstepbystep' errorhandling='' type='JsDPL' locale='null'/>
+<fallback useFallback='true'/>
+<shadowDOM useShadowDOM='true'/>
+<step action='assertExists' value='""' type='web' desc='participant iD dispaly in pop dialog' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Id' value='bold(&quot;lblLine2&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='bold(0, _in(div({&apos;id&apos;:&apos;divRegSuccess&apos;})))' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;lblLine2&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Text' value='bold(&quot;A8491-20240229-0003&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//b[@id=&apos;lblLine2&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;A8491-20240229-0003&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div[2]/div/div/div/div/div/h5/b&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;lblLine2&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;#lblLine2&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='bold(0, _in(div(&quot;divRegSuccess&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+</testcase>

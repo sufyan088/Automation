@@ -1,0 +1,579 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testcase   name= 'To_Verify_That_Alert_Message_Should_Be_Displayed_If_Other_Eye_Conditions_Is_Checked_And_Other_Issues_Are_Unchecked.ds' description= '' author= '' version= ''>
+<dpl filename='{ds}/../../../../Resources/Digit_Eyes_JS_DPL.csv' exectype='runstepbystep' errorhandling='' type='HashDPL' locale='null'/>
+<fallback useFallback='true'/>
+<shadowDOM useShadowDOM='true'/>
+<step action='include' value='' type='web' desc='Registration &amp; Prescreening Script' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../Registration/To_Verify_That_Success_Pop_Dialog_Message_Should_Be_Displayed_When_Participants_Is_Successfully_Registered.ds"' fallback='true' selected='true'/>
+   <accessor type='unknown' value='"{ds}/../Prescreening/To_Verify_That_Success_Pop_Dialog_Message_Should_Be_Displayed_When_Participants_Is_Successfully_Prescreened.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"REPOSITORY/VisionSpring/DigitEYES-VisionSpring/Test Scripts/Camp Server/Camp_Server_India/PreExam/To_Verify_That_Success_Popup_Dialog_Should_Be_Displayed_When_Participants_Sent_To_Examination_Station.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../PreExam/To_Verify_That_Success_Popup_Dialog_Should_Be_Displayed_When_Participants_Sent_To_Examination_Station.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Cluster/Login/UF_Camp_Cluster_Login.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Login/UF_Click_On_Login_Button.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Login/UF_Navigate_To_Server_URL.ds"' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='click on close message button' isThinkTime='false' isCommented='true' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Pre_Exam/UF_Click_On_Close_Message_Button.ds"' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='include' value='""' type='web' desc='click on examination button' isThinkTime='false' isCommented='true' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Click_On_Examination.ds"' fallback='true' selected='true'/>
+   <accessor type='Parent' value='link(5, _in(div({&apos;id&apos;:&apos;navbars&apos;})))' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='link(&quot;nav-link[5]&quot;)' fallback='true' selected='false'/>
+   <accessor type='AttrHref' value='link(&quot;examination.php&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;navbars&apos;]/ul/li[6]/a&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Examination&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/nav/div/div/ul/li[6]/a&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;a[href=&quot;examination.php&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='link(5, _in(div(&quot;navbars&quot;)))' fallback='true' selected='false'/>
+   <accessor type='Text' value='link(&quot;Examination[1]&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='' type='web' desc='Click on participant' isThinkTime='false' isCommented='true' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='cell($Participant_Name)' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='include' value='""' type='web' desc='click on next button' isThinkTime='false' isCommented='true' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Pre_Exam/UF_Click_On_Next_Button.ds"' fallback='true' selected='true'/>
+   <accessor type='AttrClass' value='button(&quot;btn btn-primary btn-sm&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathName' value='byXPath(&apos;//*[@name=&quot;btnNext&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Id' value='button(&quot;btnNext&quot;)' fallback='true' selected='false'/>
+   <accessor type='AttrName' value='button(&quot;btnNext&quot;)' fallback='true' selected='false'/>
+   <accessor type='AttrValue' value='button(&quot;Next&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//button[@id=&apos;btnNext&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;btn btn-sm btn-primary&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Next &quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div/form/div[2]/div[2]/button[4]&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;btnNext&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;row rowmb18&quot;] &gt; div[class=&quot;col-9 text-end&quot;] &gt; button[class=&quot;btn btn-sm btn-primary&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;#btnNext&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;button[name=&quot;btnNext&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;button[value=&quot;Next&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;btnNext&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Text' value='button(&quot;Next&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='"6/5"' type='web' desc='Distance Vision : Select 6/5 in RE Unaided' isThinkTime='false' isCommented='true' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Pre_Screening/UF_Select_DV_Unaided_RE.ds"' fallback='true' selected='true'/>
+   <accessor type='unknown' value='select(&quot;de_exa_va_dv_re_unaided&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='select(&quot;de_exa_va_dv_re_unaided&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='select(&quot;de_exa_va_dv_re_unaided&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='"6/5"' type='web' desc='Distance Vision : Select 6/5 in LE Unaided' isThinkTime='false' isCommented='true' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Pre_Screening/UF_DV_Unaided_LE.ds"' fallback='true' selected='true'/>
+   <accessor type='unknown' value='select(&quot;de_exa_va_dv_re_unaided&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='select(&quot;de_exa_va_dv_re_unaided&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='select(&quot;de_exa_va_dv_le_unaided&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='"6/12"' type='web' desc=' Distance Vision : Select 6/12 in RE with glasses' isThinkTime='false' isCommented='true' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Pre_Screening/UF_DV_Glasses_RE.ds"' fallback='true' selected='true'/>
+   <accessor type='Parent' value='select(2, _in(section({&apos;id&apos;:&apos;step2&apos;})))' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;de_exa_va_dv_re_glasses&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='select(&quot;form-select[2]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathName' value='byXPath(&apos;//*[@name=&quot;de_exa_va_dv_re_glasses&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrName' value='select(&quot;de_exa_va_dv_re_glasses&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//select[@id=&apos;de_exa_va_dv_re_glasses&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div/form/section[2]/div/div/table/tbody/tr[2]/td[2]/select&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;de_exa_va_dv_re_glasses&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[2]//td[2]//select[@id=&quot;de_exa_va_dv_re_glasses&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[2]//td[2]//select[@class=&quot;form-select&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[2]//td[2]//select[@name=&quot;de_exa_va_dv_re_glasses&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='select({&apos;defieldlabel&apos;:&apos;DV Right Eye With Glasses&apos;})' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;#de_exa_va_dv_re_glasses&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;select[name=&quot;de_exa_va_dv_re_glasses&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='select(2, _in(section(&quot;step2&quot;)))' fallback='true' selected='false'/>
+   <accessor type='Id' value='select(&quot;de_exa_va_dv_re_glasses&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"REPOSITORY/VisionSpring/DigitEYES-VisionSpring/Utility Functions/Camp_Server/Pre_Screening/glasses"' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='"6/12"' type='web' desc=' Distance Vision : Select 6/12 in LE with glasses' isThinkTime='false' isCommented='true' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Pre_Screening/UF_DV_Glasses_LE.ds"' fallback='true' selected='true'/>
+   <accessor type='Parent' value='select(3, _in(section({&apos;id&apos;:&apos;step2&apos;})))' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;de_exa_va_dv_le_glasses&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='select(&quot;form-select[3]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathName' value='byXPath(&apos;//*[@name=&quot;de_exa_va_dv_le_glasses&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrName' value='select(&quot;de_exa_va_dv_le_glasses&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//select[@id=&apos;de_exa_va_dv_le_glasses&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div/form/section[2]/div/div/table/tbody/tr[2]/td[3]/select&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;de_exa_va_dv_le_glasses&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[2]//td[3]//select[@id=&quot;de_exa_va_dv_le_glasses&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[2]//td[3]//select[@class=&quot;form-select&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[2]//td[3]//select[@name=&quot;de_exa_va_dv_le_glasses&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='select({&apos;defieldlabel&apos;:&apos;DV Left Eye With Glasses&apos;})' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;#de_exa_va_dv_le_glasses&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;select[name=&quot;de_exa_va_dv_le_glasses&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='select(3, _in(section(&quot;step2&quot;)))' fallback='true' selected='false'/>
+   <accessor type='Id' value='select(&quot;de_exa_va_dv_le_glasses&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='"N8"' type='web' desc='Near Vision : Select N8 in LE Unaided' isThinkTime='false' isCommented='true' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Pre_Screening/UF_NV_Unaided_LE.ds"' fallback='true' selected='true'/>
+   <accessor type='Parent' value='select(4, _in(section({&apos;id&apos;:&apos;step2&apos;})))' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;de_exa_va_nv_re_unaided&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='select(&quot;form-select[4]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathName' value='byXPath(&apos;//*[@name=&quot;de_exa_va_nv_re_unaided&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrName' value='select(&quot;de_exa_va_nv_re_unaided&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//select[@id=&apos;de_exa_va_nv_re_unaided&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div/form/section[2]/div/div/table/tbody/tr[5]/td[2]/select&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;de_exa_va_nv_re_unaided&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[5]//td[2]//select[@id=&quot;de_exa_va_nv_re_unaided&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[5]//td[2]//select[@class=&quot;form-select&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[5]//td[2]//select[@name=&quot;de_exa_va_nv_re_unaided&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='select({&apos;defieldlabel&apos;:&apos;NV Right Eye Unaided&apos;})' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;#de_exa_va_nv_re_unaided&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;select[name=&quot;de_exa_va_nv_re_unaided&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='select(4, _in(section(&quot;step2&quot;)))' fallback='true' selected='false'/>
+   <accessor type='Id' value='select(&quot;de_exa_va_nv_re_unaided&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Pre_Screening/UF_Select_NV_Unaided_LE.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Pre_Screening/UF_Select_NV_Unaided_LE.ds"' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='"N8"' type='web' desc=' Near Vision : Select N8 in RE Unaided' isThinkTime='false' isCommented='true' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Pre_Screening/UF_NV_Unaided_RE.ds"' fallback='true' selected='true'/>
+   <accessor type='Parent' value='select(5, _in(section({&apos;id&apos;:&apos;step2&apos;})))' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;de_exa_va_nv_le_unaided&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='select(&quot;form-select[5]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathName' value='byXPath(&apos;//*[@name=&quot;de_exa_va_nv_le_unaided&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrName' value='select(&quot;de_exa_va_nv_le_unaided&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//select[@id=&apos;de_exa_va_nv_le_unaided&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div/form/section[2]/div/div/table/tbody/tr[5]/td[3]/select&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;de_exa_va_nv_le_unaided&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[5]//td[3]//select[@id=&quot;de_exa_va_nv_le_unaided&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[5]//td[3]//select[@class=&quot;form-select&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[5]//td[3]//select[@name=&quot;de_exa_va_nv_le_unaided&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='select({&apos;defieldlabel&apos;:&apos;NV Left Eye Unaided&apos;})' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;#de_exa_va_nv_le_unaided&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;select[name=&quot;de_exa_va_nv_le_unaided&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='select(5, _in(section(&quot;step2&quot;)))' fallback='true' selected='false'/>
+   <accessor type='Id' value='select(&quot;de_exa_va_nv_le_unaided&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='"N12"' type='web' desc='Near Vision : Select 6/12 in RE with glasses' isThinkTime='false' isCommented='true' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Pre_Screening/UF_NV_Glasses_RE.ds"' fallback='true' selected='true'/>
+   <accessor type='Parent' value='select(6, _in(section({&apos;id&apos;:&apos;step2&apos;})))' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;de_exa_va_nv_re_glasses&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='select(&quot;form-select[6]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathName' value='byXPath(&apos;//*[@name=&quot;de_exa_va_nv_re_glasses&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrName' value='select(&quot;de_exa_va_nv_re_glasses&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//select[@id=&apos;de_exa_va_nv_re_glasses&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div/form/section[2]/div/div/table/tbody/tr[6]/td[2]/select&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;de_exa_va_nv_re_glasses&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[6]//td[2]//select[@id=&quot;de_exa_va_nv_re_glasses&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[6]//td[2]//select[@class=&quot;form-select&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[6]//td[2]//select[@name=&quot;de_exa_va_nv_re_glasses&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='select({&apos;defieldlabel&apos;:&apos;NV Right Eye With Glasses&apos;})' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;#de_exa_va_nv_re_glasses&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;select[name=&quot;de_exa_va_nv_re_glasses&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='select(6, _in(section(&quot;step2&quot;)))' fallback='true' selected='false'/>
+   <accessor type='Id' value='select(&quot;de_exa_va_nv_re_glasses&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"REPOSITORY/VisionSpring/DigitEYES-VisionSpring/Utility Functions/Camp_Server/Pre_Screening/UF_NV_Glasses_RE.ds"' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='"N12"' type='web' desc=' Near Vision : Select 6/12 in LE with glasses' isThinkTime='false' isCommented='true' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Pre_Screening/UF_NV_Glasses_LE.ds"' fallback='true' selected='true'/>
+   <accessor type='Parent' value='select(7, _in(section({&apos;id&apos;:&apos;step2&apos;})))' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;de_exa_va_nv_le_glasses&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='select(&quot;form-select[7]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathName' value='byXPath(&apos;//*[@name=&quot;de_exa_va_nv_le_glasses&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrName' value='select(&quot;de_exa_va_nv_le_glasses&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//select[@id=&apos;de_exa_va_nv_le_glasses&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div/form/section[2]/div/div/table/tbody/tr[6]/td[3]/select&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;de_exa_va_nv_le_glasses&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[6]//td[3]//select[@id=&quot;de_exa_va_nv_le_glasses&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[6]//td[3]//select[@class=&quot;form-select&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[6]//td[3]//select[@name=&quot;de_exa_va_nv_le_glasses&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='select({&apos;defieldlabel&apos;:&apos;NV Left Eye With Glasses&apos;})' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;#de_exa_va_nv_le_glasses&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;select[name=&quot;de_exa_va_nv_le_glasses&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='select(7, _in(section(&quot;step2&quot;)))' fallback='true' selected='false'/>
+   <accessor type='Id' value='select(&quot;de_exa_va_nv_le_glasses&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"REPOSITORY/VisionSpring/DigitEYES-VisionSpring/Utility Functions/Camp_Server/Pre_Screening/UF_NV_Glasses_LE.ds"' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='""' type='web' desc='Refer to Hostpital ' isThinkTime='false' isCommented='true' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Refer_To_Hospital_No_Button.ds"' fallback='true' selected='true'/>
+   <accessor type='Parent' value='span(6, _in(section({&apos;id&apos;:&apos;step2&apos;})))' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='span(&quot;label-text[1]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//section[@id=&apos;step2&apos;]/div[2]/div/label[3]/span&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;No&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div/form/section[2]/div[2]/div/label[3]/span&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='span(6, _in(section(&quot;step2&quot;)))' fallback='true' selected='false'/>
+   <accessor type='Text' value='span(&quot;No&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='""' type='web' desc='Click on next button' isThinkTime='false' isCommented='true' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Pre_Exam/UF_Click_On_Next_Button.ds"' fallback='true' selected='true'/>
+   <accessor type='AttrClass' value='button(&quot;btn btn-primary btn-sm&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathName' value='byXPath(&apos;//*[@name=&quot;btnNext&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Id' value='button(&quot;btnNext&quot;)' fallback='true' selected='false'/>
+   <accessor type='AttrName' value='button(&quot;btnNext&quot;)' fallback='true' selected='false'/>
+   <accessor type='AttrValue' value='button(&quot;Next&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//button[@id=&apos;btnNext&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;btn btn-sm btn-primary&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Next &quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div/form/div[2]/div[2]/button[4]&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;btnNext&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;row rowmb18&quot;] &gt; div[class=&quot;col-9 text-end&quot;] &gt; button[class=&quot;btn btn-sm btn-primary&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;#btnNext&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;button[name=&quot;btnNext&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;button[value=&quot;Next&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;btnNext&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Text' value='button(&quot;Next&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='Select RE sph ' isThinkTime='false' isCommented='true' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_RE_sph.ds"' fallback='true' selected='true'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_RE_sph.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_RE_cyl.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_RE_cyl.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_RE_cyl.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_Popin_NA.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_Popin_NA.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_Reader.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_Reader.ds"' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='Select RE cyl' isThinkTime='false' isCommented='true' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_RE_cyl.ds"' fallback='true' selected='true'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_RE_sph.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_RE_cyl.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_RE_cyl.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_RE_cyl.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_Popin_NA.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_Popin_NA.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_Reader.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_Reader.ds"' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='Select RE axis ' isThinkTime='false' isCommented='true' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_RE_Axis.ds"' fallback='true' selected='true'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_RE_sph.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_RE_cyl.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_RE_cyl.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_RE_cyl.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_Popin_NA.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_Popin_NA.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_Reader.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_Reader.ds"' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='Select Vision RE Prescription' isThinkTime='false' isCommented='true' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_Vision_RE_Prescription.ds"' fallback='true' selected='true'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_RE_sph.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_RE_cyl.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_RE_cyl.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_RE_cyl.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_Popin_NA.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_Popin_NA.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_Reader.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_Reader.ds"' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='Select RE cyl' isThinkTime='false' isCommented='true' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_RE_cyl.ds"' fallback='true' selected='true'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_RE_sph.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_RE_cyl.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_RE_cyl.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_RE_cyl.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_Popin_NA.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_Popin_NA.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_Reader.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_Reader.ds"' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='""' type='web' desc='click on good N6 button' isThinkTime='false' isCommented='true' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Click_On_Good_N6.ds"' fallback='true' selected='true'/>
+   <accessor type='Parent' value='button(2, _in(section({&apos;id&apos;:&apos;step3&apos;})))' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='button(&quot;btn btn-sm btndena[2]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//section[@id=&apos;step3&apos;]/div/div[1]/table/tbody/tr[2]/td[3]/button&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Good N6&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div/form/section[3]/div/div/table/tbody/tr[2]/td[3]/button&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;step3&apos;)/div[@class=&apos;row rowmb18&apos;]/div[@class=&apos;offset-md-3 col-md-5 offset-md-3 form-group&apos;]/table[@class=&apos;display table table-bordered&apos;]/tbody[1]/tr[2]/td[@class=&apos;text-center&apos;]/button[@class=&apos;btn btn-sm btndena&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[2]//td[3]//button[@class=&quot;btn btn-sm btndena&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[2]//td[3]//button[text()=&quot;Good N6&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='button({&apos;onclick&apos;:&quot;$(&apos;#de_exa_re_add_sph&apos;).val(&apos;0.00&apos;); $(&apos;#de_exa_re_add_vision&apos;).val(&apos;N6&apos;);&quot;})' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;td[class=&quot;text-center&quot;] &gt; button[class=&quot;btn btn-sm btndena&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='button(2, _in(section(&quot;step3&quot;)))' fallback='true' selected='false'/>
+   <accessor type='Text' value='button(&quot;Good N6&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='Select popin' isThinkTime='false' isCommented='true' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_Popin.ds"' fallback='true' selected='true'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_RE_sph.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_RE_cyl.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_RE_cyl.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_RE_cyl.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_Popin_NA.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_Popin_NA.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_Reader.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_Reader.ds"' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='Select reader' isThinkTime='false' isCommented='true' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_Reader.ds"' fallback='true' selected='true'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_RE_sph.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_RE_cyl.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_RE_cyl.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_RE_cyl.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_Popin_NA.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_Popin_NA.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_Reader.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_Reader.ds"' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='Enter remarks of LE' isThinkTime='false' isCommented='true' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Enter_Right_Eye_Remarks.ds"' fallback='true' selected='true'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_RE_sph.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_RE_cyl.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_RE_cyl.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_RE_cyl.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_Popin_NA.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_Popin_NA.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_Reader.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_Reader.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Enter_Remarks_Of_LE.ds"' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='click on next button' isThinkTime='false' isCommented='true' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Click_On_Next_Button.ds"' fallback='true' selected='true'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_RE_sph.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_RE_cyl.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_RE_cyl.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_RE_cyl.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_Popin_NA.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_Popin_NA.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_Reader.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_Reader.ds"' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='Select LE SPH' isThinkTime='false' isCommented='true' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_select _SphLE_Prescription.ds"' fallback='true' selected='true'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_LE_sph.ds"' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='Select cycl LE' isThinkTime='false' isCommented='true' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_Cyl_LE_Prescription.ds"' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='Select axis' isThinkTime='false' isCommented='true' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_Axis_RE_Prescription.ds"' fallback='true' selected='true'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_Axis_RE_Prescription.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_LE_Vision.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_LE_Vision.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_LE_Vision.ds"' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='Select LE Vision' isThinkTime='false' isCommented='true' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_LE_Vision.ds"' fallback='true' selected='true'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_Axis_RE_Prescription.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_LE_Vision.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_LE_Vision.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_LE_Vision.ds"' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='""' type='web' desc='click on good N6 button' isThinkTime='false' isCommented='true' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Click_On_Good_N6.ds"' fallback='true' selected='true'/>
+   <accessor type='Parent' value='button(2, _in(section({&apos;id&apos;:&apos;step3&apos;})))' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='button(&quot;btn btn-sm btndena[2]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//section[@id=&apos;step3&apos;]/div/div[1]/table/tbody/tr[2]/td[3]/button&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Good N6&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div/form/section[3]/div/div/table/tbody/tr[2]/td[3]/button&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;step3&apos;)/div[@class=&apos;row rowmb18&apos;]/div[@class=&apos;offset-md-3 col-md-5 offset-md-3 form-group&apos;]/table[@class=&apos;display table table-bordered&apos;]/tbody[1]/tr[2]/td[@class=&apos;text-center&apos;]/button[@class=&apos;btn btn-sm btndena&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[2]//td[3]//button[@class=&quot;btn btn-sm btndena&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[2]//td[3]//button[text()=&quot;Good N6&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='button({&apos;onclick&apos;:&quot;$(&apos;#de_exa_re_add_sph&apos;).val(&apos;0.00&apos;); $(&apos;#de_exa_re_add_vision&apos;).val(&apos;N6&apos;);&quot;})' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;td[class=&quot;text-center&quot;] &gt; button[class=&quot;btn btn-sm btndena&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='button(2, _in(section(&quot;step3&quot;)))' fallback='true' selected='false'/>
+   <accessor type='Text' value='button(&quot;Good N6&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='select popin' isThinkTime='false' isCommented='true' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_Popin.ds"' fallback='true' selected='true'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_Axis_RE_Prescription.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_LE_Vision.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_LE_Vision.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_LE_Vision.ds"' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='select reader' isThinkTime='false' isCommented='true' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_Reader.ds"' fallback='true' selected='true'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_Axis_RE_Prescription.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_LE_Vision.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_LE_Vision.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_LE_Vision.ds"' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='Enter remarks of LE' isThinkTime='false' isCommented='true' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Enter_Some_Remarks_LE.ds"' fallback='true' selected='true'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_Axis_RE_Prescription.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_LE_Vision.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_LE_Vision.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Select_LE_Vision.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Examination/UF_Enter_Remarks_Of_LE.ds"' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='""' type='web' desc='click on next button' isThinkTime='false' isCommented='true' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Pre_Exam/UF_Click_On_Next_Button.ds"' fallback='true' selected='true'/>
+   <accessor type='AttrClass' value='button(&quot;btn btn-primary btn-sm&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathName' value='byXPath(&apos;//*[@name=&quot;btnNext&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Id' value='button(&quot;btnNext&quot;)' fallback='true' selected='false'/>
+   <accessor type='AttrName' value='button(&quot;btnNext&quot;)' fallback='true' selected='false'/>
+   <accessor type='AttrValue' value='button(&quot;Next&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//button[@id=&apos;btnNext&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;btn btn-sm btn-primary&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Next &quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div/form/div[2]/div[2]/button[4]&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;btnNext&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;row rowmb18&quot;] &gt; div[class=&quot;col-9 text-end&quot;] &gt; button[class=&quot;btn btn-sm btn-primary&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;#btnNext&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;button[name=&quot;btnNext&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;button[value=&quot;Next&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;btnNext&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Text' value='button(&quot;Next&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Pre_Exam/UF_Click_On_Next_Button.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Pre_Exam/UF_Click_On_Next_Button.ds"' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='""' type='web' desc='Presbyopia checkbox is checked' isThinkTime='false' isCommented='true' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Pre_Exam/UF_check_Presbyopia_Diagnosis.ds"' fallback='true' selected='true'/>
+   <accessor type='AttrClass' value='button(&quot;btn btn-primary btn-sm&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathName' value='byXPath(&apos;//*[@name=&quot;btnNext&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Id' value='button(&quot;btnNext&quot;)' fallback='true' selected='false'/>
+   <accessor type='AttrName' value='button(&quot;btnNext&quot;)' fallback='true' selected='false'/>
+   <accessor type='AttrValue' value='button(&quot;Next&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//button[@id=&apos;btnNext&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;btn btn-sm btn-primary&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Next &quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div/form/div[2]/div[2]/button[4]&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;btnNext&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;row rowmb18&quot;] &gt; div[class=&quot;col-9 text-end&quot;] &gt; button[class=&quot;btn btn-sm btn-primary&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;#btnNext&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;button[name=&quot;btnNext&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;button[value=&quot;Next&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;btnNext&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Text' value='button(&quot;Next&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Pre_Exam/UF_Click_On_Next_Button.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Pre_Exam/UF_Click_On_Next_Button.ds"' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='""' type='web' desc='Other Eye condition checkbox is checked' isThinkTime='false' isCommented='true' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Pre_Exam/UF_Other_Eye_Conditions.ds"' fallback='true' selected='true'/>
+   <accessor type='AttrClass' value='button(&quot;btn btn-primary btn-sm&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathName' value='byXPath(&apos;//*[@name=&quot;btnNext&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Id' value='button(&quot;btnNext&quot;)' fallback='true' selected='false'/>
+   <accessor type='AttrName' value='button(&quot;btnNext&quot;)' fallback='true' selected='false'/>
+   <accessor type='AttrValue' value='button(&quot;Next&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//button[@id=&apos;btnNext&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;btn btn-sm btn-primary&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Next &quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div/form/div[2]/div[2]/button[4]&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;btnNext&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;row rowmb18&quot;] &gt; div[class=&quot;col-9 text-end&quot;] &gt; button[class=&quot;btn btn-sm btn-primary&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;#btnNext&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;button[name=&quot;btnNext&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;button[value=&quot;Next&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;btnNext&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Text' value='button(&quot;Next&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Pre_Exam/UF_Click_On_Next_Button.ds"' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='""' type='web' desc='Other Eye condition checkbox is checked' isThinkTime='false' isCommented='true' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Pre_Exam/UF_Other_Eye_Conditions.ds"' fallback='true' selected='true'/>
+   <accessor type='AttrClass' value='button(&quot;btn btn-primary btn-sm&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathName' value='byXPath(&apos;//*[@name=&quot;btnNext&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Id' value='button(&quot;btnNext&quot;)' fallback='true' selected='false'/>
+   <accessor type='AttrName' value='button(&quot;btnNext&quot;)' fallback='true' selected='false'/>
+   <accessor type='AttrValue' value='button(&quot;Next&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//button[@id=&apos;btnNext&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;btn btn-sm btn-primary&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Next &quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div/form/div[2]/div[2]/button[4]&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;btnNext&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;row rowmb18&quot;] &gt; div[class=&quot;col-9 text-end&quot;] &gt; button[class=&quot;btn btn-sm btn-primary&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;#btnNext&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;button[name=&quot;btnNext&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;button[value=&quot;Next&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;btnNext&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Text' value='button(&quot;Next&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Pre_Exam/UF_Click_On_Next_Button.ds"' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='""' type='web' desc='click on next button' isThinkTime='false' isCommented='true' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Pre_Exam/UF_Click_On_Next_Button.ds"' fallback='true' selected='true'/>
+   <accessor type='AttrClass' value='button(&quot;btn btn-primary btn-sm&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathName' value='byXPath(&apos;//*[@name=&quot;btnNext&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Id' value='button(&quot;btnNext&quot;)' fallback='true' selected='false'/>
+   <accessor type='AttrName' value='button(&quot;btnNext&quot;)' fallback='true' selected='false'/>
+   <accessor type='AttrValue' value='button(&quot;Next&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//button[@id=&apos;btnNext&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;btn btn-sm btn-primary&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Next &quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div/form/div[2]/div[2]/button[4]&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;btnNext&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;row rowmb18&quot;] &gt; div[class=&quot;col-9 text-end&quot;] &gt; button[class=&quot;btn btn-sm btn-primary&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;#btnNext&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;button[name=&quot;btnNext&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;button[value=&quot;Next&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;btnNext&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Text' value='button(&quot;Next&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Pre_Exam/UF_Click_On_Next_Button.ds"' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='assertExists' value='"100,6"' type='web' desc='Verify that the alert message : Please choose Other Issues' isThinkTime='false' isCommented='true' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='div(&quot;Please choose Other Issues&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='div(2, _in(div({&apos;id&apos;:&apos;toast-container&apos;})))' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='div(&quot;toast-title&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;toast-container&apos;]/div/div[2]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;toast-title&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Plese choose Other Issues&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div[6]/div/div[2]&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;toast-container&apos;)/div[@class=&apos;toast toast-error&apos;]/div[@class=&apos;toast-title&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;toast-bottom-right&quot;] &gt; div[class=&quot;toast toast-error&quot;] &gt; div[class=&quot;toast-title&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;#toast-container &gt; .toast.toast-error &gt; .toast-title&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='div(2, _in(div(&quot;toast-container&quot;)))' fallback='true' selected='false'/>
+   <accessor type='Text' value='div(&quot;Plese choose Other Issues&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+</testcase>

@@ -3,15 +3,38 @@ const path = require('path');
 
 function humanizeSuiteName(moduleFolderName) {
   return String(moduleFolderName || '')
+    .replace(/^\d+_/, '')
     .replace(/_/g, ' ')
     .replace(/\s+/g, ' ')
     .trim();
 }
 
+const containerFolderNames = new Set(['DigitEYESCamp_Cluster', 'DigitEYESCamp_Server']);
+
+function isModuleFolderName(entry) {
+  return Boolean(entry)
+    && !containerFolderNames.has(entry)
+    && !/\.spec\.[jt]s$/i.test(entry);
+}
+
+function resolveModuleFolderName(titlePath) {
+  if (!Array.isArray(titlePath)) {
+    return '';
+  }
+
+  const moduleEntry = titlePath.find((entry) => /^(DigitEYESCamps_|DigitEYESDataLoader_|DigitEYESReporting_|DigitEYESSettings_|Camp_Server_)/.test(entry));
+  if (moduleEntry) {
+    return moduleEntry;
+  }
+
+  const fallbackEntry = titlePath.find((entry) => isModuleFolderName(entry));
+  return fallbackEntry || titlePath[0] || '';
+}
+
 function normalizeResultFile(filePath) {
   const raw = fs.readFileSync(filePath, 'utf8');
   const result = JSON.parse(raw);
-  const moduleFolderName = Array.isArray(result.titlePath) ? result.titlePath[0] : '';
+  const moduleFolderName = resolveModuleFolderName(result.titlePath);
 
   if (!moduleFolderName) {
     return false;

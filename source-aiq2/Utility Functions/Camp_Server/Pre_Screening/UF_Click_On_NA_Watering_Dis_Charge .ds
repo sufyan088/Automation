@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testcase   name= 'server_Test.ds' description= '' author= '' version= ''>
+<dpl filename='' exectype='runstepbystep' errorhandling='' type='JsDPL' locale='null'/>
+<fallback useFallback='true'/>
+<shadowDOM useShadowDOM='true'/>
+<step action='click' value='""' type='web' desc='  click on NA Watering/Discharge ' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='AttrClass' value='span(&quot;label-text[9]&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='span(9, _in(section({&apos;id&apos;:&apos;step1&apos;})))' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//section[@id=&apos;step1&apos;]/div/div/table/tbody/tr[4]/td[2]/label/span&quot;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div/form/section/div/div/table/tbody/tr[4]/td[2]/label/span&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;step1&apos;)/div[@class=&apos;row rowmb18&apos;]/div[@class=&apos;offset-md-3 col-md-6 offset-md-3 form-group&apos;]/table[@class=&apos;display table&apos;]/tbody[1]/tr[4]/td[@class=&apos;text-center&apos;]/label[@class=&apos;toggle&apos;]/span[@class=&apos;label-text&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[4]//td[2]//label//span[@class=&quot;label-text&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='span(9, _in(section(&quot;step1&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+</testcase>

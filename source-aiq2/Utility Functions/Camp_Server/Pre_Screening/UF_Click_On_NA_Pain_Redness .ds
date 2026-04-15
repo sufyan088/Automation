@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testcase   name= 'server_Test.ds' description= '' author= '' version= ''>
+<dpl filename='' exectype='runstepbystep' errorhandling='' type='JsDPL' locale='null'/>
+<fallback useFallback='true'/>
+<shadowDOM useShadowDOM='true'/>
+<step action='click' value='""' type='web' desc='click on NA Pain/Redness ' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='AttrClass' value='span(&quot;label-text[8]&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='span(8, _in(section({&apos;id&apos;:&apos;step1&apos;})))' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//section[@id=&apos;step1&apos;]/div/div/table/tbody/tr[3]/td[4]/label/span&quot;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div/form/section/div/div/table/tbody/tr[3]/td[4]/label/span&apos;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[3]//td[4]//label//span[@class=&quot;label-text&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='span(8, _in(section(&quot;step1&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+</testcase>

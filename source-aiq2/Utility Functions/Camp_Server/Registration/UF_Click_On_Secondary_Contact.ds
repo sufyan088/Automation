@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testcase   name= 'Register_Participant_Covid_Negative_Entry_Allowed_Yes_Taken_2_Dose_Vaccine.ds' description= '' author= '' version= ''>
+<dpl filename='' exectype='runstepbystep' errorhandling='' type='JsDPL' locale='null'/>
+<fallback useFallback='true'/>
+<shadowDOM useShadowDOM='true'/>
+<step action='click' value='""' type='web' desc='Click on Secondry contact' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='button(&quot;-NA-&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='button(0, _in(section({&apos;id&apos;:&apos;step6&apos;})))' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='button(&quot;btn btn-sm btndena&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//section[@id=&apos;step6&apos;]/div/div[1]/div/span/button&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;-NA-&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div/form/section[6]/div/div/div/span/button&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;step6&apos;)/div[@class=&apos;row rowmb18&apos;]/div[@class=&apos;col-md-6 form-group&apos;]/div[@class=&apos;input-group&apos;]/span[@class=&apos;input-group-btn&apos;]/button[@class=&apos;btn btn-sm btndena&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='button({&apos;denafor&apos;:&apos;de_reg_fathername&apos;})' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;row rowmb18&quot;] &gt; div[class=&quot;col-md-6 form-group&quot;] &gt; div[class=&quot;input-group&quot;] &gt; span[class=&quot;input-group-btn&quot;] &gt; button[class=&quot;btn btn-sm btndena&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='button(0, _in(section(&quot;step6&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+</testcase>

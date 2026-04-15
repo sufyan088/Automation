@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testcase   name= 'UF_Enter_R_o Village_Area_And_R_o_District.ds.ds' description= '' author= '' version= ''>
+<dpl filename='' exectype='runstepbystep' errorhandling='' type='JsDPL' locale='null'/>
+<fallback useFallback='true'/>
+<shadowDOM useShadowDOM='true'/>
+<step action='click' value='""' type='web' desc='Enter R/o District   or click on NA' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='button(&quot;-NA-[1]&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='button(1, _in(section({&apos;id&apos;:&apos;step7&apos;})))' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='button(&quot;btn btn-sm btndena[1]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//section[@id=&apos;step7&apos;]/div/div[2]/div/span/button&quot;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div/form/section[7]/div/div[2]/div/span/button&apos;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='button({&apos;denafor&apos;:&apos;de_reg_district&apos;})' fallback='true' selected='false'/>
+   <accessor type='Parent' value='button(1, _in(section(&quot;step7&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+</testcase>

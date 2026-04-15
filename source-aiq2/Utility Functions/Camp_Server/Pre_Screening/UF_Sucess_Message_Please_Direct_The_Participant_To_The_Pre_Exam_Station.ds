@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testcase   name= 'server_Test.ds' description= '' author= '' version= ''>
+<dpl filename='' exectype='runstepbystep' errorhandling='' type='JsDPL' locale='null'/>
+<fallback useFallback='true'/>
+<shadowDOM useShadowDOM='true'/>
+<step action='assertExists' value='""' type='web' desc='Please direct the Participant to the Pre Exam station' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='paragraph([&quot;Please direct the Participant to th&quot;])' fallback='true' selected='true'/>
+   <accessor type='Parent' value='paragraph(0, _in(div({&apos;id&apos;:&apos;divExaSuccess&apos;})))' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;lblLine1&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Id' value='paragraph(&quot;lblLine1&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//p[@id=&apos;lblLine1&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Please direct the Participant to the Pre Exam station.&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div[2]/div/div/div/div/div/p&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;lblLine1&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='paragraph({&apos;style&apos;:&apos;font-size:24px&apos;})' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;#lblLine1&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='paragraph(0, _in(div(&quot;divExaSuccess&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+</testcase>

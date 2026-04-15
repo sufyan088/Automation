@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testcase   name= 'Login_To_The_Camp_Server.ds' description= '' author= '' version= ''>
+<dpl filename='{ds}/../../../Resources/Digit_Eyes_JS_DPL.csv' exectype='runstepbystep' errorhandling='' type='HashDPL' locale='null'/>
+<fallback useFallback='true'/>
+<shadowDOM useShadowDOM='true'/>
+<step action='navigateTo' value='$Camp_Server_URL' type='web' desc='Navigate to server' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='store' value='getText(bold(0, _in(div(&quot;class==col-sm-6 text-secondary[1]&quot;))))' type='web' desc='Copy camp password' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='camp_password' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='log' value='camp_password' type='web' desc='Log camp password' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='click on Run as station button' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='button(&quot;Run as Station&quot;)' fallback='true' selected='true'/>
+   <accessor type='XPath' value='byXPath(&apos;//div/div/div/div/div[3]/div[9]/div/button[3]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Run as Station&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div/div/div/div[3]/div[9]/div/button[3]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='button({&apos;onclick&apos;:&quot;location.href=&apos;index.php&apos;&quot;})' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='button(&quot;btn btn-primary btn-sm[1]&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='setValue' value='"mammoth2@visionspring.org"' type='web' desc='enter email ' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='AttrName' value='textbox(&quot;emailid&quot;)' fallback='true' selected='true'/>
+   <accessor type='AttrClass' value='textbox(&quot;form-control[1]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathName' value='byXPath(&apos;//*[@name=&quot;emailid&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Id' value='textbox(&quot;emailid&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//input[@id=&apos;emailid&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;form-control&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div/div/div/div[3]/div/div/form/div/div/input&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;emailid&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='textbox({&apos;type&apos;:&apos;emailid&apos;})' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;col-sm-12 text-center&quot;] &gt; form[class=&quot;form-inline&quot;] &gt; div[class=&quot;col-sm-12 text-left&quot;] &gt; div[class=&quot;input-group&quot;] &gt; input[class=&quot;form-control&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;#emailid&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;input[name=&quot;emailid&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;input[value=&quot;&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;emailid&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='textbox(&quot;form-control[1]&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='setValue' value='"mammoth"' type='web' desc='enter person name : Mammoth' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Id' value='textbox(&quot;personname&quot;)' fallback='true' selected='true'/>
+   <accessor type='AttrClass' value='textbox(&quot;form-control&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathName' value='byXPath(&apos;//*[@name=&quot;personname&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrName' value='textbox(&quot;personname&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//input[@id=&apos;personname&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div/div/div/div[3]/div/div/form/div[2]/div/input&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;personname&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='textbox({&apos;type&apos;:&apos;text&apos;})' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;#personname&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;input[name=&quot;personname&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;personname&quot;]&apos;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='setValue' value='camp_password' type='web' desc='enter password' isThinkTime='false' isCommented='false' isMasked='false' isHidden='true' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Id' value='password(&quot;password&quot;)' fallback='true' selected='true'/>
+   <accessor type='AttrClass' value='password(&quot;form-control&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathName' value='byXPath(&apos;//*[@name=&quot;password&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrName' value='password(&quot;password&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//input[@id=&apos;password&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div/div/div/div[3]/div/div/form/div[3]/div/input&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;password&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='password({&apos;type&apos;:&apos;password&apos;})' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;col-sm-12 text-center&quot;] &gt; form[class=&quot;form-inline&quot;] &gt; div[class=&quot;col-sm-12 text-start&quot;] &gt; div[class=&quot; input-group&quot;] &gt; input[class=&quot;form-control&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;#password&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;input[name=&quot;password&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;password&quot;]&apos;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='click on login  button' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='submit(&quot;Login&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='submit(0, _in(form({&apos;id&apos;:&apos;loginForm&apos;})))' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;loginBtn&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='submit(&quot;btn btn-primary btn-sm&quot;)' fallback='true' selected='false'/>
+   <accessor type='Id' value='submit(&quot;loginBtn&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//button[@id=&apos;loginBtn&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;btn btn-sm btn-primary&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot; Login&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div/div/div/div[3]/div/div/form/button&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;loginBtn&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='submit({&apos;type&apos;:&apos;submit&apos;})' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;panel-body&quot;] &gt; div[class=&quot;row&quot;] &gt; div[class=&quot;col-sm-12 text-center&quot;] &gt; form[class=&quot;form-inline&quot;] &gt; button[class=&quot;btn btn-sm btn-primary&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;#loginBtn&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='submit(0, _in(form(&quot;loginForm&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+</testcase>

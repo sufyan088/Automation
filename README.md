@@ -4,7 +4,7 @@ This repository is the current AIQ-to-Playwright conversion project for the Visi
 
 ## Project Goal
 
-Convert the Vision Spring AIQ automation assets under `source-aiq/` into maintainable Playwright coverage with:
+Convert the Vision Spring AIQ automation assets under `source-aiq/` and `source-aiq2/` into maintainable Playwright coverage with:
 
 - one Playwright module folder per AIQ module
 - thin spec files with business-readable `test.step()` flow
@@ -21,6 +21,7 @@ tests/
   DigitEYESDataLoader_*/
   DigitEYESReporting_*/
   DigitEYESSettings_*/
+  DigitEYESCamp_Server/
 
 helpers/
   actions.js
@@ -28,28 +29,42 @@ helpers/
   dataLoader.js
   fallback.js
   digiteyes* module helpers
+  source-aiq2/ Camp Server helpers
 
 selectors/
   common selectors
   module selector files
+  source-aiq2/ Camp Server selector files
 
 source-aiq/
   TestScripts/
   UtilityFunctions/
 
+source-aiq2/
+  Test Scripts/
+  Utility Functions/
+  Digit_Eyes_JS_DPL.csv
+  Digit_Eyes_Synthetic_DPL.csv
+
 data/
   JS_DPL_Camp_Cluster.csv
+  source-aiq2/
 
 docs/
   conversion-framework.md
   team-project-setup-guide.md
+  vision-spring-camp-server-handoff.md
   vision-spring-conversion-handoff.md
 
 scripts/
   bootstrap-aiq-structure.js
+  bootstrap-source-aiq2-structure.js
   scaffold-module.js
   customize-allure-report.js
   normalize-allure-suites.js
+  camp-server-modules.js
+  run-camp-server-client-report.js
+  run-camp-server-sequence.js
   run-combined-client-report.js
 
 Result/
@@ -90,16 +105,38 @@ The repo currently contains module folders for these Vision Spring families:
 - `DigitEYESSettings_Hospitals`
 - `DigitEYESSettings_ImplementationPartners`
 
+### DigitEYES Camp Server
+
+- `Camp_Server_Login`
+- `01_Camp_Server_India_Registration`
+- `02_Camp_Server_India_Prescreening`
+- `03_Camp_Server_India_PreExam`
+- `04_Camp_Server_India_Examination`
+- `05_Camp_Server_India_Opthalm`
+- `06_Camp_Server_India_Dispense`
+- `07_Camp_Server_India_Participants`
+- `08_Camp_Server_India_Summary`
+
 ## Current Status
 
-Conversion parity is complete for the current tracked intake (all 18 source module folders under `source-aiq/TestScripts/DigitEYESCampsCluster`).
+Conversion parity is complete for the current tracked DigitEYESCampsCluster intake (all 18 source module folders under `source-aiq/TestScripts/DigitEYESCampsCluster`).
 
 - Shared auth, fallback locator handling, Allure hierarchy, and reporting customization are already in place.
 - All four module families are validated clean at `--workers=3`.
 - Any new AIQ scripts arriving under `source-aiq/TestScripts` are future delta conversions; use the recommended workflow in the handoff doc.
 - Current run-level numbers are intentionally maintained in the handoff doc instead of README to keep this file stable.
 
-For the most current module-by-module handoff and remaining conversion guidance, use [docs/vision-spring-conversion-handoff.md](docs/vision-spring-conversion-handoff.md).
+Camp Server is a separate `source-aiq2` conversion track.
+
+- The Camp Server scaffold is generated under `tests/DigitEYESCamp_Server/`, `helpers/source-aiq2/`, `selectors/source-aiq2/`, and `data/source-aiq2/`.
+- The current Camp Server baseline is partial conversion, not full parity.
+- The currently validated converted Camp Server batch is the first 5 helper-backed Registration specs.
+- Most remaining Camp Server specs are still scaffolds with a placeholder `Run converted flow` step and should not be treated as finished coverage.
+
+For the most current module-by-module handoff and remaining conversion guidance:
+
+- use [docs/vision-spring-conversion-handoff.md](docs/vision-spring-conversion-handoff.md) for the DigitEYESCampsCluster families
+- use [docs/vision-spring-camp-server-handoff.md](docs/vision-spring-camp-server-handoff.md) for the `source-aiq2` Camp Server track
 
 ## Install
 
@@ -125,6 +162,7 @@ npx playwright test tests/DigitEYESReporting_* --workers=3
 npx playwright test tests/DigitEYESSettings_* --workers=3
 npx playwright test tests/DigitEYESDataLoader_* --workers=3
 npx playwright test tests/DigitEYESCamps_* --workers=3
+npx playwright test tests/DigitEYESCamp_Server/01_Camp_Server_India_Registration --workers=1
 ```
 
 ### Run one module
@@ -132,6 +170,21 @@ npx playwright test tests/DigitEYESCamps_* --workers=3
 ```bash
 npx playwright test tests/DigitEYESReporting_CampTrends
 npx playwright test tests/DigitEYESReporting_WorkReportVSTeams
+npx playwright test tests/DigitEYESCamp_Server/01_Camp_Server_India_Registration --workers=1
+```
+
+### Camp Server shortcuts
+
+```bash
+npm run test:camp-server-login
+npm run test:camp-server-registration
+npm run test:camp-server-prescreening
+npm run test:camp-server-preexam
+npm run test:camp-server-examination
+npm run test:camp-server-opthalm
+npm run test:camp-server-dispense
+npm run test:camp-server-participants
+npm run test:camp-server-summary
 ```
 
 ### Run headed or debug
@@ -160,6 +213,15 @@ npx playwright test tests/DigitEYESReporting_CampTrends/TC_01_To_verify_that_Dig
   - country picker
   - target module navigation
 - Module `_shared.js` files intentionally use a no-op `closeSession(page)` to avoid shared-account logout collisions across parallel workers.
+
+### Camp Server data and authentication
+
+- Camp Server runtime data is loaded through `helpers/source-aiq2/dataLoader.js`.
+- Camp Server intake lives under `source-aiq2/`, and the runtime CSV search path defaults to `data/source-aiq2/*.csv`.
+- The loader supports environment overrides such as `SOURCE_AIQ2_DATA_FILE`, `SOURCE_AIQ2_BASE_URL`, `SOURCE_AIQ2_USERNAME`, `SOURCE_AIQ2_PASSWORD`, `SOURCE_AIQ2_PERSON_NAME`, and the participant/address field overrides used by the Registration helper.
+- If the `data/source-aiq2/*.csv` file is malformed, the loader logs a fallback message and uses environment/default values.
+- Camp Server auth is separate from the Microsoft web-app flow. The current logic in `helpers/source-aiq2/auth.js` goes directly to `server.php`, supports the `Run as Station` flow, extracts the on-page camp password when needed, fills `emailid`, `personname`, and `password`, and then waits for `#navbars`.
+- Camp Server module `_shared.js` files also use a no-op `closeSession(page)` for consistency and to avoid teardown side effects.
 
 ## Core Framework Rules Used In This Repo
 
@@ -209,6 +271,12 @@ If a source AIQ script performs an in-form selection before checking a default, 
   - `executor.json`
   - `categories.json`
 
+### Camp Server reporting
+
+- `npm run report:camp-server:client` runs the ordered Camp Server module sequence from `scripts/camp-server-modules.js`, generates a single-file Allure report, applies Mammoth branding, and packages it under `Result/`.
+- For targeted Camp Server client artifacts, rerun only the intended spec batch with `--reporter=allure-playwright`, add `environment.properties`, `executor.json`, and `categories.json`, run `scripts/normalize-allure-suites.js`, then generate and brand the single-file report.
+- Do not present a full Camp Server client report as complete converted coverage unless the included specs are actually implemented; placeholder `Run converted flow` specs are scaffolds, not finished automation.
+
 ## Conversion Commands
 
 ### Bootstrap scaffold from source AIQ structure
@@ -230,9 +298,11 @@ npm run scaffold:module -- <ModuleName>
 - [docs/team-project-setup-guide.md](docs/team-project-setup-guide.md)
   How to reuse this framework in another project.
 - [docs/vision-spring-conversion-handoff.md](docs/vision-spring-conversion-handoff.md)
-  Current Vision Spring-specific status, latest fixes, completed delta batches, and recommended next modules.
+  Current DigitEYESCampsCluster-specific status, latest fixes, completed delta batches, and recommended next modules.
+- [docs/vision-spring-camp-server-handoff.md](docs/vision-spring-camp-server-handoff.md)
+  Current Camp Server-specific intake mapping, helper architecture, partial conversion status, reporting workflow, and next conversion guidance.
 
-For teammate onboarding and AI agent overviews, start with `docs/vision-spring-conversion-handoff.md` first, then read this README for commands and structure.
+For teammate onboarding and AI agent overviews, start with the family-specific handoff doc that matches the active track, then read this README for commands and structure.
 
 ## Notes For Future Work
 

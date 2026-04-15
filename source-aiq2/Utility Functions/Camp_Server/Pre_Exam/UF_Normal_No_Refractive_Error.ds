@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testcase   name= 'UF_Normal_No_Refractive_Error.ds' description= '' author= '' version= ''>
+<dpl filename='' exectype='runstepbystep' errorhandling='' type='JsDPL' locale='null'/>
+<fallback useFallback='true'/>
+<shadowDOM useShadowDOM='true'/>
+<step action='if' value='' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='   isChecked(span(&quot;Normal (No refractive error)&quot;)) ' fallback='true' selected='true'/>
+   <accessor type='unknown' value='  isChecked()' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='else' value='' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='setChecked' value='true' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='span(&quot;Normal (No refractive error)&quot;)' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='endif' value='' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+</testcase>

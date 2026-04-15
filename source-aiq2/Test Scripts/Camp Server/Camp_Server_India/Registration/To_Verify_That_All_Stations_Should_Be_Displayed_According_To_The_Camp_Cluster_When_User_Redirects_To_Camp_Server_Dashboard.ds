@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testcase   name= 'To_Verify_That_All_Stations_Should_Be_Displayed_According_To_The_Camp_Cluster_When_User_Redirects_To_Camp_Server_Dashboard.ds' description= '' author= '' version= ''>
+<dpl filename='REPOSITORY/VisionSpring/DigitEYES-VisionSpring/Resources/Digit_Eyes_JS_DPL.csv' exectype='runstepbystep' errorhandling='' type='JsDPL' locale='null'/>
+<fallback useFallback='true'/>
+<shadowDOM useShadowDOM='true'/>
+<step action='include' value='' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../Camp_Server_Login/Login_To_The_Camp_Server.ds"' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='link(&quot;Dashboard&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='link(1, _in(div({&apos;id&apos;:&apos;navbars&apos;})))' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='link(&quot;nav-link[1]&quot;)' fallback='true' selected='false'/>
+   <accessor type='AttrHref' value='link(&quot;dashboard.php&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;navbars&apos;]/ul/li[2]/a&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Dashboard&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/nav/div/div/ul/li[2]/a&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;a[href=&quot;dashboard.php&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='link(1, _in(div(&quot;navbars&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='assertExists' value='""' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='heading3(&quot;Registration&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='heading3(0, _in(div({&apos;id&apos;:&apos;dashboardcontent&apos;})))' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;dashboardcontent&apos;]/div[3]/div[1]/div/div/div[2]/span[1]/h3&quot;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div[3]/div/div/div/div[2]/span/h3&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;dashboardcontent&apos;)/div[@class=&apos;row mb-3&apos;]/div[@class=&apos;col &apos;]/div[@class=&apos;card card-cover h-100 overflow-hidden bg-registration rounded-2 shadow-lgx&apos;]/div[@class=&apos;d-md-flex flex-columnx h-100 p-3 pb-3 text-white text-shadow-1&apos;]/div[@class=&apos;w-100 px-4 pt-md-0 pt-sm-3&apos;]/span[@class=&apos;info-box-text&apos;]/h3[1]&quot;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='heading3(0, _in(div(&quot;dashboardcontent&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='assertExists' value='""' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='heading3(&quot;Pre-Screening&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='heading3(1, _in(div({&apos;id&apos;:&apos;dashboardcontent&apos;})))' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;dashboardcontent&apos;]/div[3]/div[2]/div/div/div[2]/span[1]/h3&quot;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div[3]/div[2]/div/div/div[2]/span/h3&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;dashboardcontent&apos;)/div[@class=&apos;row mb-3&apos;]/div[@class=&apos;col &apos;]/div[@class=&apos;card card-cover h-100 overflow-hidden bg-prescreening rounded-2 shadow-lgx&apos;]/div[@class=&apos;d-md-flex flex-columnx h-100 p-3 pb-3 text-white text-shadow-1&apos;]/div[@class=&apos;w-100 px-4 pt-md-0 pt-sm-3&apos;]/span[@class=&apos;info-box-text&apos;]/h3[1]&quot;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='heading3(1, _in(div(&quot;dashboardcontent&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='assertExists' value='""' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='heading3(&quot;Examination&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='heading3(2, _in(div({&apos;id&apos;:&apos;dashboardcontent&apos;})))' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;dashboardcontent&apos;]/div[3]/div[3]/div/div/div[2]/span[1]/h3&quot;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div[3]/div[3]/div/div/div[2]/span/h3&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;dashboardcontent&apos;)/div[@class=&apos;row mb-3&apos;]/div[@class=&apos;col &apos;]/div[@class=&apos;card card-cover h-100 overflow-hidden bg-examination rounded-2 shadow-lgx&apos;]/div[@class=&apos;d-md-flex flex-columnx h-100 p-3 pb-3 text-shadow-1&apos;]/div[@class=&apos;w-100 px-4 pt-md-0 pt-sm-3&apos;]/span[@class=&apos;info-box-text&apos;]/h3[1]&quot;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='heading3(2, _in(div(&quot;dashboardcontent&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='assertExists' value='""' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='heading3(&quot;Opthalm&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='heading3(3, _in(div({&apos;id&apos;:&apos;dashboardcontent&apos;})))' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;dashboardcontent&apos;]/div[4]/div[1]/div/div/div[2]/span[1]/h3&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Opthalm&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div[4]/div/div/div/div[2]/span/h3&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;dashboardcontent&apos;)/div[@class=&apos;row mb-3&apos;]/div[@class=&apos;col mt-md-0 mt-sm-3&apos;]/div[@class=&apos;card card-cover h-100 overflow-hidden bg-doctor rounded-2 shadow-lgx&apos;]/div[@class=&apos;d-md-flex flex-columnx h-100 p-3 pb-3 text-white text-shadow-1&apos;]/div[@class=&apos;w-100 px-4 pt-md-0 pt-sm-3&apos;]/span[@class=&apos;info-box-text&apos;]/h3[1]&quot;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='heading3(3, _in(div(&quot;dashboardcontent&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='assertExists' value='""' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='heading3(&quot;0 Need Glasses&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='heading3(4, _in(div({&apos;id&apos;:&apos;dashboardcontent&apos;})))' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;dashboardcontent&apos;]/div[4]/div[2]/div/div/div[2]/span[1]/h3&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;0 Need Glasses&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div[4]/div[2]/div/div/div[2]/span/h3&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='heading3(4, _in(div(&quot;dashboardcontent&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='assertExists' value='""' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='heading3(&quot;Dispense&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='heading3(5, _in(div({&apos;id&apos;:&apos;dashboardcontent&apos;})))' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;dashboardcontent&apos;]/div[4]/div[3]/div/div/div[2]/span[1]/h3&quot;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div[4]/div[3]/div/div/div[2]/span/h3&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;dashboardcontent&apos;)/div[@class=&apos;row mb-3&apos;]/div[@class=&apos;col mt-md-0 mt-sm-3&apos;]/div[@class=&apos;card card-cover h-100 overflow-hidden bg-dispense rounded-2 shadow-lgx&apos;]/div[@class=&apos;d-md-flex flex-columnx h-100 p-3 pb-3 text-white text-shadow-1&apos;]/div[@class=&apos;w-100 px-4 pt-md-0 pt-sm-3&apos;]/span[@class=&apos;info-box-text&apos;]/h3[1]&quot;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='heading3(5, _in(div(&quot;dashboardcontent&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='assertExists' value='""' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='heading3(&quot;0 Referrals&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='heading3(6, _in(div({&apos;id&apos;:&apos;dashboardcontent&apos;})))' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;dashboardcontent&apos;]/div[5]/div[1]/div/div/div[2]/span[1]/h3&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;0 Referrals&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div[5]/div/div/div/div[2]/span/h3&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;dashboardcontent&apos;)/div[@class=&apos;row mb-3&apos;]/div[@class=&apos;col &apos;]/div[@class=&apos;card card-cover h-100 overflow-hidden rounded-2 shadow-lgx&apos;]/div[@class=&apos;d-md-flex flex-columnx h-100 p-3 pb-3 text-shadow-1&apos;]/div[@class=&apos;w-100 px-4 pt-md-0 pt-sm-3&apos;]/span[@class=&apos;info-box-text&apos;]/h3[1]&quot;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='heading3(6, _in(div(&quot;dashboardcontent&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='assertExists' value='""' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='heading3(&quot;Data Sync to Cloud&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='heading3(0, _in(div({&apos;id&apos;:&apos;divsync&apos;})))' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='heading3(&quot;d-inline&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;divsync&apos;]/div[2]/span[1]/h3&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;d-inline&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Data Sync to Cloud &quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div[5]/div[3]/div/div/div[2]/span/h3&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;divsync&apos;)/div[@class=&apos;w-100 px-4 pt-md-0 pt-sm-3&apos;]/span[1]/h3[@class=&apos;d-inline&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;card card-cover h-100 overflow-hidden bg-prescreening rounded-2 shadow-lgx&quot;] &gt; div[class=&quot;d-md-flex flex-columnx h-100 p-3 pb-1 text-white text-shadow-1&quot;] &gt; div[class=&quot;w-100 px-4 pt-md-0 pt-sm-3&quot;] &gt; span[class=&quot;&quot;] &gt; h3[class=&quot;d-inline&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='heading3(0, _in(div(&quot;divsync&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+</testcase>

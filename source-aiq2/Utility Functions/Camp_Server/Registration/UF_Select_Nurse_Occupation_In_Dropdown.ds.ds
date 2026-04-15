@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testcase   name= 'UF_Select_Nurse_Occupation_In_Dropdown.ds.ds' description= '' author= '' version= ''>
+<dpl filename='{ds}/../../../Resources/Digit_Eyes_JS_DPL.csv' exectype='runstepbystep' errorhandling='' type='HashDPL' locale='null'/>
+<fallback useFallback='true'/>
+<shadowDOM useShadowDOM='true'/>
+<step action='click' value='""' type='web' desc='click on dropdown arrow of accupation' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Id' value='span(&quot;select2-de_reg_occupation_select-container&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='span(4, _in(section({&apos;id&apos;:&apos;step10&apos;})))' fallback='true' selected='false'/>
+   <accessor type='AttrTitle' value='span(&quot;:: Select Occupation&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;select2-de_reg_occupation_select-container&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='span(&quot;select2-selection__rendered&quot;)' fallback='true' selected='false'/>
+   <accessor type='Text' value='span(&quot;:: Select Occupation[3]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//span[@id=&apos;select2-de_reg_occupation_select-container&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;select2-selection__rendered&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div/form/section[10]/div/div[2]/span/span/span/span&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;select2-de_reg_occupation_select-container&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='span({&apos;role&apos;:&apos;textbox&apos;})' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;span[title=&quot;:: Select Occupation&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;col-md-8 form-group&quot;] &gt; span[class=&quot;select2 select2-container select2-container--default&quot;] &gt; span[class=&quot;selection&quot;] &gt; span[class=&quot;select2-selection select2-selection--single&quot;] &gt; span[class=&quot;select2-selection__rendered&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;#select2-de_reg_occupation_select-container&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='span(4, _in(section(&quot;step10&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='select nurse' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='listItem(&quot;Nurse&quot;)' fallback='true' selected='true'/>
+   <accessor type='AttrClass' value='listItem(&quot;select2-results__option select2-results__option--highlighted&quot;)' fallback='true' selected='false'/>
+   <accessor type='Id' value='listItem(&quot;select2-de_reg_occupation_select-result-pocn-60&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//li[@id=&apos;select2-de_reg_occupation_select-result-pocn-60&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;select2-results__option select2-results__option--highlighted&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/span/span/span[2]/ul/li[17]&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;select2-de_reg_occupation_select-result-pocn-60&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='listItem({&apos;data-select2-id&apos;:&apos;select2-de_reg_occupation_select-result-pocn-60&apos;})' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;span[class=&quot;select2-container select2-container--default select2-container--open&quot;] &gt; span[class=&quot;select2-dropdown select2-dropdown--below&quot;] &gt; span[class=&quot;select2-results&quot;] &gt; ul[class=&quot;select2-results__options&quot;] &gt; li[class=&quot;select2-results__option select2-results__option--highlighted&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;#select2-de_reg_occupation_select-result-pocn-60&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;select2-de_reg_occupation_select-result-pocn-60&quot;]&apos;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+</testcase>

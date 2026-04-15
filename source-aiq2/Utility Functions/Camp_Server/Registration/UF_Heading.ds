@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testcase   name= 'Register_Participant_Covid_Negative_Entry_Allowed_Yes_Taken_2_Dose_Vaccine.ds' description= '' author= '' version= ''>
+<dpl filename='' exectype='runstepbystep' errorhandling='' type='JsDPL' locale='null'/>
+<fallback useFallback='true'/>
+<shadowDOM useShadowDOM='true'/>
+<step action='assertExists' value='""' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Id' value='heading4(&quot;lblLine1&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='heading4(0, _in(div({&apos;id&apos;:&apos;divRegSuccess&apos;})))' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;lblLine1&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Text' value='heading4(&quot;Fdg Gfd Added Successfully!&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//h4[@id=&apos;lblLine1&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Fdg Gfd Added Successfully!&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div[2]/div/div/div/div/div/h4&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;lblLine1&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;#lblLine1&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='heading4(0, _in(div(&quot;divRegSuccess&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+</testcase>

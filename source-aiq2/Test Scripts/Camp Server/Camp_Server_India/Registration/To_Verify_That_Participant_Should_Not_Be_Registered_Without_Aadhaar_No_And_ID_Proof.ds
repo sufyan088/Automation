@@ -1,0 +1,256 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testcase   name= 'To_Verify_That_Participant_Should_Not_Be_Registered_Without_Aadhaar_No_And_ID_Proof.ds' description= '' author= '' version= ''>
+<dpl filename='{ds}/../../../../Resources/Digit_Eyes_JS_DPL.csv' exectype='runstepbystep' errorhandling='' type='HashDPL' locale='null'/>
+<fallback useFallback='true'/>
+<shadowDOM useShadowDOM='true'/>
+<step action='include' value='$Camp_Server_URL' type='web' desc='Login to the DigitEYES VisionSpring server' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../Camp_Server_Login/Login_To_The_Camp_Server.ds"' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='Click on Registration button' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Registration/UF_Click_On_Registration_Button.ds"' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='Enter Participant first name and last name' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Registration/UF_Enter_First_Name_And_Last_Name.ds"' fallback='true' selected='true'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Registration/UF_Enter_Empty_Participant_First_Name.ds"' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='Click on next button' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Registration/UF_Click_On_Next_Button.ds"' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='Enter contact number' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Registration/UF_Enter_Contact_Number.ds"' fallback='true' selected='true'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Registration/UF_Verify_That_Participant_Name_Cannot_Be_Left_Blank.ds"' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='Click on next button' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Registration/UF_Click_On_Next_Button.ds"' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='Enter participant age' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Registration/UF_Enter_Participant_Age_101.ds"' fallback='true' selected='true'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Registration/UF_Enter_Participant_Age.ds"' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='Select gender: Male' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Registration/UF_Click_On_Male_Radio_Button.ds"' fallback='true' selected='true'/>
+   <accessor type='unknown' value='"REPOSITORY/VisionSpring/DigitEYES-VisionSpring/Utility Functions/Camp_Server/Registration/UF_Click_On_Male_Radio_Button.ds"' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='Click on next button' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Registration/UF_Click_On_Next_Button.ds"' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='Click on secondry contact button NA' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Registration/UF_Enter_Secondry_Conatct_No.ds"' fallback='true' selected='true'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Registration/UF_Click_On_Secondary_Contact.ds"' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='Click on next button' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Registration/UF_Click_On_Next_Button.ds"' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='setValue' value='"test address line 1"' type='web' desc='enter address line 1' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Id' value='textbox(&quot;de_reg_address1&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='textbox(0, _in(section({&apos;id&apos;:&apos;step5&apos;})))' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;de_reg_address1&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='textbox(&quot;form-control&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathName' value='byXPath(&apos;//*[@name=&quot;de_reg_address1&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrName' value='textbox(&quot;de_reg_address1&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//input[@id=&apos;de_reg_address1&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div/form/section[5]/div/div/div/input&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;de_reg_address1&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='textbox({&apos;type&apos;:&apos;text&apos;})' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;row rowmb18&quot;] &gt; div[class=&quot;col-md-4 form-group&quot;] &gt; div[class=&quot;input-group&quot;] &gt; input[class=&quot;form-control&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;#de_reg_address1&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;input[name=&quot;de_reg_address1&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='textbox(0, _in(section(&quot;step5&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='setValue' value='"test address line 2"' type='web' desc='enter address line 2' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Id' value='textbox(&quot;de_reg_address2&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='textbox(1, _in(section({&apos;id&apos;:&apos;step5&apos;})))' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;de_reg_address2&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='textbox(&quot;form-control[1]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathName' value='byXPath(&apos;//*[@name=&quot;de_reg_address2&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrName' value='textbox(&quot;de_reg_address2&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//input[@id=&apos;de_reg_address2&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div/form/section[5]/div/div[2]/div/input&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;de_reg_address2&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='textbox({&apos;defieldlabel&apos;:&apos;Address Line 2&apos;})' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;#de_reg_address2&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;input[name=&quot;de_reg_address2&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='textbox(1, _in(section(&quot;step5&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='"Biahr"' type='web' desc='enter village and district' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Registration/UF_Enter_RO_Village_And_RO_District.ds"' fallback='true' selected='true'/>
+   <accessor type='Parent' value='textbox(0, _in(section({&apos;id&apos;:&apos;step5&apos;})))' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;de_reg_village&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='textbox(&quot;form-control&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathName' value='byXPath(&apos;//*[@name=&quot;de_reg_village&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrName' value='textbox(&quot;de_reg_village&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//input[@id=&apos;de_reg_village&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div/form/section[5]/div/div/div/input&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;de_reg_village&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='textbox({&apos;type&apos;:&apos;text&apos;})' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;row rowmb18&quot;] &gt; div[class=&quot;col-md-4 form-group&quot;] &gt; div[class=&quot;input-group&quot;] &gt; input[class=&quot;form-control&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;#de_reg_village&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;input[name=&quot;de_reg_village&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='textbox(0, _in(section(&quot;step5&quot;)))' fallback='true' selected='false'/>
+   <accessor type='Id' value='textbox(&quot;de_reg_village&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Registration/UF_Enter_Ro Village_Area_And_Ro_District.ds"' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='setSelected' value='"Delhi"' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Id' value='select(&quot;de_reg_state&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='select(0, _in(section({&apos;id&apos;:&apos;step5&apos;})))' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;de_reg_state&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='select(&quot;form-select&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathName' value='byXPath(&apos;//*[@name=&quot;de_reg_state&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrName' value='select(&quot;de_reg_state&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//select[@id=&apos;de_reg_state&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;form-select&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div/form/section[5]/div[3]/div/select&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;de_reg_state&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='select({&apos;defieldlabel&apos;:&apos;State&apos;})' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;row rowmb18&quot;] &gt; div[class=&quot;col-md-3 form-group&quot;] &gt; select[class=&quot;form-select&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;#de_reg_state&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;select[name=&quot;de_reg_state&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='select(0, _in(section(&quot;step5&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='setSelected' value='"New Delhi"' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Id' value='select(&quot;de_reg_district&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='select(1, _in(section({&apos;id&apos;:&apos;step5&apos;})))' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;de_reg_district&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='select(&quot;form-select[1]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathName' value='byXPath(&apos;//*[@name=&quot;de_reg_district&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrName' value='select(&quot;de_reg_district&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//select[@id=&apos;de_reg_district&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div/form/section[5]/div[3]/div[2]/select&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;de_reg_district&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='select({&apos;defieldlabel&apos;:&apos;Ditrict&apos;})' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;#de_reg_district&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;select[name=&quot;de_reg_district&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='select(1, _in(section(&quot;step5&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='setValue' value='"test city"' type='web' desc='enter city' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Id' value='textbox(&quot;de_reg_city&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='textbox(4, _in(section({&apos;id&apos;:&apos;step5&apos;})))' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;de_reg_city&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='textbox(&quot;form-control[4]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathName' value='byXPath(&apos;//*[@name=&quot;de_reg_city&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrName' value='textbox(&quot;de_reg_city&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//input[@id=&apos;de_reg_city&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div/form/section[5]/div[3]/div/div/input&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;de_reg_city&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='textbox({&apos;defieldlabel&apos;:&apos;City&apos;})' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;#de_reg_city&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;input[name=&quot;de_reg_city&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='textbox(4, _in(section(&quot;step5&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='setValue' value='"123456"' type='web' desc='enter postal code' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Id' value='textbox(&quot;de_reg_postalcode&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='textbox(6, _in(section({&apos;id&apos;:&apos;step5&apos;})))' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;de_reg_postalcode&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='textbox(&quot;form-control numberonly&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathName' value='byXPath(&apos;//*[@name=&quot;de_reg_postalcode&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrName' value='textbox(&quot;de_reg_postalcode&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//input[@id=&apos;de_reg_postalcode&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div/form/section[5]/div[3]/div[3]/div/input&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;de_reg_postalcode&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='textbox({&apos;maxlength&apos;:&apos;6&apos;})' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;row rowmb18&quot;] &gt; div[class=&quot;col-md-4 form-group&quot;] &gt; div[class=&quot;input-group&quot;] &gt; input[class=&quot;form-control numberonly&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;#de_reg_postalcode&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;input[name=&quot;de_reg_postalcode&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='textbox(6, _in(section(&quot;step5&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='Enter village and district' isThinkTime='false' isCommented='true' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Registration/UF_Enter_RO_Village_And_RO_District.ds"' fallback='true' selected='true'/>
+   <accessor type='unknown' value='"REPOSITORY/VisionSpring/DigitEYES-VisionSpring/Utility Functions/Camp_Server/Registration/UF_Enter_Ro Village_Area_And_Ro_District.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Registration/UF_Enter_Ro Village_Area_And_Ro_District.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"REPOSITORY/VisionSpring/DigitEYES-VisionSpring/Utility Functions/Camp_Server/Registration/UF_Enter_RO_Village_And_RO_District.ds"' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='Click on next button' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Registration/UF_Click_On_Next_Button.ds"' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='Enter department' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Registration/UF_Enter_Department.ds"' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='Click on next button' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Registration/UF_Click_On_Next_Button.ds"' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='include' value='""' type='web' desc='Click on Aadhaar No : NA button' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Registration/UF_Click_On_Aadhaar_NO_NA_Button.ds"' fallback='true' selected='true'/>
+   <accessor type='Parent' value='button(0, _in(section({&apos;id&apos;:&apos;step6&apos;})))' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='button(&quot;btn btn-sm btndena&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//section[@id=&apos;step6&apos;]/div/div[1]/div/span/button&quot;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div/form/section[6]/div/div/div/span/button&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;step6&apos;)/div[@class=&apos;row rowmb18&apos;]/div[@class=&apos;col-md-4 form-group&apos;]/div[@class=&apos;input-group&apos;]/span[@class=&apos;input-group-btn&apos;]/button[@class=&apos;btn btn-sm btndena&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='button({&apos;denafor&apos;:&apos;de_reg_aadhaarno&apos;})' fallback='true' selected='false'/>
+   <accessor type='Parent' value='button(0, _in(section(&quot;step6&quot;)))' fallback='true' selected='false'/>
+   <accessor type='Text' value='button(&quot;-NA-&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='Select Other ID Proof Type : NA button' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Registration/UF_Select_Other_ID_Proof_Type_NA_Button.ds"' fallback='true' selected='true'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Registration/UF_Enter_Other_ID_Proof_Type.ds.ds"' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='Click on next button' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Registration/UF_Click_On_Next_Button.ds"' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='assertExists' value='"55,33"' type='web' desc='Verify alert message that Please enter some ID Proof' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='div(&quot;Please enter some ID Proof&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='div(2, _in(div({&apos;id&apos;:&apos;toast-container&apos;})))' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='div(&quot;toast-title&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;toast-container&apos;]/div/div[2]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;toast-title&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Other ID Proof Value cannot be left blank.&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div[5]/div/div[2]&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;toast-container&apos;)/div[@class=&apos;toast toast-error&apos;]/div[@class=&apos;toast-title&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;toast-bottom-right&quot;] &gt; div[class=&quot;toast toast-error&quot;] &gt; div[class=&quot;toast-title&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;#toast-container &gt; .toast.toast-error &gt; .toast-title&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='div(2, _in(div(&quot;toast-container&quot;)))' fallback='true' selected='false'/>
+   <accessor type='unknown' value='div([&quot;Other ID Proof Value cannot be left&quot;])' fallback='true' selected='false'/>
+   <accessor type='unknown' value='div(&quot;Other ID Proof Value cannot be left blank.&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+</testcase>

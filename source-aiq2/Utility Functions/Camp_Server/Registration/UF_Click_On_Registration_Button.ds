@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testcase   name= 'UF_Click_On_Registration_Button.ds' description= '' author= '' version= ''>
+<dpl filename='{ds}/../../../Resources/Digit_Eyes_JS_DPL.csv' exectype='runstepbystep' errorhandling='' type='JsDPL' locale='en_US'/>
+<fallback useFallback='true'/>
+<shadowDOM useShadowDOM='true'/>
+<step action='include' value='$Camp_Cluster_URL' type='web' desc='Navigate to camp server' isThinkTime='false' isCommented='true' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../Test Scripts/Camp Server/Camp_Server_Login/Login_To_The_Camp_Server.ds"' fallback='true' selected='true'/>
+   <accessor type='unknown' value='"{ds}/../../../../Utility Functions/Camp_Server/Login/UF_Navigate_To_Server_URL.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../Camp_Server_Login/Login_To_The_Camp_Server.ds"' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='link(&quot;Registration&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='link(2, _in(div({&apos;id&apos;:&apos;navbars&apos;})))' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='link(&quot;nav-link[2]&quot;)' fallback='true' selected='false'/>
+   <accessor type='AttrHref' value='link(&quot;signature.php&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;navbars&apos;]/ul/li[3]/a&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Registration&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/nav/div/div/ul/li[3]/a&apos;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='link({&apos;stylex&apos;:&apos;color:&apos;})' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;a[href=&quot;signature.php&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='link(2, _in(div(&quot;navbars&quot;)))' fallback='true' selected='false'/>
+   <accessor type='Text' value='link(&quot;Registration[1]&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='' isThinkTime='false' isCommented='true' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='submit(&quot;Take Signature&quot;)' fallback='true' selected='true'/>
+   <accessor type='AttrClass' value='submit(&quot;btn btn-primary btn-sm&quot;)' fallback='true' selected='false'/>
+   <accessor type='Id' value='submit(&quot;btnTestSignature&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//button[@id=&apos;btnTestSignature&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;btn btn-sm btn-primary&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Take Signature&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/div/div/div/div[2]/button&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;btnTestSignature&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;col-sm-12 content&quot;] &gt; div[class=&quot;panel&quot;] &gt; div[class=&quot;row&quot;] &gt; div[class=&quot;col-sm-3 text-center&quot;] &gt; button[class=&quot;btn btn-sm btn-primary&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;#btnTestSignature&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;btnTestSignature&quot;]&apos;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='js' value='setConfirmResponse(true)' type='web' desc='' isThinkTime='false' isCommented='true' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='Click on not taking signature button' isThinkTime='false' isCommented='true' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='button(&quot;Not Taking Signature&quot;)' fallback='true' selected='true'/>
+   <accessor type='AttrClass' value='button(&quot;btn btn-secondary btn-sm[1]&quot;)' fallback='true' selected='false'/>
+   <accessor type='Id' value='button(&quot;btnNoSignature&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//button[@id=&apos;btnNoSignature&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Not Taking Signature&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div[5]/div/button[3]&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;btnNoSignature&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;#btnNoSignature&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;btnNoSignature&quot;]&apos;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='wait' value='4500,isVisible(button(&quot;Save Signature&quot;))' type='web' desc='' isThinkTime='false' isCommented='true' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='' isThinkTime='false' isCommented='true' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='button(&quot;Save Signature&quot;)' fallback='true' selected='true'/>
+   <accessor type='XPath' value='byXPath(&apos;//div[5]/div/button[2]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;btn btn-sm btn-secondary&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Save Signature&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div[5]/div/button[2]&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;/html[1]/body[1]/div[@class=&apos;clsDivSignature row w-100&apos;]/div[@class=&apos;col-md-12 text-white text-center&apos;]/button[@class=&apos;btn btn-sm btn-secondary&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='button({&apos;onclick&apos;:&quot;$(&apos;#btnSave&apos;).click()&quot;})' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;clsDivSignature row w-100&quot;] &gt; div[class=&quot;col-md-12 text-white text-center&quot;] &gt; button[class=&quot;btn btn-sm btn-secondary&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='button(&quot;btn btn-secondary btn-sm&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+</testcase>
