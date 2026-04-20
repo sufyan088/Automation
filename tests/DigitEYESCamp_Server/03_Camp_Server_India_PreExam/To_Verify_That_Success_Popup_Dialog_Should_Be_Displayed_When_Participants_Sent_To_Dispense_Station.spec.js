@@ -2,7 +2,8 @@ const { test } = require('@playwright/test');
 const {
   loadRuntimeData,
   loginAsAdmin,
-  closeSession
+  closeSession,
+  campServerIndiaPreexamHelpers
 } = require('./_shared');
 
 test("To_Verify_That_Success_Popup_Dialog_Should_Be_Displayed_When_Participants_Sent_To_Dispense_Station", async ({ page }) => {
@@ -17,6 +18,7 @@ test("To_Verify_That_Success_Popup_Dialog_Should_Be_Displayed_When_Participants_
   });
 
   await test.step('Run converted flow', async () => {
+    await campServerIndiaPreexamHelpers.verifySuccessPopupForDispense(page, data);
   });
 
   await test.step('Logout from the application', async () => {

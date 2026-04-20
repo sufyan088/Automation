@@ -7,6 +7,7 @@ const {
 const { expect } = require('@playwright/test');
 const { safeClick, waitForAppToSettle } = require('./actions');
 const { digiteyesreportingInternetavailabilitySelectors } = require('../selectors/digiteyesreportingInternetavailability.selectors');
+const { wrapHelperMapWithReadableSteps } = require('./clientReadableSteps');
 
 async function openModule(page, data) {
   await openReportingModule(page, data, digiteyesreportingInternetavailabilitySelectors, 'Internet Availability');
@@ -68,7 +69,7 @@ async function runReport(page, filters = {}) {
 }
 
 module.exports = {
-  digiteyesreportingInternetavailabilityHelpers: {
+  digiteyesreportingInternetavailabilityHelpers: wrapHelperMapWithReadableSteps({
     openModule,
     verifyDateFromPresence,
     verifyDateFromSelection,
@@ -79,5 +80,5 @@ module.exports = {
     verifyHeaders,
     runReport,
     selectors: digiteyesreportingInternetavailabilitySelectors
-  }
+  })
 };

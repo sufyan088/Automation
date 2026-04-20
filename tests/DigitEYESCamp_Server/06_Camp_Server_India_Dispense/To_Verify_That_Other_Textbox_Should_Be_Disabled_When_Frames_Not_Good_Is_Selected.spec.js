@@ -2,7 +2,8 @@ const { test } = require('@playwright/test');
 const {
   loadRuntimeData,
   loginAsAdmin,
-  closeSession
+  closeSession,
+  campServerIndiaDispenseHelpers
 } = require('./_shared');
 
 test("To_Verify_That_Other_Textbox_Should_Be_Disabled_When_Frames_Not_Good_Is_Selected", async ({ page }) => {
@@ -17,6 +18,7 @@ test("To_Verify_That_Other_Textbox_Should_Be_Disabled_When_Frames_Not_Good_Is_Se
   });
 
   await test.step('Run converted flow', async () => {
+    await campServerIndiaDispenseHelpers.verifyOtherTextboxShouldBeDisabledWhenFramesNotGoodIsSelected(page, data);
   });
 
   await test.step('Logout from the application', async () => {

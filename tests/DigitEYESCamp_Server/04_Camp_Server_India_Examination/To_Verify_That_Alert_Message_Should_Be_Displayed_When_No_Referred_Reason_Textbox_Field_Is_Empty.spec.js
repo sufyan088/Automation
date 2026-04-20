@@ -2,7 +2,8 @@ const { test } = require('@playwright/test');
 const {
   loadRuntimeData,
   loginAsAdmin,
-  closeSession
+  closeSession,
+  campServerIndiaExaminationHelpers
 } = require('./_shared');
 
 test("To_Verify_That_Alert_Message_Should_Be_Displayed_When_No_Referred_Reason_Textbox_Field_Is_Empty", async ({ page }) => {
@@ -17,6 +18,7 @@ test("To_Verify_That_Alert_Message_Should_Be_Displayed_When_No_Referred_Reason_T
   });
 
   await test.step('Run converted flow', async () => {
+    await campServerIndiaExaminationHelpers.verifyNoReferredReasonTextboxRequired(page, data);
   });
 
   await test.step('Logout from the application', async () => {

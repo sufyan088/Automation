@@ -14,6 +14,7 @@ const {
 const { expect } = require('@playwright/test');
 const { resolveFirst } = require('./fallback');
 const { digiteyesreportingWorkreportvsteamsSelectors } = require('../selectors/digiteyesreportingWorkreportvsteams.selectors');
+const { wrapHelperMapWithReadableSteps } = require('./clientReadableSteps');
 
 async function getSelectedOptionText(page, fieldSelectors) {
   const { locator } = await resolveFirst(page, fieldSelectors);
@@ -145,7 +146,7 @@ async function exportReport(page) {
 }
 
 module.exports = {
-  digiteyesreportingWorkreportvsteamsHelpers: {
+  digiteyesreportingWorkreportvsteamsHelpers: wrapHelperMapWithReadableSteps({
     verifyMenu,
     verifyReportingMenuOptions,
     openModule,
@@ -166,5 +167,5 @@ module.exports = {
     verifyRegistrationHeaders,
     exportReport,
     selectors: digiteyesreportingWorkreportvsteamsSelectors
-  }
+  })
 };

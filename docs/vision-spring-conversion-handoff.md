@@ -143,8 +143,13 @@ Camp Server is now documented separately in `docs/vision-spring-camp-server-hand
 ### normalize-allure-suites.js (retroactive fix)
 
 - Use `node scripts/normalize-allure-suites.js` to rewrite allure-results `*-result.json` files before report generation.
-- Required when existing result files still carry Playwright's default `chromium` parentSuite label, which collapses the Suites card to 1 entry.
+- Required when existing result files still carry Playwright's default `chromium` parentSuite or title-path label, which collapses or splits the Suites card incorrectly.
 - Run before calling `scripts/customize-allure-report.js` when generating a full-project combined report.
+
+### flatten-generic-allure-steps.js (legacy Camp Server report fix)
+
+- Use `node scripts/flatten-generic-allure-steps.js` before report generation when legacy Camp Server specs still emit a top-level `Run converted flow` step.
+- This unwraps the generic parent step in result JSON so the Allure Execution panel shows the nested business steps directly.
 
 ## ManageCampsCluster Specific Lessons
 

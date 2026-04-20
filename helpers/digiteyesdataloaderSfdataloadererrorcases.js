@@ -3,6 +3,7 @@ const { createDataLoaderModuleHelpers } = require('./digiteyesdataloaderCommon')
 const { waitForAppToSettle } = require('./actions');
 const { resolveFirst } = require('./fallback');
 const { digiteyesdataloaderSfdataloadererrorcasesSelectors: SEL } = require('../selectors/digiteyesdataloaderSfdataloadererrorcases.selectors');
+const { wrapHelperMapWithReadableSteps } = require('./clientReadableSteps');
 
 async function openFirstRecordInEditMode(page) {
   const { locator } = await resolveFirst(page, SEL.editIconButton, { timeoutPerCandidate: 10000 });
@@ -48,10 +49,10 @@ async function clickPaginationPage(page, pageNumber) {
 const baseHelpers = createDataLoaderModuleHelpers(SEL);
 
 module.exports = {
-  digiteyesdataloaderSfdataloadererrorcasesHelpers: {
+  digiteyesdataloaderSfdataloadererrorcasesHelpers: wrapHelperMapWithReadableSteps({
     ...baseHelpers,
     openFirstRecordInEditMode: (page) => openFirstRecordInEditMode(page),
     selectAssignmentFilter: (page, type) => selectAssignmentFilter(page, type),
     clickPaginationPage: (page, pageNumber) => clickPaginationPage(page, pageNumber)
-  }
+  })
 };

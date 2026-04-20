@@ -2,7 +2,8 @@ const { test } = require('@playwright/test');
 const {
   loadRuntimeData,
   loginAsAdmin,
-  closeSession
+  closeSession,
+  campServerIndiaExaminationHelpers
 } = require('./_shared');
 
 test("To_Verify_That_Alert_Message_Should_Be_Displayed_When_Right_Eye_Presciption_Remarks__Field_Is_Empty", async ({ page }) => {
@@ -17,6 +18,7 @@ test("To_Verify_That_Alert_Message_Should_Be_Displayed_When_Right_Eye_Presciptio
   });
 
   await test.step('Run converted flow', async () => {
+    await campServerIndiaExaminationHelpers.verifyRightEyePrescriptionRemarksRequired(page, data);
   });
 
   await test.step('Logout from the application', async () => {

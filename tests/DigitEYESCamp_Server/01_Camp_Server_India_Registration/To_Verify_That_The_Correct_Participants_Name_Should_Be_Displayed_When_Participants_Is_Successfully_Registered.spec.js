@@ -2,7 +2,8 @@ const { test } = require('@playwright/test');
 const {
   loadRuntimeData,
   loginAsAdmin,
-  closeSession
+  closeSession,
+  campServerIndiaRegistrationHelpers
 } = require('./_shared');
 
 test("To_Verify_That_The_Correct_Participants_Name_Should_Be_Displayed_When_Participants_Is_Successfully_Registered", async ({ page }) => {
@@ -17,6 +18,7 @@ test("To_Verify_That_The_Correct_Participants_Name_Should_Be_Displayed_When_Part
   });
 
   await test.step('Run converted flow', async () => {
+    await campServerIndiaRegistrationHelpers.verifySuccessPopupParticipantName(page, data);
   });
 
   await test.step('Logout from the application', async () => {

@@ -2,7 +2,8 @@ const { test } = require('@playwright/test');
 const {
   loadRuntimeData,
   loginAsAdmin,
-  closeSession
+  closeSession,
+  campServerIndiaPreexamHelpers
 } = require('./_shared');
 
 test("To_Verify_That_Participant_Is_Successfully_Sent_To_The_Dispense_Station_From_Pre_Exam_Station.", async ({ page }) => {
@@ -17,6 +18,7 @@ test("To_Verify_That_Participant_Is_Successfully_Sent_To_The_Dispense_Station_Fr
   });
 
   await test.step('Run converted flow', async () => {
+    await campServerIndiaPreexamHelpers.verifyParticipantMovedToDispense(page, data);
   });
 
   await test.step('Logout from the application', async () => {

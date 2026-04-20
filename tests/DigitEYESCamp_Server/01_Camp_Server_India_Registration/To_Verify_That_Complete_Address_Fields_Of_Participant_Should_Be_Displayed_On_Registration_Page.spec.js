@@ -2,7 +2,8 @@ const { test } = require('@playwright/test');
 const {
   loadRuntimeData,
   loginAsAdmin,
-  closeSession
+  closeSession,
+  campServerIndiaRegistrationHelpers
 } = require('./_shared');
 
 test("To_Verify_That_Complete_Address_Fields_Of_Participant_Should_Be_Displayed_On_Registration_Page", async ({ page }) => {
@@ -16,7 +17,8 @@ test("To_Verify_That_Complete_Address_Fields_Of_Participant_Should_Be_Displayed_
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
+  await test.step('Verify that complete address fields of participant are displayed on Registration page', async () => {
+    await campServerIndiaRegistrationHelpers.verifyCompleteAddressFields(page, data);
   });
 
   await test.step('Logout from the application', async () => {

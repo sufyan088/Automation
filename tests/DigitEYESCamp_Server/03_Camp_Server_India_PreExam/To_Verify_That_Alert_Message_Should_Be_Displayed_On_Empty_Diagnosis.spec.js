@@ -2,7 +2,8 @@ const { test } = require('@playwright/test');
 const {
   loadRuntimeData,
   loginAsAdmin,
-  closeSession
+  closeSession,
+  campServerIndiaPreexamHelpers
 } = require('./_shared');
 
 test("To_Verify_That_Alert_Message_Should_Be_Displayed_On_Empty_Diagnosis", async ({ page }) => {
@@ -17,6 +18,7 @@ test("To_Verify_That_Alert_Message_Should_Be_Displayed_On_Empty_Diagnosis", asyn
   });
 
   await test.step('Run converted flow', async () => {
+    await campServerIndiaPreexamHelpers.verifyEmptyDiagnosisShowsAlert(page, data);
   });
 
   await test.step('Logout from the application', async () => {

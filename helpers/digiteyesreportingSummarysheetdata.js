@@ -8,6 +8,7 @@ const {
 const { safeExpectVisible, waitForAppToSettle } = require('./actions');
 const { expect } = require('@playwright/test');
 const { digiteyesreportingSummarysheetdataSelectors } = require('../selectors/digiteyesreportingSummarysheetdata.selectors');
+const { wrapHelperMapWithReadableSteps } = require('./clientReadableSteps');
 
 async function openModule(page, data) {
   await openReportingModule(page, data, digiteyesreportingSummarysheetdataSelectors, 'Summary Sheet Data');
@@ -67,7 +68,7 @@ async function runThemeReport(page, filters = {}) {
 }
 
 module.exports = {
-  digiteyesreportingSummarysheetdataHelpers: {
+  digiteyesreportingSummarysheetdataHelpers: wrapHelperMapWithReadableSteps({
     openModule,
     verifySummarySheetDataPage,
     verifyCountryDropdown,
@@ -75,5 +76,5 @@ module.exports = {
     verifyResultHeaders,
     runThemeReport,
     selectors: digiteyesreportingSummarysheetdataSelectors
-  }
+  })
 };

@@ -2,7 +2,8 @@ const { test } = require('@playwright/test');
 const {
   loadRuntimeData,
   loginAsAdmin,
-  closeSession
+  closeSession,
+  campServerIndiaParticipantsHelpers
 } = require('./_shared');
 
 test("To_Verify_That_Pre_Screening_UnLocked_Successfully_Pop_Up_Dialog_Should_Be_Displayed_When_Unlock_Button_Is_Clicked_In_Participants_Page", async ({ page }) => {
@@ -17,6 +18,7 @@ test("To_Verify_That_Pre_Screening_UnLocked_Successfully_Pop_Up_Dialog_Should_Be
   });
 
   await test.step('Run converted flow', async () => {
+    await campServerIndiaParticipantsHelpers.verifyPreScreeningUnlockSuccess(page, data);
   });
 
   await test.step('Logout from the application', async () => {

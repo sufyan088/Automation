@@ -2,6 +2,7 @@ const { safeExpectVisible, waitForAppToSettle } = require('./actions');
 const { resolveFirst } = require('./fallback');
 const { createDataLoaderModuleHelpers } = require('./digiteyesdataloaderCommon');
 const { digiteyesdataloaderSfdataloaderqueueSelectors: SEL } = require('../selectors/digiteyesdataloaderSfdataloaderqueue.selectors');
+const { wrapHelperMapWithReadableSteps } = require('./clientReadableSteps');
 
 async function verifySearchFilterHeadingVisible(page) {
   await safeExpectVisible(page, SEL.searchFilterHeading, 'Queue Search / Filter heading', {
@@ -30,9 +31,9 @@ async function applyFilterWithDataImportedStatus(page, status) {
 const baseHelpers = createDataLoaderModuleHelpers(SEL);
 
 module.exports = {
-  digiteyesdataloaderSfdataloaderqueueHelpers: {
+  digiteyesdataloaderSfdataloaderqueueHelpers: wrapHelperMapWithReadableSteps({
     ...baseHelpers,
     verifySearchFilterHeadingVisible: (page) => verifySearchFilterHeadingVisible(page),
     applyFilterWithDataImportedStatus: (page, status) => applyFilterWithDataImportedStatus(page, status)
-  }
+  })
 };

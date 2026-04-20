@@ -2,7 +2,8 @@ const { test } = require('@playwright/test');
 const {
   loadRuntimeData,
   loginAsAdmin,
-  closeSession
+  closeSession,
+  campServerIndiaExaminationHelpers
 } = require('./_shared');
 
 test("To_Verify_That_Normal_No_Refractive_Error_Should_Be_UnChecked_When_All_Or_Some_Diagnosis_is_Checked", async ({ page }) => {
@@ -17,6 +18,7 @@ test("To_Verify_That_Normal_No_Refractive_Error_Should_Be_UnChecked_When_All_Or_
   });
 
   await test.step('Run converted flow', async () => {
+    await campServerIndiaExaminationHelpers.verifyNormalUncheckedWhenDiagnosisChecked(page, data);
   });
 
   await test.step('Logout from the application', async () => {

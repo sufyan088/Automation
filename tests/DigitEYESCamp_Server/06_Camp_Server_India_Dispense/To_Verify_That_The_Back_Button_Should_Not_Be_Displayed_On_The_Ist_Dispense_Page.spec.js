@@ -2,7 +2,8 @@ const { test } = require('@playwright/test');
 const {
   loadRuntimeData,
   loginAsAdmin,
-  closeSession
+  closeSession,
+  campServerIndiaDispenseHelpers
 } = require('./_shared');
 
 test("To_Verify_That_The_Back_Button_Should_Not_Be_Displayed_On_The_Ist_Dispense_Page", async ({ page }) => {
@@ -17,6 +18,7 @@ test("To_Verify_That_The_Back_Button_Should_Not_Be_Displayed_On_The_Ist_Dispense
   });
 
   await test.step('Run converted flow', async () => {
+    await campServerIndiaDispenseHelpers.verifyBackButtonShouldNotBeDisplayedOnTheIstDispensePage(page, data);
   });
 
   await test.step('Logout from the application', async () => {

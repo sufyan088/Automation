@@ -2,7 +2,8 @@ const { test } = require('@playwright/test');
 const {
   loadRuntimeData,
   loginAsAdmin,
-  closeSession
+  closeSession,
+  campServerIndiaRegistrationHelpers
 } = require('./_shared');
 
 test("To_Verify_That_New_Registration_Page_Should_Be_Redirected_When_Next_Participant_Button_Is_Clicked", async ({ page }) => {
@@ -16,7 +17,8 @@ test("To_Verify_That_New_Registration_Page_Should_Be_Redirected_When_Next_Partic
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
+  await test.step('Verify that Next Participant redirects the user back to the New Registration page', async () => {
+    await campServerIndiaRegistrationHelpers.verifyNextParticipantRedirect(page, data);
   });
 
   await test.step('Logout from the application', async () => {

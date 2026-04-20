@@ -16,6 +16,7 @@ const {
 const { expect } = require('@playwright/test');
 const { safeExpectVisible, safeClick } = require('./actions');
 const { digiteyessettingsImplementationpartnersSelectors } = require('../selectors/digiteyessettingsImplementationpartners.selectors');
+const { wrapHelperMapWithReadableSteps } = require('./clientReadableSteps');
 
 async function openModule(page, data) {
   await openSettingsModule(page, data, digiteyessettingsImplementationpartnersSelectors, 'Implementation Partners');
@@ -134,7 +135,7 @@ async function verifyPreviousAndFirstNavigation(page, data) {
 }
 
 module.exports = {
-  digiteyessettingsImplementationpartnersHelpers: {
+  digiteyessettingsImplementationpartnersHelpers: wrapHelperMapWithReadableSteps({
     openModule,
     verifySearchFilterButton,
     verifyAddSection,
@@ -147,5 +148,5 @@ module.exports = {
     verifyNextAndLastNavigation,
     verifyPreviousAndFirstNavigation,
     selectors: digiteyessettingsImplementationpartnersSelectors
-  }
+  })
 };

@@ -11,6 +11,7 @@ const { expect } = require('@playwright/test');
 const { waitForAppToSettle } = require('./actions');
 const { resolveFirst } = require('./fallback');
 const { digiteyesreportingCamptrendsSelectors } = require('../selectors/digiteyesreportingCamptrends.selectors');
+const { wrapHelperMapWithReadableSteps } = require('./clientReadableSteps');
 
 async function getSelectedOptionText(page, fieldSelectors) {
   const { locator } = await resolveFirst(page, fieldSelectors);
@@ -132,7 +133,7 @@ async function verifyClosedCampsChartToggle(page) {
 }
 
 module.exports = {
-  digiteyesreportingCamptrendsHelpers: {
+  digiteyesreportingCamptrendsHelpers: wrapHelperMapWithReadableSteps({
     verifyMenu,
     openModule,
     verifySearchFilter,
@@ -147,5 +148,5 @@ module.exports = {
     verifyRegistrationChartToggle,
     verifyClosedCampsChartToggle,
     selectors: digiteyesreportingCamptrendsSelectors
-  }
+  })
 };

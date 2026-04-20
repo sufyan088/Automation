@@ -235,7 +235,27 @@ Fix before generating the portable report:
 node scripts/normalize-allure-suites.js
 ```
 
-This rewrites all `*-result.json` files in `allure-results/` to stamp `parentSuite` and `suite` from the spec's title path, restoring module-folder grouping.
+This rewrites all `*-result.json` files in `allure-results/` to stamp `parentSuite`, `suite`, and the Allure `titlePath` label from the spec title path, restoring module-folder grouping and preventing a stray `chromium` Suites grouping.
+
+### Flatten generic wrapper steps for legacy Camp Server specs
+
+Some legacy Camp Server specs still emit a generic top-level wrapper step such as `Run converted flow` even when the real behavior is helper-backed underneath.
+
+Fix before generating the client report when those results are present:
+
+```bash
+node scripts/flatten-generic-allure-steps.js
+```
+
+This unwraps the generic parent step in `allure-results/*-result.json` so the Allure Execution panel shows the nested business-readable steps directly.
+
+### Client-facing report content rules
+
+- Use packaged client-report scripts when possible.
+- Keep client-facing Allure descriptions to `Scenario:` and `Spec File:` only.
+- Strip any stale `Source AIQ:` lines from result descriptions before report generation.
+- For Cluster, prioritize helper-layer readable nested steps.
+- For Camp Server, use result flattening as a report-time compatibility layer until all legacy wrapper steps are removed from specs.
 
 ### Client share workflow
 
@@ -272,12 +292,11 @@ For team members starting a new module:
 
 ## Repository-Specific Handoff
 
-For the current Vision Spring repository, use docs/vision-spring-conversion-handoff.md as the current working handoff for:
+For the current Vision Spring repository, use the dedicated handoff docs by track:
 
-- latest validated shared fixes
-- current delta-conversion progress
-- reporting-specific implementation lessons
-- recommended next modules and conversion rules
+- `docs/vision-spring-camp-cluster-handoff.md` for the main `DigitEYESCamp_Cluster` track and its module-by-module mapping, inventory, and reusable rules.
+- `docs/vision-spring-camp-server-handoff.md` for the main `DigitEYESCamp_Server` track and its module-by-module mapping, inventory, and reusable rules.
+- `docs/vision-spring-conversion-handoff.md` for older general cross-family lessons, validated shared fixes, and durable conversion guidance that still applies beyond one track.
 
 ## Scaffold Command
 

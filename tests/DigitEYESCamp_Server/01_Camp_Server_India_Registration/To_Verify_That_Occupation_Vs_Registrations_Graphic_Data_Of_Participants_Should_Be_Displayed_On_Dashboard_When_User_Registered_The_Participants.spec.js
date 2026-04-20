@@ -2,7 +2,8 @@ const { test } = require('@playwright/test');
 const {
   loadRuntimeData,
   loginAsAdmin,
-  closeSession
+  closeSession,
+  campServerIndiaRegistrationHelpers
 } = require('./_shared');
 
 test("To_Verify_That_Occupation_Vs_Registrations_Graphic_Data_Of_Participants_Should_Be_Displayed_On_Dashboard_When_User_Registered_The_Participants", async ({ page }) => {
@@ -16,7 +17,8 @@ test("To_Verify_That_Occupation_Vs_Registrations_Graphic_Data_Of_Participants_Sh
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
+  await test.step('Verify that the Occupation vs Registrations chart is displayed on Dashboard after participant registration', async () => {
+    await campServerIndiaRegistrationHelpers.verifyOccupationVsRegistrationsChart(page, data);
   });
 
   await test.step('Logout from the application', async () => {

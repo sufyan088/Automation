@@ -2,7 +2,8 @@ const { test } = require('@playwright/test');
 const {
   loadRuntimeData,
   loginAsAdmin,
-  closeSession
+  closeSession,
+  campServerIndiaSummaryHelpers
 } = require('./_shared');
 
 test("To_Verify_ That_Participent_Can_Not_ Register_Without _Contact _Phone _Number", async ({ page }) => {
@@ -17,6 +18,7 @@ test("To_Verify_ That_Participent_Can_Not_ Register_Without _Contact _Phone _Num
   });
 
   await test.step('Run converted flow', async () => {
+    await campServerIndiaSummaryHelpers.verifyParticipantCannotRegisterWithoutContactPhoneNumber(page, data);
   });
 
   await test.step('Logout from the application', async () => {

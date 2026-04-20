@@ -2,7 +2,8 @@ const { test } = require('@playwright/test');
 const {
   loadRuntimeData,
   loginAsAdmin,
-  closeSession
+  closeSession,
+  campServerIndiaDispenseHelpers
 } = require('./_shared');
 
 test("To_Verify_That_Other_Textbox_Should_Be_Enbaled_When_Others_Is_Selected_Not_Taking_Reason_Dropdown", async ({ page }) => {
@@ -17,6 +18,7 @@ test("To_Verify_That_Other_Textbox_Should_Be_Enbaled_When_Others_Is_Selected_Not
   });
 
   await test.step('Run converted flow', async () => {
+    await campServerIndiaDispenseHelpers.verifyOtherTextboxShouldBeEnbaledWhenOthersIsSelectedNotTakingReasonDropdown(page, data);
   });
 
   await test.step('Logout from the application', async () => {

@@ -126,6 +126,7 @@ Copy the entire `scripts` folder, especially:
 3. [scripts/run-combined-client-report.js](scripts/run-combined-client-report.js)
 4. [scripts/bootstrap-aiq-structure.js](scripts/bootstrap-aiq-structure.js)
 5. [scripts/normalize-allure-suites.js](scripts/normalize-allure-suites.js)
+6. [scripts/flatten-generic-allure-steps.js](scripts/flatten-generic-allure-steps.js)
 
 These cover:
 
@@ -134,6 +135,7 @@ These cover:
 - client-shareable report generation and zip packaging
 - bulk scaffold generation from source AIQ folder structure
 - retroactive Allure suite-label normalization for full-project combined reports
+- retroactive flattening of generic wrapper steps in legacy Camp Server result files
 
 ## Required Branding Assets
 
@@ -336,6 +338,9 @@ npx playwright test tests/<ModuleName>/<SpecFile>.spec.js
 ### Generate latest portable report from current results
 
 ```bash
+node scripts/normalize-allure-suites.js
+node scripts/flatten-generic-allure-steps.js   # only when legacy Camp Server wrapper steps are present
+node scripts/strip-source-aiq-from-allure-results.js
 npx allure generate allure-results --clean --single-file -o allure-report-combined-shareable
 node scripts/customize-allure-report.js allure-report-combined-shareable
 ```
@@ -349,9 +354,25 @@ npm run report:combined:client
 This:
 
 1. runs the combined suite
-2. generates a portable single-file Allure report
-3. applies Mammoth branding
-4. creates a zip for client sharing
+2. normalizes Allure suite labels before report generation
+3. strips internal `Source AIQ:` lines from client-facing descriptions
+4. generates a portable single-file Allure report
+5. applies Mammoth branding
+6. creates a zip for client sharing
+
+### Track-specific client-report behavior
+
+- Cluster client-report flows rely on helper-layer readable nested steps and sanitize descriptions to `Scenario:` plus `Spec File:`.
+- Camp Server client-report flows sanitize descriptions the same way and additionally flatten the generic `Run converted flow` wrapper step from legacy result JSON before report generation.
+
+### Preferred client-share commands by track
+
+```bash
+npm run report:combined:client
+npm run report:camp-cluster-participants:client
+npm run report:camp-server:client
+npm run report:camp-server-registration:client
+```
 
 ## What To Share With Clients
 

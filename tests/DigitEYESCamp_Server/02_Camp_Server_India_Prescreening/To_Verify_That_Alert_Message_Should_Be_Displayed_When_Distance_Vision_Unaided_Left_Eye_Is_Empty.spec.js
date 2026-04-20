@@ -2,7 +2,8 @@ const { test } = require('@playwright/test');
 const {
   loadRuntimeData,
   loginAsAdmin,
-  closeSession
+  closeSession,
+  campServerIndiaPrescreeningHelpers
 } = require('./_shared');
 
 test("To_Verify_That_Alert_Message_Should_Be_Displayed_When_Distance_Vision_Unaided_Left_Eye_Is_Empty", async ({ page }) => {
@@ -17,6 +18,7 @@ test("To_Verify_That_Alert_Message_Should_Be_Displayed_When_Distance_Vision_Unai
   });
 
   await test.step('Run converted flow', async () => {
+    await campServerIndiaPrescreeningHelpers.verifyDistanceVisionUnaidedLeftRequired(page, data);
   });
 
   await test.step('Logout from the application', async () => {

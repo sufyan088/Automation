@@ -2,7 +2,8 @@ const { test } = require('@playwright/test');
 const {
   loadRuntimeData,
   loginAsAdmin,
-  closeSession
+  closeSession,
+  campServerIndiaRegistrationHelpers
 } = require('./_shared');
 
 test("To_Verify_That_On_Registration_User_Can_Select_Dsitrict_From_Dropdown", async ({ page }) => {
@@ -16,7 +17,8 @@ test("To_Verify_That_On_Registration_User_Can_Select_Dsitrict_From_Dropdown", as
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
+  await test.step('Verify that user can select District from the Registration dropdown', async () => {
+    await campServerIndiaRegistrationHelpers.verifyDistrictDropdownSelection(page, data);
   });
 
   await test.step('Logout from the application', async () => {

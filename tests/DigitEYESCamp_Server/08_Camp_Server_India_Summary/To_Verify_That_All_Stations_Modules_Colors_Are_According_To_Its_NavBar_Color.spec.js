@@ -2,7 +2,8 @@ const { test } = require('@playwright/test');
 const {
   loadRuntimeData,
   loginAsAdmin,
-  closeSession
+  closeSession,
+  campServerIndiaSummaryHelpers
 } = require('./_shared');
 
 test("To_Verify_That_All _Stations_Modules_Colors_Are_According _To_Its_NavBar_Color", async ({ page }) => {
@@ -17,6 +18,7 @@ test("To_Verify_That_All _Stations_Modules_Colors_Are_According _To_Its_NavBar_C
   });
 
   await test.step('Run converted flow', async () => {
+    await campServerIndiaSummaryHelpers.verifyStationNavbarColors(page);
   });
 
   await test.step('Logout from the application', async () => {

@@ -3,6 +3,7 @@ const { createDataLoaderModuleHelpers } = require('./digiteyesdataloaderCommon')
 const { safeExpectVisible, waitForAppToSettle } = require('./actions');
 const { resolveFirst } = require('./fallback');
 const { digiteyesdataloaderDataforsalesforceSelectors: SEL } = require('../selectors/digiteyesdataloaderDataforsalesforce.selectors');
+const { wrapHelperMapWithReadableSteps } = require('./clientReadableSteps');
 
 async function verifySearchFilterHeadingVisible(page) {
   await safeExpectVisible(page, SEL.searchFilterHeading, 'Camp Cluster Data Search / Filter heading', {
@@ -51,11 +52,11 @@ async function applyFilterWithDataImportedStatus(page, status) {
 const baseHelpers = createDataLoaderModuleHelpers(SEL);
 
 module.exports = {
-  digiteyesdataloaderDataforsalesforceHelpers: {
+  digiteyesdataloaderDataforsalesforceHelpers: wrapHelperMapWithReadableSteps({
     ...baseHelpers,
     verifySearchFilterHeadingVisible: (page) => verifySearchFilterHeadingVisible(page),
     closeSearchFilterWithXButton: (page) => closeSearchFilterWithXButton(page),
     verifyDataImportedCheckboxesPresent: (page) => verifyDataImportedCheckboxesPresent(page),
     applyFilterWithDataImportedStatus: (page, status) => applyFilterWithDataImportedStatus(page, status)
-  }
+  })
 };

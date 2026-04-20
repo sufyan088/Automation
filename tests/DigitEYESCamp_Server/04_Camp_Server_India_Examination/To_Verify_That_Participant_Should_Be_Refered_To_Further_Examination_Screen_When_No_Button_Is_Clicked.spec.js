@@ -2,7 +2,8 @@ const { test } = require('@playwright/test');
 const {
   loadRuntimeData,
   loginAsAdmin,
-  closeSession
+  closeSession,
+  campServerIndiaExaminationHelpers
 } = require('./_shared');
 
 test("To_Verify_That_Participant_Should_Be_Refered_To_Further_Examination_Screen_When_No_Button_Is_Clicked", async ({ page }) => {
@@ -17,6 +18,7 @@ test("To_Verify_That_Participant_Should_Be_Refered_To_Further_Examination_Screen
   });
 
   await test.step('Run converted flow', async () => {
+    await campServerIndiaExaminationHelpers.verifyParticipantShouldBeReferedToFurtherExaminationScreenWhenNoButtonIsClicked(page, data);
   });
 
   await test.step('Logout from the application', async () => {

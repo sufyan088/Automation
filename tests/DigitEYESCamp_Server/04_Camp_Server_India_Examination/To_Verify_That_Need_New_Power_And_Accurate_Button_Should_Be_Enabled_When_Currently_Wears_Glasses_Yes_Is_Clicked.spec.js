@@ -2,7 +2,8 @@ const { test } = require('@playwright/test');
 const {
   loadRuntimeData,
   loginAsAdmin,
-  closeSession
+  closeSession,
+  campServerIndiaExaminationHelpers
 } = require('./_shared');
 
 test("To_Verify_That_Need_New_Power_And_Accurate_Button_Should_Be_Enabled_When_Currently_Wears_Glasses_Yes_Is_Clicked", async ({ page }) => {
@@ -17,6 +18,7 @@ test("To_Verify_That_Need_New_Power_And_Accurate_Button_Should_Be_Enabled_When_C
   });
 
   await test.step('Run converted flow', async () => {
+    await campServerIndiaExaminationHelpers.verifyNeedNewPowerAndAccurateEnabledWhenCurrentlyWearsGlassesYes(page, data);
   });
 
   await test.step('Logout from the application', async () => {

@@ -9,6 +9,7 @@ const { safeClick, safeExpectVisible, waitForAppToSettle } = require('./actions'
 const { commonSelectors } = require('../selectors/common.selectors');
 const { digiteyescampsManagecampsclusterHelpers } = require('./digiteyescampsManagecampscluster');
 const { digiteyessettingsCountrysettingsSelectors } = require('../selectors/digiteyessettingsCountrysettings.selectors');
+const { wrapHelperMapWithReadableSteps } = require('./clientReadableSteps');
 
 async function verifySettingsMenu(page, data) {
   await openSettingsMenu(page, data, digiteyessettingsCountrysettingsSelectors);
@@ -123,12 +124,12 @@ async function verifyCheckboxReflection(page, data, settingKey) {
 }
 
 module.exports = {
-  digiteyessettingsCountrysettingsHelpers: {
+  digiteyessettingsCountrysettingsHelpers: wrapHelperMapWithReadableSteps({
     verifySettingsMenu,
     verifySettingsOptions,
     openModule,
     verifyConfigureButton,
     verifyCheckboxReflection,
     selectors: digiteyessettingsCountrysettingsSelectors
-  }
+  })
 };

@@ -2,7 +2,8 @@ const { test } = require('@playwright/test');
 const {
   loadRuntimeData,
   loginAsAdmin,
-  closeSession
+  closeSession,
+  campServerIndiaRegistrationHelpers
 } = require('./_shared');
 
 test("To_Verify_That_Participant_Should_Be_Registered_With_Only_Aadhaar_No", async ({ page }) => {
@@ -16,7 +17,8 @@ test("To_Verify_That_Participant_Should_Be_Registered_With_Only_Aadhaar_No", asy
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
+  await test.step('Verify that participant can be registered with only Aadhaar number', async () => {
+    await campServerIndiaRegistrationHelpers.verifyRegistrationWithOnlyAadhaar(page, data);
   });
 
   await test.step('Logout from the application', async () => {

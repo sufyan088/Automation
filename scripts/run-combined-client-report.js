@@ -1,17 +1,58 @@
 const fs = require('fs');
 const path = require('path');
 const { spawnSync } = require('child_process');
+const { stripSourceAiqDescriptions } = require('./strip-source-aiq-from-allure-results');
 
 const rootDir = path.resolve(__dirname, '..');
+const isWindows = process.platform === 'win32';
 const resultsDir = path.join(rootDir, 'allure-results');
-const shareableDir = path.join(rootDir, 'Result', 'allure-report-combined-shareable');
-const zipPath = path.join(rootDir, 'Result', 'allure-report-combined-shareable.zip');
+const shareableDirRelative = path.join('Result', 'allure-report-combined-shareable');
+const zipPathRelative = path.join('Result', 'allure-report-combined-shareable.zip');
+const shareableDir = path.join(rootDir, shareableDirRelative);
+const zipPath = path.join(rootDir, zipPathRelative);
+const resultIndexPath = path.join(rootDir, 'Result', 'index.html');
+
+function resolveCommand(command) {
+  if (!isWindows) {
+    return command;
+  }
+
+  if (command === 'npx') {
+    return 'npx.cmd';
+  }
+
+  if (command === 'powershell') {
+    return 'powershell.exe';
+  }
+
+  return command;
+}
+
+function quoteForCmd(value) {
+  const stringValue = String(value);
+  return `"${stringValue.replace(/(\\*)"/g, '$1$1\\"').replace(/(\\+)$/g, '$1$1')}"`;
+}
+
+function buildCmdCommandLine(command, args) {
+  const formattedArgs = (args || [])
+    .map((arg) => (/^[A-Za-z0-9_./:=\\-]+$/.test(String(arg)) ? String(arg) : quoteForCmd(arg)))
+    .join(' ');
+  return formattedArgs ? `${command} ${formattedArgs}` : command;
+}
 
 function run(command, args, options = {}) {
-  const result = spawnSync(command, args, {
+  const resolvedCommand = resolveCommand(command);
+  const spawnArgs = args || [];
+  const spawnCommand = isWindows && resolvedCommand.toLowerCase().endsWith('.cmd')
+    ? 'cmd.exe'
+    : resolvedCommand;
+  const finalArgs = isWindows && resolvedCommand.toLowerCase().endsWith('.cmd')
+    ? ['/d', '/s', '/c', buildCmdCommandLine(resolvedCommand, spawnArgs)]
+    : spawnArgs;
+  const result = spawnSync(spawnCommand, finalArgs, {
     cwd: rootDir,
     stdio: 'inherit',
-    shell: true,
+    shell: false,
     ...options,
   });
 
@@ -20,6 +61,16 @@ function run(command, args, options = {}) {
   }
 
   return 1;
+}
+
+function syncResultIndex() {
+  const shareableIndexPath = path.join(shareableDir, 'index.html');
+
+  if (!fs.existsSync(shareableIndexPath)) {
+    throw new Error(`Shareable report index not found: ${shareableIndexPath}`);
+  }
+
+  fs.copyFileSync(shareableIndexPath, resultIndexPath);
 }
 
 function cleanResultsDir() {
@@ -42,24 +93,24 @@ function main() {
   const testExitCode = run('npx', [
     'playwright',
     'test',
-    'tests/DigitEYESCamps_ManageCampsCluster',
-    'tests/DigitEYESCamps_DataForSalesforce',
-    'tests/DigitEYESCamps_Participants',
-    'tests/DigitEYESDataLoader_DataForSalesForce',
-    'tests/DigitEYESDataLoader_ParticipantConsents',
-    'tests/DigitEYESDataLoader_SFDataLoaderChangeLog',
-    'tests/DigitEYESDataLoader_SFDataLoaderErrorCases',
-    'tests/DigitEYESDataLoader_SFDataLoaderQueue',
-    'tests/DigitEYESReporting_CampTrends',
-    'tests/DigitEYESReporting_InternetAvailability',
-    'tests/DigitEYESReporting_PopinAvailability',
-    'tests/DigitEYESReporting_SummarySheetData',
-    'tests/DigitEYESReporting_WorkReportIPTeams',
-    'tests/DigitEYESReporting_WorkReportVSTeams',
-    'tests/DigitEYESSettings_CountrySettings',
-    'tests/DigitEYESSettings_DESalesforceFieldMapping',
-    'tests/DigitEYESSettings_Hospitals',
-    'tests/DigitEYESSettings_ImplementationPartners',
+    'tests/DigitEYESCamp_Cluster/DigitEYESCamps_ManageCampsCluster',
+    'tests/DigitEYESCamp_Cluster/DigitEYESCamps_DataForSalesforce',
+    'tests/DigitEYESCamp_Cluster/DigitEYESCamps_Participants',
+    'tests/DigitEYESCamp_Cluster/DigitEYESDataLoader_DataForSalesForce',
+    'tests/DigitEYESCamp_Cluster/DigitEYESDataLoader_ParticipantConsents',
+    'tests/DigitEYESCamp_Cluster/DigitEYESDataLoader_SFDataLoaderChangeLog',
+    'tests/DigitEYESCamp_Cluster/DigitEYESDataLoader_SFDataLoaderErrorCases',
+    'tests/DigitEYESCamp_Cluster/DigitEYESDataLoader_SFDataLoaderQueue',
+    'tests/DigitEYESCamp_Cluster/DigitEYESReporting_CampTrends',
+    'tests/DigitEYESCamp_Cluster/DigitEYESReporting_InternetAvailability',
+    'tests/DigitEYESCamp_Cluster/DigitEYESReporting_PopinAvailability',
+    'tests/DigitEYESCamp_Cluster/DigitEYESReporting_SummarySheetData',
+    'tests/DigitEYESCamp_Cluster/DigitEYESReporting_WorkReportIPTeams',
+    'tests/DigitEYESCamp_Cluster/DigitEYESReporting_WorkReportVSTeams',
+    'tests/DigitEYESCamp_Cluster/DigitEYESSettings_CountrySettings',
+    'tests/DigitEYESCamp_Cluster/DigitEYESSettings_DESalesforceFieldMapping',
+    'tests/DigitEYESCamp_Cluster/DigitEYESSettings_Hospitals',
+    'tests/DigitEYESCamp_Cluster/DigitEYESSettings_ImplementationPartners',
     '--workers=3',
     '--reporter=allure-playwright'
   ]);
@@ -74,6 +125,11 @@ function main() {
     process.exit(normalizeExitCode);
   }
 
+  const strippedCount = stripSourceAiqDescriptions(resultsDir);
+  if (strippedCount > 0) {
+    console.log(`Removed Source AIQ lines from ${strippedCount} Allure result files.`);
+  }
+
   const generateExitCode = run('npx', [
     'allure',
     'generate',
@@ -81,7 +137,7 @@ function main() {
     '--clean',
     '--single-file',
     '-o',
-    shareableDir
+    shareableDirRelative
   ]);
 
   if (generateExitCode !== 0) {
@@ -94,10 +150,12 @@ function main() {
     process.exit(brandExitCode);
   }
 
+  syncResultIndex();
+
   const zipExitCode = run('powershell', [
     '-NoProfile',
     '-Command',
-    `$zip='${zipPath.replace(/'/g, "''")}'; if (Test-Path $zip) { Remove-Item $zip -Force }; Compress-Archive -Path '${shareableDir.replace(/'/g, "''")}\\*' -DestinationPath $zip -Force`
+    `$zip='${zipPathRelative.replace(/'/g, "''")}'; if (Test-Path $zip) { Remove-Item $zip -Force }; Compress-Archive -Path '${shareableDirRelative.replace(/'/g, "''")}\\*' -DestinationPath $zip -Force`
   ]);
 
   if (zipExitCode !== 0) {

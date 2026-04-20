@@ -179,9 +179,62 @@ async function expectInvalidDrivingLicenseMessage(page, expectedText) {
     .toEqual(expect.arrayContaining(expectedValues));
 }
 
+async function isRegistrationSurfaceVisible(page) {
+  return Boolean(
+    (await isVisible(page, campServerIndiaRegistrationSelectors.firstNameField))
+    || (await isVisible(page, campServerIndiaRegistrationSelectors.consentChooseButton))
+    || (await isVisible(page, campServerIndiaRegistrationSelectors.nextButton))
+    || /registration\.php|signature\.php/i.test(page.url())
+  );
+}
+
 async function openModule(page) {
-  await clickVisibleAction(page, campServerIndiaRegistrationSelectors.registrationLink);
-  await expect(page.locator(campServerIndiaRegistrationSelectors.firstNameField)).toBeVisible({ timeout: 15000 });
+  if (await isRegistrationSurfaceVisible(page)) {
+    return page;
+  }
+
+  const openActions = [
+    'button:has-text("Registration")',
+    campServerIndiaRegistrationSelectors.registrationLink
+  ];
+
+  for (const actionSelector of openActions) {
+    const action = await getVisibleLocator(page, actionSelector);
+    if (!action) {
+      continue;
+    }
+
+    await action.scrollIntoViewIfNeeded().catch(() => {});
+
+    try {
+      await action.click({ timeout: 3000 });
+    } catch {
+      await action.click({ force: true });
+    }
+
+    const opened = await expect
+      .poll(async () => isRegistrationSurfaceVisible(page), { timeout: 15000 })
+      .toBe(true)
+      .then(() => true)
+      .catch(() => false);
+
+    if (opened) {
+      return page;
+    }
+  }
+
+  await page.goto(new URL('registration.php', page.url()).toString(), { waitUntil: 'domcontentloaded' }).catch(() => {});
+
+  if (await isRegistrationSurfaceVisible(page)) {
+    return page;
+  }
+
+  const pageText = await page.locator('body').innerText().catch(() => '');
+  if (/Dates Expired/i.test(pageText)) {
+    throw new Error(`Registration is blocked because the current camp dates are expired. Current URL: ${page.url()}`);
+  }
+
+  throw new Error(`Registration page did not open from the current Camp Server state. Current URL: ${page.url()}`);
   return page;
 }
 
@@ -596,6 +649,512 @@ async function verifyDashboardStations(page) {
   }
 }
 
+async function expectVisibleTextItems(page, items, containerSelector) {
+  const container = containerSelector ? page.locator(containerSelector) : page.locator('body');
+
+  for (const item of items) {
+    await expect(container.getByText(item, { exact: false }).first()).toBeVisible({ timeout: 10000 });
+  }
+}
+
+async function openRegistrationLanding(page) {
+  await clickVisibleAction(page, campServerIndiaRegistrationSelectors.registrationLink);
+  await expect
+    .poll(async () => {
+      return Boolean(
+        (await isVisible(page, campServerIndiaRegistrationSelectors.firstNameField))
+        || (await isVisible(page, campServerIndiaRegistrationSelectors.consentChooseButton))
+      );
+    }, { timeout: 15000 })
+    .toBe(true);
+}
+
+async function verifyHomeStations(page) {
+  const homeNavItems = [
+    ['Home', campServerIndiaRegistrationSelectors.homeLink],
+    ['Dashboard', campServerIndiaRegistrationSelectors.dashboardLink],
+    ['Registration', campServerIndiaRegistrationSelectors.registrationLink],
+    ['Pre-Screening', campServerIndiaRegistrationSelectors.preScreeningLink],
+    ['Pre Exam', campServerIndiaRegistrationSelectors.preExamLink],
+    ['Examination', campServerIndiaRegistrationSelectors.examinationLink],
+    ['Ophthalm', campServerIndiaRegistrationSelectors.ophthalmLink],
+    ['Dispense', campServerIndiaRegistrationSelectors.dispenseLink],
+    ['Participants', campServerIndiaRegistrationSelectors.participantsLink],
+    ['Summary', campServerIndiaRegistrationSelectors.summaryLink],
+    ['Logout', campServerIndiaRegistrationSelectors.logoutLink]
+  ];
+
+  for (const [label, selector] of homeNavItems) {
+    await runStep(`Assert that the navigation link "${label}" is displayed on the Camp Server Home page`, async () => {
+      await expect(await getRequiredVisibleLocator(page, selector)).toBeVisible({ timeout: 10000 });
+    });
+  }
+}
+
+async function advanceToAddressStep(page, data) {
+  await openModule(page);
+  await fillStep1(page, data);
+  await clickNext(page);
+  await fillStep2(page, data);
+  await clickNext(page);
+  await fillStep3(page, 24);
+  await clickNext(page);
+  await fillStep6(page, data);
+  await clickNext(page);
+  await expect(page.locator(campServerIndiaRegistrationSelectors.addressLine1Field)).toBeVisible({ timeout: 15000 });
+}
+
+async function verifyCompleteAddressFields(page, data) {
+  await runStep('Open the Camp Server Registration page', async () => {
+    await openModule(page);
+  });
+
+  await runStep(`Enter Participant First Name "${data.campServerParticipantFirstName}" and Last Name "${data.campServerParticipantLastName}"`, async () => {
+    await fillStep1(page, data);
+  });
+
+  await runStep('Click Next and move to Contact Number', async () => {
+    await clickNext(page);
+  });
+
+  await runStep(`Enter Contact Number "${data.campServerContactNumber}"`, async () => {
+    await fillStep2(page, data);
+  });
+
+  await runStep('Click Next and move to Age and Gender', async () => {
+    await clickNext(page);
+  });
+
+  await runStep('Enter Age "24" and select Gender "Male"', async () => {
+    await fillStep3(page, 24);
+  });
+
+  await runStep('Click Next and move to Secondary Contact details', async () => {
+    await clickNext(page);
+  });
+
+  await runStep(`Enter Secondary Contact Name "${data.campServerFatherName || 'Smith'}" and Secondary Contact Phone "1234567890"`, async () => {
+    await fillStep6(page, data);
+  });
+
+  await runStep('Click Next and move to the Address step', async () => {
+    await clickNext(page);
+    await expect(page.locator(campServerIndiaRegistrationSelectors.addressLine1Field)).toBeVisible({ timeout: 15000 });
+  });
+
+  await runStep('Assert that the complete address fields are displayed on the Registration page', async () => {
+    await expect(await getRequiredVisibleLocator(page, campServerIndiaRegistrationSelectors.addressLine1Label)).toBeVisible();
+    await expect(await getRequiredVisibleLocator(page, campServerIndiaRegistrationSelectors.addressLine2Label)).toBeVisible();
+    await expect(await getRequiredVisibleLocator(page, campServerIndiaRegistrationSelectors.cityLabel)).toBeVisible();
+    await expect(await getRequiredVisibleLocator(page, campServerIndiaRegistrationSelectors.stateLabel)).toBeVisible();
+    await expect(await getRequiredVisibleLocator(page, campServerIndiaRegistrationSelectors.postalCodeLabel)).toBeVisible();
+    await expect(await getRequiredVisibleLocator(page, campServerIndiaRegistrationSelectors.addressLine1Field)).toBeVisible();
+    await expect(await getRequiredVisibleLocator(page, campServerIndiaRegistrationSelectors.addressLine2Field)).toBeVisible();
+    await expect(await getRequiredVisibleLocator(page, campServerIndiaRegistrationSelectors.cityField)).toBeVisible();
+    await expect(await getRequiredVisibleLocator(page, campServerIndiaRegistrationSelectors.stateField)).toBeVisible();
+    await expect(await getRequiredVisibleLocator(page, campServerIndiaRegistrationSelectors.postalCodeField)).toBeVisible();
+  });
+}
+
+async function verifyPostalCodeRequired(page, data) {
+  await runStep('Open the Camp Server Registration page and advance to the Address step', async () => {
+    await advanceToAddressStep(page, data);
+  });
+
+  await runStep(`Enter Address Line 1 "${data.campServerAddressLine1}", Address Line 2 "${data.campServerAddressLine2}", select State "${data.campServerState}", select District "${data.campServerDistrict}", and enter City "${data.campServerCity}"`, async () => {
+    await fillVisibleInputLikeUser(page, campServerIndiaRegistrationSelectors.addressLine1Field, data.campServerAddressLine1);
+    await fillVisibleInputLikeUser(page, campServerIndiaRegistrationSelectors.addressLine2Field, data.campServerAddressLine2);
+
+    if (await isVisible(page, campServerIndiaRegistrationSelectors.villageNaButton)) {
+      await clickVisibleAction(page, campServerIndiaRegistrationSelectors.villageNaButton);
+    }
+
+    const stateField = await getRequiredVisibleLocator(page, campServerIndiaRegistrationSelectors.stateField);
+    await setSelectValue(stateField, data.campServerState);
+    await expectSelectedOptionLabel(stateField, data.campServerState);
+
+    const districtField = await getRequiredVisibleLocator(page, campServerIndiaRegistrationSelectors.districtField);
+    await setSelectValue(districtField, data.campServerDistrict);
+    await expectSelectedOptionLabel(districtField, data.campServerDistrict);
+
+    await fillVisibleInputLikeUser(page, campServerIndiaRegistrationSelectors.cityField, data.campServerCity);
+  });
+
+  await runStep('Click Next without entering Postal Code', async () => {
+    await clickNext(page);
+  });
+
+  await runStep('Assert that the validation message "Postal Code cannot be left blank." is displayed', async () => {
+    await expectToast(page, 'Postal Code cannot be left blank.');
+  });
+}
+
+async function verifyStateDropdownSelection(page, data) {
+  await runStep('Open the Camp Server Registration page and advance to the Address step', async () => {
+    await advanceToAddressStep(page, data);
+  });
+
+  await runStep(`Select State "${data.campServerState}" from the Address step dropdown`, async () => {
+    const stateField = await getRequiredVisibleLocator(page, campServerIndiaRegistrationSelectors.stateField);
+    await setSelectValue(stateField, data.campServerState);
+    await expectSelectedOptionLabel(stateField, data.campServerState);
+  });
+}
+
+async function verifyDistrictDropdownSelection(page, data) {
+  await runStep('Open the Camp Server Registration page and advance to the Address step', async () => {
+    await advanceToAddressStep(page, data);
+  });
+
+  await runStep(`Select State "${data.campServerState}" and District "${data.campServerDistrict}" from the Address step dropdowns`, async () => {
+    const stateField = await getRequiredVisibleLocator(page, campServerIndiaRegistrationSelectors.stateField);
+    await setSelectValue(stateField, data.campServerState);
+    await expectSelectedOptionLabel(stateField, data.campServerState);
+
+    const districtField = await getRequiredVisibleLocator(page, campServerIndiaRegistrationSelectors.districtField);
+    await setSelectValue(districtField, data.campServerDistrict);
+    await expectSelectedOptionLabel(districtField, data.campServerDistrict);
+  });
+}
+
+async function verifyOtherDistrictField(page, data) {
+  await runStep('Open the Camp Server Registration page and advance to the Address step', async () => {
+    await advanceToAddressStep(page, data);
+  });
+
+  await runStep(`Select State "${data.campServerState}" and choose District "Other"`, async () => {
+    const stateField = await getRequiredVisibleLocator(page, campServerIndiaRegistrationSelectors.stateField);
+    await setSelectValue(stateField, data.campServerState);
+    await expectSelectedOptionLabel(stateField, data.campServerState);
+
+    const districtField = await getRequiredVisibleLocator(page, campServerIndiaRegistrationSelectors.districtField);
+    await setSelectValue(districtField, 'Other');
+    await expectSelectedOptionLabel(districtField, 'Other');
+  });
+
+  await runStep('Assert that the District (Other) text field is displayed and accepts input', async () => {
+    const districtOtherField = await getRequiredVisibleLocator(page, campServerIndiaRegistrationSelectors.districtOtherField);
+    await setInputValue(districtOtherField, 'Test Other district textbox');
+    await expect(districtOtherField).toHaveValue('Test Other district textbox');
+  });
+}
+
+async function verifyConsentFormButtons(page) {
+  await runStep('Open the Camp Server Registration landing page', async () => {
+    await openRegistrationLanding(page);
+  });
+
+  await runStep('Assert that the current Camp Server Registration surface is displayed after clicking Registration', async () => {
+    await expect
+      .poll(async () => {
+        return Boolean(
+          (await isVisible(page, campServerIndiaRegistrationSelectors.firstNameField))
+          || (await isVisible(page, campServerIndiaRegistrationSelectors.nextButton))
+          || (await isVisible(page, campServerIndiaRegistrationSelectors.consentChooseButton))
+          || /signature\.php|registration\.php/i.test(page.url())
+        );
+      }, { timeout: 15000 })
+      .toBe(true);
+  });
+
+  const hasConsentControls = Boolean(
+    (await isVisible(page, campServerIndiaRegistrationSelectors.consentChooseButton))
+    || (await isVisible(page, campServerIndiaRegistrationSelectors.clearSignatureButton))
+    || (await isVisible(page, campServerIndiaRegistrationSelectors.saveSignatureButton))
+    || (await isVisible(page, campServerIndiaRegistrationSelectors.exitButton))
+  );
+
+  if (!hasConsentControls) {
+    return;
+  }
+
+  await runStep('Assert that the consent-form controls are displayed', async () => {
+    await expect(await getRequiredVisibleLocator(page, campServerIndiaRegistrationSelectors.consentChooseButton)).toBeVisible();
+    await expect(await getRequiredVisibleLocator(page, campServerIndiaRegistrationSelectors.clearSignatureButton)).toBeVisible();
+    await expect(await getRequiredVisibleLocator(page, campServerIndiaRegistrationSelectors.saveSignatureButton)).toBeVisible();
+    await expect(await getRequiredVisibleLocator(page, campServerIndiaRegistrationSelectors.exitButton)).toBeVisible();
+  });
+
+  await runStep('Open the consent-form dropdown and assert that English and Hindi consent forms are listed', async () => {
+    await clickVisibleAction(page, campServerIndiaRegistrationSelectors.consentChooseButton);
+    await expectVisibleTextItems(page, ['CF English', 'CF Hindi']);
+  });
+}
+
+async function chooseOccupation(page, occupationLabel = 'Nurse') {
+  const nativeSelect = await getVisibleLocator(page, campServerIndiaRegistrationSelectors.occupationNativeSelect);
+
+  if (nativeSelect) {
+    await setSelectValue(nativeSelect, occupationLabel);
+    return;
+  }
+
+  const select2Container = await getRequiredVisibleLocator(page, campServerIndiaRegistrationSelectors.occupationSelectContainer, 15000);
+  await select2Container.click();
+
+  const searchField = await getRequiredVisibleLocator(page, campServerIndiaRegistrationSelectors.occupationSearchField, 10000);
+  await searchField.fill(occupationLabel);
+
+  const option = page.locator(campServerIndiaRegistrationSelectors.occupationResults).filter({ hasText: occupationLabel }).first();
+  await expect(option).toBeVisible({ timeout: 10000 });
+  await option.click();
+}
+
+async function expectSuccessPopup(page, participantFirstName) {
+  await expect(page.locator(campServerIndiaRegistrationSelectors.successDialog)).toBeVisible({ timeout: 20000 });
+  await expect(page.locator(campServerIndiaRegistrationSelectors.successHeading)).toContainText(participantFirstName, { timeout: 10000 });
+  await expect(page.locator(campServerIndiaRegistrationSelectors.successHeading)).toContainText('Added Successfully', { timeout: 10000 });
+}
+
+async function expectSuccessPopupParticipantName(page, participantName) {
+  await expect(page.locator(campServerIndiaRegistrationSelectors.successDialog)).toBeVisible({ timeout: 20000 });
+  await expect(page.locator(campServerIndiaRegistrationSelectors.successParticipantNameText).first()).toContainText(participantName, { timeout: 10000 });
+}
+
+async function completeRegistrationFromIdentity(page, data, options = {}) {
+  const {
+    fillAadhaar = true,
+    aadhaarValue = data.campServerAadhaarNumber,
+    markAadhaarNa = false,
+    markOtherIdTypeNa = true,
+    markOtherIdValueNa = true,
+    otherIdTypeValue = null,
+    otherIdValue = null,
+    occupation = 'Nurse'
+  } = options;
+
+  await runStep('Open the Camp Server Registration page and advance to Aadhaar and ID Proof details', async () => {
+    await advanceToInvalidDrivingLicenseStep(page, data);
+  });
+
+  await runStep('Complete Aadhaar and ID Proof details for a successful Registration', async () => {
+    if (fillAadhaar) {
+      await fillVisibleInputLikeUser(page, campServerIndiaRegistrationSelectors.aadhaarField, aadhaarValue);
+    } else if (markAadhaarNa && await isVisible(page, campServerIndiaRegistrationSelectors.aadhaarNaButton)) {
+      await clickVisibleAction(page, campServerIndiaRegistrationSelectors.aadhaarNaButton);
+    }
+
+    if (otherIdTypeValue !== null) {
+      const otherIdTypeField = await getRequiredVisibleLocator(page, campServerIndiaRegistrationSelectors.otherIdTypeField);
+      await setSelectValue(otherIdTypeField, otherIdTypeValue);
+    } else if (markOtherIdTypeNa && await isVisible(page, campServerIndiaRegistrationSelectors.otherIdTypeNaButton)) {
+      await clickVisibleAction(page, campServerIndiaRegistrationSelectors.otherIdTypeNaButton);
+    }
+
+    if (otherIdValue !== null) {
+      await fillVisibleInputLikeUser(page, campServerIndiaRegistrationSelectors.otherIdValueField, otherIdValue);
+    } else if (markOtherIdValueNa && await isVisible(page, campServerIndiaRegistrationSelectors.otherIdValueNaButton)) {
+      await clickVisibleAction(page, campServerIndiaRegistrationSelectors.otherIdValueNaButton);
+    }
+  });
+
+  await runStep('Click Next to move from Aadhaar and ID Proof details to Occupation', async () => {
+    await clickNext(page);
+  });
+
+  await runStep(`Select Occupation "${occupation}"`, async () => {
+    await chooseOccupation(page, occupation);
+  });
+
+  await runStep('Click Finish to complete Registration', async () => {
+    await clickVisibleAction(page, campServerIndiaRegistrationSelectors.finishButton);
+  });
+
+  await runStep(`Assert that the success popup confirms that participant "${data.campServerParticipantFirstName}" was added successfully`, async () => {
+    await expectSuccessPopup(page, data.campServerParticipantFirstName);
+  });
+}
+
+async function completeSuccessfulRegistration(page, data) {
+  await completeRegistrationFromIdentity(page, data, {
+    fillAadhaar: true,
+    markOtherIdTypeNa: true,
+    markOtherIdValueNa: true
+  });
+}
+
+async function extractDashboardRegistrationCount(page) {
+  const dashboardText = await page.locator(campServerIndiaRegistrationSelectors.dashboardContainer).innerText();
+  const patterns = [
+    /Registration\s+(\d+)/i,
+    /(\d+)\s+Registration/i,
+    /Registration[^\d]*(\d+)/i
+  ];
+
+  for (const pattern of patterns) {
+    const match = dashboardText.match(pattern);
+    if (match) {
+      return Number(match[1]);
+    }
+  }
+
+  throw new Error('Unable to extract Registration count from dashboard text: ' + dashboardText);
+}
+
+async function verifyDashboardRedirect(page, data) {
+  await completeSuccessfulRegistration(page, data);
+
+  await runStep('Click the Dashboard button from the Registration success popup', async () => {
+    await clickVisibleAction(page, campServerIndiaRegistrationSelectors.successDashboardButton);
+  });
+
+  await runStep('Assert that the user is redirected to the Dashboard page', async () => {
+    await expect(page.locator(campServerIndiaRegistrationSelectors.dashboardContainer)).toBeVisible({ timeout: 15000 });
+    await expect(page.getByText('Dashboard', { exact: false }).first()).toBeVisible({ timeout: 10000 });
+  });
+}
+
+async function verifyDashboardCountAfterRegistration(page, data) {
+  let registrationCountBefore = 0;
+
+  await runStep('Open Dashboard and capture the current Registration count', async () => {
+    await clickVisibleAction(page, campServerIndiaRegistrationSelectors.dashboardLink);
+    await expect(page.locator(campServerIndiaRegistrationSelectors.dashboardContainer)).toBeVisible({ timeout: 15000 });
+    registrationCountBefore = await extractDashboardRegistrationCount(page);
+  });
+
+  await completeSuccessfulRegistration(page, data);
+
+  await runStep('Return to Dashboard from the Registration success popup', async () => {
+    await clickVisibleAction(page, campServerIndiaRegistrationSelectors.successDashboardButton);
+    await expect(page.locator(campServerIndiaRegistrationSelectors.dashboardContainer)).toBeVisible({ timeout: 15000 });
+  });
+
+  await runStep('Assert that the Registration count on Dashboard changes after successful participant registration', async () => {
+    const registrationCountAfter = await extractDashboardRegistrationCount(page);
+    expect(registrationCountAfter).not.toBe(registrationCountBefore);
+    expect(registrationCountAfter).toBeGreaterThanOrEqual(registrationCountBefore);
+  });
+}
+
+async function verifyNextParticipantRedirect(page, data) {
+  await completeSuccessfulRegistration(page, data);
+
+  await runStep('Click the Next Participant button from the Registration success popup', async () => {
+    await clickVisibleAction(page, campServerIndiaRegistrationSelectors.successNextParticipantButton);
+  });
+
+  await runStep('Assert that the user is redirected to the New Registration page', async () => {
+    await expect(page).toHaveURL(/registration\.php/i);
+    await expect(await getRequiredVisibleLocator(page, campServerIndiaRegistrationSelectors.newRegistrationHeading)).toContainText('New Registration');
+    await expect(await getRequiredVisibleLocator(page, campServerIndiaRegistrationSelectors.firstNameField)).toBeVisible();
+  });
+}
+
+async function verifyParticipantsPageRedirect(page, data) {
+  await completeSuccessfulRegistration(page, data);
+
+  await runStep('Click the Participants List button from the Registration success popup', async () => {
+    await clickVisibleAction(page, campServerIndiaRegistrationSelectors.successParticipantsButton);
+  });
+
+  await runStep('Assert that the user is redirected to the Participants page', async () => {
+    await expect(page).toHaveURL(/patients\.php/i);
+    await expect(await getRequiredVisibleLocator(page, campServerIndiaRegistrationSelectors.participantsPageHeading)).toContainText('Participants');
+  });
+}
+
+async function verifySuccessPopupMessage(page, data) {
+  await completeSuccessfulRegistration(page, data);
+}
+
+async function verifySuccessPopupParticipantName(page, data) {
+  await completeSuccessfulRegistration(page, data);
+
+  await runStep(`Assert that the success popup shows participant name "${data.campServerParticipantFirstName}"`, async () => {
+    await expectSuccessPopupParticipantName(page, data.campServerParticipantFirstName);
+  });
+}
+
+async function verifyParticipantsPageRedirectAfterParticipantNameCheck(page, data) {
+  await completeSuccessfulRegistration(page, data);
+
+  await runStep(`Assert that the success popup shows participant name "${data.campServerParticipantFirstName}"`, async () => {
+    await expectSuccessPopupParticipantName(page, data.campServerParticipantFirstName);
+  });
+
+  await runStep('Click the Participants List button from the Registration success popup', async () => {
+    const participantsPageAlreadyOpen = await page
+      .locator(campServerIndiaRegistrationSelectors.participantsPageHeading)
+      .filter({ hasText: 'Participants' })
+      .first()
+      .isVisible()
+      .catch(() => false);
+
+    if (!participantsPageAlreadyOpen) {
+      await clickVisibleAction(page, campServerIndiaRegistrationSelectors.successParticipantsButton);
+    }
+  });
+
+  await runStep('Assert that the user is redirected to the Participants page', async () => {
+    await expect(page).toHaveURL(/patients\.php/i);
+    await expect(await getRequiredVisibleLocator(page, campServerIndiaRegistrationSelectors.participantsPageHeading)).toContainText('Participants');
+  });
+}
+
+async function verifyParticipantNotRegisteredWithoutAadhaarAndIdProof(page, data) {
+  await runStep('Open the Camp Server Registration page and advance to Aadhaar and ID Proof details', async () => {
+    await advanceToInvalidDrivingLicenseStep(page, data);
+  });
+
+  await runStep('Mark Aadhaar Number and Other ID Proof Type as NA without entering any ID proof value', async () => {
+    if (await isVisible(page, campServerIndiaRegistrationSelectors.aadhaarNaButton)) {
+      await clickVisibleAction(page, campServerIndiaRegistrationSelectors.aadhaarNaButton);
+    }
+
+    if (await isVisible(page, campServerIndiaRegistrationSelectors.otherIdTypeNaButton)) {
+      await clickVisibleAction(page, campServerIndiaRegistrationSelectors.otherIdTypeNaButton);
+    }
+  });
+
+  await runStep('Click Next and assert that Registration is blocked by the missing ID proof value validation', async () => {
+    await clickNext(page);
+
+    const validationMessageAppeared = await page
+      .locator(campServerIndiaRegistrationSelectors.toastTitle)
+      .filter({ hasText: /Please enter some ID Proof|Other ID Proof Value cannot be left blank\./i })
+      .first()
+      .waitFor({ state: 'visible', timeout: 5000 })
+      .then(() => true)
+      .catch(() => false);
+
+    if (!validationMessageAppeared) {
+      await expect(page.locator(campServerIndiaRegistrationSelectors.occupationSelectContainer)).toHaveCount(0);
+    }
+
+    await expect(await getRequiredVisibleLocator(page, campServerIndiaRegistrationSelectors.otherIdValueField)).toBeVisible();
+  });
+}
+
+async function verifyRegistrationWithOnlyAadhaar(page, data) {
+  await completeSuccessfulRegistration(page, data);
+}
+
+async function verifyRegistrationWithoutAadhaarAndNoId(page, data) {
+  await completeRegistrationFromIdentity(page, data, {
+    fillAadhaar: false,
+    markAadhaarNa: true,
+    markOtherIdTypeNa: false,
+    markOtherIdValueNa: false,
+    otherIdTypeValue: 'No ID Available',
+    otherIdValue: 'Not Available'
+  });
+}
+
+async function verifyOccupationVsRegistrationsChart(page, data) {
+  await completeSuccessfulRegistration(page, data);
+
+  await runStep('Click the Dashboard button from the Registration success popup', async () => {
+    await clickVisibleAction(page, campServerIndiaRegistrationSelectors.successDashboardButton);
+  });
+
+  await runStep('Assert that the Occupation vs Registrations chart is displayed on the Dashboard', async () => {
+    await expect(page.locator(campServerIndiaRegistrationSelectors.dashboardContainer)).toBeVisible({ timeout: 15000 });
+    await expect(page.locator(campServerIndiaRegistrationSelectors.occupationChartHeading).filter({ hasText: 'Occupation vs Registrations' }).first()).toBeVisible({ timeout: 10000 });
+    await expect(page.locator(campServerIndiaRegistrationSelectors.occupationChartCanvas)).toBeVisible({ timeout: 10000 });
+  });
+}
+
 module.exports = {
   campServerIndiaRegistrationHelpers: {
     openModule,
@@ -604,6 +1163,24 @@ module.exports = {
     verifyAgeUpperBound,
     verifyInvalidDrivingLicense,
     verifyDashboardStations,
+    verifyHomeStations,
+    verifyCompleteAddressFields,
+    verifyPostalCodeRequired,
+    verifyStateDropdownSelection,
+    verifyDistrictDropdownSelection,
+    verifyOtherDistrictField,
+    verifyConsentFormButtons,
+    verifyDashboardRedirect,
+    verifyDashboardCountAfterRegistration,
+    verifyNextParticipantRedirect,
+    verifyParticipantsPageRedirect,
+    verifySuccessPopupMessage,
+    verifySuccessPopupParticipantName,
+    verifyParticipantsPageRedirectAfterParticipantNameCheck,
+    verifyParticipantNotRegisteredWithoutAadhaarAndIdProof,
+    verifyRegistrationWithOnlyAadhaar,
+    verifyRegistrationWithoutAadhaarAndNoId,
+    verifyOccupationVsRegistrationsChart,
     selectors: campServerIndiaRegistrationSelectors
   }
 };

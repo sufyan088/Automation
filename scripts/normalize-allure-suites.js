@@ -31,6 +31,14 @@ function resolveModuleFolderName(titlePath) {
   return fallbackEntry || titlePath[0] || '';
 }
 
+function buildNormalizedTitlePathLabel(titlePath) {
+  if (!Array.isArray(titlePath) || titlePath.length === 0) {
+    return '';
+  }
+
+  return ` > ${titlePath.join(' > ')}`;
+}
+
 function normalizeResultFile(filePath) {
   const raw = fs.readFileSync(filePath, 'utf8');
   const result = JSON.parse(raw);
@@ -41,11 +49,13 @@ function normalizeResultFile(filePath) {
   }
 
   const moduleSuiteName = humanizeSuiteName(moduleFolderName);
+  const normalizedTitlePathLabel = buildNormalizedTitlePathLabel(result.titlePath);
   const existingLabels = Array.isArray(result.labels) ? result.labels : [];
-  const preservedLabels = existingLabels.filter((label) => label.name !== 'parentSuite' && label.name !== 'suite');
+  const preservedLabels = existingLabels.filter((label) => label.name !== 'parentSuite' && label.name !== 'suite' && label.name !== 'titlePath');
 
   result.labels = [
     ...preservedLabels,
+    ...(normalizedTitlePathLabel ? [{ name: 'titlePath', value: normalizedTitlePathLabel }] : []),
     { name: 'parentSuite', value: moduleSuiteName },
     { name: 'suite', value: moduleSuiteName }
   ];

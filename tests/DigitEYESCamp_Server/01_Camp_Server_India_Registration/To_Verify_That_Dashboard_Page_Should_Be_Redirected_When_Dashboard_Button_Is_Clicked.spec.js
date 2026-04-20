@@ -2,7 +2,8 @@ const { test } = require('@playwright/test');
 const {
   loadRuntimeData,
   loginAsAdmin,
-  closeSession
+  closeSession,
+  campServerIndiaRegistrationHelpers
 } = require('./_shared');
 
 test("To_Verify_That_Dashboard_Page_Should_Be_Redirected_When_Dashboard_Button_Is_Clicked", async ({ page }) => {
@@ -16,7 +17,8 @@ test("To_Verify_That_Dashboard_Page_Should_Be_Redirected_When_Dashboard_Button_I
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
+  await test.step('Verify that Dashboard page is redirected when Dashboard button is clicked after successful registration', async () => {
+    await campServerIndiaRegistrationHelpers.verifyDashboardRedirect(page, data);
   });
 
   await test.step('Logout from the application', async () => {

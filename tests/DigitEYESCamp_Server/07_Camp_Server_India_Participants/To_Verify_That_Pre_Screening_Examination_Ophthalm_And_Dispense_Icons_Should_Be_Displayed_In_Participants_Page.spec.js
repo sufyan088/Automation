@@ -2,7 +2,8 @@ const { test } = require('@playwright/test');
 const {
   loadRuntimeData,
   loginAsAdmin,
-  closeSession
+  closeSession,
+  campServerIndiaParticipantsHelpers
 } = require('./_shared');
 
 test("To_Verify_That_Pre-Screening_Examination_Ophthalm_And_Dispense_Icons_Should_Be_Displayed_In_Participants_Page", async ({ page }) => {
@@ -17,6 +18,7 @@ test("To_Verify_That_Pre-Screening_Examination_Ophthalm_And_Dispense_Icons_Shoul
   });
 
   await test.step('Run converted flow', async () => {
+    await campServerIndiaParticipantsHelpers.verifyStationIconsDisplayed(page);
   });
 
   await test.step('Logout from the application', async () => {

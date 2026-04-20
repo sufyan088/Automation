@@ -24,9 +24,14 @@ function buildAlphaSuffix(seed, length = 4) {
 
 function findDefaultCsvFile() {
   const dataDir = path.join(__dirname, '..', '..', 'data', 'source-aiq2');
+  const preferredRuntimeFile = path.join(dataDir, 'Digit_Eyes_Runtime_DPL.csv');
 
   if (!fs.existsSync(dataDir)) {
     return path.join(dataDir, 'Digit_Eyes_JS_DPL.csv');
+  }
+
+  if (fs.existsSync(preferredRuntimeFile)) {
+    return preferredRuntimeFile;
   }
 
   const csvFiles = fs

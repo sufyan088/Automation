@@ -2,7 +2,8 @@ const { test } = require('@playwright/test');
 const {
   loadRuntimeData,
   loginAsAdmin,
-  closeSession
+  closeSession,
+  campServerIndiaSummaryHelpers
 } = require('./_shared');
 
 test("To_Verify_That_All_Modules_Are_Existing_On_Dashboard", async ({ page }) => {
@@ -17,6 +18,7 @@ test("To_Verify_That_All_Modules_Are_Existing_On_Dashboard", async ({ page }) =>
   });
 
   await test.step('Run converted flow', async () => {
+    await campServerIndiaSummaryHelpers.verifyAllModulesExistingOnDashboard(page);
   });
 
   await test.step('Logout from the application', async () => {

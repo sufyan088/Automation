@@ -2,7 +2,8 @@ const { test } = require('@playwright/test');
 const {
   loadRuntimeData,
   loginAsAdmin,
-  closeSession
+  closeSession,
+  campServerIndiaOpthalmHelpers
 } = require('./_shared');
 
 test("To_Verify_That_Participant_Should_Be_Filtered_When_ Search_Button_Is_Clicked", async ({ page }) => {
@@ -17,6 +18,7 @@ test("To_Verify_That_Participant_Should_Be_Filtered_When_ Search_Button_Is_Click
   });
 
   await test.step('Run converted flow', async () => {
+    await campServerIndiaOpthalmHelpers.verifyParticipantShouldBeFilteredWhenSearchButtonIsClicked(page, data);
   });
 
   await test.step('Logout from the application', async () => {

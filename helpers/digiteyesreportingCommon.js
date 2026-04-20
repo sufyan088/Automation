@@ -2,6 +2,7 @@ const { expect } = require('@playwright/test');
 const { safeClick, safeExpectVisible, safeFill, waitForAppToSettle } = require('./actions');
 const { resolveFirst } = require('./fallback');
 const { digiteyescampsManagecampsclusterHelpers } = require('./digiteyescampsManagecampscluster');
+const { wrapHelperMapWithReadableSteps } = require('./clientReadableSteps');
 
 const reportingMenuButton = [
   { type: 'role', role: 'button', options: { name: /digiteyes reporting/i }, name: 'role:DigitEYES Reporting' },
@@ -225,19 +226,21 @@ async function clickExportAndAssert(page, selectors) {
 
 module.exports = {
   reportingMenuButton,
-  openReportingMenu,
-  openReportingModule,
-  openSearchFilter,
-  closeSearchFilter,
-  fillFieldAndExpectValue,
-  clearFieldAndExpectEmpty,
-  applySearch,
-  resetSearch,
-  expectTextVisible,
-  expectDropdownOptions,
-  getSelectedOptionText,
-  getDropdownOptions,
-  selectDropdownOption,
-  expectTableHeaders,
-  clickExportAndAssert
+  ...wrapHelperMapWithReadableSteps({
+    openReportingMenu,
+    openReportingModule,
+    openSearchFilter,
+    closeSearchFilter,
+    fillFieldAndExpectValue,
+    clearFieldAndExpectEmpty,
+    applySearch,
+    resetSearch,
+    expectTextVisible,
+    expectDropdownOptions,
+    getSelectedOptionText,
+    getDropdownOptions,
+    selectDropdownOption,
+    expectTableHeaders,
+    clickExportAndAssert,
+  })
 };

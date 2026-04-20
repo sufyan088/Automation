@@ -2,7 +2,8 @@ const { test } = require('@playwright/test');
 const {
   loadRuntimeData,
   loginAsAdmin,
-  closeSession
+  closeSession,
+  campServerIndiaPrescreeningHelpers
 } = require('./_shared');
 
 test("To_Verify_That_Alert_Message_Should_Be_Displayed_When_None_Of_The_Cheif_Complaints_CheckBox_Is_Checked", async ({ page }) => {
@@ -17,6 +18,7 @@ test("To_Verify_That_Alert_Message_Should_Be_Displayed_When_None_Of_The_Cheif_Co
   });
 
   await test.step('Run converted flow', async () => {
+    await campServerIndiaPrescreeningHelpers.verifyChiefComplaintsRequired(page, data);
   });
 
   await test.step('Logout from the application', async () => {

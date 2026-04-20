@@ -16,6 +16,7 @@ const { expect } = require('@playwright/test');
 const { waitForAppToSettle } = require('./actions');
 const { resolveFirst } = require('./fallback');
 const { digiteyesreportingWorkreportipteamsSelectors } = require('../selectors/digiteyesreportingWorkreportipteams.selectors');
+const { wrapHelperMapWithReadableSteps } = require('./clientReadableSteps');
 
 async function openModule(page, data) {
   await openReportingModule(page, data, digiteyesreportingWorkreportipteamsSelectors, 'Work Report - IP Teams');
@@ -142,7 +143,7 @@ async function verifyRegistrationHeaders(page) {
 }
 
 module.exports = {
-  digiteyesreportingWorkreportipteamsHelpers: {
+  digiteyesreportingWorkreportipteamsHelpers: wrapHelperMapWithReadableSteps({
     openModule,
     verifyModulePage,
     verifySearchFilter,
@@ -161,5 +162,5 @@ module.exports = {
     verifyInvalidProjectCode,
     verifyRegistrationHeaders,
     selectors: digiteyesreportingWorkreportipteamsSelectors
-  }
+  })
 };

@@ -5,6 +5,7 @@ const { expect } = require('@playwright/test');
 const { safeClick, safeClickIfFound, safeExpectVisible, safeFill, waitForAppToSettle } = require('./actions');
 const { clickIfFound, resolveFirst } = require('./fallback');
 const { digiteyescampsManagecampsclusterHelpers } = require('./digiteyescampsManagecampscluster');
+const { wrapHelperMapWithReadableSteps } = require('./clientReadableSteps');
 
 const DATE_PATTERN = /\b(?:\d{1,2}[/-]\d{1,2}[/-]\d{2,4}|\d{4}[/-]\d{1,2}[/-]\d{1,2}|\d{1,2}\s+[A-Za-z]{3,9}\s+\d{4})\b/;
 
@@ -437,7 +438,7 @@ async function retryFirstUpload(page, selectors) {
 }
 
 function createDataLoaderModuleHelpers(selectors) {
-  return {
+  return wrapHelperMapWithReadableSteps({
     openModule: (page, country) => openModule(page, selectors, country),
     verifyPageLoaded: (page) => verifyPageLoaded(page, selectors),
     measureOpenModuleDuration: (page, country) => measureOpenModuleDuration(page, selectors, country),
@@ -462,7 +463,7 @@ function createDataLoaderModuleHelpers(selectors) {
     selectPageSizeAndExpectMaxRows: (page, valueLabel) => selectPageSizeAndExpectMaxRows(page, selectors, valueLabel),
     retryFirstUpload: (page) => retryFirstUpload(page, selectors),
     selectors
-  };
+  });
 }
 
 module.exports = {

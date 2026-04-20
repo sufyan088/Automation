@@ -3,6 +3,7 @@ const { safeClick, safeClickIfFound, safeExpectVisible, safeFill, waitForAppToSe
 const { resolveFirst } = require('./fallback');
 const { commonSelectors } = require('../selectors/common.selectors');
 const { digiteyescampsManagecampsclusterSelectors } = require('../selectors/digiteyescampsManagecampscluster.selectors');
+const { wrapHelperMapWithReadableSteps } = require('./clientReadableSteps');
 
 const COUNTRY_CODE_MAP = {
   'India': 'IND',
@@ -466,7 +467,7 @@ async function expectListingStatusesWithinAllowed(page, allowedStatuses) {
 }
 
 module.exports = {
-  digiteyescampsManagecampsclusterHelpers: {
+  digiteyescampsManagecampsclusterHelpers: wrapHelperMapWithReadableSteps({
     selectLoginCountry,
     verifyManageCampClusterLanding,
     openModule,
@@ -517,5 +518,5 @@ module.exports = {
     expectListingContainsStatus,
     expectListingStatusesWithinAllowed,
     selectors: digiteyescampsManagecampsclusterSelectors
-  }
+  })
 };

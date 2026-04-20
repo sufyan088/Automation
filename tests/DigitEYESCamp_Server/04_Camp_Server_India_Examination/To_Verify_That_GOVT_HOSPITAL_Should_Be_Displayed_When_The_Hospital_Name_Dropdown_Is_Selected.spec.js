@@ -2,7 +2,8 @@ const { test } = require('@playwright/test');
 const {
   loadRuntimeData,
   loginAsAdmin,
-  closeSession
+  closeSession,
+  campServerIndiaExaminationHelpers
 } = require('./_shared');
 
 test("To_Verify_That_GOVT.HOSPITAL_Should_Be_Displayed_When_The_Hospital_Name_Dropdown_Is_Selected", async ({ page }) => {
@@ -17,6 +18,7 @@ test("To_Verify_That_GOVT.HOSPITAL_Should_Be_Displayed_When_The_Hospital_Name_Dr
   });
 
   await test.step('Run converted flow', async () => {
+    await campServerIndiaExaminationHelpers.verifyGovtHospitalDisplayedWhenHospitalNameDropdownIsSelected(page, data);
   });
 
   await test.step('Logout from the application', async () => {

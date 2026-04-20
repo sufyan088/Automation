@@ -2,7 +2,8 @@ const { test } = require('@playwright/test');
 const {
   loadRuntimeData,
   loginAsAdmin,
-  closeSession
+  closeSession,
+  campServerIndiaExaminationHelpers
 } = require('./_shared');
 
 test("To_Verify_That_Clicking_Yes_On_The_Refer_To_Hospital_Button_Redirects_To_The_Refer_To_The_Hospital_Screen", async ({ page }) => {
@@ -17,6 +18,7 @@ test("To_Verify_That_Clicking_Yes_On_The_Refer_To_Hospital_Button_Redirects_To_T
   });
 
   await test.step('Run converted flow', async () => {
+    await campServerIndiaExaminationHelpers.verifyClickingYesOnReferToHospitalRedirectsToHospitalScreen(page, data);
   });
 
   await test.step('Logout from the application', async () => {

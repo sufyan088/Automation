@@ -2,6 +2,11 @@
 
 This repository is the current AIQ-to-Playwright conversion project for the Vision Spring application. It is no longer a File Processing proof of concept. The active work in this repo is maintaining Vision Spring Playwright coverage with shared helpers, centralized selectors, fallback locator handling, and reusable Allure reporting workflows.
 
+The repository currently has two main automation tracks for the same Vision Spring project:
+
+- `DigitEYESCamp_Cluster` for the original `source-aiq` web-app intake and its multiple sub-modules across Camps, Data Loader, Reporting, and Settings.
+- `DigitEYESCamp_Server` for the separate `source-aiq2` Camp Server intake and its multiple station sub-modules.
+
 ## Project Goal
 
 Convert the Vision Spring AIQ automation assets under `source-aiq/` and `source-aiq2/` into maintainable Playwright coverage with:
@@ -53,6 +58,7 @@ data/
 docs/
   conversion-framework.md
   team-project-setup-guide.md
+  vision-spring-camp-cluster-handoff.md
   vision-spring-camp-server-handoff.md
   vision-spring-conversion-handoff.md
 
@@ -61,9 +67,11 @@ scripts/
   bootstrap-source-aiq2-structure.js
   scaffold-module.js
   customize-allure-report.js
+  flatten-generic-allure-steps.js
   normalize-allure-suites.js
   camp-server-modules.js
   run-camp-server-client-report.js
+  run-camp-server-registration-client-report.js
   run-camp-server-sequence.js
   run-combined-client-report.js
 
@@ -73,7 +81,11 @@ Result/
 
 ## Current Module Inventory
 
-The repo currently contains module folders for these Vision Spring families:
+The repo is organized around the two main Vision Spring tracks below.
+
+### DigitEYESCamp Cluster
+
+This track contains the original web-app families and their sub-modules:
 
 ### DigitEYES Camps
 
@@ -107,6 +119,8 @@ The repo currently contains module folders for these Vision Spring families:
 
 ### DigitEYES Camp Server
 
+This track contains the Camp Server family and its station sub-modules:
+
 - `Camp_Server_Login`
 - `01_Camp_Server_India_Registration`
 - `02_Camp_Server_India_Prescreening`
@@ -129,14 +143,24 @@ Conversion parity is complete for the current tracked DigitEYESCampsCluster inta
 Camp Server is a separate `source-aiq2` conversion track.
 
 - The Camp Server scaffold is generated under `tests/DigitEYESCamp_Server/`, `helpers/source-aiq2/`, `selectors/source-aiq2/`, and `data/source-aiq2/`.
-- The current Camp Server baseline is partial conversion, not full parity.
-- The currently validated converted Camp Server batch is the first 5 helper-backed Registration specs.
-- Most remaining Camp Server specs are still scaffolds with a placeholder `Run converted flow` step and should not be treated as finished coverage.
+- The overall Camp Server track is still partial conversion, not full parity across all 8 India modules.
+- `01_Camp_Server_India_Registration` is now fully converted at 24 helper-backed specs.
+- `02_Camp_Server_India_Prescreening` is now fully converted at 8 helper-backed specs and validated clean at 8/8 with `--workers=1`.
+- `03_Camp_Server_India_PreExam` is now fully converted at 9 helper-backed specs and validated clean at 9/9 with `--workers=1`.
+- `04_Camp_Server_India_Examination` is now fully converted at 16 helper-backed specs and validated clean at 16/16 with `--workers=1`.
+- `06_Camp_Server_India_Dispense` is now fully converted at 10 helper-backed specs and validated clean at 10/10 with `--workers=1`.
+- `07_Camp_Server_India_Participants` is now fully helper-backed at 10 specs, and the latest combined Participants plus Dispense validation passed clean at 20/20.
+- `05_Camp_Server_India_Opthalm` is helper-backed but still not a clean baseline: the latest rerun finished at 2/3 because the live product does not carry `Suspected Cataract` into Ophthalm from Examination.
+- A dedicated Registration client report flow now exists via `npm run report:camp-server-registration:client` and produces a Mammoth-branded single-file artifact under `Result/`.
+- Cluster client-report flows normalize Allure suite labels before report generation and strip `Source AIQ:` lines so client-facing descriptions keep only `Scenario:` and `Spec File:`.
+- Camp Server client-report flows normalize Allure suite labels, flatten the legacy generic `Run converted flow` wrapper step from result JSON, strip `Source AIQ:` lines, and then generate the Mammoth-branded portable artifact.
+- The remaining Camp Server modules outside Registration, Prescreening, PreExam, Examination, Dispense, and Participants should still be treated as scaffold/partial coverage until their helper-backed conversions are completed.
 
 For the most current module-by-module handoff and remaining conversion guidance:
 
-- use [docs/vision-spring-conversion-handoff.md](docs/vision-spring-conversion-handoff.md) for the DigitEYESCampsCluster families
+- use [docs/vision-spring-camp-cluster-handoff.md](docs/vision-spring-camp-cluster-handoff.md) for the DigitEYESCampsCluster families
 - use [docs/vision-spring-camp-server-handoff.md](docs/vision-spring-camp-server-handoff.md) for the `source-aiq2` Camp Server track
+- use [docs/vision-spring-conversion-handoff.md](docs/vision-spring-conversion-handoff.md) for the older general conversion guidance and durable cross-family lessons
 
 ## Install
 
@@ -171,6 +195,11 @@ npx playwright test tests/DigitEYESCamp_Server/01_Camp_Server_India_Registration
 npx playwright test tests/DigitEYESReporting_CampTrends
 npx playwright test tests/DigitEYESReporting_WorkReportVSTeams
 npx playwright test tests/DigitEYESCamp_Server/01_Camp_Server_India_Registration --workers=1
+npx playwright test tests/DigitEYESCamp_Server/02_Camp_Server_India_Prescreening --workers=1
+npx playwright test tests/DigitEYESCamp_Server/03_Camp_Server_India_PreExam --workers=1
+npx playwright test tests/DigitEYESCamp_Server/04_Camp_Server_India_Examination --workers=1
+npx playwright test tests/DigitEYESCamp_Server/05_Camp_Server_India_Opthalm --workers=1
+npx playwright test tests/DigitEYESCamp_Server/06_Camp_Server_India_Dispense --workers=1
 ```
 
 ### Camp Server shortcuts
@@ -200,6 +229,36 @@ npm run test:debug
 npx playwright test tests/DigitEYESReporting_CampTrends/TC_01_To_verify_that_DigitEYES_Reporting_displays_the_Camps_Trend_button.spec.js --headed --debug
 ```
 
+## Reporting Workflow
+
+Use the packaged client-report flows whenever the output is meant to be shared.
+
+### DigitEYESCamp Cluster
+
+- `npm run report:combined:client` is the preferred whole-track shareable report command.
+- `npm run report:camp-cluster-participants:client` is the current dedicated module client-report command.
+- The combined package shortcuts in `package.json` now normalize suites before `allure generate`, so older combined-report entry points no longer leak a `chromium` Suites grouping.
+- Cluster client-facing descriptions intentionally keep only `Scenario:` and `Spec File:`.
+- Cluster execution readability is driven primarily from helper-layer nested `test.step()` titles rather than report-time step rewriting.
+
+### DigitEYESCamp Server
+
+- `npm run report:camp-server:client` is the preferred whole-track shareable report command.
+- `npm run report:camp-server-registration:client` is the dedicated Registration client-report command.
+- Camp Server client-report flows normalize suites before report generation so the Suites card groups by module instead of Playwright project metadata.
+- Camp Server client-report flows also flatten the generic `Run converted flow` wrapper step from legacy result files so the Execution panel shows the nested business steps directly.
+- Camp Server client-facing descriptions also keep only `Scenario:` and `Spec File:`.
+
+### Ad hoc report generation
+
+If you build a report outside the packaged client scripts, run the same result processing first:
+
+```bash
+node scripts/normalize-allure-suites.js
+node scripts/flatten-generic-allure-steps.js   # Camp Server / legacy wrapper-step results only
+node scripts/strip-source-aiq-from-allure-results.js
+```
+
 ## Data and Authentication Behavior
 
 - Runtime data is loaded through `helpers/dataLoader.js`.
@@ -218,10 +277,16 @@ npx playwright test tests/DigitEYESReporting_CampTrends/TC_01_To_verify_that_Dig
 
 - Camp Server runtime data is loaded through `helpers/source-aiq2/dataLoader.js`.
 - Camp Server intake lives under `source-aiq2/`, and the runtime CSV search path defaults to `data/source-aiq2/*.csv`.
+- The default runtime CSV preference is now `data/source-aiq2/Digit_Eyes_Runtime_DPL.csv`, which avoids the malformed imported intake CSV and keeps Camp Server runs off hardcoded fallback defaults.
 - The loader supports environment overrides such as `SOURCE_AIQ2_DATA_FILE`, `SOURCE_AIQ2_BASE_URL`, `SOURCE_AIQ2_USERNAME`, `SOURCE_AIQ2_PASSWORD`, `SOURCE_AIQ2_PERSON_NAME`, and the participant/address field overrides used by the Registration helper.
 - If the `data/source-aiq2/*.csv` file is malformed, the loader logs a fallback message and uses environment/default values.
 - Camp Server auth is separate from the Microsoft web-app flow. The current logic in `helpers/source-aiq2/auth.js` goes directly to `server.php`, supports the `Run as Station` flow, extracts the on-page camp password when needed, fills `emailid`, `personname`, and `password`, and then waits for `#navbars`.
 - Camp Server module `_shared.js` files also use a no-op `closeSession(page)` for consistency and to avoid teardown side effects.
+- The current Prescreening module is helper-backed in `helpers/source-aiq2/campServerIndiaPrescreening.js` and uses the same thin-spec pattern as Registration.
+- Prescreening live-form lesson: some left-eye Near Vision fields are readonly mirrored inputs in the runtime UI, so helper logic must drive the editable right-eye control and assert the mirrored value instead of forcing direct selection on every field.
+- Prescreening validation lesson: the missing Distance Vision cases block submission through native required-field behavior on the invalid control rather than a reusable toast message, so assertions should target submission blocking and invalid field state instead of overfitting to a toast.
+- Prescreening success lesson: the durable client-visible completion dialog currently says `Please direct the Participant to the Pre Exam station.` in the visible `#divExaSuccess` modal after Finish.
+- Examination validation lesson: in the current live runtime, the `Other Eye Conditions` parent checkbox path is most stable when asserted as blocked submission on the Diagnosis step instead of overfitting to the short-lived top-right toast from the older AIQ expectation.
 
 ## Core Framework Rules Used In This Repo
 
@@ -274,8 +339,10 @@ If a source AIQ script performs an in-form selection before checking a default, 
 ### Camp Server reporting
 
 - `npm run report:camp-server:client` runs the ordered Camp Server module sequence from `scripts/camp-server-modules.js`, generates a single-file Allure report, applies Mammoth branding, and packages it under `Result/`.
-- For targeted Camp Server client artifacts, rerun only the intended spec batch with `--reporter=allure-playwright`, add `environment.properties`, `executor.json`, and `categories.json`, run `scripts/normalize-allure-suites.js`, then generate and brand the single-file report.
-- Do not present a full Camp Server client report as complete converted coverage unless the included specs are actually implemented; placeholder `Run converted flow` specs are scaffolds, not finished automation.
+- `npm run report:camp-server-registration:client` runs only `tests/DigitEYESCamp_Server/01_Camp_Server_India_Registration`, enriches Allure descriptions from the converted spec/source mapping, generates a single-file Mammoth-branded report, syncs `Result/index.html`, and packages the shareable zip under `Result/`.
+- The Camp Server report runners now use Windows-safe command launching for `npx` and branding steps, which avoids path-splitting failures in workspace paths such as `C:\vision spring`.
+- For other targeted Camp Server client artifacts, rerun only the intended spec batch with `--reporter=allure-playwright`, add `environment.properties`, `executor.json`, and `categories.json`, run `scripts/normalize-allure-suites.js`, then generate and brand the single-file report.
+- Do not present a full Camp Server client report as complete converted coverage unless the included specs are actually implemented; non-converted placeholder specs are scaffolds, not finished automation.
 
 ## Conversion Commands
 

@@ -2,7 +2,8 @@ const { test } = require('@playwright/test');
 const {
   loadRuntimeData,
   loginAsAdmin,
-  closeSession
+  closeSession,
+  campServerIndiaPreexamHelpers
 } = require('./_shared');
 
 test("To_Verify_That_Type_Other_Issues_Textbox_Should_Be_Dispalyed_When_Diagnosis_Other_Checkbox_Is_Checked", async ({ page }) => {
@@ -17,6 +18,7 @@ test("To_Verify_That_Type_Other_Issues_Textbox_Should_Be_Dispalyed_When_Diagnosi
   });
 
   await test.step('Run converted flow', async () => {
+    await campServerIndiaPreexamHelpers.verifyOtherIssuesTextboxDisplayed(page, data);
   });
 
   await test.step('Logout from the application', async () => {

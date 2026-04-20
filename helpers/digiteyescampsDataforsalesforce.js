@@ -6,6 +6,7 @@ const { safeClick, safeExpectVisible, waitForAppToSettle } = require('./actions'
 const { clickIfFound, resolveFirst } = require('./fallback');
 const { digiteyescampsManagecampsclusterHelpers } = require('./digiteyescampsManagecampscluster');
 const { digiteyescampsDataforsalesforceSelectors } = require('../selectors/digiteyescampsDataforsalesforce.selectors');
+const { wrapHelperMapWithReadableSteps } = require('./clientReadableSteps');
 
 const DATE_PATTERN = /\b(?:\d{1,2}[/-]\d{1,2}[/-]\d{2,4}|\d{4}[/-]\d{1,2}[/-]\d{1,2}|\d{1,2}\s+[A-Za-z]{3,9}\s+\d{4})\b/g;
 
@@ -289,7 +290,7 @@ async function clickPushConsentAndVerifyNavigation(page) {
 }
 
 module.exports = {
-  digiteyescampsDataforsalesforceHelpers: {
+  digiteyescampsDataforsalesforceHelpers: wrapHelperMapWithReadableSteps({
     openModule,
     verifyPageLoaded,
     expectListingHeaders,
@@ -308,5 +309,5 @@ module.exports = {
     clickPushGeoToSalesforce,
     clickPushConsentAndVerifyNavigation,
     selectors: digiteyescampsDataforsalesforceSelectors
-  }
+  })
 };

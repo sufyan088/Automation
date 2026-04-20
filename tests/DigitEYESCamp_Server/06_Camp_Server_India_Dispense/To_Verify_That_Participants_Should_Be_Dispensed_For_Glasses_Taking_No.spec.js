@@ -2,7 +2,8 @@ const { test } = require('@playwright/test');
 const {
   loadRuntimeData,
   loginAsAdmin,
-  closeSession
+  closeSession,
+  campServerIndiaDispenseHelpers
 } = require('./_shared');
 
 test("To_Verify_That_Participants_Should_Be_Dispensed_For_Glasses_Taking_No", async ({ page }) => {
@@ -17,6 +18,7 @@ test("To_Verify_That_Participants_Should_Be_Dispensed_For_Glasses_Taking_No", as
   });
 
   await test.step('Run converted flow', async () => {
+    await campServerIndiaDispenseHelpers.verifyParticipantsShouldBeDispensedForGlassesTakingNo(page, data);
   });
 
   await test.step('Logout from the application', async () => {

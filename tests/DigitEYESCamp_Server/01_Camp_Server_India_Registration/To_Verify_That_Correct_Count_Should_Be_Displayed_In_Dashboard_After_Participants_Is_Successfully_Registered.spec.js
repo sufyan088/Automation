@@ -2,7 +2,8 @@ const { test } = require('@playwright/test');
 const {
   loadRuntimeData,
   loginAsAdmin,
-  closeSession
+  closeSession,
+  campServerIndiaRegistrationHelpers
 } = require('./_shared');
 
 test("To_Verify_That_Correct_Count_Should_Be_Displayed_In_Dashboard_After_Participants_Is_Successfully_Registered", async ({ page }) => {
@@ -16,7 +17,8 @@ test("To_Verify_That_Correct_Count_Should_Be_Displayed_In_Dashboard_After_Partic
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
+  await test.step('Verify that correct count is displayed in Dashboard after participant is successfully registered', async () => {
+    await campServerIndiaRegistrationHelpers.verifyDashboardCountAfterRegistration(page, data);
   });
 
   await test.step('Logout from the application', async () => {

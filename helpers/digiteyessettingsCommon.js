@@ -2,6 +2,7 @@ const { expect } = require('@playwright/test');
 const { safeClick, safeClickIfFound, safeFill, safeExpectVisible, waitForAppToSettle } = require('./actions');
 const { resolveFirst } = require('./fallback');
 const { digiteyescampsManagecampsclusterHelpers } = require('./digiteyescampsManagecampscluster');
+const { wrapHelperMapWithReadableSteps } = require('./clientReadableSteps');
 
 function normalizeText(value) {
   return String(value || '').replace(/\s+/g, ' ').trim();
@@ -216,7 +217,7 @@ async function fillHospitalForm(page, selectors, data) {
   await fillSearchField(page, selectors.sfidField, data.sfid, 'Salesforce ID');
 }
 
-module.exports = {
+module.exports = wrapHelperMapWithReadableSteps({
   openSettingsMenu,
   openSettingsModule,
   expectHeaderVisible,
@@ -243,4 +244,4 @@ module.exports = {
   clickFirstSortableHeader,
   clickResultRow,
   fillHospitalForm
-};
+});

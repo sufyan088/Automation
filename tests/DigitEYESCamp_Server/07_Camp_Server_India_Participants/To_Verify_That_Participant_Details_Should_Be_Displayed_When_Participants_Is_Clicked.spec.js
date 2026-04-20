@@ -2,7 +2,8 @@ const { test } = require('@playwright/test');
 const {
   loadRuntimeData,
   loginAsAdmin,
-  closeSession
+  closeSession,
+  campServerIndiaParticipantsHelpers
 } = require('./_shared');
 
 test("To_Verify_That_ Participant_Details_Should_Be_Displayed_When_Participants_Is_Clicked", async ({ page }) => {
@@ -17,6 +18,7 @@ test("To_Verify_That_ Participant_Details_Should_Be_Displayed_When_Participants_
   });
 
   await test.step('Run converted flow', async () => {
+    await campServerIndiaParticipantsHelpers.verifyParticipantDetailsDisplayed(page, data);
   });
 
   await test.step('Logout from the application', async () => {

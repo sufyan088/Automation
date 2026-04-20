@@ -2,7 +2,8 @@ const { test } = require('@playwright/test');
 const {
   loadRuntimeData,
   loginAsAdmin,
-  closeSession
+  closeSession,
+  campServerIndiaPrescreeningHelpers
 } = require('./_shared');
 
 test("To_Verify_That_All_Checkboxes_Should_Be_Checked_NA_When_No_Complaints_Button_Is_Clicked", async ({ page }) => {
@@ -17,6 +18,7 @@ test("To_Verify_That_All_Checkboxes_Should_Be_Checked_NA_When_No_Complaints_Butt
   });
 
   await test.step('Run converted flow', async () => {
+    await campServerIndiaPrescreeningHelpers.verifyNoComplaintsMarksAllAsNa(page, data);
   });
 
   await test.step('Logout from the application', async () => {

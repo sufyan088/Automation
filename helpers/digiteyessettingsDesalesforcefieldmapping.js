@@ -7,6 +7,7 @@ const {
 const { expect } = require('@playwright/test');
 const { safeExpectVisible } = require('./actions');
 const { digiteyessettingsDesalesforcefieldmappingSelectors } = require('../selectors/digiteyessettingsDesalesforcefieldmapping.selectors');
+const { wrapHelperMapWithReadableSteps } = require('./clientReadableSteps');
 
 async function openModule(page, data) {
   await openSettingsModule(page, data, digiteyessettingsDesalesforcefieldmappingSelectors, 'DE Salesforce Field Mapping');
@@ -46,12 +47,12 @@ async function verifySinglePageRecords(page, data) {
 }
 
 module.exports = {
-  digiteyessettingsDesalesforcefieldmappingHelpers: {
+  digiteyessettingsDesalesforcefieldmappingHelpers: wrapHelperMapWithReadableSteps({
     openModule,
     verifyHeaders,
     verifySorting,
     verifyRefreshButton,
     verifySinglePageRecords,
     selectors: digiteyessettingsDesalesforcefieldmappingSelectors
-  }
+  })
 };

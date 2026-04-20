@@ -2,7 +2,8 @@ const { test } = require('@playwright/test');
 const {
   loadRuntimeData,
   loginAsAdmin,
-  closeSession
+  closeSession,
+  campServerIndiaDispenseHelpers
 } = require('./_shared');
 
 test("To_Verify_That_Next_Button_Should_Be_Displayed_When_VS_Glasses_Taking_Button_Is_Clicked", async ({ page }) => {
@@ -17,6 +18,7 @@ test("To_Verify_That_Next_Button_Should_Be_Displayed_When_VS_Glasses_Taking_Butt
   });
 
   await test.step('Run converted flow', async () => {
+    await campServerIndiaDispenseHelpers.verifyNextButtonShouldBeDisplayedWhenVSGlassesTakingButtonIsClicked(page, data);
   });
 
   await test.step('Logout from the application', async () => {

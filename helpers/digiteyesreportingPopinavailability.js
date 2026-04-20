@@ -9,6 +9,7 @@ const {
 const { expect } = require('@playwright/test');
 const { safeClick, waitForAppToSettle } = require('./actions');
 const { digiteyesreportingPopinavailabilitySelectors } = require('../selectors/digiteyesreportingPopinavailability.selectors');
+const { wrapHelperMapWithReadableSteps } = require('./clientReadableSteps');
 
 async function openModule(page, data) {
   await openReportingModule(page, data, digiteyesreportingPopinavailabilitySelectors, 'Popins Availability');
@@ -75,7 +76,7 @@ async function runThemeReport(page, filters = {}) {
 }
 
 module.exports = {
-  digiteyesreportingPopinavailabilityHelpers: {
+  digiteyesreportingPopinavailabilityHelpers: wrapHelperMapWithReadableSteps({
     openModule,
     verifyDateFromPresence,
     verifyDateToPresence,
@@ -85,5 +86,5 @@ module.exports = {
     verifyTopHeaders,
     runThemeReport,
     selectors: digiteyesreportingPopinavailabilitySelectors
-  }
+  })
 };

@@ -2,7 +2,8 @@ const { test } = require('@playwright/test');
 const {
   loadRuntimeData,
   loginAsAdmin,
-  closeSession
+  closeSession,
+  campServerIndiaPreexamHelpers
 } = require('./_shared');
 
 test("To_Verify_That_Normal_Checkbox_Should_Be_Unchecked_When_Any_Other_Diagnosis_Checkbox_Is_Checked", async ({ page }) => {
@@ -17,6 +18,7 @@ test("To_Verify_That_Normal_Checkbox_Should_Be_Unchecked_When_Any_Other_Diagnosi
   });
 
   await test.step('Run converted flow', async () => {
+    await campServerIndiaPreexamHelpers.verifyOtherDiagnosesUncheckNormal(page, data);
   });
 
   await test.step('Logout from the application', async () => {

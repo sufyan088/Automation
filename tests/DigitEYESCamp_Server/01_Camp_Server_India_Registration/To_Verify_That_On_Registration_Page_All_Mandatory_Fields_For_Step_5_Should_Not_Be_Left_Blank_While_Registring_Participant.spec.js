@@ -2,7 +2,8 @@ const { test } = require('@playwright/test');
 const {
   loadRuntimeData,
   loginAsAdmin,
-  closeSession
+  closeSession,
+  campServerIndiaRegistrationHelpers
 } = require('./_shared');
 
 test("To_Verify_That_On_Registration_Page_All_Mandatory_Fields_For_Step_5_Should_Not_Be_Left_Blank_While_Registring_Participant", async ({ page }) => {
@@ -16,7 +17,8 @@ test("To_Verify_That_On_Registration_Page_All_Mandatory_Fields_For_Step_5_Should
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
+  await test.step('Verify that Postal Code cannot be left blank on Registration step 5', async () => {
+    await campServerIndiaRegistrationHelpers.verifyPostalCodeRequired(page, data);
   });
 
   await test.step('Logout from the application', async () => {

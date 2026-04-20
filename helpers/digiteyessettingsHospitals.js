@@ -21,6 +21,7 @@ const {
 const { expect } = require('@playwright/test');
 const { safeExpectVisible, safeClickIfFound } = require('./actions');
 const { digiteyessettingsHospitalsSelectors } = require('../selectors/digiteyessettingsHospitals.selectors');
+const { wrapHelperMapWithReadableSteps } = require('./clientReadableSteps');
 
 function uniqueSuffix() {
   return Date.now().toString().slice(-6);
@@ -198,7 +199,7 @@ async function verifySyncFromSalesforce(page, data) {
 }
 
 module.exports = {
-  digiteyessettingsHospitalsHelpers: {
+  digiteyessettingsHospitalsHelpers: wrapHelperMapWithReadableSteps({
     openModule,
     verifyHospitalsLink,
     verifyNextAndLastPagination,
@@ -221,5 +222,5 @@ module.exports = {
     verifyInactivateHospital,
     verifySyncFromSalesforce,
     selectors: digiteyessettingsHospitalsSelectors
-  }
+  })
 };

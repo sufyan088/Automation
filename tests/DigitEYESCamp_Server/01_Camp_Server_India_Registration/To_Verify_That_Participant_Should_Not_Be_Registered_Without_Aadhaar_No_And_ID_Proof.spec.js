@@ -2,7 +2,8 @@ const { test } = require('@playwright/test');
 const {
   loadRuntimeData,
   loginAsAdmin,
-  closeSession
+  closeSession,
+  campServerIndiaRegistrationHelpers
 } = require('./_shared');
 
 test("To_Verify_That_Participant_Should_Not_Be_Registered_Without_Aadhaar_No_And_ID_Proof", async ({ page }) => {
@@ -17,6 +18,7 @@ test("To_Verify_That_Participant_Should_Not_Be_Registered_Without_Aadhaar_No_And
   });
 
   await test.step('Run converted flow', async () => {
+    await campServerIndiaRegistrationHelpers.verifyParticipantNotRegisteredWithoutAadhaarAndIdProof(page, data);
   });
 
   await test.step('Logout from the application', async () => {

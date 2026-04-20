@@ -2,10 +2,11 @@ const { test } = require('@playwright/test');
 const {
   loadRuntimeData,
   loginAsAdmin,
-  closeSession
+  closeSession,
+  campServerIndiaRegistrationHelpers
 } = require('./_shared');
 
-test("To_Verify_That_On_Registration_User_Can Select _State_From_DropDown", async ({ page }) => {
+test("To_Verify_That_On_Registration_User_Can_Select_State_From_DropDown", async ({ page }) => {
   const data = loadRuntimeData();
   test.info().annotations.push({
     type: 'source-aiq',
@@ -16,7 +17,8 @@ test("To_Verify_That_On_Registration_User_Can Select _State_From_DropDown", asyn
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
+  await test.step('Verify that user can select State from the Registration dropdown', async () => {
+    await campServerIndiaRegistrationHelpers.verifyStateDropdownSelection(page, data);
   });
 
   await test.step('Logout from the application', async () => {

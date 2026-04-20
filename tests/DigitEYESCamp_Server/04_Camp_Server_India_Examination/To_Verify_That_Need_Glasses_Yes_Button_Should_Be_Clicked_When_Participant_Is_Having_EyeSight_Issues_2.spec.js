@@ -2,7 +2,8 @@ const { test } = require('@playwright/test');
 const {
   loadRuntimeData,
   loginAsAdmin,
-  closeSession
+  closeSession,
+  campServerIndiaExaminationHelpers
 } = require('./_shared');
 
 test("To_Verify_That_Need_Glasses_Yes_Button_Should_Be_Clicked_When_Participant_Is_Having_EyeSight_Issues_2", async ({ page }) => {
@@ -17,6 +18,7 @@ test("To_Verify_That_Need_Glasses_Yes_Button_Should_Be_Clicked_When_Participant_
   });
 
   await test.step('Run converted flow', async () => {
+    await campServerIndiaExaminationHelpers.verifyNeedGlassesYesButton(page, data);
   });
 
   await test.step('Logout from the application', async () => {
