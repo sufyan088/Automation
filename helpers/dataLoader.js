@@ -178,10 +178,6 @@ function loadRuntimeData() {
     visionSpringProjectCode: projectCode,
     visionSpringCampName: buildUniqueName(campNamePrefix),
     visionSpringCampNamePrefix: campNamePrefix,
-    fileProcessingCustomer: process.env.FILE_PROCESSING_CUSTOMER || 'Verizon Customer',
-    fileProcessingSearchId: process.env.FILE_PROCESSING_SEARCH_ID || '953f3dac-c29c-4e2d-b355-7f278e8865aa',
-    fileProcessingFilename: process.env.FILE_PROCESSING_FILENAME || 'Stanford_IM_Response_2024-09-03 06:42:39.txt',
-    fileProcessingAllEntries: process.env.FILE_PROCESSING_ALL_ENTRIES || 'VeriZonPayment',
     customerModuleBaseName: process.env.CUSTOMER_MODULE_BASE_NAME || csvRecord.CustomerName || 'CustomerTest',
     customerModuleProgramManager: process.env.CUSTOMER_MODULE_PROGRAM_MANAGER || 'ammy willson',
     customerModuleExistingCustomer: process.env.CUSTOMER_MODULE_EXISTING_CUSTOMER || csvRecord.CustomerName || 'CustomerTest19525268'

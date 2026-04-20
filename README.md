@@ -1,6 +1,6 @@
 # Vision Spring Playwright Automation
 
-This repository is the current AIQ-to-Playwright conversion project for the Vision Spring application. It is no longer a File Processing proof of concept. The active work in this repo is maintaining Vision Spring Playwright coverage with shared helpers, centralized selectors, fallback locator handling, and reusable Allure reporting workflows.
+This repository is the current AIQ-to-Playwright conversion project for the Vision Spring application. The active work in this repo is maintaining Vision Spring Playwright coverage with shared helpers, centralized selectors, fallback locator handling, and reusable Allure reporting workflows.
 
 The repository currently has two main automation tracks for the same Vision Spring project:
 

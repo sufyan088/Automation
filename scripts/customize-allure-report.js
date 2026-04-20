@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const brandText = 'MAMMOTH-AI';
-const reportDir = path.resolve(process.argv[2] || 'allure-report-fileprocessing');
+const reportDir = path.resolve(process.argv[2] || 'allure-report');
 const logoCandidates = [
   path.resolve(__dirname, '..', 'assets', 'Mammoth-AI Logo.png'),
   path.resolve(__dirname, '..', 'Mammoth-AI Logo.png'),
