@@ -21,25 +21,58 @@ Convert the Vision Spring AIQ automation assets under `source-aiq/` and `source-
 ## Current Repository Structure
 
 ```text
-tests/
-  DigitEYESCamps_*/
-  DigitEYESDataLoader_*/
-  DigitEYESReporting_*/
-  DigitEYESSettings_*/
-  DigitEYESCamp_Server/
+package.json
+package-lock.json
+playwright.config.js
+README.md
+
+allure-results/
+playwright-report/
+test-results/
+Result/
+  generated reports and shareable artifacts
+
+assets/
+data/
+docs/
 
 helpers/
   actions.js
+  allureHierarchy.js
   auth.js
+  clientReadableSteps.js
   dataLoader.js
   fallback.js
   digiteyes* module helpers
   source-aiq2/ Camp Server helpers
 
 selectors/
-  common selectors
-  module selector files
+  common.selectors.js
+  digiteyes* selector files
   source-aiq2/ Camp Server selector files
+
+scripts/
+  bootstrap-aiq-structure.js
+  bootstrap-source-aiq2-structure.js
+  camp-server-modules.js
+  customize-allure-report.js
+  flatten-generic-allure-steps.js
+  normalize-allure-suites.js
+  run-camp-cluster-participants-client-report.js
+  run-camp-server-client-report.js
+  run-camp-server-registration-client-report.js
+  run-camp-server-sequence.js
+  run-combined-client-report.js
+  scaffold-module.js
+  strip-source-aiq-from-allure-results.js
+
+tests/
+  DigitEYESCamp_Cluster/
+    DigitEYESCamps_*/
+    DigitEYESDataLoader_*/
+    DigitEYESReporting_*/
+    DigitEYESSettings_*/
+  DigitEYESCamp_Server/
 
 source-aiq/
   TestScripts/
@@ -54,29 +87,6 @@ source-aiq2/
 data/
   JS_DPL_Camp_Cluster.csv
   source-aiq2/
-
-docs/
-  conversion-framework.md
-  team-project-setup-guide.md
-  vision-spring-camp-cluster-handoff.md
-  vision-spring-camp-server-handoff.md
-  vision-spring-conversion-handoff.md
-
-scripts/
-  bootstrap-aiq-structure.js
-  bootstrap-source-aiq2-structure.js
-  scaffold-module.js
-  customize-allure-report.js
-  flatten-generic-allure-steps.js
-  normalize-allure-suites.js
-  camp-server-modules.js
-  run-camp-server-client-report.js
-  run-camp-server-registration-client-report.js
-  run-camp-server-sequence.js
-  run-combined-client-report.js
-
-Result/
-  generated reports and shareable artifacts
 ```
 
 ## Current Module Inventory
