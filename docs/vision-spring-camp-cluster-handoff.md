@@ -161,8 +161,9 @@ The current DigitEYESCampsCluster AIQ intake maps into the Playwright workspace 
 
 ## Reporting Workflow
 
-- The preferred whole-track client-report command is `npm run report:combined:client`.
+- The preferred whole-track client-report command is `npm run report:camp-cluster:client`.
 - The dedicated module client-report command currently maintained in-repo is `npm run report:camp-cluster-participants:client`.
+- `npm run report:combined:client` remains available as the legacy alias for the same whole-track Cluster flow.
 - The combined package shortcuts in `package.json` now run `npm run allure:normalize` before `allure generate`, so whole-track and portable combined reports keep proper module grouping in the Allure Suites card.
 - Cluster client-facing Allure descriptions should contain only:
   - `Scenario: ...`

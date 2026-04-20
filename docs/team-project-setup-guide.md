@@ -348,7 +348,7 @@ node scripts/customize-allure-report.js allure-report-combined-shareable
 ### Team standard client-share command
 
 ```bash
-npm run report:combined:client
+npm run report:camp-cluster:client
 ```
 
 This:
@@ -368,7 +368,7 @@ This:
 ### Preferred client-share commands by track
 
 ```bash
-npm run report:combined:client
+npm run report:camp-cluster:client
 npm run report:camp-cluster-participants:client
 npm run report:camp-server:client
 npm run report:camp-server-registration:client

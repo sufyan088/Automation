@@ -246,8 +246,9 @@ Use the packaged client-report flows whenever the output is meant to be shared.
 
 ### DigitEYESCamp Cluster
 
-- `npm run report:combined:client` is the preferred whole-track shareable report command.
+- `npm run report:camp-cluster:client` is the preferred whole-track shareable report command.
 - `npm run report:camp-cluster-participants:client` is the current dedicated module client-report command.
+- `npm run report:combined:client` remains available as the legacy alias for the same whole-track Cluster flow.
 - The combined package shortcuts in `package.json` now normalize suites before `allure generate`, so older combined-report entry points no longer leak a `chromium` Suites grouping.
 - Cluster client-facing descriptions intentionally keep only `Scenario:` and `Spec File:`.
 - Cluster execution readability is driven primarily from helper-layer nested `test.step()` titles rather than report-time step rewriting.
