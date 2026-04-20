@@ -143,18 +143,19 @@ Conversion parity is complete for the current tracked DigitEYESCampsCluster inta
 Camp Server is a separate `source-aiq2` conversion track.
 
 - The Camp Server scaffold is generated under `tests/DigitEYESCamp_Server/`, `helpers/source-aiq2/`, `selectors/source-aiq2/`, and `data/source-aiq2/`.
-- The overall Camp Server track is still partial conversion, not full parity across all 8 India modules.
+- Camp Server conversion coverage is now complete across login plus all 8 India modules.
 - `01_Camp_Server_India_Registration` is now fully converted at 24 helper-backed specs.
 - `02_Camp_Server_India_Prescreening` is now fully converted at 8 helper-backed specs and validated clean at 8/8 with `--workers=1`.
 - `03_Camp_Server_India_PreExam` is now fully converted at 9 helper-backed specs and validated clean at 9/9 with `--workers=1`.
 - `04_Camp_Server_India_Examination` is now fully converted at 16 helper-backed specs and validated clean at 16/16 with `--workers=1`.
 - `06_Camp_Server_India_Dispense` is now fully converted at 10 helper-backed specs and validated clean at 10/10 with `--workers=1`.
 - `07_Camp_Server_India_Participants` is now fully helper-backed at 10 specs, and the latest combined Participants plus Dispense validation passed clean at 20/20.
-- `05_Camp_Server_India_Opthalm` is helper-backed but still not a clean baseline: the latest rerun finished at 2/3 because the live product does not carry `Suspected Cataract` into Ophthalm from Examination.
+- `08_Camp_Server_India_Summary` is fully converted at 4 helper-backed specs and validated clean at 4/4 with `--workers=1`.
+- `05_Camp_Server_India_Opthalm` is also converted and helper-backed, but its latest rerun finished at 2/3 because the live product does not carry `Suspected Cataract` into Ophthalm from Examination.
 - A dedicated Registration client report flow now exists via `npm run report:camp-server-registration:client` and produces a Mammoth-branded single-file artifact under `Result/`.
 - Cluster client-report flows normalize Allure suite labels before report generation and strip `Source AIQ:` lines so client-facing descriptions keep only `Scenario:` and `Spec File:`.
 - Camp Server client-report flows normalize Allure suite labels, flatten the legacy generic `Run converted flow` wrapper step from result JSON, strip `Source AIQ:` lines, and then generate the Mammoth-branded portable artifact.
-- The remaining Camp Server modules outside Registration, Prescreening, PreExam, Examination, Dispense, and Participants should still be treated as scaffold/partial coverage until their helper-backed conversions are completed.
+- The remaining Camp Server gap is not a conversion gap. It is the current product-side Ophthalm carry-forward defect documented in the Camp Server handoff.
 
 For the most current module-by-module handoff and remaining conversion guidance:
 

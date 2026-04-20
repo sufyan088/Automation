@@ -69,7 +69,7 @@ The current source-aiq2 Camp Server intake maps into the Playwright workspace as
 ## Current Status
 
 - The Camp Server scaffold is complete across login plus the 8 India station modules.
-- The overall track is still **partial conversion**, not full source parity across all 8 India station modules.
+- Camp Server conversion coverage is now complete across login plus all 8 India station modules.
 - `01_Camp_Server_India_Registration` is now fully converted at 24 helper-backed specs in `helpers/source-aiq2/campServerIndiaRegistration.js`.
 - The Registration module was rerun clean at 24/24 and is implemented against the shared helper layer.
 - `02_Camp_Server_India_Prescreening` is now fully converted at 8 helper-backed specs in `helpers/source-aiq2/campServerIndiaPrescreening.js` and `selectors/source-aiq2/campServerIndiaPrescreening.selectors.js`.
@@ -84,9 +84,10 @@ The current source-aiq2 Camp Server intake maps into the Playwright workspace as
 - The latest combined validation for `06_Camp_Server_India_Dispense` plus `07_Camp_Server_India_Participants` passed clean at 20/20 after hardening Participants station-action resolution against the live participant-detail DOM.
 - `08_Camp_Server_India_Summary` is now fully converted at 4 helper-backed specs in `helpers/source-aiq2/campServerIndiaSummary.js` and `selectors/source-aiq2/campServerIndiaSummary.selectors.js`.
 - The Summary module was rerun clean at 4/4 with `--workers=1` and is implemented against the shared helper layer.
-- `05_Camp_Server_India_Opthalm` is now partially converted: all 3 scaffold specs were replaced with helper-backed Playwright flows in `helpers/source-aiq2/campServerIndiaOpthalm.js` and `selectors/source-aiq2/campServerIndiaOpthalm.selectors.js`.
-- The latest clean Ophthalm-only rerun finished at 2/3: queue search and Pre-Screening carry-forward passed, while the Examination carry-forward case still fails on the live product state where Suspected Cataract remains unchecked in Ophthalm.
+- `05_Camp_Server_India_Opthalm` is also fully converted: all 3 scaffold specs were replaced with helper-backed Playwright flows in `helpers/source-aiq2/campServerIndiaOpthalm.js` and `selectors/source-aiq2/campServerIndiaOpthalm.selectors.js`.
+- The latest Ophthalm-only rerun finished at 2/3: queue search and Pre-Screening carry-forward passed, while the Examination carry-forward case still fails on the live product state where Suspected Cataract remains unchecked in Ophthalm.
 - The Registration helper-backed coverage also supports client-readable nested report steps for actions, values, and assertions.
+- The current remaining Camp Server issue is therefore a product-side validation defect, not a missing conversion area.
 
 ## Reporting Workflow
 
@@ -106,10 +107,11 @@ The current source-aiq2 Camp Server intake maps into the Playwright workspace as
 - `02_Camp_Server_India_Prescreening` is now the second fully converted Camp Server India station module baseline.
 - `03_Camp_Server_India_PreExam` is now the third fully converted Camp Server India station module baseline.
 - `04_Camp_Server_India_Examination` is now the fourth fully converted Camp Server India station module baseline.
-- `06_Camp_Server_India_Dispense` is now the fifth fully converted Camp Server India station module baseline.
-- `07_Camp_Server_India_Participants` is now the sixth helper-backed Camp Server India station module with clean validation in the latest combined `06` + `07` rerun.
-- `08_Camp_Server_India_Summary` is now the seventh helper-backed Camp Server India station module and passed clean at 4/4 in its latest dedicated rerun.
-- All seven validated modules are implemented against the shared helper and selector layers and have been rerun clean within their current validation scope after conversion.
+- `05_Camp_Server_India_Opthalm` is now the fifth fully converted Camp Server India station module, with one remaining live product defect in Examination-to-Ophthalm carry-forward validation.
+- `06_Camp_Server_India_Dispense` is now the sixth fully converted Camp Server India station module baseline.
+- `07_Camp_Server_India_Participants` is now the seventh helper-backed Camp Server India station module with clean validation in the latest combined `06` + `07` rerun.
+- `08_Camp_Server_India_Summary` is now the eighth helper-backed Camp Server India station module and passed clean at 4/4 in its latest dedicated rerun.
+- All eight India station modules are implemented against the shared helper and selector layers; the remaining open item is Ophthalm product behavior, not conversion scope.
 
 ### Current validated Registration module
 
@@ -142,7 +144,7 @@ The current source-aiq2 Camp Server intake maps into the Playwright workspace as
 - The latest clean validation baseline for Summary is a full module run at `--workers=1`.
 - Durable Summary lesson: the live `Pop-in Dispensed` dashboard detail opens a participant table instead of echoing the `N Pop-in Dispensed` label in the modal body, so the helper should accept either the original label-text modal shape or the live table-detail shape after the stat is opened.
 
-### Current Opthalm conversion status
+### Current Opthalm validation status
 
 - `05_Camp_Server_India_Opthalm` now calls shared helper flows for queue search, Pre-Screening carry-forward checks, and Examination carry-forward checks.
 - Current live validation baseline is a fresh clean module run at 2/3 with `--workers=1` and `allure-playwright`.
@@ -150,7 +152,7 @@ The current source-aiq2 Camp Server intake maps into the Playwright workspace as
 - The Pre-Screening carry-forward case passes.
 - The Examination carry-forward case reaches Ophthalm and opens the participant, but the live Ophthalm page still shows `Suspected Cataract` unchecked even after it was selected in Examination. Treat that remaining failure as a product defect unless product-side evidence later disproves it.
 - The latest dedicated Ophthalm client artifact is `Result/digit-eyes-camp-server-opthalm.zip` with the branded single-file report under `Result/allure-report-camp-server-opthalm-shareable/`.
-- The current blocker is no longer test discovery or general setup. It is the product-side Examination-to-Ophthalm Cataract carry-forward behavior.
+- The current blocker is no longer test discovery, conversion coverage, or general setup. It is the product-side Examination-to-Ophthalm Cataract carry-forward behavior.
 
 ## Participants Lessons
 
