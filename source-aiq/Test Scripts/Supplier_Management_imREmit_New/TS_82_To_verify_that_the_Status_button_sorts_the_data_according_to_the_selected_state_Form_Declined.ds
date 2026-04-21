@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testcase   name= 'TS_82_To_verify_that_the_Status_button_sorts_the_data_according_to_the_selected_state_Form_Declined.ds' description= '' author= 'null' version= ''>
+<dpl filename='{ds}/../../Resources/IM_DPL1.csv' exectype='runstepbystep' errorhandling='' type='JsDPL' locale='null'/>
+<fallback useFallback='true'/>
+<shadowDOM useShadowDOM='true'/>
+<step action='setShadowDOM' value='true' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='setFindOnlyVisible' value='false' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='setFindOnlyEnabled' value='false' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='Click on Admin module' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../Utility Functions/Login_As_An_Admin.ds"' fallback='true' selected='true'/>
+   <accessor type='unknown' value='"{ds}/../UtilityFunction/Login_As_An_Admin.ds"' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='Click on ImRemit(premium) tab' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../Utility Functions/imREmit/Click_on_imREmit_module.ds"' fallback='true' selected='true'/>
+   <accessor type='unknown' value='byXPath(&quot;//*[contains(@class,&apos;w-full h-full flex flex-col justify-center items-center&apos;)][5]&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='byXPath(&quot;//*[contains(@class,&apos;w-full h-full flex flex-col justify-center items-center&apos;)][1]&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='byXPath(&quot;//*[contains(@class,&apos;w-full h-full flex flex-col justify-center items-center&apos;)][2]&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../Utility Functions/imREmit/Click_on_imREmit_modulet.ds"' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='' type='web' desc='Click on Supplier Management sub module' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='link(&quot;Supplier Management&quot;)' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='assertExists' value='' type='web' desc='Validate the imREmit heading is visibe' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='heading1(&quot;imREmit&quot;)' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../Utility Functions/imREmit/Select_Customer_Cadent_Supplier_Management.ds"' fallback='true' selected='true'/>
+   <accessor type='unknown' value='"{ds}/../../Utility Functions/imREmit_Lite/Select_Customer_Supplier_Management.ds"' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='' type='web' desc='Click on status button' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='button(&quot;Status&quot;)' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='span(&quot;Active&quot;)' fallback='true' selected='true'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;:rp3:&apos;]/span&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Active&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/main/article/main/article/section[3]/div/div[2]/div/div/div/div/div[2]/div/div/div/div/div/div/div[2]/span&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;:rp3:&apos;)/span[1]&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='assertExists' value='""' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='span(&quot;ACTIVE[1]&quot;)' fallback='true' selected='true'/>
+   <accessor type='XPath' value='byXPath(&quot;//main[@id=&apos;root&apos;]/article/main/article/section[3]/div[2]/div/table/tbody/tr[2]/td[8]/div/span&quot;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/main/article/main/article/section[3]/div[2]/div/table/tbody/tr[2]/td[8]/div/span&apos;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[2]//td[8]//div//span[@class=&quot;inline-flex text-center items-center border rounded-full px-2.5 py-0.5 text-xs font-bold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 max-w-fit whitespace-nowrap bg-neutral-foreground hover:bg-neutral-foreground/80 border-transparent text-foreground uppercase hover:opacity-70&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[2]//td[8]//div//span[text()=&quot;ACTIVE&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='span(&quot;bg-neutral-foreground border border-transparent focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-ring font-bold hover:bg-neutral-foreground/80 hover:opacity-70 inline-flex items-center max-w-fit px-2.5 py-0.5 rounded-full text-center text-foreground text-xs transition-colors uppercase whitespace-nowrap[1]&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../Utility Functions/Logout_Function.ds"' fallback='true' selected='true'/>
+</dialect>
+</step>
+</testcase>

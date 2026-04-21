@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testcase   name= 'TS_01_To_verify_Invoice_Tracker_Module.ds' description= '' author= 'null' version= ''>
+<dpl filename='REPOSITORY/IM/Resources/IM_DPL1.csv' exectype='runstepbystep' errorhandling='' type='JsDPL' locale='en_US'/>
+<fallback useFallback='true'/>
+<shadowDOM useShadowDOM='true'/>
+<step action='setShadowDOM' value='true' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='setFindOnlyVisible' value='false' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='setFindOnlyEnabled' value='false' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='Logged in as an Admin' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../Utility Functions/Login_As_An_Admin.ds"' fallback='true' selected='true'/>
+   <accessor type='unknown' value='"{ds}/../UtilityFunction/Login_As_An_Admin.ds"' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='Click on &quot;Invoice Tracker&quot; module ' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../Utility Functions/Invoice_Tracker/Click_on_Invoice_Tracker_Module.ds"' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='assertExists' value='' type='web' desc='Validate invoices page' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='heading1(&quot;Invoices&quot;)' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='assertExists' value='""' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='button([&quot;Select customers (min 3 characters)&quot;])' fallback='true' selected='true'/>
+   <accessor type='Parent' value='button(18, _in(div({&apos;id&apos;:&apos;root&apos;})))' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='button(&quot;active:translate-y-px bg-root border border-input cursor-pointer disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring font-medium font-sans h-10 hover:bg-accent/70 hover:border-accent-foreground hover:text-accent-foreground inline-flex items-center justify-between max-w-96 min-h-10 min-w-64 px-4 py-2 ring-offset-background rounded-md text-sm transition-colors w-full&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;root&apos;]/article/main/article/div/form/div/div[1]/div[1]/button&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;inline-flex items-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px border border-input bg-root hover:bg-accent/70 hover:text-accent-foreground hover:border-accent-foreground h-10 py-2 px-4 cursor-pointer font-sans min-h-10 justify-between w-full min-w-64 max-w-96&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/div/form/div/div/div/button&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;root&apos;)/article[@class=&apos;flex min-h-screen flex-col&apos;]/main[@class=&apos;break-word flex-1 overflow-auto bg-background px-6 py-4 md:ml-16&apos;]/article[1]/div[@class=&apos;space-y-2&apos;]/form[1]/div[@class=&apos;flex justify-between gap-4&apos;]/div[@class=&apos;flex flex-wrap items-end gap-2&apos;]/div[@class=&apos;space-y-2 flex flex-col&apos;]/button[@class=&apos;inline-flex items-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px border border-input bg-root hover:bg-accent/70 hover:text-accent-foreground hover:border-accent-foreground h-10 py-2 px-4 cursor-pointer font-sans min-h-10 justify-between w-full min-w-64 max-w-96&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='button({&apos;aria-controls&apos;:&apos;radix-:rco:&apos;})' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;flex justify-between gap-4&quot;] &gt; div[class=&quot;flex flex-wrap items-end gap-2&quot;] &gt; div[class=&quot;space-y-2 flex flex-col&quot;] &gt; button[class=&quot;inline-flex items-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px border border-input bg-root hover:bg-accent/70 hover:text-accent-foreground hover:border-accent-foreground h-10 py-2 px-4 cursor-pointer font-sans min-h-10 justify-between w-full min-w-64 max-w-96&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='button(18, _in(div(&quot;root&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='assertExists' value='' type='web' desc='Validate &quot;Start Date&quot; button is visible ' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='span(&quot;Start Date&quot;)' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='assertExists' value='' type='web' desc='Validate &quot;End Date&quot; button is visible ' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='span(&quot;End Date&quot;)' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='assertExists' value='' type='web' desc='Validate &quot;Advanced Search&quot; field is visible ' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='span(&quot;Advanced Search&quot;)' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='assertExists' value='' type='web' desc='Validate &quot;Status&quot; button is visible ' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='button(&quot;Status&quot;)' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='assertExists' value='' type='web' desc='Validate &quot;Column Views&quot; button is visible ' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='button(&quot;Column Order&quot;)' fallback='true' selected='true'/>
+   <accessor type='unknown' value='button(&quot;Column Views&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;radix-:rr5:&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='button(&quot;active:translate-y-px bg-root border border-dashed border-input disabled:cursor-not-allowed disabled:opacity-50 duration-200 flex focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring font-medium gap-2 group h-8 hover:bg-accent/50 hover:border-accent-foreground hover:text-accent-foreground items-center justify-center px-3 ring-offset-background rounded-md text-sm transition-all whitespace-nowrap&quot;)' fallback='true' selected='false'/>
+   <accessor type='Id' value='button(&quot;radix-:rr5:&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//button[@id=&apos;radix-:rr5:&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;items-center justify-center text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px border border-input hover:text-accent-foreground px-3 rounded-md group flex h-8 gap-2 whitespace-nowrap border-dashed bg-root transition-all duration-200 hover:border-accent-foreground hover:bg-accent/50&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Column Order&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/main/article/main/article/div[2]/div/form/div/div[2]/button[2]&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;radix-:rr5:&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='button({&apos;aria-label&apos;:&apos;Column settings&apos;})' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;flex flex-col gap-4 lg:flex-row lg:justify-between&quot;] &gt; div[class=&quot;flex flex-col items-end gap-2 lg:flex-row&quot;] &gt; button[class=&quot;items-center justify-center text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px border border-input hover:text-accent-foreground px-3 rounded-md group flex h-8 gap-2 whitespace-nowrap border-dashed bg-root transition-all duration-200 hover:border-accent-foreground hover:bg-accent/50&quot;]&apos;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../Utility Functions/Logout_Function.ds"' fallback='true' selected='true'/>
+</dialect>
+</step>
+</testcase>

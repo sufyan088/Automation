@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testcase   name= 'TS_07_To_verify_that_the_Start_Date_End_Date_field_is_working_fine.ds' description= '' author= 'null' version= ''>
+<dpl filename='REPOSITORY/IM/Resources/IM_DPL1.csv' exectype='runstepbystep' errorhandling='' type='JsDPL' locale='null'/>
+<fallback useFallback='true'/>
+<shadowDOM useShadowDOM='true'/>
+<step action='setShadowDOM' value='true' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='setFindOnlyEnabled' value='false' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='false' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='setFindOnlyVisible' value='false' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='false' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../Utility Functions/Login_As_An_Admin.ds"' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../Utility Functions/imREmit/Click_on_imREmit_module.ds"' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='assertExists' value='""' type='web' desc='Validate that Remittance Management button is visible.' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='link(&quot;Remittance Management&quot;)' fallback='true' selected='true'/>
+   <accessor type='AttrClass' value='link(&quot;active:translate-y-px bg-primary disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring font-medium h-10 hover:bg-primary/80 inline-flex items-center justify-between px-4 py-6 ring-offset-background rounded-md text-base text-root transition-colors w-full[1]&quot;)' fallback='true' selected='false'/>
+   <accessor type='AttrHref' value='link(&quot;/app/imremit/remittance-management&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;root&apos;]/article/main/article/section[1]/nav/a[3]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Remittance Management&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/section/nav/a[3]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;a[href=&quot;/app/imremit/remittance-management&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='link(2, _in(nav({&apos;aria-label&apos;:&apos;imREmit Subroute Navigation&apos;})))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='Click on Remittance Management button.' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='link(&quot;Remittance Management&quot;)' fallback='true' selected='true'/>
+   <accessor type='AttrClass' value='link(&quot;active:translate-y-px bg-primary disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring font-medium h-10 hover:bg-primary/80 inline-flex items-center justify-between px-4 py-6 ring-offset-background rounded-md text-base text-root transition-colors w-full[1]&quot;)' fallback='true' selected='false'/>
+   <accessor type='AttrHref' value='link(&quot;/app/imremit/remittance-management&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;root&apos;]/article/main/article/section[1]/nav/a[3]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Remittance Management&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/section/nav/a[3]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;a[href=&quot;/app/imremit/remittance-management&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='link(2, _in(nav({&apos;aria-label&apos;:&apos;imREmit Subroute Navigation&apos;})))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../Utility Functions/imREmit/Select_Customer_Remittance_Management.ds"' fallback='true' selected='true'/>
+   <accessor type='unknown' value='' fallback='false' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='Click on Start Date &amp; End Date calander.' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='span(&quot;Start Date &amp; End Date&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='span(0, _in(button({&apos;id&apos;:&apos;date&apos;})))' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//button[@id=&apos;date&apos;]/span&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Start Date &amp; End Date&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/div[2]/div/form/div/div/button[2]/span&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;date&apos;)/span[1]&quot;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='span(0, _in(button(&quot;date&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='Click on 2 from calander.' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='button(&quot;2[1]&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='button(24, _in(div({&apos;id&apos;:&apos;root&apos;})))' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='button(&quot;active:translate-y-px aria-selected:opacity-100 bg-primary disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring focus:bg-primary focus:text-primary-foreground font-normal h-9 hover:bg-accent/70 hover:bg-primary hover:text-accent-foreground hover:text-primary-foreground inline-flex items-center justify-center p-0 rdp-button rdp-button_reset rdp-day_range_end rdp-day_range_start ring-offset-background rounded-md text-primary-foreground text-sm transition-colors w-9&quot;)' fallback='true' selected='false'/>
+   <accessor type='AttrName' value='button(&quot;day[1]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;radix-:r2dt:&apos;]/div/div/div/table/tbody/tr[1]/td[2]/button&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;rdp-button_reset rdp-button inline-flex items-center justify-center rounded-md text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px hover:bg-accent/70 hover:text-accent-foreground h-9 w-9 p-0 font-normal aria-selected:opacity-100 bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground focus:bg-primary focus:text-primary-foreground rdp-day_range_end rdp-day_range_start&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/div[2]/div/form/div/div/div/div/div/div/div/table/tbody/tr/td[2]/button&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;radix-:r2dt:&apos;)/div[@class=&apos;rdp p-3&apos;]/div[@class=&apos;flex flex-col sm:flex-row space-y-4 sm:space-x-4 sm:space-y-0&apos;]/div[@class=&apos;space-y-4 rdp-caption_start rdp-caption_end&apos;]/table[@class=&apos;w-full border-collapse space-y-1&apos;]/tbody[@class=&apos;rdp-tbody&apos;]/tr[@class=&apos;flex w-full mt-2&apos;]/td[@class=&apos;text-center text-sm p-0 relative [&amp;:has([aria-selected])]:bg-accent first:[&amp;:has([aria-selected])]:rounded-l-md last:[&amp;:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20&apos;]/button[@class=&apos;rdp-button_reset rdp-button inline-flex items-center justify-center rounded-md text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px hover:bg-accent/70 hover:text-accent-foreground h-9 w-9 p-0 font-normal aria-selected:opacity-100 bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground focus:bg-primary focus:text-primary-foreground rdp-day_range_end rdp-day_range_start&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[1]//td[2]//button[@class=&quot;rdp-button_reset rdp-button inline-flex items-center justify-center rounded-md text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px hover:bg-accent/70 hover:text-accent-foreground h-9 w-9 p-0 font-normal aria-selected:opacity-100 bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground focus:bg-primary focus:text-primary-foreground rdp-day_range_end rdp-day_range_start&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[1]//td[2]//button[@name=&quot;day&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[1]//td[2]//button[text()=&quot;2&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='button({&apos;aria-selected&apos;:&apos;true&apos;})' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;table[class=&quot;w-full border-collapse space-y-1&quot;] &gt; tbody[class=&quot;rdp-tbody&quot;] &gt; tr[class=&quot;flex w-full mt-2&quot;] &gt; td[class=&quot;text-center text-sm p-0 relative [&amp;:has([aria-selected])]:bg-accent first:[&amp;:has([aria-selected])]:rounded-l-md last:[&amp;:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20&quot;] &gt; button[class=&quot;rdp-button_reset rdp-button inline-flex items-center justify-center rounded-md text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px hover:bg-accent/70 hover:text-accent-foreground h-9 w-9 p-0 font-normal aria-selected:opacity-100 bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground focus:bg-primary focus:text-primary-foreground rdp-day_range_end rdp-day_range_start&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='button(24, _in(div(&quot;root&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='Click on 16 from calander.' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='button(&quot;16&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='button(38, _in(div({&apos;id&apos;:&apos;root&apos;})))' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='button(&quot;active:translate-y-px aria-selected:opacity-100 bg-primary disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring focus:bg-primary focus:text-primary-foreground font-normal h-9 hover:bg-accent/70 hover:bg-primary hover:text-accent-foreground hover:text-primary-foreground inline-flex items-center justify-center p-0 rdp-button rdp-button_reset rdp-day_range_end ring-offset-background rounded-md text-primary-foreground text-sm transition-colors w-9&quot;)' fallback='true' selected='false'/>
+   <accessor type='AttrName' value='button(&quot;day[15]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;radix-:r2dt:&apos;]/div/div/div/table/tbody/tr[3]/td[2]/button&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;rdp-button_reset rdp-button inline-flex items-center justify-center rounded-md text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px hover:bg-accent/70 hover:text-accent-foreground h-9 w-9 p-0 font-normal aria-selected:opacity-100 bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground focus:bg-primary focus:text-primary-foreground rdp-day_range_end&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;16&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/div[2]/div/form/div/div/div/div/div/div/div/table/tbody/tr[3]/td[2]/button&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;radix-:r2dt:&apos;)/div[@class=&apos;rdp p-3&apos;]/div[@class=&apos;flex flex-col sm:flex-row space-y-4 sm:space-x-4 sm:space-y-0&apos;]/div[@class=&apos;space-y-4 rdp-caption_start rdp-caption_end&apos;]/table[@class=&apos;w-full border-collapse space-y-1&apos;]/tbody[@class=&apos;rdp-tbody&apos;]/tr[@class=&apos;flex w-full mt-2&apos;]/td[@class=&apos;text-center text-sm p-0 relative [&amp;:has([aria-selected])]:bg-accent first:[&amp;:has([aria-selected])]:rounded-l-md last:[&amp;:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20&apos;]/button[@class=&apos;rdp-button_reset rdp-button inline-flex items-center justify-center rounded-md text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px hover:bg-accent/70 hover:text-accent-foreground h-9 w-9 p-0 font-normal aria-selected:opacity-100 bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground focus:bg-primary focus:text-primary-foreground rdp-day_range_end&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[3]//td[2]//button[@class=&quot;rdp-button_reset rdp-button inline-flex items-center justify-center rounded-md text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px hover:bg-accent/70 hover:text-accent-foreground h-9 w-9 p-0 font-normal aria-selected:opacity-100 bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground focus:bg-primary focus:text-primary-foreground rdp-day_range_end&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[3]//td[2]//button[@name=&quot;day&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[3]//td[2]//button[text()=&quot;16&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;table[class=&quot;w-full border-collapse space-y-1&quot;] &gt; tbody[class=&quot;rdp-tbody&quot;] &gt; tr[class=&quot;flex w-full mt-2&quot;] &gt; td[class=&quot;text-center text-sm p-0 relative [&amp;:has([aria-selected])]:bg-accent first:[&amp;:has([aria-selected])]:rounded-l-md last:[&amp;:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20&quot;] &gt; button[class=&quot;rdp-button_reset rdp-button inline-flex items-center justify-center rounded-md text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px hover:bg-accent/70 hover:text-accent-foreground h-9 w-9 p-0 font-normal aria-selected:opacity-100 bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground focus:bg-primary focus:text-primary-foreground rdp-day_range_end&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='button(38, _in(div(&quot;root&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../Utility Functions/Logout_Function.ds"' fallback='true' selected='true'/>
+</dialect>
+</step>
+</testcase>

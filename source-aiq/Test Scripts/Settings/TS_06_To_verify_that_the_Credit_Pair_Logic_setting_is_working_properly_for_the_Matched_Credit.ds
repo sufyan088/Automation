@@ -1,0 +1,878 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testcase   name= 'TS_06_To_verify_that_the_Credit_Pair_Logic_setting_is_working_properly_for_the_Matched_Credit.ds' description= '' author= 'null' version= ''>
+<dpl filename='REPOSITORY/IM/Resources/IM_DPL1.csv' exectype='runstepbystep' errorhandling='' type='JsDPL' locale='en_US'/>
+<fallback useFallback='true'/>
+<shadowDOM useShadowDOM='true'/>
+<step action='setShadowDOM' value='true' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='setFindOnlyEnabled' value='false' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='setFindOnlyVisible' value='false' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../Utility Functions/Login_As_An_Admin.ds"' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../Utility Functions/Statement_Recon.ds"' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='assertExists' value='""' type='web' desc='Click on Statement Recon button.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='heading1(&quot;Statement Recon&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='heading1(0, _in(div({&apos;id&apos;:&apos;root&apos;})))' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='heading1(&quot;font-extrabold lg:text-4xl scroll-m-20 text-3xl tracking-tight&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;root&apos;]/article/main/article/section[1]/div/h1&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;scroll-m-20 text-3xl font-extrabold tracking-tight lg:text-4xl&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Statement Recon&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/section/div/h1&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;root&apos;)/article[@class=&apos;flex min-h-screen flex-col&apos;]/main[@class=&apos;break-word flex-1 overflow-auto bg-background px-6 py-4 md:ml-16&apos;]/article[@class=&apos;w-full flex-1 bg-background&apos;]/section[@class=&apos;mb-2 flex flex-col justify-between gap-4 xl:flex-row xl:items-center&apos;]/div[@class=&apos;mb-2 flex flex-col&apos;]/h1[@class=&apos;scroll-m-20 text-3xl font-extrabold tracking-tight lg:text-4xl&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;main[class=&quot;break-word flex-1 overflow-auto bg-background px-6 py-4 md:ml-16&quot;] &gt; article[class=&quot;w-full flex-1 bg-background&quot;] &gt; section[class=&quot;mb-2 flex flex-col justify-between gap-4 xl:flex-row xl:items-center&quot;] &gt; div[class=&quot;mb-2 flex flex-col&quot;] &gt; h1[class=&quot;scroll-m-20 text-3xl font-extrabold tracking-tight lg:text-4xl&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='heading1(0, _in(div(&quot;root&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='Click on settings button.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='link(&quot;Settings&quot;)' fallback='true' selected='true'/>
+   <accessor type='AttrClass' value='link(&quot;active:translate-y-px bg-primary disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring font-medium h-10 hover:bg-primary/80 inline-flex items-center justify-between px-4 py-6 ring-offset-background rounded-md text-base text-root transition-colors w-full[1]&quot;)' fallback='true' selected='false'/>
+   <accessor type='AttrHref' value='link(&quot;/app/statement-recon/settings&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;root&apos;]/article/main/article/section/nav/a[3]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Settings&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/section/nav/a[3]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;a[href=&quot;/app/statement-recon/settings&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='link(2, _in(nav({&apos;aria-label&apos;:&apos;StatementRecon Subroute Navigation&apos;})))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='assertExists' value='""' type='web' desc='Validate that settings button is visible.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='link(&quot;Settings&quot;)' fallback='true' selected='true'/>
+   <accessor type='AttrClass' value='link(&quot;active:translate-y-px bg-primary disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring font-medium h-10 hover:bg-primary/80 inline-flex items-center justify-between px-4 py-6 ring-offset-background rounded-md text-base text-root transition-colors w-full[1]&quot;)' fallback='true' selected='false'/>
+   <accessor type='AttrHref' value='link(&quot;/app/statement-recon/settings&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;root&apos;]/article/main/article/section/nav/a[3]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Settings&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/section/nav/a[3]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;a[href=&quot;/app/statement-recon/settings&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='link(2, _in(nav({&apos;aria-label&apos;:&apos;StatementRecon Subroute Navigation&apos;})))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../Utility Functions/Select_Customer_SR.ds"' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='assertExists' value='""' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='span(&quot;Matched Credit Logic&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='span(12, _in(div({&apos;id&apos;:&apos;root&apos;})))' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='span(&quot;flex flex-row items-center text-base[3]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;root&apos;]/article/main/article/section[2]/form/section[2]/div[1]/div[1]/div/span&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Credit Pair Logic&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/section[2]/form/section[2]/div/div/div/span&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;root&apos;)/article[@class=&apos;flex min-h-screen flex-col&apos;]/main[@class=&apos;break-word flex-1 overflow-auto bg-background px-6 py-4 md:ml-16&apos;]/article[@class=&apos;w-full flex-1 bg-background&apos;]/section[@class=&apos;flex flex-col gap-4&apos;]/form[1]/section[@class=&apos;my-2 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-4&apos;]/div[@class=&apos;rounded-lg border border-foreground bg-root text-card-foreground shadow-sm flex flex-col&apos;]/div[@class=&apos;flex flex-col space-y-1.5 p-6 text-xl font-bold&apos;]/div[@class=&apos;flex items-center gap-2&apos;]/span[@class=&apos;flex flex-row items-center text-base&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;section[class=&quot;my-2 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-4&quot;] &gt; div[class=&quot;rounded-lg border border-foreground bg-root text-card-foreground shadow-sm flex flex-col&quot;] &gt; div[class=&quot;flex flex-col space-y-1.5 p-6 text-xl font-bold&quot;] &gt; div[class=&quot;flex items-center gap-2&quot;] &gt; span[class=&quot;flex flex-row items-center text-base&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='span(12, _in(div(&quot;root&quot;)))' fallback='true' selected='false'/>
+   <accessor type='Text' value='span(&quot;Credit Pair Logic&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='Check the enable checkbox.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='label(&quot;Enabled&quot;,below(span(&quot;Matched Credit Logic&quot;)))' fallback='true' selected='true'/>
+   <accessor type='Parent' value='label(2, _in(div({&apos;id&apos;:&apos;root&apos;})))' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='label(&quot;font-normal leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-sm&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;:r2d8:-form-item&apos;]/div/div[1]/label&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 font-normal&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Enabled&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/section[2]/form/section[2]/div/div[2]/div/div/div/div/label&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;:r2d8:-form-item&apos;)/div[@class=&apos;flex items-center space-x-2&apos;]/div[@class=&apos;flex items-center space-x-3 space-y-0&apos;]/label[@class=&apos;text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 font-normal&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='label({&apos;for&apos;:&apos;:r2d9:-form-item&apos;})' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;space-y-4&quot;] &gt; div[class=&quot;gap-2 mt-4 flex flex-col space-y-1&quot;] &gt; div[class=&quot;flex items-center space-x-2&quot;] &gt; div[class=&quot;flex items-center space-x-3 space-y-0&quot;] &gt; label[class=&quot;text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 font-normal&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='label(2, _in(div(&quot;root&quot;)))' fallback='true' selected='false'/>
+   <accessor type='Text' value='label(&quot;Enabled&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='label(&quot;Enabled&quot;,below(span(&quot;Credit Pair Logic&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='focus' value='""' type='web' desc='Click on update settings button.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='button(&quot;Update Setting&quot;,below(svg(&quot;class==lucide lucide-layers2 size-5 text-primary&quot;)))' fallback='true' selected='true'/>
+   <accessor type='Parent' value='button(15, _in(div({&apos;id&apos;:&apos;root&apos;})))' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='button(&quot;active:translate-y-px bg-primary disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring font-medium h-10 hover:bg-primary/80 inline-flex items-center justify-center px-4 py-2 ring-offset-background rounded-md text-root text-sm transition-colors[3]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;root&apos;]/article/main/article/section[2]/form/section[2]/div[1]/div[3]/button&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Update Setting&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/section[2]/form/section[2]/div/div[3]/button&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;root&apos;)/article[@class=&apos;flex min-h-screen flex-col&apos;]/main[@class=&apos;break-word flex-1 overflow-auto bg-background px-6 py-4 md:ml-16&apos;]/article[@class=&apos;w-full flex-1 bg-background&apos;]/section[@class=&apos;flex flex-col gap-4&apos;]/form[1]/section[@class=&apos;my-2 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-4&apos;]/div[@class=&apos;rounded-lg border border-foreground bg-root text-card-foreground shadow-sm flex flex-col&apos;]/div[@class=&apos;flex items-center p-6 pt-0 mt-auto&apos;]/button[@class=&apos;inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px bg-primary text-root hover:bg-primary/80 h-10 py-2 px-4&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;section[class=&quot;my-2 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-4&quot;] &gt; div[class=&quot;rounded-lg border border-foreground bg-root text-card-foreground shadow-sm flex flex-col&quot;] &gt; div[class=&quot;flex items-center p-6 pt-0 mt-auto&quot;] &gt; button[class=&quot;inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px bg-primary text-root hover:bg-primary/80 h-10 py-2 px-4&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='button(15, _in(div(&quot;root&quot;)))' fallback='true' selected='false'/>
+   <accessor type='Text' value='button(&quot;Update Setting&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='Click on update settings button.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='button(&quot;Update Setting&quot;,below(svg(&quot;class==lucide lucide-layers2 size-5 text-primary&quot;)))' fallback='true' selected='true'/>
+   <accessor type='Parent' value='button(15, _in(div({&apos;id&apos;:&apos;root&apos;})))' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='button(&quot;active:translate-y-px bg-primary disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring font-medium h-10 hover:bg-primary/80 inline-flex items-center justify-center px-4 py-2 ring-offset-background rounded-md text-root text-sm transition-colors[3]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;root&apos;]/article/main/article/section[2]/form/section[2]/div[1]/div[3]/button&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Update Setting&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/section[2]/form/section[2]/div/div[3]/button&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;root&apos;)/article[@class=&apos;flex min-h-screen flex-col&apos;]/main[@class=&apos;break-word flex-1 overflow-auto bg-background px-6 py-4 md:ml-16&apos;]/article[@class=&apos;w-full flex-1 bg-background&apos;]/section[@class=&apos;flex flex-col gap-4&apos;]/form[1]/section[@class=&apos;my-2 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-4&apos;]/div[@class=&apos;rounded-lg border border-foreground bg-root text-card-foreground shadow-sm flex flex-col&apos;]/div[@class=&apos;flex items-center p-6 pt-0 mt-auto&apos;]/button[@class=&apos;inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px bg-primary text-root hover:bg-primary/80 h-10 py-2 px-4&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;section[class=&quot;my-2 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-4&quot;] &gt; div[class=&quot;rounded-lg border border-foreground bg-root text-card-foreground shadow-sm flex flex-col&quot;] &gt; div[class=&quot;flex items-center p-6 pt-0 mt-auto&quot;] &gt; button[class=&quot;inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px bg-primary text-root hover:bg-primary/80 h-10 py-2 px-4&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='button(15, _in(div(&quot;root&quot;)))' fallback='true' selected='false'/>
+   <accessor type='Text' value='button(&quot;Update Setting&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='Click on statement upload button.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='link(&quot;Upload&quot;)' fallback='true' selected='true'/>
+   <accessor type='AttrClass' value='link(&quot;active:translate-y-px bg-primary disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring font-medium h-10 hover:bg-primary/80 inline-flex items-center justify-between px-4 py-6 ring-offset-background rounded-md text-base text-root transition-colors w-full&quot;)' fallback='true' selected='false'/>
+   <accessor type='AttrHref' value='link(&quot;/app/statement-recon/upload&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;root&apos;]/article/main/article/section[1]/nav/a[1]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;inline-flex items-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px bg-primary text-root hover:bg-primary/80 h-10 px-4 w-full justify-between py-6 text-base&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Statement Upload&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/section/nav/a&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;root&apos;)/article[@class=&apos;flex min-h-screen flex-col&apos;]/main[@class=&apos;break-word flex-1 overflow-auto bg-background px-6 py-4 md:ml-16&apos;]/article[@class=&apos;w-full flex-1 bg-background&apos;]/section[@class=&apos;mb-2 flex flex-col justify-between gap-4 xl:flex-row xl:items-center&apos;]/nav[@class=&apos;grid gap-2 grid-cols-1 md:grid-cols-2 xl:w-2/3 xl:grid-cols-3 2xl:grid-cols-4 2xl:w-1/2&apos;]/a[@class=&apos;inline-flex items-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px bg-primary text-root hover:bg-primary/80 h-10 px-4 w-full justify-between py-6 text-base&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;main[class=&quot;break-word flex-1 overflow-auto bg-background px-6 py-4 md:ml-16&quot;] &gt; article[class=&quot;w-full flex-1 bg-background&quot;] &gt; section[class=&quot;mb-2 flex flex-col justify-between gap-4 xl:flex-row xl:items-center&quot;] &gt; nav[class=&quot;grid gap-2 grid-cols-1 md:grid-cols-2 xl:w-2/3 xl:grid-cols-3 2xl:grid-cols-4 2xl:w-1/2&quot;] &gt; a[class=&quot;inline-flex items-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px bg-primary text-root hover:bg-primary/80 h-10 px-4 w-full justify-between py-6 text-base&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;a[href=&quot;/app/statement-recon/upload&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='link(0, _in(nav({&apos;aria-label&apos;:&apos;StatementRecon Subroute Navigation&apos;})))' fallback='true' selected='false'/>
+   <accessor type='Text' value='link(&quot;Statement Upload&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='assertExists' value='' type='web' desc='Validate that Start searching suppliers dropdown is visible' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='svg(&quot;class==lucide lucide-chevron-down ml-2 size-4 shrink-0 opacity-50 transition-transform duration-200&quot;)' fallback='true' selected='true'/>
+   <accessor type='unknown' value='div(&quot;Start searching suppliers...[1]&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='focus' value='' type='web' desc='Add focus.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='svg(&quot;class==lucide lucide-chevron-down ml-2 size-4 shrink-0 opacity-50 transition-transform duration-200&quot;)' fallback='true' selected='true'/>
+   <accessor type='unknown' value='div(&quot;Start searching suppliers...[1]&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='' type='web' desc='Click on Start searching suppliers  dropdown.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='svg(&quot;class==lucide lucide-chevron-down ml-2 size-4 shrink-0 opacity-50 transition-transform duration-200&quot;)' fallback='true' selected='true'/>
+   <accessor type='unknown' value='div(&quot;Start searching suppliers...[1]&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='setValue' value='"MARION"' type='web' desc='Enter value in search supplier field.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='textbox(&quot;placeholder==Start searching suppliers...&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='textbox(0, _in(div({&apos;id&apos;:&apos;root&apos;})))' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;:r2cr:&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='textbox(&quot;bg-transparent disabled:cursor-not-allowed disabled:opacity-50 flex-1 ml-2 outline-none placeholder:text-accent-foreground&quot;)' fallback='true' selected='false'/>
+   <accessor type='Id' value='textbox(&quot;:r2cr:&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//input[@id=&apos;:r2cr:&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;ml-2 flex-1 bg-transparent outline-none placeholder:text-accent-foreground disabled:cursor-not-allowed disabled:opacity-50&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/div[2]/section/div[2]/div/div/div/div[2]/input&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;:r2cr:&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;space-y-2 flex flex-col&quot;] &gt; div[class=&quot;flex h-full flex-col rounded-md font-sans text-foreground overflow-visible bg-transparent backdrop-blur-lg max-w-md w-[96]&quot;] &gt; div[class=&quot;group min-h-10 rounded-md border border-input bg-root px-3 py-2 text-sm ring-offset-background focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2&quot;] &gt; div[class=&quot;flex items-center&quot;] &gt; input[class=&quot;ml-2 flex-1 bg-transparent outline-none placeholder:text-accent-foreground disabled:cursor-not-allowed disabled:opacity-50&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;input[value=&quot;M&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='textbox(0, _in(div(&quot;root&quot;)))' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='textbox({&apos;type&apos;:&apos;text&apos;})' fallback='true' selected='false'/>
+   <accessor type='Parent' value='textbox(0, _in(div({&apos;id&apos;:&apos;root&apos;})))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='"MARION"' type='web' desc='Click on MARION.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='textbox(&quot;placeholder==Start searching suppliers...&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='textbox(0, _in(div({&apos;id&apos;:&apos;root&apos;})))' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;:r2cr:&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='textbox(&quot;bg-transparent disabled:cursor-not-allowed disabled:opacity-50 flex-1 ml-2 outline-none placeholder:text-accent-foreground&quot;)' fallback='true' selected='false'/>
+   <accessor type='Id' value='textbox(&quot;:r2cr:&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//input[@id=&apos;:r2cr:&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;ml-2 flex-1 bg-transparent outline-none placeholder:text-accent-foreground disabled:cursor-not-allowed disabled:opacity-50&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/div[2]/section/div[2]/div/div/div/div[2]/input&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;:r2cr:&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;space-y-2 flex flex-col&quot;] &gt; div[class=&quot;flex h-full flex-col rounded-md font-sans text-foreground overflow-visible bg-transparent backdrop-blur-lg max-w-md w-[96]&quot;] &gt; div[class=&quot;group min-h-10 rounded-md border border-input bg-root px-3 py-2 text-sm ring-offset-background focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2&quot;] &gt; div[class=&quot;flex items-center&quot;] &gt; input[class=&quot;ml-2 flex-1 bg-transparent outline-none placeholder:text-accent-foreground disabled:cursor-not-allowed disabled:opacity-50&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;input[value=&quot;M&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='textbox(0, _in(div(&quot;root&quot;)))' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='textbox({&apos;type&apos;:&apos;text&apos;})' fallback='true' selected='false'/>
+   <accessor type='Parent' value='textbox(0, _in(div({&apos;id&apos;:&apos;root&apos;})))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='focus' value='' type='web' desc='Select 999122-MARION COUNTY from dropdown.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='div(&quot;999122-MARION COUNTY TREASURER&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='div(4, _in(div({&apos;id&apos;:&apos;suppliers-listbox&apos;}))).xy(0.12, 0.30 )' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;:r2d4:&quot;]&apos;).xy(0.12, 0.30 )' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='div(&quot;aria-selected:bg-accent aria-selected:text-accent-foreground cursor-pointer data-[disabled]:opacity-50 data-[disabled]:pointer-events-none flex items-center outline-none px-2 py-1.5 relative rounded-sm select-none text-sm[2]&quot;).xy(0.12, 0.30 )' fallback='true' selected='false'/>
+   <accessor type='Id' value='div(&quot;:r2d4:&quot;).xy(0.12, 0.30 )' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;:r2d4:&apos;]&quot;).xy(0.12, 0.30 )' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;999122-MARION COUNTY TREASURER&quot;]&apos;).xy(0.12, 0.30 )' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/div[2]/section/div[2]/div/div/div[2]/div/div/div/div/div/div[3]&apos;).xy(0.12, 0.30 )' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;:r2d4:&apos;)&quot;).xy(0.12, 0.30 )' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='div({&apos;aria-selected&apos;:&apos;true&apos;}).xy(0.12, 0.30 )' fallback='true' selected='false'/>
+   <accessor type='Parent' value='div(4, _in(div(&quot;suppliers-listbox&quot;))).xy(0.12, 0.30 )' fallback='true' selected='false'/>
+   <accessor type='Text' value='div(&quot;999122-MARION COUNTY TREASURER&quot;).xy(0.12, 0.30 )' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='' type='web' desc='Select 999122-MARION COUNTY from dropdown.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='div(&quot;999122-MARION COUNTY TREASURER&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='div(4, _in(div({&apos;id&apos;:&apos;suppliers-listbox&apos;}))).xy(0.12, 0.30 )' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;:r2d4:&quot;]&apos;).xy(0.12, 0.30 )' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='div(&quot;aria-selected:bg-accent aria-selected:text-accent-foreground cursor-pointer data-[disabled]:opacity-50 data-[disabled]:pointer-events-none flex items-center outline-none px-2 py-1.5 relative rounded-sm select-none text-sm[2]&quot;).xy(0.12, 0.30 )' fallback='true' selected='false'/>
+   <accessor type='Id' value='div(&quot;:r2d4:&quot;).xy(0.12, 0.30 )' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;:r2d4:&apos;]&quot;).xy(0.12, 0.30 )' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;999122-MARION COUNTY TREASURER&quot;]&apos;).xy(0.12, 0.30 )' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/div[2]/section/div[2]/div/div/div[2]/div/div/div/div/div/div[3]&apos;).xy(0.12, 0.30 )' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;:r2d4:&apos;)&quot;).xy(0.12, 0.30 )' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='div({&apos;aria-selected&apos;:&apos;true&apos;}).xy(0.12, 0.30 )' fallback='true' selected='false'/>
+   <accessor type='Parent' value='div(4, _in(div(&quot;suppliers-listbox&quot;))).xy(0.12, 0.30 )' fallback='true' selected='false'/>
+   <accessor type='Text' value='div(&quot;999122-MARION COUNTY TREASURER&quot;).xy(0.12, 0.30 )' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='assertExists' value='' type='web' desc='Validate that Drag and drop a file here, or click section is visibe.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='div([&quot;Drag and drop a file here, or click&quot;])' fallback='true' selected='true'/>
+   <accessor type='Parent' value='div(20, _in(div({&apos;id&apos;:&apos;root&apos;}))).xy(0.48, 0.39 )' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='div(&quot;bg-root border-2 border-dashed border-zinc-400 cursor-pointer font-semibold hover:bg-theme/40 hover:border-theme hover:text-foreground outline-none p-12 rounded-md text-base text-center text-foreground transition-all&quot;).xy(0.48, 0.39 )' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;root&apos;]/article/main/article/div[2]/section[2]/div&quot;).xy(0.48, 0.39 )' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;border-2 border-zinc-400 border-dashed rounded-md p-12 text-center cursor-pointer text-foreground bg-root font-semibold text-base outline-none transition-all hover:bg-theme/40 hover:border-theme hover:text-foreground&quot;]&apos;).xy(0.48, 0.39 )' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/div[2]/section[2]/div&apos;).xy(0.48, 0.39 )' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;root&apos;)/article[@class=&apos;flex min-h-screen flex-col&apos;]/main[@class=&apos;break-word flex-1 overflow-auto bg-background px-6 py-4 md:ml-16&apos;]/article[@class=&apos;w-full flex-1 bg-background&apos;]/div[@class=&apos;flex flex-col gap-4&apos;]/section[@class=&apos;flex flex-col gap-4&apos;]/div[@class=&apos;border-2 border-zinc-400 border-dashed rounded-md p-12 text-center cursor-pointer text-foreground bg-root font-semibold text-base outline-none transition-all hover:bg-theme/40 hover:border-theme hover:text-foreground&apos;]&quot;).xy(0.48, 0.39 )' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='div({&apos;tabindex&apos;:&apos;0&apos;}).xy(0.48, 0.39 )' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;main[class=&quot;break-word flex-1 overflow-auto bg-background px-6 py-4 md:ml-16&quot;] &gt; article[class=&quot;w-full flex-1 bg-background&quot;] &gt; div[class=&quot;flex flex-col gap-4&quot;] &gt; section[class=&quot;flex flex-col gap-4&quot;] &gt; div[class=&quot;border-2 border-zinc-400 border-dashed rounded-md p-12 text-center cursor-pointer text-foreground bg-root font-semibold text-base outline-none transition-all hover:bg-theme/40 hover:border-theme hover:text-foreground&quot;]&apos;).xy(0.48, 0.39 )' fallback='true' selected='false'/>
+   <accessor type='Parent' value='div(20, _in(div(&quot;root&quot;))).xy(0.48, 0.39 )' fallback='true' selected='false'/>
+   <accessor type='unknown' value='div([&quot;Drag and drop a file here, or click&quot;]).xy(0.48, 0.39 )' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='setFile5' value='"{ds}/../../Resources/Files/Credit-Matched-File_1.xlsx"' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='file(0)' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='assertExists' value='""' type='web' desc='Validate that Statement Mapping Form page is visible.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='span(&quot;Statement Mapping&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='heading2(2, _in(div({&apos;id&apos;:&apos;root&apos;})))' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='heading2(&quot;font-bold scroll-m-20 text-2xl tracking-tight transition-colors[1]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;root&apos;]/article/main/article/section[2]/form/div/div[1]/div[1]/h2&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Statement Mapping Form&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/section[2]/form/div/div/div/h2&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;root&apos;)/article[@class=&apos;flex min-h-screen flex-col&apos;]/main[@class=&apos;break-word flex-1 overflow-auto bg-background px-6 py-4 md:ml-16&apos;]/article[@class=&apos;w-full flex-1 bg-background&apos;]/section[@class=&apos;flex flex-col gap-4&apos;]/form[1]/div[@class=&apos;rounded-lg border border-foreground bg-root text-card-foreground shadow-sm&apos;]/div[@class=&apos;flex flex-col space-y-1.5 p-6&apos;]/div[@class=&apos;flex justify-between gap-4&apos;]/h2[@class=&apos;scroll-m-20 text-2xl font-bold tracking-tight transition-colors&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;rounded-lg border border-foreground bg-root text-card-foreground shadow-sm&quot;] &gt; div[class=&quot;flex flex-col space-y-1.5 p-6&quot;] &gt; div[class=&quot;flex justify-between gap-4&quot;] &gt; h2[class=&quot;scroll-m-20 text-2xl font-bold tracking-tight transition-colors&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='heading2(2, _in(div(&quot;root&quot;)))' fallback='true' selected='false'/>
+   <accessor type='Text' value='heading2(&quot;Statement Mapping Form&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='setValue' value='$SR_Mapping_Name' type='web' desc='Enter valiue in mapping name field.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='textbox(&quot;placeholder==Enter mapping name...&quot;)' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='Click on Select Date Format dropdown.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='button(&quot;Select Date Format...&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='button(6, _in(div({&apos;id&apos;:&apos;root&apos;})))' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;:r2fh:-form-item&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='button(&quot;active:translate-y-px bg-root border border-input cursor-pointer disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring font-medium font-sans h-10 hover:bg-accent/70 hover:border-muted-foreground hover:text-accent-foreground inline-flex items-center justify-between px-4 py-2 ring-offset-background rounded-md text-accent-foreground text-sm transition-colors w-[320px]&quot;)' fallback='true' selected='false'/>
+   <accessor type='Id' value='button(&quot;:r2fh:-form-item&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//button[@id=&apos;:r2fh:-form-item&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;inline-flex items-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px border border-input bg-root hover:bg-accent/70 hover:text-accent-foreground hover:border-muted-foreground h-10 py-2 px-4 cursor-pointer font-sans w-[320px] justify-between text-accent-foreground&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Select Date Format...&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/section[2]/form/div/div/div[2]/div[2]/button&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;:r2fh:-form-item&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='button({&apos;role&apos;:&apos;combobox&apos;})' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;rounded-lg border border-foreground bg-root text-card-foreground shadow-sm&quot;] &gt; div[class=&quot;flex flex-col space-y-1.5 p-6&quot;] &gt; div[class=&quot;flex gap-4&quot;] &gt; div[class=&quot;space-y-2 mt-2 flex flex-col&quot;] &gt; button[class=&quot;inline-flex items-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px border border-input bg-root hover:bg-accent/70 hover:text-accent-foreground hover:border-muted-foreground h-10 py-2 px-4 cursor-pointer font-sans w-[320px] justify-between text-accent-foreground&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='button(6, _in(div(&quot;root&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='' type='web' desc='Select MM/dd/yyyy from dropdown.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='div(&quot;MM/dd/yyyy&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='div(25, _in(div({&apos;id&apos;:&apos;root&apos;}))).xy(0.14, 0.36 )' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;:r2gl:&quot;]&apos;).xy(0.14, 0.36 )' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='div(&quot;aria-selected:bg-accent aria-selected:text-accent-foreground cursor-pointer data-[disabled]:opacity-50 data-[disabled]:pointer-events-none flex items-center outline-none px-2 py-1.5 relative rounded-sm select-none text-sm[1]&quot;).xy(0.14, 0.36 )' fallback='true' selected='false'/>
+   <accessor type='Id' value='div(&quot;:r2gl:&quot;).xy(0.14, 0.36 )' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;:r2gl:&apos;]&quot;).xy(0.14, 0.36 )' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;MM/dd/yyyy&quot;]&apos;).xy(0.14, 0.36 )' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/section[2]/form/div/div/div[2]/div[2]/div/div/div/div[2]/div/div[2]&apos;).xy(0.14, 0.36 )' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;:r2gl:&apos;)&quot;).xy(0.14, 0.36 )' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='div({&apos;data-value&apos;:&apos;2&apos;}).xy(0.14, 0.36 )' fallback='true' selected='false'/>
+   <accessor type='Parent' value='div(25, _in(div(&quot;root&quot;))).xy(0.14, 0.36 )' fallback='true' selected='false'/>
+   <accessor type='Text' value='div(&quot;MM/dd/yyyy&quot;).xy(0.14, 0.36 )' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='' type='web' desc='Click on Select Vendor Field dropdown.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='span(&quot;Select Vendor Field...&quot;,rightOf(cell(&quot;Invoice Number&quot;)))' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='Select nvoiceNumber from dropdown.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='span(&quot;invoiceNumber&quot;)' fallback='true' selected='true'/>
+   <accessor type='Id' value='span(&quot;radix-:r2ll:&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//span[@id=&apos;radix-:r2ll:&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div[3]/div/div/div/span[2]&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;radix-:r2ll:&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;radix-:r2ll:&quot;]&apos;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='' type='web' desc='Click on Select Vendor Field dropdown.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='span(&quot;Select Vendor Field...&quot;,rightOf(cell(&quot;Invoice Amount&quot;)))' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='Select invoice amount from dropdown.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='span(&quot;invoiceAmount&quot;)' fallback='true' selected='true'/>
+   <accessor type='Id' value='span(&quot;radix-:r2m1:&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//span[@id=&apos;radix-:r2m1:&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div[3]/div/div/div[3]/span[2]&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;radix-:r2m1:&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;radix-:r2m1:&quot;]&apos;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='' type='web' desc='Click on Select Vendor Field dropdown.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='span(&quot;Select Vendor Field...&quot;,rightOf(cell(&quot;Invoice Date&quot;)))' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='Select invoice date from dropdown.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='span(&quot;invoiceDate&quot;)' fallback='true' selected='true'/>
+   <accessor type='Id' value='span(&quot;radix-:r2ma:&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//span[@id=&apos;radix-:r2ma:&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div[3]/div/div/div[2]/span[2]&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;radix-:r2ma:&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;radix-:r2ma:&quot;]&apos;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='' type='web' desc='Click on Select Vendor Field dropdown.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='span(&quot;Select Vendor Field...&quot;,rightOf(cell(&quot;PO Number&quot;)))' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='Select PO number from dropdown.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='span(&quot;poNumber&quot;)' fallback='true' selected='true'/>
+   <accessor type='Id' value='span(&quot;radix-:r2mm:&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//span[@id=&apos;radix-:r2mm:&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div[3]/div/div/div[4]/span[2]&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;radix-:r2mm:&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;radix-:r2mm:&quot;]&apos;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='wait' value='3000' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='Click on save mapping button.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='button(&quot;Save Mapping&quot;)' fallback='true' selected='true'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;root&apos;]/article/main/article/section[2]/form/div/div[1]/div[1]/div/button[2]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px bg-primary text-root hover:bg-primary/80 h-10 py-2 px-4 gap-2&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/section[2]/form/div/div/div/div/button[2]&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;root&apos;)/article[@class=&apos;flex min-h-screen flex-col&apos;]/main[@class=&apos;break-word flex-1 overflow-auto bg-background px-6 py-4 md:ml-16&apos;]/article[@class=&apos;w-full flex-1 bg-background&apos;]/section[@class=&apos;flex flex-col gap-4&apos;]/form[1]/div[@class=&apos;rounded-lg border border-foreground bg-root text-card-foreground shadow-sm&apos;]/div[@class=&apos;flex flex-col space-y-1.5 p-6&apos;]/div[@class=&apos;flex justify-between gap-4&apos;]/div[@class=&apos;flex gap-2&apos;]/button[@class=&apos;inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px bg-primary text-root hover:bg-primary/80 h-10 py-2 px-4 gap-2&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='submit({&apos;type&apos;:&apos;submit&apos;})' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;rounded-lg border border-foreground bg-root text-card-foreground shadow-sm&quot;] &gt; div[class=&quot;flex flex-col space-y-1.5 p-6&quot;] &gt; div[class=&quot;flex justify-between gap-4&quot;] &gt; div[class=&quot;flex gap-2&quot;] &gt; button[class=&quot;inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px bg-primary text-root hover:bg-primary/80 h-10 py-2 px-4 gap-2&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='submit(&quot;active:translate-y-px bg-primary disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring font-medium gap-2 h-10 hover:bg-primary/80 inline-flex items-center justify-center px-4 py-2 ring-offset-background rounded-md text-root text-sm transition-colors&quot;)' fallback='true' selected='false'/>
+   <accessor type='Text' value='submit(&quot;Save MappingSave Mapping&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='assertExists' value='' type='web' desc='Validate that You have successfully created mappi pop up must visible.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='div([&quot;You have successfully created mappi&quot;])' fallback='true' selected='true'/>
+   <accessor type='AttrClass' value='div(&quot;font-semibold text-base&quot;).xy(0.16, 0.17 )' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;root&apos;]/article/div/ol/li/div/div[2]&quot;).xy(0.16, 0.17 )' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;text-base font-semibold&quot;]&apos;).xy(0.16, 0.17 )' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;You have successfully created mapping test_mapp&quot;]&apos;).xy(0.16, 0.17 )' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/div/ol/li/div/div[2]&apos;).xy(0.16, 0.17 )' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;root&apos;)/article[@class=&apos;flex min-h-screen flex-col&apos;]/div[1]/ol[@class=&apos;fixed top-0 z-[100] flex max-h-screen min-w-[420px] max-w-screen-lg flex-col-reverse p-4 sm:bottom-0 sm:right-0 sm:top-auto sm:flex-col&apos;]/li[@class=&apos;data-[swipe=move]:transition-none group relative pointer-events-auto flex w-full items-center justify-between space-x-4 overflow-hidden rounded-md border p-6 pr-8 shadow-lg transition-all data-[swipe=move]:translate-x-[var(--radix-toast-swipe-move-x)] data-[swipe=cancel]:translate-x-0 data-[swipe=end]:translate-x-[var(--radix-toast-swipe-end-x)] data-[state=open]:animate-in data-[state=closed]:animate-out data-[swipe=end]:animate-out data-[state=closed]:fade-out-80 data-[state=open]:slide-in-from-top-full data-[state=open]:sm:slide-in-from-bottom-full data-[state=closed]:slide-out-to-right-full cursor-pointer active:cursor-grabbing active:outline-none active:ring-2 active:ring-ring active:ring-offset-2 active:ring-offset-background group success border-foreground bg-neutral-foreground text-foreground&apos;]/div[@class=&apos;grid gap-1&apos;]/div[@class=&apos;text-base font-semibold&apos;]&quot;).xy(0.16, 0.17 )' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;ol[class=&quot;fixed top-0 z-[100] flex max-h-screen min-w-[420px] max-w-screen-lg flex-col-reverse p-4 sm:bottom-0 sm:right-0 sm:top-auto sm:flex-col&quot;] &gt; li[class=&quot;data-[swipe=move]:transition-none group relative pointer-events-auto flex w-full items-center justify-between space-x-4 overflow-hidden rounded-md border p-6 pr-8 shadow-lg transition-all data-[swipe=move]:translate-x-[var(--radix-toast-swipe-move-x)] data-[swipe=cancel]:translate-x-0 data-[swipe=end]:translate-x-[var(--radix-toast-swipe-end-x)] data-[state=open]:animate-in data-[state=closed]:animate-out data-[swipe=end]:animate-out data-[state=closed]:fade-out-80 data-[state=open]:slide-in-from-top-full data-[state=open]:sm:slide-in-from-bottom-full data-[state=closed]:slide-out-to-right-full cursor-pointer active:cursor-grabbing active:outline-none active:ring-2 active:ring-ring active:ring-offset-2 active:ring-offset-background group success border-foreground bg-neutral-foreground text-foreground&quot;] &gt; div[class=&quot;grid gap-1&quot;] &gt; div[class=&quot;text-base font-semibold&quot;]&apos;).xy(0.16, 0.17 )' fallback='true' selected='false'/>
+   <accessor type='Parent' value='div(2, _in(div({&apos;aria-label&apos;:&apos;Notifications (F8)&apos;}))).xy(0.16, 0.17 )' fallback='true' selected='false'/>
+   <accessor type='unknown' value='div([&quot;You have successfully created mappi&quot;]).xy(0.16, 0.17 )' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='' type='web' desc='Click on select mapping dropdown.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='button(&quot;Select Mapping&quot;)' fallback='true' selected='true'/>
+   <accessor type='unknown' value='span(&quot;Select mapping...&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='setValue' value='$SR_Mapping_Name' type='web' desc='Click on select mapping dropdown.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='textbox(&quot;placeholder==Search mapping...&quot;)' fallback='true' selected='true'/>
+   <accessor type='unknown' value='span(&quot;Select mapping...&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Select mapping...&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Select Mapping&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='wait' value='3000' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='assertExists' value='' type='web' desc='Validate that Reconcile Statement button is visible' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='span(&quot;Reconcile Statement&quot;)' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='link(&quot;Settings&quot;)' fallback='true' selected='true'/>
+   <accessor type='AttrHref' value='link(&quot;/app/statement-recon/settings&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;root&apos;]/article/main/article/section/nav/a[5]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Settings&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/section/nav/a[5]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;a[href=&quot;/app/statement-recon/settings&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='link(&quot;active:translate-y-px bg-primary disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring font-medium h-10 hover:bg-primary/80 inline-flex items-center justify-between px-4 py-6 ring-offset-background rounded-md text-base text-root transition-colors w-full[3]&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='wait' value='3000' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='focus' value='' type='web' desc='Add focus' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='svg(&quot;class==lucide lucide-grip-vertical size-6 bg-inherit&quot;,rightOf(paragraph(&quot;Matched Credit Logic&quot;)))' fallback='true' selected='true'/>
+   <accessor type='unknown' value='svg(&quot;class==lucide lucide-grip-vertical size-6 bg-inherit&quot;,rightOf(paragraph(&quot;Recon Notification&quot;)))' fallback='true' selected='false'/>
+   <accessor type='unknown' value='svg(&quot;class==lucide lucide-grip-vertical size-6 bg-inherit&quot;,rightOf(paragraph(&quot;$&quot;)))' fallback='true' selected='false'/>
+   <accessor type='unknown' value='svg(&quot;class==lucide lucide-grip-vertical size-6 bg-inherit&quot;,rightOf(paragraph(&quot;@&quot;)))' fallback='true' selected='false'/>
+   <accessor type='unknown' value='svg(&quot;class==lucide lucide-grip-vertical size-6 bg-inherit&quot;,rightOf(paragraph(&quot;Potential Match&quot;)))' fallback='true' selected='false'/>
+   <accessor type='unknown' value='svg(&quot;class==lucide lucide-grip-vertical size-6 bg-inherit&quot;,rightOf(paragraph(&quot;trailing&quot;)))' fallback='true' selected='false'/>
+   <accessor type='unknown' value='svg(&quot;class==lucide lucide-grip-vertical size-6 bg-inherit&quot;,rightOf(paragraph(&quot;Statement Invoice Statement Character Limit&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='' type='web' desc='Click on action icon' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='svg(&quot;class==lucide lucide-grip-vertical size-6 bg-inherit&quot;,rightOf(paragraph(&quot;Matched Credit Logic&quot;)))' fallback='true' selected='true'/>
+   <accessor type='unknown' value='svg(&quot;class==lucide lucide-grip-vertical size-6 bg-inherit&quot;,rightOf(paragraph(&quot;Recon Notification&quot;)))' fallback='true' selected='false'/>
+   <accessor type='unknown' value='svg(&quot;class==lucide lucide-grip-vertical size-6 bg-inherit&quot;,rightOf(paragraph(&quot;$&quot;)))' fallback='true' selected='false'/>
+   <accessor type='unknown' value='svg(&quot;class==lucide lucide-grip-vertical size-6 bg-inherit&quot;,rightOf(paragraph(&quot;@&quot;)))' fallback='true' selected='false'/>
+   <accessor type='unknown' value='svg(&quot;class==lucide lucide-grip-vertical size-6 bg-inherit&quot;,rightOf(paragraph(&quot;Potential Match&quot;)))' fallback='true' selected='false'/>
+   <accessor type='unknown' value='svg(&quot;class==lucide lucide-grip-vertical size-6 bg-inherit&quot;,rightOf(paragraph(&quot;trailing&quot;)))' fallback='true' selected='false'/>
+   <accessor type='unknown' value='svg(&quot;class==lucide lucide-grip-vertical size-6 bg-inherit&quot;,rightOf(paragraph(&quot;Statement Invoice Statement Character Limit&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='' type='web' desc='Click on delete settings button' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='div(&quot;Delete Setting&quot;)' fallback='true' selected='true'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;radix-:r3aq:&apos;]/div[2]&quot;).xy(0.21, 0.58 )' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;relative cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors hover:cursor-pointer focus:bg-accent focus:text-accent-foreground data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50 flex justify-between gap-4 bg-destructive text-destructive-foreground hover:bg-destructive/90 hover:text-destructive-foreground/90&quot;]&apos;).xy(0.21, 0.58 )' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div[3]/div/div[2]&apos;).xy(0.21, 0.58 )' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;radix-:r3aq:&apos;)/div[@class=&apos;relative cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors hover:cursor-pointer focus:bg-accent focus:text-accent-foreground data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50 flex justify-between gap-4 bg-destructive text-destructive-foreground hover:bg-destructive/90 hover:text-destructive-foreground/90&apos;]&quot;).xy(0.21, 0.58 )' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='div({&apos;role&apos;:&apos;menuitem&apos;}).xy(0.21, 0.58 )' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;z-50 overflow-hidden rounded-md border bg-root/70 p-1 text-foreground shadow-md backdrop-blur-xl backdrop-brightness-150 animate-in data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 min-w-fit&quot;] &gt; div[class=&quot;relative cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors hover:cursor-pointer focus:bg-accent focus:text-accent-foreground data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50 flex justify-between gap-4 bg-destructive text-destructive-foreground hover:bg-destructive/90 hover:text-destructive-foreground/90&quot;]&apos;).xy(0.21, 0.58 )' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='div(&quot;bg-destructive cursor-default data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50 flex focus:bg-accent focus:text-accent-foreground gap-4 hover:bg-destructive/90 hover:cursor-pointer hover:text-destructive-foreground/90 items-center justify-between outline-none px-2 py-1.5 relative rounded-sm select-none text-destructive-foreground text-sm transition-colors&quot;).xy(0.21, 0.58 )' fallback='true' selected='false'/>
+   <accessor type='Text' value='div(&quot;Delete SettingDelete Setting&quot;).xy(0.21, 0.58 )' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;Delete Setting&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='div(&quot;Delete SettingDelete Setting&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='wait' value='3000' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='focus' value='' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='svg(&quot;class==lucide lucide-chevron-up text-theme hover:text-theme/80&quot;)' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='click' value='' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='svg(&quot;class==lucide lucide-chevron-up text-theme hover:text-theme/80&quot;)' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='Check the enable checkbox.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='label(&quot;Enabled&quot;,below(span(&quot;Matched Credit Logic&quot;)))' fallback='true' selected='true'/>
+   <accessor type='Parent' value='label(2, _in(div({&apos;id&apos;:&apos;root&apos;})))' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='label(&quot;font-normal leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-sm&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;:r2d8:-form-item&apos;]/div/div[1]/label&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 font-normal&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Enabled&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/section[2]/form/section[2]/div/div[2]/div/div/div/div/label&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;:r2d8:-form-item&apos;)/div[@class=&apos;flex items-center space-x-2&apos;]/div[@class=&apos;flex items-center space-x-3 space-y-0&apos;]/label[@class=&apos;text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 font-normal&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='label({&apos;for&apos;:&apos;:r2d9:-form-item&apos;})' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;space-y-4&quot;] &gt; div[class=&quot;gap-2 mt-4 flex flex-col space-y-1&quot;] &gt; div[class=&quot;flex items-center space-x-2&quot;] &gt; div[class=&quot;flex items-center space-x-3 space-y-0&quot;] &gt; label[class=&quot;text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 font-normal&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='label(2, _in(div(&quot;root&quot;)))' fallback='true' selected='false'/>
+   <accessor type='Text' value='label(&quot;Enabled&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='label(&quot;Enabled&quot;,below(span(&quot;Credit Pair Logic&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='focus' value='""' type='web' desc='Click on update settings button.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='button(&quot;Update Setting&quot;,below(svg(&quot;class==lucide lucide-layers2 size-5 text-primary&quot;)))' fallback='true' selected='true'/>
+   <accessor type='Parent' value='button(15, _in(div({&apos;id&apos;:&apos;root&apos;})))' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='button(&quot;active:translate-y-px bg-primary disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring font-medium h-10 hover:bg-primary/80 inline-flex items-center justify-center px-4 py-2 ring-offset-background rounded-md text-root text-sm transition-colors[3]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;root&apos;]/article/main/article/section[2]/form/section[2]/div[1]/div[3]/button&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Update Setting&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/section[2]/form/section[2]/div/div[3]/button&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;root&apos;)/article[@class=&apos;flex min-h-screen flex-col&apos;]/main[@class=&apos;break-word flex-1 overflow-auto bg-background px-6 py-4 md:ml-16&apos;]/article[@class=&apos;w-full flex-1 bg-background&apos;]/section[@class=&apos;flex flex-col gap-4&apos;]/form[1]/section[@class=&apos;my-2 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-4&apos;]/div[@class=&apos;rounded-lg border border-foreground bg-root text-card-foreground shadow-sm flex flex-col&apos;]/div[@class=&apos;flex items-center p-6 pt-0 mt-auto&apos;]/button[@class=&apos;inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px bg-primary text-root hover:bg-primary/80 h-10 py-2 px-4&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;section[class=&quot;my-2 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-4&quot;] &gt; div[class=&quot;rounded-lg border border-foreground bg-root text-card-foreground shadow-sm flex flex-col&quot;] &gt; div[class=&quot;flex items-center p-6 pt-0 mt-auto&quot;] &gt; button[class=&quot;inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px bg-primary text-root hover:bg-primary/80 h-10 py-2 px-4&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='button(15, _in(div(&quot;root&quot;)))' fallback='true' selected='false'/>
+   <accessor type='Text' value='button(&quot;Update Setting&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='Click on update settings button.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='button(&quot;Update Setting&quot;,below(svg(&quot;class==lucide lucide-layers2 size-5 text-primary&quot;)))' fallback='true' selected='true'/>
+   <accessor type='Parent' value='button(15, _in(div({&apos;id&apos;:&apos;root&apos;})))' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='button(&quot;active:translate-y-px bg-primary disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring font-medium h-10 hover:bg-primary/80 inline-flex items-center justify-center px-4 py-2 ring-offset-background rounded-md text-root text-sm transition-colors[3]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;root&apos;]/article/main/article/section[2]/form/section[2]/div[1]/div[3]/button&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Update Setting&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/section[2]/form/section[2]/div/div[3]/button&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;root&apos;)/article[@class=&apos;flex min-h-screen flex-col&apos;]/main[@class=&apos;break-word flex-1 overflow-auto bg-background px-6 py-4 md:ml-16&apos;]/article[@class=&apos;w-full flex-1 bg-background&apos;]/section[@class=&apos;flex flex-col gap-4&apos;]/form[1]/section[@class=&apos;my-2 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-4&apos;]/div[@class=&apos;rounded-lg border border-foreground bg-root text-card-foreground shadow-sm flex flex-col&apos;]/div[@class=&apos;flex items-center p-6 pt-0 mt-auto&apos;]/button[@class=&apos;inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px bg-primary text-root hover:bg-primary/80 h-10 py-2 px-4&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;section[class=&quot;my-2 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-4&quot;] &gt; div[class=&quot;rounded-lg border border-foreground bg-root text-card-foreground shadow-sm flex flex-col&quot;] &gt; div[class=&quot;flex items-center p-6 pt-0 mt-auto&quot;] &gt; button[class=&quot;inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px bg-primary text-root hover:bg-primary/80 h-10 py-2 px-4&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='button(15, _in(div(&quot;root&quot;)))' fallback='true' selected='false'/>
+   <accessor type='Text' value='button(&quot;Update Setting&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='assertExists' value='' type='web' desc='Validate that success popup must visible.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='div(&quot;Setting added successfully!&quot;)' fallback='true' selected='true'/>
+   <accessor type='AttrClass' value='div(&quot;font-semibold text-base&quot;).xy(0.14, 0.21 )' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;root&apos;]/article/div/ol/li/div/div[2]&quot;).xy(0.14, 0.21 )' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;text-base font-semibold&quot;]&apos;).xy(0.14, 0.21 )' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Setting added successfully!&quot;]&apos;).xy(0.14, 0.21 )' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/div/ol/li/div/div[2]&apos;).xy(0.14, 0.21 )' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;root&apos;)/article[@class=&apos;flex min-h-screen flex-col&apos;]/div[1]/ol[@class=&apos;fixed top-0 z-[100] flex max-h-screen min-w-[420px] max-w-screen-lg flex-col-reverse p-4 sm:bottom-0 sm:right-0 sm:top-auto sm:flex-col&apos;]/li[@class=&apos;data-[swipe=move]:transition-none group relative pointer-events-auto flex w-full items-center justify-between space-x-4 overflow-hidden rounded-md border p-6 pr-8 shadow-lg transition-all data-[swipe=move]:translate-x-[var(--radix-toast-swipe-move-x)] data-[swipe=cancel]:translate-x-0 data-[swipe=end]:translate-x-[var(--radix-toast-swipe-end-x)] data-[state=open]:animate-in data-[state=closed]:animate-out data-[swipe=end]:animate-out data-[state=closed]:fade-out-80 data-[state=open]:slide-in-from-top-full data-[state=open]:sm:slide-in-from-bottom-full data-[state=closed]:slide-out-to-right-full cursor-pointer active:cursor-grabbing active:outline-none active:ring-2 active:ring-ring active:ring-offset-2 active:ring-offset-background group success border-foreground bg-neutral-foreground text-foreground&apos;]/div[@class=&apos;grid gap-1&apos;]/div[@class=&apos;text-base font-semibold&apos;]&quot;).xy(0.14, 0.21 )' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;ol[class=&quot;fixed top-0 z-[100] flex max-h-screen min-w-[420px] max-w-screen-lg flex-col-reverse p-4 sm:bottom-0 sm:right-0 sm:top-auto sm:flex-col&quot;] &gt; li[class=&quot;data-[swipe=move]:transition-none group relative pointer-events-auto flex w-full items-center justify-between space-x-4 overflow-hidden rounded-md border p-6 pr-8 shadow-lg transition-all data-[swipe=move]:translate-x-[var(--radix-toast-swipe-move-x)] data-[swipe=cancel]:translate-x-0 data-[swipe=end]:translate-x-[var(--radix-toast-swipe-end-x)] data-[state=open]:animate-in data-[state=closed]:animate-out data-[swipe=end]:animate-out data-[state=closed]:fade-out-80 data-[state=open]:slide-in-from-top-full data-[state=open]:sm:slide-in-from-bottom-full data-[state=closed]:slide-out-to-right-full cursor-pointer active:cursor-grabbing active:outline-none active:ring-2 active:ring-ring active:ring-offset-2 active:ring-offset-background group success border-foreground bg-neutral-foreground text-foreground&quot;] &gt; div[class=&quot;grid gap-1&quot;] &gt; div[class=&quot;text-base font-semibold&quot;]&apos;).xy(0.14, 0.21 )' fallback='true' selected='false'/>
+   <accessor type='Parent' value='div(2, _in(div({&apos;aria-label&apos;:&apos;Notifications (F8)&apos;}))).xy(0.14, 0.21 )' fallback='true' selected='false'/>
+   <accessor type='Text' value='div(&quot;Setting added successfully!&quot;).xy(0.14, 0.21 )' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='Click on statement upload button.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='link(&quot;Upload&quot;)' fallback='true' selected='true'/>
+   <accessor type='AttrClass' value='link(&quot;active:translate-y-px bg-primary disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring font-medium h-10 hover:bg-primary/80 inline-flex items-center justify-between px-4 py-6 ring-offset-background rounded-md text-base text-root transition-colors w-full&quot;)' fallback='true' selected='false'/>
+   <accessor type='AttrHref' value='link(&quot;/app/statement-recon/upload&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;root&apos;]/article/main/article/section[1]/nav/a[1]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;inline-flex items-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px bg-primary text-root hover:bg-primary/80 h-10 px-4 w-full justify-between py-6 text-base&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Statement Upload&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/section/nav/a&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;root&apos;)/article[@class=&apos;flex min-h-screen flex-col&apos;]/main[@class=&apos;break-word flex-1 overflow-auto bg-background px-6 py-4 md:ml-16&apos;]/article[@class=&apos;w-full flex-1 bg-background&apos;]/section[@class=&apos;mb-2 flex flex-col justify-between gap-4 xl:flex-row xl:items-center&apos;]/nav[@class=&apos;grid gap-2 grid-cols-1 md:grid-cols-2 xl:w-2/3 xl:grid-cols-3 2xl:grid-cols-4 2xl:w-1/2&apos;]/a[@class=&apos;inline-flex items-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px bg-primary text-root hover:bg-primary/80 h-10 px-4 w-full justify-between py-6 text-base&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;main[class=&quot;break-word flex-1 overflow-auto bg-background px-6 py-4 md:ml-16&quot;] &gt; article[class=&quot;w-full flex-1 bg-background&quot;] &gt; section[class=&quot;mb-2 flex flex-col justify-between gap-4 xl:flex-row xl:items-center&quot;] &gt; nav[class=&quot;grid gap-2 grid-cols-1 md:grid-cols-2 xl:w-2/3 xl:grid-cols-3 2xl:grid-cols-4 2xl:w-1/2&quot;] &gt; a[class=&quot;inline-flex items-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px bg-primary text-root hover:bg-primary/80 h-10 px-4 w-full justify-between py-6 text-base&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;a[href=&quot;/app/statement-recon/upload&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='link(0, _in(nav({&apos;aria-label&apos;:&apos;StatementRecon Subroute Navigation&apos;})))' fallback='true' selected='false'/>
+   <accessor type='Text' value='link(&quot;Statement Upload&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='assertExists' value='' type='web' desc='Validate that Start searching suppliers dropdown is visible' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='svg(&quot;class==lucide lucide-chevron-down ml-2 size-4 shrink-0 opacity-50 transition-transform duration-200&quot;)' fallback='true' selected='true'/>
+   <accessor type='unknown' value='div(&quot;Start searching suppliers...[1]&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='focus' value='' type='web' desc='Add focus.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='svg(&quot;class==lucide lucide-chevron-down ml-2 size-4 shrink-0 opacity-50 transition-transform duration-200&quot;)' fallback='true' selected='true'/>
+   <accessor type='unknown' value='div(&quot;Start searching suppliers...[1]&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='' type='web' desc='Click on Start searching suppliers  dropdown.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='svg(&quot;class==lucide lucide-chevron-down ml-2 size-4 shrink-0 opacity-50 transition-transform duration-200&quot;)' fallback='true' selected='true'/>
+   <accessor type='unknown' value='div(&quot;Start searching suppliers...[1]&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='setValue' value='"MARION"' type='web' desc='Enter value in search supplier field.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='textbox(&quot;placeholder==Start searching suppliers...&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='textbox(0, _in(div({&apos;id&apos;:&apos;root&apos;})))' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;:r2cr:&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='textbox(&quot;bg-transparent disabled:cursor-not-allowed disabled:opacity-50 flex-1 ml-2 outline-none placeholder:text-accent-foreground&quot;)' fallback='true' selected='false'/>
+   <accessor type='Id' value='textbox(&quot;:r2cr:&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//input[@id=&apos;:r2cr:&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;ml-2 flex-1 bg-transparent outline-none placeholder:text-accent-foreground disabled:cursor-not-allowed disabled:opacity-50&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/div[2]/section/div[2]/div/div/div/div[2]/input&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;:r2cr:&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;space-y-2 flex flex-col&quot;] &gt; div[class=&quot;flex h-full flex-col rounded-md font-sans text-foreground overflow-visible bg-transparent backdrop-blur-lg max-w-md w-[96]&quot;] &gt; div[class=&quot;group min-h-10 rounded-md border border-input bg-root px-3 py-2 text-sm ring-offset-background focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2&quot;] &gt; div[class=&quot;flex items-center&quot;] &gt; input[class=&quot;ml-2 flex-1 bg-transparent outline-none placeholder:text-accent-foreground disabled:cursor-not-allowed disabled:opacity-50&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;input[value=&quot;M&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='textbox(0, _in(div(&quot;root&quot;)))' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='textbox({&apos;type&apos;:&apos;text&apos;})' fallback='true' selected='false'/>
+   <accessor type='Parent' value='textbox(0, _in(div({&apos;id&apos;:&apos;root&apos;})))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='"MARION"' type='web' desc='Click on MARION.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='textbox(&quot;placeholder==Start searching suppliers...&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='textbox(0, _in(div({&apos;id&apos;:&apos;root&apos;})))' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;:r2cr:&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='textbox(&quot;bg-transparent disabled:cursor-not-allowed disabled:opacity-50 flex-1 ml-2 outline-none placeholder:text-accent-foreground&quot;)' fallback='true' selected='false'/>
+   <accessor type='Id' value='textbox(&quot;:r2cr:&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//input[@id=&apos;:r2cr:&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;ml-2 flex-1 bg-transparent outline-none placeholder:text-accent-foreground disabled:cursor-not-allowed disabled:opacity-50&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/div[2]/section/div[2]/div/div/div/div[2]/input&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;:r2cr:&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;space-y-2 flex flex-col&quot;] &gt; div[class=&quot;flex h-full flex-col rounded-md font-sans text-foreground overflow-visible bg-transparent backdrop-blur-lg max-w-md w-[96]&quot;] &gt; div[class=&quot;group min-h-10 rounded-md border border-input bg-root px-3 py-2 text-sm ring-offset-background focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2&quot;] &gt; div[class=&quot;flex items-center&quot;] &gt; input[class=&quot;ml-2 flex-1 bg-transparent outline-none placeholder:text-accent-foreground disabled:cursor-not-allowed disabled:opacity-50&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;input[value=&quot;M&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='textbox(0, _in(div(&quot;root&quot;)))' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='textbox({&apos;type&apos;:&apos;text&apos;})' fallback='true' selected='false'/>
+   <accessor type='Parent' value='textbox(0, _in(div({&apos;id&apos;:&apos;root&apos;})))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='' type='web' desc='Select 999122-MARION COUNTY from dropdown.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='div(&quot;999122-MARION COUNTY TREASURER&quot;).xy(0.12, 0.30 )' fallback='true' selected='true'/>
+   <accessor type='Parent' value='div(4, _in(div({&apos;id&apos;:&apos;suppliers-listbox&apos;}))).xy(0.12, 0.30 )' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;:r2d4:&quot;]&apos;).xy(0.12, 0.30 )' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='div(&quot;aria-selected:bg-accent aria-selected:text-accent-foreground cursor-pointer data-[disabled]:opacity-50 data-[disabled]:pointer-events-none flex items-center outline-none px-2 py-1.5 relative rounded-sm select-none text-sm[2]&quot;).xy(0.12, 0.30 )' fallback='true' selected='false'/>
+   <accessor type='Id' value='div(&quot;:r2d4:&quot;).xy(0.12, 0.30 )' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;:r2d4:&apos;]&quot;).xy(0.12, 0.30 )' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;999122-MARION COUNTY TREASURER&quot;]&apos;).xy(0.12, 0.30 )' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/div[2]/section/div[2]/div/div/div[2]/div/div/div/div/div/div[3]&apos;).xy(0.12, 0.30 )' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;:r2d4:&apos;)&quot;).xy(0.12, 0.30 )' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='div({&apos;aria-selected&apos;:&apos;true&apos;}).xy(0.12, 0.30 )' fallback='true' selected='false'/>
+   <accessor type='Parent' value='div(4, _in(div(&quot;suppliers-listbox&quot;))).xy(0.12, 0.30 )' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='assertExists' value='' type='web' desc='Validate that Drag and drop a file here, or click section is visibe.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='div([&quot;Drag and drop a file here, or click&quot;])' fallback='true' selected='true'/>
+   <accessor type='Parent' value='div(20, _in(div({&apos;id&apos;:&apos;root&apos;}))).xy(0.48, 0.39 )' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='div(&quot;bg-root border-2 border-dashed border-zinc-400 cursor-pointer font-semibold hover:bg-theme/40 hover:border-theme hover:text-foreground outline-none p-12 rounded-md text-base text-center text-foreground transition-all&quot;).xy(0.48, 0.39 )' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;root&apos;]/article/main/article/div[2]/section[2]/div&quot;).xy(0.48, 0.39 )' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;border-2 border-zinc-400 border-dashed rounded-md p-12 text-center cursor-pointer text-foreground bg-root font-semibold text-base outline-none transition-all hover:bg-theme/40 hover:border-theme hover:text-foreground&quot;]&apos;).xy(0.48, 0.39 )' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/div[2]/section[2]/div&apos;).xy(0.48, 0.39 )' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;root&apos;)/article[@class=&apos;flex min-h-screen flex-col&apos;]/main[@class=&apos;break-word flex-1 overflow-auto bg-background px-6 py-4 md:ml-16&apos;]/article[@class=&apos;w-full flex-1 bg-background&apos;]/div[@class=&apos;flex flex-col gap-4&apos;]/section[@class=&apos;flex flex-col gap-4&apos;]/div[@class=&apos;border-2 border-zinc-400 border-dashed rounded-md p-12 text-center cursor-pointer text-foreground bg-root font-semibold text-base outline-none transition-all hover:bg-theme/40 hover:border-theme hover:text-foreground&apos;]&quot;).xy(0.48, 0.39 )' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='div({&apos;tabindex&apos;:&apos;0&apos;}).xy(0.48, 0.39 )' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;main[class=&quot;break-word flex-1 overflow-auto bg-background px-6 py-4 md:ml-16&quot;] &gt; article[class=&quot;w-full flex-1 bg-background&quot;] &gt; div[class=&quot;flex flex-col gap-4&quot;] &gt; section[class=&quot;flex flex-col gap-4&quot;] &gt; div[class=&quot;border-2 border-zinc-400 border-dashed rounded-md p-12 text-center cursor-pointer text-foreground bg-root font-semibold text-base outline-none transition-all hover:bg-theme/40 hover:border-theme hover:text-foreground&quot;]&apos;).xy(0.48, 0.39 )' fallback='true' selected='false'/>
+   <accessor type='Parent' value='div(20, _in(div(&quot;root&quot;))).xy(0.48, 0.39 )' fallback='true' selected='false'/>
+   <accessor type='unknown' value='div([&quot;Drag and drop a file here, or click&quot;]).xy(0.48, 0.39 )' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='setFile5' value='"{ds}/../../Resources/Files/Credit-Missing-File.xlsx"' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='file(0)' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='assertExists' value='""' type='web' desc='Validate that Statement Mapping Form page is visible.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='span(&quot;Statement Mapping&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='heading2(2, _in(div({&apos;id&apos;:&apos;root&apos;})))' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='heading2(&quot;font-bold scroll-m-20 text-2xl tracking-tight transition-colors[1]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;root&apos;]/article/main/article/section[2]/form/div/div[1]/div[1]/h2&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Statement Mapping Form&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/section[2]/form/div/div/div/h2&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;root&apos;)/article[@class=&apos;flex min-h-screen flex-col&apos;]/main[@class=&apos;break-word flex-1 overflow-auto bg-background px-6 py-4 md:ml-16&apos;]/article[@class=&apos;w-full flex-1 bg-background&apos;]/section[@class=&apos;flex flex-col gap-4&apos;]/form[1]/div[@class=&apos;rounded-lg border border-foreground bg-root text-card-foreground shadow-sm&apos;]/div[@class=&apos;flex flex-col space-y-1.5 p-6&apos;]/div[@class=&apos;flex justify-between gap-4&apos;]/h2[@class=&apos;scroll-m-20 text-2xl font-bold tracking-tight transition-colors&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;rounded-lg border border-foreground bg-root text-card-foreground shadow-sm&quot;] &gt; div[class=&quot;flex flex-col space-y-1.5 p-6&quot;] &gt; div[class=&quot;flex justify-between gap-4&quot;] &gt; h2[class=&quot;scroll-m-20 text-2xl font-bold tracking-tight transition-colors&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='heading2(2, _in(div(&quot;root&quot;)))' fallback='true' selected='false'/>
+   <accessor type='Text' value='heading2(&quot;Statement Mapping Form&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='setValue' value='$SR_Mapping_Name' type='web' desc='Enter valiue in mapping name field.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='textbox(&quot;placeholder==Enter mapping name...&quot;)' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='Click on Select Date Format dropdown.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='button(&quot;Select Date Format...&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='button(6, _in(div({&apos;id&apos;:&apos;root&apos;})))' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;:r2fh:-form-item&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='button(&quot;active:translate-y-px bg-root border border-input cursor-pointer disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring font-medium font-sans h-10 hover:bg-accent/70 hover:border-muted-foreground hover:text-accent-foreground inline-flex items-center justify-between px-4 py-2 ring-offset-background rounded-md text-accent-foreground text-sm transition-colors w-[320px]&quot;)' fallback='true' selected='false'/>
+   <accessor type='Id' value='button(&quot;:r2fh:-form-item&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//button[@id=&apos;:r2fh:-form-item&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;inline-flex items-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px border border-input bg-root hover:bg-accent/70 hover:text-accent-foreground hover:border-muted-foreground h-10 py-2 px-4 cursor-pointer font-sans w-[320px] justify-between text-accent-foreground&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Select Date Format...&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/section[2]/form/div/div/div[2]/div[2]/button&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;:r2fh:-form-item&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='button({&apos;role&apos;:&apos;combobox&apos;})' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;rounded-lg border border-foreground bg-root text-card-foreground shadow-sm&quot;] &gt; div[class=&quot;flex flex-col space-y-1.5 p-6&quot;] &gt; div[class=&quot;flex gap-4&quot;] &gt; div[class=&quot;space-y-2 mt-2 flex flex-col&quot;] &gt; button[class=&quot;inline-flex items-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px border border-input bg-root hover:bg-accent/70 hover:text-accent-foreground hover:border-muted-foreground h-10 py-2 px-4 cursor-pointer font-sans w-[320px] justify-between text-accent-foreground&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='button(6, _in(div(&quot;root&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='' type='web' desc='Select MM/dd/yyyy from dropdown.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='div(&quot;MM/dd/yyyy&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='div(25, _in(div({&apos;id&apos;:&apos;root&apos;}))).xy(0.14, 0.36 )' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;:r2gl:&quot;]&apos;).xy(0.14, 0.36 )' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='div(&quot;aria-selected:bg-accent aria-selected:text-accent-foreground cursor-pointer data-[disabled]:opacity-50 data-[disabled]:pointer-events-none flex items-center outline-none px-2 py-1.5 relative rounded-sm select-none text-sm[1]&quot;).xy(0.14, 0.36 )' fallback='true' selected='false'/>
+   <accessor type='Id' value='div(&quot;:r2gl:&quot;).xy(0.14, 0.36 )' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;:r2gl:&apos;]&quot;).xy(0.14, 0.36 )' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;MM/dd/yyyy&quot;]&apos;).xy(0.14, 0.36 )' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/section[2]/form/div/div/div[2]/div[2]/div/div/div/div[2]/div/div[2]&apos;).xy(0.14, 0.36 )' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;:r2gl:&apos;)&quot;).xy(0.14, 0.36 )' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='div({&apos;data-value&apos;:&apos;2&apos;}).xy(0.14, 0.36 )' fallback='true' selected='false'/>
+   <accessor type='Parent' value='div(25, _in(div(&quot;root&quot;))).xy(0.14, 0.36 )' fallback='true' selected='false'/>
+   <accessor type='Text' value='div(&quot;MM/dd/yyyy&quot;).xy(0.14, 0.36 )' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='' type='web' desc='Click on Select Vendor Field dropdown.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='span(&quot;Select Vendor Field...&quot;,rightOf(cell(&quot;Invoice Number&quot;)))' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='Select nvoiceNumber from dropdown.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='span(&quot;invoiceNumber&quot;)' fallback='true' selected='true'/>
+   <accessor type='Id' value='span(&quot;radix-:r2ll:&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//span[@id=&apos;radix-:r2ll:&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div[3]/div/div/div/span[2]&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;radix-:r2ll:&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;radix-:r2ll:&quot;]&apos;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='' type='web' desc='Click on Select Vendor Field dropdown.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='span(&quot;Select Vendor Field...&quot;,rightOf(cell(&quot;Invoice Amount&quot;)))' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='Select invoice amount from dropdown.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='span(&quot;invoiceAmount&quot;)' fallback='true' selected='true'/>
+   <accessor type='Id' value='span(&quot;radix-:r2m1:&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//span[@id=&apos;radix-:r2m1:&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div[3]/div/div/div[3]/span[2]&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;radix-:r2m1:&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;radix-:r2m1:&quot;]&apos;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='' type='web' desc='Click on Select Vendor Field dropdown.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='span(&quot;Select Vendor Field...&quot;,rightOf(cell(&quot;Invoice Date&quot;)))' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='Select invoice date from dropdown.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='span(&quot;invoiceDate&quot;)' fallback='true' selected='true'/>
+   <accessor type='Id' value='span(&quot;radix-:r2ma:&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//span[@id=&apos;radix-:r2ma:&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div[3]/div/div/div[2]/span[2]&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;radix-:r2ma:&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;radix-:r2ma:&quot;]&apos;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='' type='web' desc='Click on Select Vendor Field dropdown.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='span(&quot;Select Vendor Field...&quot;,rightOf(cell(&quot;PO Number&quot;)))' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='Select PO number from dropdown.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='span(&quot;poNumber&quot;)' fallback='true' selected='true'/>
+   <accessor type='Id' value='span(&quot;radix-:r2mm:&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//span[@id=&apos;radix-:r2mm:&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div[3]/div/div/div[4]/span[2]&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;radix-:r2mm:&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;radix-:r2mm:&quot;]&apos;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='wait' value='3000' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='Click on save mapping button.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='button(&quot;Save Mapping&quot;)' fallback='true' selected='true'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;root&apos;]/article/main/article/section[2]/form/div/div[1]/div[1]/div/button[2]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px bg-primary text-root hover:bg-primary/80 h-10 py-2 px-4 gap-2&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/section[2]/form/div/div/div/div/button[2]&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;root&apos;)/article[@class=&apos;flex min-h-screen flex-col&apos;]/main[@class=&apos;break-word flex-1 overflow-auto bg-background px-6 py-4 md:ml-16&apos;]/article[@class=&apos;w-full flex-1 bg-background&apos;]/section[@class=&apos;flex flex-col gap-4&apos;]/form[1]/div[@class=&apos;rounded-lg border border-foreground bg-root text-card-foreground shadow-sm&apos;]/div[@class=&apos;flex flex-col space-y-1.5 p-6&apos;]/div[@class=&apos;flex justify-between gap-4&apos;]/div[@class=&apos;flex gap-2&apos;]/button[@class=&apos;inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px bg-primary text-root hover:bg-primary/80 h-10 py-2 px-4 gap-2&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='submit({&apos;type&apos;:&apos;submit&apos;})' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;rounded-lg border border-foreground bg-root text-card-foreground shadow-sm&quot;] &gt; div[class=&quot;flex flex-col space-y-1.5 p-6&quot;] &gt; div[class=&quot;flex justify-between gap-4&quot;] &gt; div[class=&quot;flex gap-2&quot;] &gt; button[class=&quot;inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px bg-primary text-root hover:bg-primary/80 h-10 py-2 px-4 gap-2&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='submit(&quot;active:translate-y-px bg-primary disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring font-medium gap-2 h-10 hover:bg-primary/80 inline-flex items-center justify-center px-4 py-2 ring-offset-background rounded-md text-root text-sm transition-colors&quot;)' fallback='true' selected='false'/>
+   <accessor type='Text' value='submit(&quot;Save MappingSave Mapping&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='focus' value='' type='web' desc='Click on select mapping dropdown.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='button(&quot;Select Mapping&quot;)' fallback='true' selected='true'/>
+   <accessor type='unknown' value='span(&quot;Select mapping...&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;Select mapping...&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='' type='web' desc='Click on select mapping dropdown.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='button(&quot;Select Mapping&quot;)' fallback='true' selected='true'/>
+   <accessor type='unknown' value='span(&quot;Select mapping...&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;Select mapping...&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='setValue' value='$SR_Mapping_Name' type='web' desc='Click on select mapping dropdown.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='textbox(&quot;placeholder==Search mapping...&quot;)' fallback='true' selected='true'/>
+   <accessor type='unknown' value='span(&quot;Select mapping...&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Select mapping...&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='button($SR_Mapping_Name)' fallback='true' selected='true'/>
+   <accessor type='unknown' value='button(&quot;Select Mapping&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='assertExists' value='' type='web' desc='Validate that Reconcile Statement button is visible' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='span(&quot;Reconcile Statement&quot;)' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='link(&quot;Settings&quot;)' fallback='true' selected='true'/>
+   <accessor type='AttrHref' value='link(&quot;/app/statement-recon/settings[1]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;root&apos;]/article/main/article/section[1]/nav/a[4]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;inline-flex items-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px h-10 px-4 w-full justify-between py-6 bg-success-foreground hover:bg-success-foreground/70 active:bg-success-foreground/80 text-root text-base active&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Settings&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/section/nav/a[4]&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;root&apos;)/article[@class=&apos;flex min-h-screen flex-col&apos;]/main[@class=&apos;break-word flex-1 overflow-auto bg-background px-6 py-4 md:ml-16&apos;]/article[@class=&apos;w-full flex-1 bg-background&apos;]/section[@class=&apos;mb-2 flex flex-col justify-between gap-12 xl:flex-row xl:items-center&apos;]/nav[@class=&apos;grid gap-2 grid-cols-1 md:grid-cols-2 xl:w-2/3 xl:grid-cols-3 2xl:grid-cols-3 2xl:w-1/2&apos;]/a[@class=&apos;inline-flex items-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px h-10 px-4 w-full justify-between py-6 bg-success-foreground hover:bg-success-foreground/70 active:bg-success-foreground/80 text-root text-base active&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='link({&apos;data-transitioning&apos;:&apos;transitioning&apos;})' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;main[class=&quot;break-word flex-1 overflow-auto bg-background px-6 py-4 md:ml-16&quot;] &gt; article[class=&quot;w-full flex-1 bg-background&quot;] &gt; section[class=&quot;mb-2 flex flex-col justify-between gap-12 xl:flex-row xl:items-center&quot;] &gt; nav[class=&quot;grid gap-2 grid-cols-1 md:grid-cols-2 xl:w-2/3 xl:grid-cols-3 2xl:grid-cols-3 2xl:w-1/2&quot;] &gt; a[class=&quot;inline-flex items-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px h-10 px-4 w-full justify-between py-6 bg-success-foreground hover:bg-success-foreground/70 active:bg-success-foreground/80 text-root text-base active&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='link(&quot;active active:bg-success-foreground/80 active:translate-y-px bg-success-foreground disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring font-medium h-10 hover:bg-success-foreground/70 inline-flex items-center justify-between px-4 py-6 ring-offset-background rounded-md text-base text-root transition-colors w-full&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='wait' value='3000' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='focus' value='' type='web' desc='Add focus' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='svg(&quot;class==lucide lucide-grip-vertical size-6 bg-inherit&quot;,rightOf(paragraph(&quot;Matched Credit Logic&quot;)))' fallback='true' selected='true'/>
+   <accessor type='unknown' value='svg(&quot;class==lucide lucide-grip-vertical size-6 bg-inherit&quot;,rightOf(paragraph(&quot;Recon Notification&quot;)))' fallback='true' selected='false'/>
+   <accessor type='unknown' value='svg(&quot;class==lucide lucide-grip-vertical size-6 bg-inherit&quot;,rightOf(paragraph(&quot;$&quot;)))' fallback='true' selected='false'/>
+   <accessor type='unknown' value='svg(&quot;class==lucide lucide-grip-vertical size-6 bg-inherit&quot;,rightOf(paragraph(&quot;@&quot;)))' fallback='true' selected='false'/>
+   <accessor type='unknown' value='svg(&quot;class==lucide lucide-grip-vertical size-6 bg-inherit&quot;,rightOf(paragraph(&quot;Potential Match&quot;)))' fallback='true' selected='false'/>
+   <accessor type='unknown' value='svg(&quot;class==lucide lucide-grip-vertical size-6 bg-inherit&quot;,rightOf(paragraph(&quot;trailing&quot;)))' fallback='true' selected='false'/>
+   <accessor type='unknown' value='svg(&quot;class==lucide lucide-grip-vertical size-6 bg-inherit&quot;,rightOf(paragraph(&quot;Statement Invoice Statement Character Limit&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='' type='web' desc='Click on action icon' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='svg(&quot;class==lucide lucide-grip-vertical size-6 bg-inherit&quot;,rightOf(paragraph(&quot;Matched Credit Logic&quot;)))' fallback='true' selected='true'/>
+   <accessor type='unknown' value='svg(&quot;class==lucide lucide-grip-vertical size-6 bg-inherit&quot;,rightOf(paragraph(&quot;Recon Notification&quot;)))' fallback='true' selected='false'/>
+   <accessor type='unknown' value='svg(&quot;class==lucide lucide-grip-vertical size-6 bg-inherit&quot;,rightOf(paragraph(&quot;$&quot;)))' fallback='true' selected='false'/>
+   <accessor type='unknown' value='svg(&quot;class==lucide lucide-grip-vertical size-6 bg-inherit&quot;,rightOf(paragraph(&quot;@&quot;)))' fallback='true' selected='false'/>
+   <accessor type='unknown' value='svg(&quot;class==lucide lucide-grip-vertical size-6 bg-inherit&quot;,rightOf(paragraph(&quot;Potential Match&quot;)))' fallback='true' selected='false'/>
+   <accessor type='unknown' value='svg(&quot;class==lucide lucide-grip-vertical size-6 bg-inherit&quot;,rightOf(paragraph(&quot;trailing&quot;)))' fallback='true' selected='false'/>
+   <accessor type='unknown' value='svg(&quot;class==lucide lucide-grip-vertical size-6 bg-inherit&quot;,rightOf(paragraph(&quot;Statement Invoice Statement Character Limit&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='' type='web' desc='Click on delete settings button' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='div(&quot;Delete Setting&quot;)' fallback='true' selected='true'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;radix-:r3aq:&apos;]/div[2]&quot;).xy(0.21, 0.58 )' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;relative cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors hover:cursor-pointer focus:bg-accent focus:text-accent-foreground data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50 flex justify-between gap-4 bg-destructive text-destructive-foreground hover:bg-destructive/90 hover:text-destructive-foreground/90&quot;]&apos;).xy(0.21, 0.58 )' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div[3]/div/div[2]&apos;).xy(0.21, 0.58 )' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;radix-:r3aq:&apos;)/div[@class=&apos;relative cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors hover:cursor-pointer focus:bg-accent focus:text-accent-foreground data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50 flex justify-between gap-4 bg-destructive text-destructive-foreground hover:bg-destructive/90 hover:text-destructive-foreground/90&apos;]&quot;).xy(0.21, 0.58 )' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='div({&apos;role&apos;:&apos;menuitem&apos;}).xy(0.21, 0.58 )' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;z-50 overflow-hidden rounded-md border bg-root/70 p-1 text-foreground shadow-md backdrop-blur-xl backdrop-brightness-150 animate-in data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 min-w-fit&quot;] &gt; div[class=&quot;relative cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors hover:cursor-pointer focus:bg-accent focus:text-accent-foreground data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50 flex justify-between gap-4 bg-destructive text-destructive-foreground hover:bg-destructive/90 hover:text-destructive-foreground/90&quot;]&apos;).xy(0.21, 0.58 )' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='div(&quot;bg-destructive cursor-default data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50 flex focus:bg-accent focus:text-accent-foreground gap-4 hover:bg-destructive/90 hover:cursor-pointer hover:text-destructive-foreground/90 items-center justify-between outline-none px-2 py-1.5 relative rounded-sm select-none text-destructive-foreground text-sm transition-colors&quot;).xy(0.21, 0.58 )' fallback='true' selected='false'/>
+   <accessor type='Text' value='div(&quot;Delete SettingDelete Setting&quot;).xy(0.21, 0.58 )' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;Delete Setting&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='div(&quot;Delete SettingDelete Setting&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../Utility Functions/Logout_Function.ds"' fallback='true' selected='true'/>
+</dialect>
+</step>
+</testcase>

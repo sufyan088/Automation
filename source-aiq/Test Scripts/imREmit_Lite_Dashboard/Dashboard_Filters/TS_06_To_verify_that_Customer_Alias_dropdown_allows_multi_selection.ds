@@ -1,0 +1,242 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testcase   name= 'TS_06_To_verify_that_Customer_Alias_dropdown_allows_multi_selection.ds' description= '' author= 'null' version= ''>
+<dpl filename='{ds}/../../../Resources/IM_DPL1.csv' exectype='runstepbystep' errorhandling='' type='JsDPL' locale='en_US'/>
+<fallback useFallback='true'/>
+<shadowDOM useShadowDOM='true'/>
+<step action='setShadowDOM' value='true' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='setFindOnlyVisible' value='false' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='setFindOnlyEnabled' value='false' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='Click on Admin module' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../Utility Functions/Login_As_An_Admin.ds"' fallback='true' selected='true'/>
+   <accessor type='unknown' value='"{ds}/../UtilityFunction/Login_As_An_Admin.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../Utility Functions/Login_As_An_Admin.ds"' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='Click on ImRemit tab' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../Utility Functions/imREmit_Lite/Click_on_imREmit_module.ds"' fallback='true' selected='true'/>
+   <accessor type='unknown' value='byXPath(&quot;//*[contains(@class,&apos;w-full h-full flex flex-col justify-center items-center&apos;)][5]&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='byXPath(&quot;//*[contains(@class,&apos;w-full h-full flex flex-col justify-center items-center&apos;)][1]&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='byXPath(&quot;//*[contains(@class,&apos;w-full h-full flex flex-col justify-center items-center&apos;)][2]&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../Utility Functions/imREmit/Click_on_imREmit_modulet.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../Utility Functions/imREmit/Click_on_imREmit_module.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../Utility Functions/imREmit_Lite/Click_on_imREmit_module.ds"' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='Click on imREmit lite dashboard button.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='link([&quot;Dashboard&quot;])' fallback='true' selected='true'/>
+   <accessor type='AttrHref' value='link(&quot;/app/imremit-lite/dashboard[2]&quot;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='link(0, _in(section({&apos;aria-label&apos;:&apos;ImREmit Lite subroute navigation&apos;})))' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div[3]/div/section/nav/a&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&apos;//div[3]/div/section/nav/a[1]&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;/html[1]/body[1]/div[3]/div[@class=&apos;z-50 rounded-md border bg-root p-4 text-foreground shadow-md outline-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 max-w-sm&apos;]/section[@class=&apos;pt-4&apos;]/nav[@class=&apos;grid gap-2 grid-rows-1&apos;]/a[@class=&apos;inline-flex items-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px h-10 px-4 w-full justify-between py-6 bg-success-foreground hover:bg-success-foreground/70 active:bg-success-foreground/80 text-root text-base active&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;z-50 rounded-md border bg-root p-4 text-foreground shadow-md outline-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 max-w-sm&quot;] &gt; section[class=&quot;pt-4&quot;] &gt; nav[class=&quot;grid gap-2 grid-rows-1&quot;] &gt; a[class=&quot;inline-flex items-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px h-10 px-4 w-full justify-between py-6 bg-success-foreground hover:bg-success-foreground/70 active:bg-success-foreground/80 text-root text-base active&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='link({&apos;tabindex&apos;:&apos;-1&apos;})' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='link(&quot;active active:bg-success-foreground/80 active:translate-y-px bg-success-foreground disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring font-medium h-10 hover:bg-success-foreground/70 inline-flex items-center justify-between px-4 py-6 ring-offset-background rounded-md text-base text-root transition-colors w-full[1]&quot;)' fallback='true' selected='false'/>
+   <accessor type='Text' value='link(&quot;imREmit Lite Dashboard[1]&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='link([&quot;imREmit Lite Dashboard&quot;])' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='wait' value='2000' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='2000' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='assertExists' value='""' type='web' desc='Verify that Customer Alias selected by default.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='div(&quot;Select customer alias...&quot;)' fallback='true' selected='true'/>
+   <accessor type='XPath' value='byXPath(&quot;//main[@id=&apos;root&apos;]/article/main/article/section[3]/div[2]/div/table/tbody/tr/td[3]/a/p&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;leading-6 cursor-pointer font-semibold underline hover:text-theme&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Supplier/[Sup]2534&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/main/article/main/article/section[3]/div[2]/div/table/tbody/tr/td[3]/a/p&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;root&apos;)/article[@class=&apos;flex min-h-screen flex-col&apos;]/main[@class=&apos;break-word flex-1 overflow-auto bg-background px-6 py-4 md:ml-16&apos;]/article[@class=&apos;w-full flex-1 bg-background&apos;]/section[@class=&apos;space-y-2&apos;]/div[@class=&apos;rounded-md border&apos;]/div[@class=&apos;w-full overflow-auto rounded-lg bg-root&apos;]/table[@class=&apos;w-full caption-bottom font-mono text-sm&apos;]/tbody[@class=&apos;[&amp;_tr:last-child]:border-0&apos;]/tr[@class=&apos;border-b transition-colors duration-200 hover:bg-accent/50 data-[state=selected]:bg-accent&apos;]/td[@class=&apos;break-words p-4 align-middle transition-colors duration-150 [&amp;:has([role=checkbox])]:pr-0&apos;]/a[1]/p[@class=&apos;leading-6 cursor-pointer font-semibold underline hover:text-theme&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[1]//td[3]//a//p[@class=&quot;leading-6 cursor-pointer font-semibold underline hover:text-theme&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[1]//td[3]//a//p[text()=&quot;Supplier/[Sup]2534&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;p[class=&quot;leading-6 cursor-pointer font-semibold underline hover:text-theme&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='paragraph(&quot;cursor-pointer font-semibold hover:text-theme leading-6 underline&quot;)' fallback='true' selected='false'/>
+   <accessor type='Text' value='paragraph(&quot;Supplier/[Sup]2534&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='paragraph($Multi_Character)' fallback='true' selected='false'/>
+   <accessor type='unknown' value=' paragraph($Parent_Supplier) ' fallback='true' selected='false'/>
+   <accessor type='unknown' value='paragraph($Parent_Supplier)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='paragraph(&quot;Qa Parent Customer&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='paragraph(&quot;NUMBAQA-001&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='paragraph(&quot;Qa Child Customer&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='paragraph(&quot;CHILDALIAS01&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;Select sender...&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;Select bank...&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;Select customer alias...&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='Click the Customer Alias dropdown field' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='div(&quot;Select customer alias...&quot;)' fallback='true' selected='true'/>
+   <accessor type='XPath' value='byXPath(&quot;//main[@id=&apos;root&apos;]/article/main/article/section[3]/div[2]/div/table/tbody/tr/td[3]/a/p&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;leading-6 cursor-pointer font-semibold underline hover:text-theme&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Supplier/[Sup]2534&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/main/article/main/article/section[3]/div[2]/div/table/tbody/tr/td[3]/a/p&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;root&apos;)/article[@class=&apos;flex min-h-screen flex-col&apos;]/main[@class=&apos;break-word flex-1 overflow-auto bg-background px-6 py-4 md:ml-16&apos;]/article[@class=&apos;w-full flex-1 bg-background&apos;]/section[@class=&apos;space-y-2&apos;]/div[@class=&apos;rounded-md border&apos;]/div[@class=&apos;w-full overflow-auto rounded-lg bg-root&apos;]/table[@class=&apos;w-full caption-bottom font-mono text-sm&apos;]/tbody[@class=&apos;[&amp;_tr:last-child]:border-0&apos;]/tr[@class=&apos;border-b transition-colors duration-200 hover:bg-accent/50 data-[state=selected]:bg-accent&apos;]/td[@class=&apos;break-words p-4 align-middle transition-colors duration-150 [&amp;:has([role=checkbox])]:pr-0&apos;]/a[1]/p[@class=&apos;leading-6 cursor-pointer font-semibold underline hover:text-theme&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[1]//td[3]//a//p[@class=&quot;leading-6 cursor-pointer font-semibold underline hover:text-theme&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[1]//td[3]//a//p[text()=&quot;Supplier/[Sup]2534&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;p[class=&quot;leading-6 cursor-pointer font-semibold underline hover:text-theme&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='paragraph(&quot;cursor-pointer font-semibold hover:text-theme leading-6 underline&quot;)' fallback='true' selected='false'/>
+   <accessor type='Text' value='paragraph(&quot;Supplier/[Sup]2534&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='paragraph($Multi_Character)' fallback='true' selected='false'/>
+   <accessor type='unknown' value=' paragraph($Parent_Supplier) ' fallback='true' selected='false'/>
+   <accessor type='unknown' value='paragraph($Parent_Supplier)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='paragraph(&quot;Qa Parent Customer&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='paragraph(&quot;NUMBAQA-001&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='paragraph(&quot;Qa Child Customer&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='paragraph(&quot;CHILDALIAS01&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;Select sender...&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;Select bank...&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;Select customer alias...&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='focus' value='""' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='div(&quot;&amp;&amp;&quot;)' fallback='true' selected='true'/>
+   <accessor type='XPath' value='byXPath(&quot;//main[@id=&apos;root&apos;]/article/main/article/section[3]/div[2]/div/table/tbody/tr/td[3]/a/p&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;leading-6 cursor-pointer font-semibold underline hover:text-theme&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Supplier/[Sup]2534&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/main/article/main/article/section[3]/div[2]/div/table/tbody/tr/td[3]/a/p&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;root&apos;)/article[@class=&apos;flex min-h-screen flex-col&apos;]/main[@class=&apos;break-word flex-1 overflow-auto bg-background px-6 py-4 md:ml-16&apos;]/article[@class=&apos;w-full flex-1 bg-background&apos;]/section[@class=&apos;space-y-2&apos;]/div[@class=&apos;rounded-md border&apos;]/div[@class=&apos;w-full overflow-auto rounded-lg bg-root&apos;]/table[@class=&apos;w-full caption-bottom font-mono text-sm&apos;]/tbody[@class=&apos;[&amp;_tr:last-child]:border-0&apos;]/tr[@class=&apos;border-b transition-colors duration-200 hover:bg-accent/50 data-[state=selected]:bg-accent&apos;]/td[@class=&apos;break-words p-4 align-middle transition-colors duration-150 [&amp;:has([role=checkbox])]:pr-0&apos;]/a[1]/p[@class=&apos;leading-6 cursor-pointer font-semibold underline hover:text-theme&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[1]//td[3]//a//p[@class=&quot;leading-6 cursor-pointer font-semibold underline hover:text-theme&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[1]//td[3]//a//p[text()=&quot;Supplier/[Sup]2534&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;p[class=&quot;leading-6 cursor-pointer font-semibold underline hover:text-theme&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='paragraph(&quot;cursor-pointer font-semibold hover:text-theme leading-6 underline&quot;)' fallback='true' selected='false'/>
+   <accessor type='Text' value='paragraph(&quot;Supplier/[Sup]2534&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='paragraph($Multi_Character)' fallback='true' selected='false'/>
+   <accessor type='unknown' value=' paragraph($Parent_Supplier) ' fallback='true' selected='false'/>
+   <accessor type='unknown' value='paragraph($Parent_Supplier)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='paragraph(&quot;Qa Parent Customer&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='paragraph(&quot;NUMBAQA-001&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='paragraph(&quot;Qa Child Customer&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='paragraph(&quot;CHILDALIAS01&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;Select sender...&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;Select bank...&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;Alias of Parent&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;Alias of Parent&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;Alias of Parent&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;Alias of Parent&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;&amp;&amp;&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='Click to select the Customer Alias' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='div(&quot;&amp;&amp;&quot;)' fallback='true' selected='true'/>
+   <accessor type='XPath' value='byXPath(&quot;//main[@id=&apos;root&apos;]/article/main/article/section[3]/div[2]/div/table/tbody/tr/td[3]/a/p&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;leading-6 cursor-pointer font-semibold underline hover:text-theme&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Supplier/[Sup]2534&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/main/article/main/article/section[3]/div[2]/div/table/tbody/tr/td[3]/a/p&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;root&apos;)/article[@class=&apos;flex min-h-screen flex-col&apos;]/main[@class=&apos;break-word flex-1 overflow-auto bg-background px-6 py-4 md:ml-16&apos;]/article[@class=&apos;w-full flex-1 bg-background&apos;]/section[@class=&apos;space-y-2&apos;]/div[@class=&apos;rounded-md border&apos;]/div[@class=&apos;w-full overflow-auto rounded-lg bg-root&apos;]/table[@class=&apos;w-full caption-bottom font-mono text-sm&apos;]/tbody[@class=&apos;[&amp;_tr:last-child]:border-0&apos;]/tr[@class=&apos;border-b transition-colors duration-200 hover:bg-accent/50 data-[state=selected]:bg-accent&apos;]/td[@class=&apos;break-words p-4 align-middle transition-colors duration-150 [&amp;:has([role=checkbox])]:pr-0&apos;]/a[1]/p[@class=&apos;leading-6 cursor-pointer font-semibold underline hover:text-theme&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[1]//td[3]//a//p[@class=&quot;leading-6 cursor-pointer font-semibold underline hover:text-theme&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[1]//td[3]//a//p[text()=&quot;Supplier/[Sup]2534&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;p[class=&quot;leading-6 cursor-pointer font-semibold underline hover:text-theme&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='paragraph(&quot;cursor-pointer font-semibold hover:text-theme leading-6 underline&quot;)' fallback='true' selected='false'/>
+   <accessor type='Text' value='paragraph(&quot;Supplier/[Sup]2534&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='paragraph($Multi_Character)' fallback='true' selected='false'/>
+   <accessor type='unknown' value=' paragraph($Parent_Supplier) ' fallback='true' selected='false'/>
+   <accessor type='unknown' value='paragraph($Parent_Supplier)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='paragraph(&quot;Qa Parent Customer&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='paragraph(&quot;NUMBAQA-001&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='paragraph(&quot;Qa Child Customer&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='paragraph(&quot;CHILDALIAS01&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;Select sender...&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;Select bank...&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;Alias of Parent&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;Alias of Parent&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;Alias of Parent&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;Alias of Parent&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;&amp;&amp;&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='wait' value='2000' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='2000' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='setValue' value='"Alias of Parent"' type='web' desc='Enter the value in the Search field' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='textbox(&quot;placeholder==Search aliases...&quot;)' fallback='true' selected='true'/>
+   <accessor type='unknown' value='textbox(&quot;placeholder==Search options...&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='focus' value='""' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='div(&quot;Alias of Parent&quot;)' fallback='true' selected='true'/>
+   <accessor type='XPath' value='byXPath(&quot;//main[@id=&apos;root&apos;]/article/main/article/section[3]/div[2]/div/table/tbody/tr/td[3]/a/p&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;leading-6 cursor-pointer font-semibold underline hover:text-theme&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Supplier/[Sup]2534&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/main/article/main/article/section[3]/div[2]/div/table/tbody/tr/td[3]/a/p&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;root&apos;)/article[@class=&apos;flex min-h-screen flex-col&apos;]/main[@class=&apos;break-word flex-1 overflow-auto bg-background px-6 py-4 md:ml-16&apos;]/article[@class=&apos;w-full flex-1 bg-background&apos;]/section[@class=&apos;space-y-2&apos;]/div[@class=&apos;rounded-md border&apos;]/div[@class=&apos;w-full overflow-auto rounded-lg bg-root&apos;]/table[@class=&apos;w-full caption-bottom font-mono text-sm&apos;]/tbody[@class=&apos;[&amp;_tr:last-child]:border-0&apos;]/tr[@class=&apos;border-b transition-colors duration-200 hover:bg-accent/50 data-[state=selected]:bg-accent&apos;]/td[@class=&apos;break-words p-4 align-middle transition-colors duration-150 [&amp;:has([role=checkbox])]:pr-0&apos;]/a[1]/p[@class=&apos;leading-6 cursor-pointer font-semibold underline hover:text-theme&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[1]//td[3]//a//p[@class=&quot;leading-6 cursor-pointer font-semibold underline hover:text-theme&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[1]//td[3]//a//p[text()=&quot;Supplier/[Sup]2534&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;p[class=&quot;leading-6 cursor-pointer font-semibold underline hover:text-theme&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='paragraph(&quot;cursor-pointer font-semibold hover:text-theme leading-6 underline&quot;)' fallback='true' selected='false'/>
+   <accessor type='Text' value='paragraph(&quot;Supplier/[Sup]2534&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='paragraph($Multi_Character)' fallback='true' selected='false'/>
+   <accessor type='unknown' value=' paragraph($Parent_Supplier) ' fallback='true' selected='false'/>
+   <accessor type='unknown' value='paragraph($Parent_Supplier)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='paragraph(&quot;Qa Parent Customer&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='paragraph(&quot;NUMBAQA-001&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='paragraph(&quot;Qa Child Customer&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='paragraph(&quot;CHILDALIAS01&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;Select sender...&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;Select bank...&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;Alias of Parent&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;Alias of Parent&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;Alias of Parent&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;Alias of Parent&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;Alias of Parent&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='Click to select the Customer Alias' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='div(&quot;Alias of Parent&quot;)' fallback='true' selected='true'/>
+   <accessor type='XPath' value='byXPath(&quot;//main[@id=&apos;root&apos;]/article/main/article/section[3]/div[2]/div/table/tbody/tr/td[3]/a/p&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;leading-6 cursor-pointer font-semibold underline hover:text-theme&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Supplier/[Sup]2534&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/main/article/main/article/section[3]/div[2]/div/table/tbody/tr/td[3]/a/p&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;root&apos;)/article[@class=&apos;flex min-h-screen flex-col&apos;]/main[@class=&apos;break-word flex-1 overflow-auto bg-background px-6 py-4 md:ml-16&apos;]/article[@class=&apos;w-full flex-1 bg-background&apos;]/section[@class=&apos;space-y-2&apos;]/div[@class=&apos;rounded-md border&apos;]/div[@class=&apos;w-full overflow-auto rounded-lg bg-root&apos;]/table[@class=&apos;w-full caption-bottom font-mono text-sm&apos;]/tbody[@class=&apos;[&amp;_tr:last-child]:border-0&apos;]/tr[@class=&apos;border-b transition-colors duration-200 hover:bg-accent/50 data-[state=selected]:bg-accent&apos;]/td[@class=&apos;break-words p-4 align-middle transition-colors duration-150 [&amp;:has([role=checkbox])]:pr-0&apos;]/a[1]/p[@class=&apos;leading-6 cursor-pointer font-semibold underline hover:text-theme&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[1]//td[3]//a//p[@class=&quot;leading-6 cursor-pointer font-semibold underline hover:text-theme&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[1]//td[3]//a//p[text()=&quot;Supplier/[Sup]2534&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;p[class=&quot;leading-6 cursor-pointer font-semibold underline hover:text-theme&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='paragraph(&quot;cursor-pointer font-semibold hover:text-theme leading-6 underline&quot;)' fallback='true' selected='false'/>
+   <accessor type='Text' value='paragraph(&quot;Supplier/[Sup]2534&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='paragraph($Multi_Character)' fallback='true' selected='false'/>
+   <accessor type='unknown' value=' paragraph($Parent_Supplier) ' fallback='true' selected='false'/>
+   <accessor type='unknown' value='paragraph($Parent_Supplier)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='paragraph(&quot;Qa Parent Customer&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='paragraph(&quot;NUMBAQA-001&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='paragraph(&quot;Qa Child Customer&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='paragraph(&quot;CHILDALIAS01&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;Select sender...&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;Select bank...&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;Alias of Parent&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;Alias of Parent&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;Alias of Parent&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;Alias of Parent&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;Alias of Parent&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../Utility Functions/Logout_Function.ds"' fallback='true' selected='true'/>
+   <accessor type='unknown' value='"{ds}/../../Utility Functions/Logout_Function.ds"' fallback='true' selected='false'/>
+</dialect>
+</step>
+</testcase>

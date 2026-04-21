@@ -1,0 +1,234 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testcase   name= 'TC_26_To_verify_the_sorting_arrows_in_the_proxy_pay_entries_hide.ds' description= '' author= '' version= ''>
+<dpl filename='{ds}/../../Resources/IM_DPL1.csv' exectype='runstepbystep' errorhandling='' type='JsDPL' locale='null'/>
+<fallback useFallback='true'/>
+<shadowDOM useShadowDOM='true'/>
+<step action='setShadowDOM' value='true' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='setFindOnlyVisible' value='false' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='setFindOnlyEnabled' value='false' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='Click on Admin module' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../Utility Functions/Login_As_An_Admin.ds"' fallback='true' selected='true'/>
+   <accessor type='unknown' value='"{ds}/../UtilityFunction/Login_As_An_Admin.ds"' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='Click on ImRemit(Lite) tab' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../Utility Functions/imREmit_Lite/Click_on_imREmit_module.ds"' fallback='true' selected='true'/>
+   <accessor type='unknown' value='byXPath(&quot;//*[contains(@class,&apos;w-full h-full flex flex-col justify-center items-center&apos;)][5]&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='byXPath(&quot;//*[contains(@class,&apos;w-full h-full flex flex-col justify-center items-center&apos;)][1]&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='byXPath(&quot;//*[contains(@class,&apos;w-full h-full flex flex-col justify-center items-center&apos;)][2]&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../Utility Functions/imREmit/Click_on_imREmit_modulet.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../Utility Functions/imREmit/Click_on_imREmit_module.ds"' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='Click on the Proxy Pay Dashboard sub module' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='link(&quot;Proxy Pay Dashboard&quot;)' fallback='true' selected='true'/>
+   <accessor type='AttrClass' value='link(&quot;active:translate-y-px bg-primary disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring font-medium h-10 hover:bg-primary/80 inline-flex items-center justify-between px-4 py-6 ring-offset-background rounded-md text-root text-sm transition-colors w-full[1]&quot;)' fallback='true' selected='false'/>
+   <accessor type='AttrHref' value='link(&quot;/app/imremit/proxy-pay-dashboard[1]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&apos;//div[3]/div/section/nav/a[4]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div[3]/div/section/nav/a[4]&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;/html[1]/body[1]/div[3]/div[@class=&apos;z-50 rounded-md border bg-root p-4 text-foreground shadow-md outline-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 max-w-sm&apos;]/section[@class=&apos;pt-4&apos;]/nav[@class=&apos;grid gap-2 grid-rows-1&apos;]/a[@class=&apos;inline-flex items-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px bg-primary text-root hover:bg-primary/80 h-10 px-4 w-full justify-between py-6 text-sm&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;z-50 rounded-md border bg-root p-4 text-foreground shadow-md outline-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 max-w-sm&quot;] &gt; section[class=&quot;pt-4&quot;] &gt; nav[class=&quot;grid gap-2 grid-rows-1&quot;] &gt; a[class=&quot;inline-flex items-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px bg-primary text-root hover:bg-primary/80 h-10 px-4 w-full justify-between py-6 text-sm&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='link(3, _in(section({&apos;aria-label&apos;:&apos;ImREmit subroute navigation&apos;})))' fallback='true' selected='false'/>
+   <accessor type='Text' value='link(&quot;Proxy Pay Dashboard[1]&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../Utility Functions/imREmit_Lite/Select_Customer_ProxyPay_Dashboard_imREmit_Lite.ds"' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='assertExists' value='' type='web' desc='Validate the Proxy Pay Dashboard heading is visible' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='heading2(&quot;Proxy Pay Dashboard&quot;)' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='Click on Organization ID' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='span(&quot;Organization ID&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='span(19, _in(div({&apos;id&apos;:&apos;root&apos;})))' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='span(&quot;max-w-24&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//button[@id=&apos;radix-:rp1:&apos;]/span&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;max-w-24&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Organization ID&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/section[2]/div[2]/div/div/table/thead/tr/th/div/button/span&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;radix-:rp1:&apos;)/span[@class=&apos;max-w-24&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;tr[class=&quot;border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted&quot;] &gt; th[class=&quot;h-16 bg-foreground px-4 text-left align-middle font-semibold text-root [&amp;:has([role=checkbox])]:pr-0&quot;] &gt; div[class=&quot;flex items-center space-x-2&quot;] &gt; button[class=&quot;inline-flex items-center justify-center text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px hover:bg-accent/70 hover:text-accent-foreground h-11 rounded-md -ml-3 min-h-fit gap-2 px-2 text-left data-[state=open]:bg-accent-foreground&quot;] &gt; span[class=&quot;max-w-24&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='span(19, _in(div(&quot;root&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='assertExists' value='' type='web' desc='Validate that hide is visible in dropdown' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='span(&quot;Hide column&quot;)' fallback='true' selected='true'/>
+   <accessor type='unknown' value='div(&quot;Asc&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='div(&quot;Desc&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='div(&quot;Hide&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='' type='web' desc='Select hide from dropdown' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='span(&quot;Hide column&quot;)' fallback='true' selected='true'/>
+   <accessor type='unknown' value='div(&quot;Asc&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='div(&quot;Desc&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='div(&quot;Hide&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='Click on Supplier Name' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='span(&quot;Supplier Name&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='span(20, _in(div({&apos;id&apos;:&apos;root&apos;})))' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='span(&quot;max-w-24[1]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//button[@id=&apos;radix-:ri0:&apos;]/span&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Supplier Name&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/section[2]/div[2]/div/div/table/thead/tr/th[2]/div/button/span&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;radix-:ri0:&apos;)/span[@class=&apos;max-w-24&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='span(20, _in(div(&quot;root&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='assertExists' value='' type='web' desc='Validate that hide is visible in dropdown' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='span(&quot;Hide column&quot;)' fallback='true' selected='true'/>
+   <accessor type='unknown' value='div(&quot;Asc&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='div(&quot;Desc&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='div(&quot;Hide&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='' type='web' desc='Select hide from dropdown' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='span(&quot;Hide column&quot;)' fallback='true' selected='true'/>
+   <accessor type='unknown' value='div(&quot;Asc&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='div(&quot;Desc&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='div(&quot;Hide&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='Click on payment number' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='span(&quot;Payment Number&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='span(23, _in(div({&apos;id&apos;:&apos;root&apos;})))' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='span(&quot;max-w-24[4]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//button[@id=&apos;radix-:ri6:&apos;]/span&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Payment Number&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/section[2]/div[2]/div/div/table/thead/tr/th[5]/div/button/span&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;radix-:ri6:&apos;)/span[@class=&apos;max-w-24&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='span(23, _in(div(&quot;root&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='assertExists' value='' type='web' desc='Validate that hide is visible in dropdown' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='span(&quot;Hide column&quot;)' fallback='true' selected='true'/>
+   <accessor type='unknown' value='div(&quot;Asc&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='div(&quot;Desc&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='div(&quot;Hide&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='' type='web' desc='Select hide from dropdown' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='span(&quot;Hide column&quot;)' fallback='true' selected='true'/>
+   <accessor type='unknown' value='div(&quot;Asc&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='div(&quot;Desc&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='div(&quot;Hide&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='CLick on agent name' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='span(&quot;Agent Name&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='span(27, _in(div({&apos;id&apos;:&apos;root&apos;})))' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='span(&quot;max-w-24[8]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//button[@id=&apos;radix-:rie:&apos;]/span&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Agent Name&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/section[2]/div[2]/div/div/table/thead/tr/th[9]/div/button/span&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;radix-:rie:&apos;)/span[@class=&apos;max-w-24&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='span(27, _in(div(&quot;root&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='assertExists' value='' type='web' desc='Validate that hide is visible in dropdown' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='span(&quot;Hide column&quot;)' fallback='true' selected='true'/>
+   <accessor type='unknown' value='div(&quot;Asc&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='div(&quot;Desc&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='div(&quot;Hide&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='' type='web' desc='Select hide from dropdown' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='span(&quot;Hide column&quot;)' fallback='true' selected='true'/>
+   <accessor type='unknown' value='div(&quot;Asc&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='div(&quot;Desc&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='div(&quot;Hide&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='Click on status description' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='span(&quot;Status Description&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='span(29, _in(div({&apos;id&apos;:&apos;root&apos;})))' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='span(&quot;max-w-24[10]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//button[@id=&apos;radix-:rot:&apos;]/span&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Status Description&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/section[2]/div[2]/div/div/table/thead/tr/th[11]/div/button/span&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;radix-:rot:&apos;)/span[@class=&apos;max-w-24&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='span(29, _in(div(&quot;root&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='assertExists' value='' type='web' desc='Validate that hide is visible in dropdown' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='span(&quot;Hide column&quot;)' fallback='true' selected='true'/>
+   <accessor type='unknown' value='div(&quot;Asc&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='div(&quot;Desc&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='div(&quot;Hide&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='' type='web' desc='Select hide from dropdown' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='span(&quot;Hide column&quot;)' fallback='true' selected='true'/>
+   <accessor type='unknown' value='div(&quot;Asc&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='div(&quot;Desc&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='div(&quot;Hide&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='Click on status' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='span(&quot;Status&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='span(28, _in(div({&apos;id&apos;:&apos;root&apos;})))' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='span(&quot;max-w-24[9]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//button[@id=&apos;radix-:ror:&apos;]/span&quot;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/section[2]/div[2]/div/div/table/thead/tr/th[10]/div/button/span&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;radix-:ror:&apos;)/span[@class=&apos;max-w-24&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='span(28, _in(div(&quot;root&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='assertExists' value='' type='web' desc='Validate that hide is visible in dropdown' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='span(&quot;Hide column&quot;)' fallback='true' selected='true'/>
+   <accessor type='unknown' value='div(&quot;Asc&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='div(&quot;Desc&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='div(&quot;Hide&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='' type='web' desc='Select hide from dropdown' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='span(&quot;Hide column&quot;)' fallback='true' selected='true'/>
+   <accessor type='unknown' value='div(&quot;Asc&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='div(&quot;Desc&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='div(&quot;Hide&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../Utility Functions/Logout_Function.ds"' fallback='true' selected='true'/>
+</dialect>
+</step>
+</testcase>

@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testcase   name= 'TS_19_To_verify_that_Advanced_Search_button_is_functional.ds' description= '' author= 'null' version= ''>
+<dpl filename='{ds}/../../Resources/IM_DPL1.csv' exectype='runstepbystep' errorhandling='' type='JsDPL' locale='null'/>
+<fallback useFallback='true'/>
+<shadowDOM useShadowDOM='true'/>
+<step action='setShadowDOM' value='true' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='setFindOnlyVisible' value='false' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='setFindOnlyEnabled' value='false' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='Logged in as an Admin' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../Utility Functions/Login_As_An_Admin.ds"' fallback='true' selected='true'/>
+   <accessor type='unknown' value='"{ds}/../UtilityFunction/Login_As_An_Admin.ds"' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='Click on &quot;Invoice Tracker&quot; module ' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../Utility Functions/Invoice_Tracker/Click_on_Invoice_Tracker_Module.ds"' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='assertExists' value='' type='web' desc='Validate invoices page' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='heading1(&quot;Invoices&quot;)' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='Click on &quot;Advanced Search&quot; button ' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='span(&quot;Advanced Search&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='button(20, _in(div({&apos;id&apos;:&apos;root&apos;})))' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='button(&quot;active:translate-y-px bg-root border border-dashed border-input cursor-pointer data-[state=open]:bg-destructive data-[state=open]:border-destructive-foreground data-[state=open]:text-destructive-foreground disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring font-medium font-sans gap-2 h-8 hover:bg-accent hover:text-accent-foreground inline-flex items-center justify-center px-3 ring-offset-background rounded-md text-sm transition-colors whitespace-nowrap&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;root&apos;]/article/main/article/div/form/div/div[2]/button[1]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;inline-flex items-center justify-center text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px border border-input hover:bg-accent hover:text-accent-foreground px-3 rounded-md cursor-pointer font-sans h-8 gap-2 whitespace-nowrap border-dashed bg-root data-[state=open]:border-destructive-foreground data-[state=open]:bg-destructive data-[state=open]:text-destructive-foreground&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/div/form/div/div[2]/button&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;root&apos;)/article[@class=&apos;flex min-h-screen flex-col&apos;]/main[@class=&apos;break-word flex-1 overflow-auto bg-background px-6 py-4 md:ml-16&apos;]/article[1]/div[@class=&apos;space-y-4&apos;]/form[1]/div[@class=&apos;flex justify-between gap-4&apos;]/div[@class=&apos;grid items-end gap-2 md:grid-cols-2 xl:grid-cols-3 2xl:flex&apos;]/button[@class=&apos;inline-flex items-center justify-center text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px border border-input hover:bg-accent hover:text-accent-foreground px-3 rounded-md cursor-pointer font-sans h-8 gap-2 whitespace-nowrap border-dashed bg-root data-[state=open]:border-destructive-foreground data-[state=open]:bg-destructive data-[state=open]:text-destructive-foreground&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='button({&apos;aria-controls&apos;:&apos;radix-:r5m:&apos;})' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;flex justify-between gap-4&quot;] &gt; div[class=&quot;grid items-end gap-2 md:grid-cols-2 xl:grid-cols-3 2xl:flex&quot;] &gt; button[class=&quot;inline-flex items-center justify-center text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px border border-input hover:bg-accent hover:text-accent-foreground px-3 rounded-md cursor-pointer font-sans h-8 gap-2 whitespace-nowrap border-dashed bg-root data-[state=open]:border-destructive-foreground data-[state=open]:bg-destructive data-[state=open]:text-destructive-foreground&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='button(20, _in(div(&quot;root&quot;)))' fallback='true' selected='false'/>
+   <accessor type='Text' value='button(&quot;Advanced SearchAdvanced Search&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='setValue' value='"100"' type='web' desc='Enter value in &quot;Invoice Amount&quot; field ' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='numberbox([&quot;form-item&quot;],below(label(&quot;Invoice Amount&quot;)))' fallback='true' selected='true'/>
+   <accessor type='unknown' value='numberbox([&quot;form-item&quot;],above(label(&quot;Number:&quot;)))' fallback='true' selected='false'/>
+   <accessor type='unknown' value='numberbox([&quot;form-item&quot;],above(label(&quot;Invoice Amount&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='setValue' value='"2726584"' type='web' desc='Enter value in &quot;Payment Number&quot; field ' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='textbox(&quot;placeholder==Payment number...&quot;)' fallback='true' selected='true'/>
+   <accessor type='unknown' value='textbox(&quot;placeholder==Enter payment number&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='assertExists' value='"52,50"' type='web' desc='Validate &quot;Facilities&quot; field is visible ' isThinkTime='false' isCommented='true' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='label(&quot;Facilities&quot;)' fallback='true' selected='true'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;radix-:r5m:&apos;]/div/div[3]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;space-y-2 flex flex-col pt-2&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div[3]/div/div/div[3]&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;radix-:r5m:&apos;)/div[@class=&apos;grid grid-cols-1 gap-x-2 gap-y-2 lg:grid-cols-2 lg:gap-x-4 lg:gap-y-4 xl:grid-cols-3 2xl:grid-cols-4&apos;]/div[@class=&apos;space-y-2 flex flex-col pt-2&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;z-50 rounded-md border bg-root/80 p-4 font-sans text-foreground shadow-md outline-none backdrop-blur-sm animate-in data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 w-full&quot;] &gt; div[class=&quot;grid grid-cols-1 gap-x-2 gap-y-2 lg:grid-cols-2 lg:gap-x-4 lg:gap-y-4 xl:grid-cols-3 2xl:grid-cols-4&quot;] &gt; div[class=&quot;space-y-2 flex flex-col pt-2&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='div(&quot;flex flex-col pt-2 space-y-2&quot;)' fallback='true' selected='false'/>
+   <accessor type='Text' value='div(&quot;Facilities&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='setValue' value='"12"' type='web' desc='Enter value in &quot;PO Number&quot; field ' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='textbox(&quot;placeholder==PO number...&quot;)' fallback='true' selected='true'/>
+   <accessor type='unknown' value='textbox(&quot;placeholder==Enter PO Number&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='setValue' value='"13"' type='web' desc='Enter value in &quot;ERP Unique ID&quot; field ' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='textbox(&quot;placeholder==ERP unique ID...&quot;)' fallback='true' selected='true'/>
+   <accessor type='unknown' value='textbox(&quot;placeholder==Enter ERP UNIQUE ID&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='setValue' value='$Payment_Date' type='web' desc='Select date from the &quot;Payment Date&quot; field ' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='span(&quot;Payment Date&quot;)' fallback='true' selected='true'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;radix-:r5m:&apos;]/div/div[6]/button&quot;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div[3]/div/div/div[6]/button&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;radix-:r5m:&apos;)/div[@class=&apos;grid grid-cols-1 gap-x-2 gap-y-2 lg:grid-cols-2 lg:gap-x-4 lg:gap-y-4 xl:grid-cols-3 2xl:grid-cols-4&apos;]/div[@class=&apos;space-y-2 flex flex-col pt-2&apos;]/button[@class=&apos;inline-flex items-center rounded-md text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px border border-input hover:bg-accent hover:text-accent-foreground h-10 py-2 px-4 cursor-pointer font-sans justify-start bg-root text-left font-normal text-muted-foreground&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='button({&apos;aria-controls&apos;:&apos;radix-:rf7:&apos;})' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;z-50 rounded-md border bg-root/80 p-4 font-sans text-foreground shadow-md outline-none backdrop-blur-sm animate-in data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 w-full&quot;] &gt; div[class=&quot;grid grid-cols-1 gap-x-2 gap-y-2 lg:grid-cols-2 lg:gap-x-4 lg:gap-y-4 xl:grid-cols-3 2xl:grid-cols-4&quot;] &gt; div[class=&quot;space-y-2 flex flex-col pt-2&quot;] &gt; button[class=&quot;inline-flex items-center rounded-md text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px border border-input hover:bg-accent hover:text-accent-foreground h-10 py-2 px-4 cursor-pointer font-sans justify-start bg-root text-left font-normal text-muted-foreground&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='button(&quot;active:translate-y-px bg-root border border-input cursor-pointer disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring font-normal font-sans h-10 hover:bg-accent hover:text-accent-foreground inline-flex items-center justify-start px-4 py-2 ring-offset-background rounded-md text-left text-muted-foreground text-sm transition-colors[2]&quot;)' fallback='true' selected='false'/>
+   <accessor type='Text' value='button(&quot;Payment Date[2]&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Payment Date&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='store' value='$Payment_Date' type='web' desc='Store the value in Payment_Date' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='Payment_Date' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='log' value='$Payment_Date' type='web' desc='Log the stored value ' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='Payment_Date' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='setValue' value='"1HKK-NWWR-DR7P"' type='web' desc='Enter value in &quot;Invoice Amount&quot; field ' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='textbox(&quot;placeholder==Invoice number...&quot;)' fallback='true' selected='true'/>
+   <accessor type='unknown' value='textbox(&quot;placeholder==Enter invoice number&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../Utility Functions/Logout_Function.ds"' fallback='true' selected='true'/>
+</dialect>
+</step>
+</testcase>

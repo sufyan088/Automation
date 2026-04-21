@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testcase   name= 'TS_18_To_verify_that_the_Delete_Criteria_Setting_button_is_functional.ds' description= '' author= 'null' version= ''>
+<dpl filename='REPOSITORY/IM/Resources/IM_DPL1.csv' exectype='runstepbystep' errorhandling='' type='JsDPL' locale='en_US'/>
+<fallback useFallback='true'/>
+<shadowDOM useShadowDOM='true'/>
+<step action='setShadowDOM' value='true' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='setFindOnlyEnabled' value='false' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='false' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='setFindOnlyVisible' value='false' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='false' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../Utility Functions/Login_As_An_Admin.ds"' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../Utility Functions/Duplicate_Payments/Click_on_Duplicate_Payments_Module.ds"' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='Click on criteria settings button.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='link(&quot;Criteria Settings&quot;)' fallback='true' selected='true'/>
+   <accessor type='AttrClass' value='link(&quot;active:translate-y-px bg-primary disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring font-medium h-10 hover:bg-primary/80 inline-flex items-center justify-between px-4 py-6 ring-offset-background rounded-md text-base text-root transition-colors w-full[1]&quot;)' fallback='true' selected='false'/>
+   <accessor type='AttrHref' value='link(&quot;/app/duplicate-payments/criteria-settings&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;root&apos;]/article/main/article/section[1]/nav/a[3]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Criteria Settings&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/section/nav/a[3]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;a[href=&quot;/app/duplicate-payments/criteria-settings&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='link(2, _in(nav({&apos;aria-label&apos;:&apos;DuplicatePayments Subroute Navigation&apos;})))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='assertExists' value='""' type='web' desc='Validate that criteria settings button is visible.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='link(&quot;Criteria Settings&quot;)' fallback='true' selected='true'/>
+   <accessor type='AttrClass' value='link(&quot;active:translate-y-px bg-primary disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring font-medium h-10 hover:bg-primary/80 inline-flex items-center justify-between px-4 py-6 ring-offset-background rounded-md text-base text-root transition-colors w-full[1]&quot;)' fallback='true' selected='false'/>
+   <accessor type='AttrHref' value='link(&quot;/app/duplicate-payments/criteria-settings&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;root&apos;]/article/main/article/section[1]/nav/a[3]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Criteria Settings&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/section/nav/a[3]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;a[href=&quot;/app/duplicate-payments/criteria-settings&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='link(2, _in(nav({&apos;aria-label&apos;:&apos;DuplicatePayments Subroute Navigation&apos;})))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../Utility Functions/Duplicate_Payments/Select_Customer_Duplicates_Dashboard.ds"' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='click' value='' type='web' desc='Click on action icon.' isThinkTime='false' isCommented='true' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='svg(&quot;class==lucide lucide-grip-vertical size-6 bg-inherit&quot;,below(paragraph(&quot;Actions&quot;)))' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='assertExists' value='' type='web' desc='' isThinkTime='false' isCommented='true' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='div(&quot;Delete Criteria Setting&quot;)' fallback='true' selected='true'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;radix-:rfc:&apos;]/div[4]&quot;).xy(0.14, 0.55 )' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;relative select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors hover:cursor-pointer focus:bg-accent data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50 flex cursor-pointer justify-between gap-4 text-destructive-foreground focus:text-destructive-foreground&quot;]&apos;).xy(0.14, 0.55 )' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Delete Criteria Setting&quot;]&apos;).xy(0.14, 0.55 )' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div[3]/div/div[4]&apos;).xy(0.14, 0.55 )' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;radix-:rfc:&apos;)/div[@class=&apos;relative select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors hover:cursor-pointer focus:bg-accent data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50 flex cursor-pointer justify-between gap-4 text-destructive-foreground focus:text-destructive-foreground&apos;]&quot;).xy(0.14, 0.55 )' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='div({&apos;tabindex&apos;:&apos;0&apos;}).xy(0.14, 0.55 )' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;z-50 overflow-hidden rounded-md border bg-root/70 p-1 text-foreground shadow-md backdrop-blur-xl backdrop-brightness-150 animate-in data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 min-w-fit&quot;] &gt; div[class=&quot;relative select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors hover:cursor-pointer focus:bg-accent data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50 flex cursor-pointer justify-between gap-4 text-destructive-foreground focus:text-destructive-foreground&quot;]&apos;).xy(0.14, 0.55 )' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='div(&quot;cursor-pointer data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50 flex focus:bg-accent focus:text-destructive-foreground gap-4 hover:cursor-pointer items-center justify-between outline-none px-2 py-1.5 relative rounded-sm select-none text-destructive-foreground text-sm transition-colors&quot;).xy(0.14, 0.55 )' fallback='true' selected='false'/>
+   <accessor type='Text' value='div(&quot;Delete Criteria Setting&quot;).xy(0.14, 0.55 )' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='' type='web' desc='' isThinkTime='false' isCommented='true' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='div(&quot;Delete Criteria Setting&quot;)' fallback='true' selected='true'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;radix-:rfc:&apos;]/div[4]&quot;).xy(0.14, 0.55 )' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;relative select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors hover:cursor-pointer focus:bg-accent data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50 flex cursor-pointer justify-between gap-4 text-destructive-foreground focus:text-destructive-foreground&quot;]&apos;).xy(0.14, 0.55 )' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Delete Criteria Setting&quot;]&apos;).xy(0.14, 0.55 )' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div[3]/div/div[4]&apos;).xy(0.14, 0.55 )' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;radix-:rfc:&apos;)/div[@class=&apos;relative select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors hover:cursor-pointer focus:bg-accent data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50 flex cursor-pointer justify-between gap-4 text-destructive-foreground focus:text-destructive-foreground&apos;]&quot;).xy(0.14, 0.55 )' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='div({&apos;tabindex&apos;:&apos;0&apos;}).xy(0.14, 0.55 )' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;z-50 overflow-hidden rounded-md border bg-root/70 p-1 text-foreground shadow-md backdrop-blur-xl backdrop-brightness-150 animate-in data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 min-w-fit&quot;] &gt; div[class=&quot;relative select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors hover:cursor-pointer focus:bg-accent data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50 flex cursor-pointer justify-between gap-4 text-destructive-foreground focus:text-destructive-foreground&quot;]&apos;).xy(0.14, 0.55 )' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='div(&quot;cursor-pointer data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50 flex focus:bg-accent focus:text-destructive-foreground gap-4 hover:cursor-pointer items-center justify-between outline-none px-2 py-1.5 relative rounded-sm select-none text-destructive-foreground text-sm transition-colors&quot;).xy(0.14, 0.55 )' fallback='true' selected='false'/>
+   <accessor type='Text' value='div(&quot;Delete Criteria Setting&quot;).xy(0.14, 0.55 )' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='assertExists' value='""' type='web' desc='' isThinkTime='false' isCommented='true' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='span(&quot;Confirm deletion?&quot;)' fallback='true' selected='true'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;radix-:rfc:&apos;]/div[4]/div[1]/span&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;font-medium text-destructive-foreground&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Confirm deletion?&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div[3]/div/div[4]/div/span&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;radix-:rfc:&apos;)/div[@class=&apos;space-y-2 px-2 py-1&apos;]/div[@class=&apos;flex items-center gap-2 text-sm&apos;]/span[@class=&apos;font-medium text-destructive-foreground&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;z-50 overflow-hidden rounded-md border bg-root/70 p-1 text-foreground shadow-md backdrop-blur-xl backdrop-brightness-150 animate-in data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 min-w-fit&quot;] &gt; div[class=&quot;space-y-2 px-2 py-1&quot;] &gt; div[class=&quot;flex items-center gap-2 text-sm&quot;] &gt; span[class=&quot;font-medium text-destructive-foreground&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='span(&quot;font-medium text-destructive-foreground&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../Utility Functions/Logout_Function.ds"' fallback='true' selected='true'/>
+</dialect>
+</step>
+</testcase>

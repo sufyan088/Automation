@@ -1,0 +1,247 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testcase   name= 'TS_23_To_Verify_that_the_Year_filter_is_functional_on_the_Adjust_Filters_popup.ds' description= '' author= 'null' version= ''>
+<dpl filename='REPOSITORY/IM/Resources/IM_DPL1.csv' exectype='runstepbystep' errorhandling='' type='JsDPL' locale='null'/>
+<fallback useFallback='true'/>
+<shadowDOM useShadowDOM='true'/>
+<step action='setShadowDOM' value='true' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='setFindOnlyEnabled' value='false' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='setFindOnlyVisible' value='false' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../Utility Functions/Login_As_An_Admin.ds"' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='Navigate to the Admin module.' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../Utility Functions/Admin/Click_on_Admin_Module.ds"' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='assertContains' value='""' type='web' desc='Validate that admin heading is visible.' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='heading1(&quot;Admin&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='heading1(0, _in(div({&apos;id&apos;:&apos;root&apos;})))' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='heading1(&quot;font-extrabold lg:text-4xl scroll-m-20 text-3xl tracking-tight&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;root&apos;]/article/main/article/section/div/h1&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;scroll-m-20 text-3xl font-extrabold tracking-tight lg:text-4xl&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Admin&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/section/div/h1&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;root&apos;)/article[@class=&apos;flex min-h-screen flex-col&apos;]/main[@class=&apos;break-word flex-1 overflow-auto bg-background px-6 py-4 md:ml-16&apos;]/article[@class=&apos;w-full flex-1 bg-background&apos;]/section[@class=&apos;mb-2 flex flex-col justify-between gap-4 xl:flex-row xl:items-center&apos;]/div[@class=&apos;mb-2 flex flex-col&apos;]/h1[@class=&apos;scroll-m-20 text-3xl font-extrabold tracking-tight lg:text-4xl&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;main[class=&quot;break-word flex-1 overflow-auto bg-background px-6 py-4 md:ml-16&quot;] &gt; article[class=&quot;w-full flex-1 bg-background&quot;] &gt; section[class=&quot;mb-2 flex flex-col justify-between gap-4 xl:flex-row xl:items-center&quot;] &gt; div[class=&quot;mb-2 flex flex-col&quot;] &gt; h1[class=&quot;scroll-m-20 text-3xl font-extrabold tracking-tight lg:text-4xl&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='heading1(0, _in(div(&quot;root&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='assertExists' value='""' type='web' desc='Validate that MGMT Information System button is visible.' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='link(&quot;MGMT Information System&quot;)' fallback='true' selected='true'/>
+   <accessor type='AttrClass' value='link(&quot;active:translate-y-px bg-primary disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring font-medium h-10 hover:bg-primary/80 inline-flex items-center justify-between px-4 py-6 ring-offset-background rounded-md text-base text-root transition-colors w-full[3]&quot;)' fallback='true' selected='false'/>
+   <accessor type='AttrHref' value='link(&quot;/app/admin/mis&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;root&apos;]/article/main/article/section[1]/nav/a[6]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;MGMT Information System&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/section/nav/a[6]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;a[href=&quot;/app/admin/mis&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='link(5, _in(nav({&apos;aria-label&apos;:&apos;Admin Subroute Navigation&apos;})))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='Click on MGMT Information System button.' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='link(&quot;MGMT Information System&quot;)' fallback='true' selected='true'/>
+   <accessor type='AttrClass' value='link(&quot;active:translate-y-px bg-primary disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring font-medium h-10 hover:bg-primary/80 inline-flex items-center justify-between px-4 py-6 ring-offset-background rounded-md text-base text-root transition-colors w-full[3]&quot;)' fallback='true' selected='false'/>
+   <accessor type='AttrHref' value='link(&quot;/app/admin/mis&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;root&apos;]/article/main/article/section[1]/nav/a[6]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;MGMT Information System&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/section/nav/a[6]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;a[href=&quot;/app/admin/mis&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='link(5, _in(nav({&apos;aria-label&apos;:&apos;Admin Subroute Navigation&apos;})))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='assertExists' value='""' type='web' desc='Validate that MIS Payments Received heading is visible.' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='heading2(&quot;MIS Payments Received&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='heading2(1, _in(div({&apos;id&apos;:&apos;root&apos;})))' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='heading2(&quot;font-bold scroll-m-20 text-2xl tracking-tight transition-colors&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;root&apos;]/article/main/article/div[2]/section/div[1]/div/h2&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;scroll-m-20 text-2xl font-bold tracking-tight transition-colors&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;MIS Payments Received&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/div[2]/section/div/div/h2&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;root&apos;)/article[@class=&apos;flex min-h-screen flex-col&apos;]/main[@class=&apos;break-word flex-1 overflow-auto bg-background px-6 py-4 md:ml-16&apos;]/article[@class=&apos;w-full flex-1 bg-background&apos;]/div[2]/section[@class=&apos;space-y-4&apos;]/div[@class=&apos;flex flex-col gap-y-4 md:flex-row md:items-center md:justify-between&apos;]/div[@class=&apos;flex flex-col gap-y-2&apos;]/h2[@class=&apos;scroll-m-20 text-2xl font-bold tracking-tight transition-colors&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;section[class=&quot;space-y-4&quot;] &gt; div[class=&quot;flex flex-col gap-y-4 md:flex-row md:items-center md:justify-between&quot;] &gt; div[class=&quot;flex flex-col gap-y-2&quot;] &gt; h2[class=&quot;scroll-m-20 text-2xl font-bold tracking-tight transition-colors&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='heading2(1, _in(div(&quot;root&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='assertExists' value='""' type='web' desc='Validate that Payments Posted button is visible.' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='button(&quot;Payments Posted&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='button(6, _in(div({&apos;id&apos;:&apos;root&apos;})))' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;radix-:rbt:-trigger-posted&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='button(&quot;data-[state=active]:bg-root data-[state=active]:shadow-sm data-[state=active]:text-foreground disabled:opacity-50 disabled:pointer-events-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring font-medium inline-flex items-center justify-center px-3 py-1.5 ring-offset-background rounded-sm text-sm transition-all whitespace-nowrap[1]&quot;)' fallback='true' selected='false'/>
+   <accessor type='Id' value='button(&quot;radix-:rbt:-trigger-posted&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//button[@id=&apos;radix-:rbt:-trigger-posted&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Payments Posted&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/div[2]/div/button[2]&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;radix-:rbt:-trigger-posted&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='button({&apos;data-state&apos;:&apos;active&apos;})' fallback='true' selected='false'/>
+   <accessor type='Parent' value='button(6, _in(div(&quot;root&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='Click on Payments Posted button' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='button(&quot;Payments Posted&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='button(6, _in(div({&apos;id&apos;:&apos;root&apos;})))' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;radix-:rbt:-trigger-posted&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='button(&quot;data-[state=active]:bg-root data-[state=active]:shadow-sm data-[state=active]:text-foreground disabled:opacity-50 disabled:pointer-events-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring font-medium inline-flex items-center justify-center px-3 py-1.5 ring-offset-background rounded-sm text-sm transition-all whitespace-nowrap[1]&quot;)' fallback='true' selected='false'/>
+   <accessor type='Id' value='button(&quot;radix-:rbt:-trigger-posted&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//button[@id=&apos;radix-:rbt:-trigger-posted&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Payments Posted&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/div[2]/div/button[2]&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;radix-:rbt:-trigger-posted&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='button({&apos;data-state&apos;:&apos;active&apos;})' fallback='true' selected='false'/>
+   <accessor type='Parent' value='button(6, _in(div(&quot;root&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='assertExists' value='""' type='web' desc='Validate that Payments Posted Graph heading is visibe.' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='heading3(&quot;Payments Posted Graph&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='heading3(0, _in(div({&apos;id&apos;:&apos;root&apos;})))' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='heading3(&quot;font-semibold leading-none text-2xl tracking-tight&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;radix-:rbt:-content-posted&apos;]/div/section/div[3]/div[1]/h3&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;text-2xl font-semibold leading-none tracking-tight&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Payments Posted Graph&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/div[2]/div[3]/div/section/div[3]/div/h3&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;radix-:rbt:-content-posted&apos;)/div[1]/section[@class=&apos;space-y-4&apos;]/div[@class=&apos;rounded-lg border border-foreground bg-root text-card-foreground shadow-sm&apos;]/div[@class=&apos;flex flex-col space-y-1.5 p-6&apos;]/h3[@class=&apos;text-2xl font-semibold leading-none tracking-tight&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;section[class=&quot;space-y-4&quot;] &gt; div[class=&quot;rounded-lg border border-foreground bg-root text-card-foreground shadow-sm&quot;] &gt; div[class=&quot;flex flex-col space-y-1.5 p-6&quot;] &gt; h3[class=&quot;text-2xl font-semibold leading-none tracking-tight&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='heading3(0, _in(div(&quot;root&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='assertExists' value='""' type='web' desc='Validate that Adjust Filters button is visible.' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='button(&quot;Adjust Filters&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='button(9, _in(div({&apos;id&apos;:&apos;root&apos;})))' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='button(&quot;active:translate-y-px bg-primary disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring font-medium gap-2 h-10 hover:bg-primary/80 inline-flex items-center justify-center px-4 py-2 ring-offset-background rounded-md text-root text-sm transition-colors&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;radix-:rbt:-content-received&apos;]/div/section/div[1]/div/div/button[2]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px bg-primary text-root hover:bg-primary/80 h-10 py-2 px-4 gap-2&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Adjust Filters &quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/div[2]/div[2]/div/section/div/div/div/button[2]&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;radix-:rbt:-content-received&apos;)/div[1]/section[@class=&apos;space-y-4&apos;]/div[@class=&apos;flex flex-col gap-y-4 md:flex-row md:items-center md:justify-between&apos;]/div[@class=&apos;flex flex-col gap-y-2&apos;]/div[@class=&apos;flex items-center gap-x-2&apos;]/button[@class=&apos;inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px bg-primary text-root hover:bg-primary/80 h-10 py-2 px-4 gap-2&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='button({&apos;aria-controls&apos;:&apos;radix-:rc1:&apos;})' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;section[class=&quot;space-y-4&quot;] &gt; div[class=&quot;flex flex-col gap-y-4 md:flex-row md:items-center md:justify-between&quot;] &gt; div[class=&quot;flex flex-col gap-y-2&quot;] &gt; div[class=&quot;flex items-center gap-x-2&quot;] &gt; button[class=&quot;inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px bg-primary text-root hover:bg-primary/80 h-10 py-2 px-4 gap-2&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='button(9, _in(div(&quot;root&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='Click on Adjust Filters button.' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='button(&quot;Adjust Filters&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='button(9, _in(div({&apos;id&apos;:&apos;root&apos;})))' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='button(&quot;active:translate-y-px bg-primary disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring font-medium gap-2 h-10 hover:bg-primary/80 inline-flex items-center justify-center px-4 py-2 ring-offset-background rounded-md text-root text-sm transition-colors&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;radix-:rbt:-content-received&apos;]/div/section/div[1]/div/div/button[2]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px bg-primary text-root hover:bg-primary/80 h-10 py-2 px-4 gap-2&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Adjust Filters &quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/div[2]/div[2]/div/section/div/div/div/button[2]&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;radix-:rbt:-content-received&apos;)/div[1]/section[@class=&apos;space-y-4&apos;]/div[@class=&apos;flex flex-col gap-y-4 md:flex-row md:items-center md:justify-between&apos;]/div[@class=&apos;flex flex-col gap-y-2&apos;]/div[@class=&apos;flex items-center gap-x-2&apos;]/button[@class=&apos;inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px bg-primary text-root hover:bg-primary/80 h-10 py-2 px-4 gap-2&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='button({&apos;aria-controls&apos;:&apos;radix-:rc1:&apos;})' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;section[class=&quot;space-y-4&quot;] &gt; div[class=&quot;flex flex-col gap-y-4 md:flex-row md:items-center md:justify-between&quot;] &gt; div[class=&quot;flex flex-col gap-y-2&quot;] &gt; div[class=&quot;flex items-center gap-x-2&quot;] &gt; button[class=&quot;inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px bg-primary text-root hover:bg-primary/80 h-10 py-2 px-4 gap-2&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='button(9, _in(div(&quot;root&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='assertExists' value='""' type='web' desc='Validate that year label is visible.' isThinkTime='false' isCommented='true' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='label(&quot;Year:&quot;)' fallback='true' selected='true'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;radix-:rc1:&apos;]/div[2]/div[2]/form/div[1]/div[1]/label&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;text-sm font-semibold leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Year:&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div[4]/div[2]/div[2]/form/div/div/label&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;radix-:rc1:&apos;)/div[@class=&apos;rounded-lg border border-foreground bg-root text-card-foreground shadow-sm&apos;]/div[@class=&apos;p-6 pt-0&apos;]/form[@class=&apos;flex flex-col justify-center gap-4&apos;]/div[@class=&apos;grid grid-cols-1 gap-4 md:grid-cols-2&apos;]/div[@class=&apos;space-y-2 mt-2 flex flex-col&apos;]/label[@class=&apos;text-sm font-semibold leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='label({&apos;for&apos;:&apos;year&apos;})' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;p-6 pt-0&quot;] &gt; form[class=&quot;flex flex-col justify-center gap-4&quot;] &gt; div[class=&quot;grid grid-cols-1 gap-4 md:grid-cols-2&quot;] &gt; div[class=&quot;space-y-2 mt-2 flex flex-col&quot;] &gt; label[class=&quot;text-sm font-semibold leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='label(&quot;font-semibold leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-sm&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='Click on dropdown below label.' isThinkTime='false' isCommented='true' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='svg(&quot;class==lucide lucide-chevron-down h-4 w-4 opacity-50&quot;,below(label(&quot;Year:&quot;)))' fallback='true' selected='true'/>
+   <accessor type='AttrClass' value='button(&quot;[&amp;&gt;span]:line-clamp-1 bg-root border border-input disabled:cursor-not-allowed disabled:opacity-50 flex focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-ring h-10 items-center justify-between placeholder:text-muted-foreground px-3 py-2 ring-offset-background rounded-md text-sm w-full&quot;)' fallback='true' selected='false'/>
+   <accessor type='Id' value='button(&quot;:rd0:-form-item&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//button[@id=&apos;:rd0:-form-item&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;flex h-10 w-full items-center justify-between rounded-md border border-input bg-root px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&amp;&gt;span]:line-clamp-1&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div[4]/div[2]/div[2]/form/div/div/button&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;:rd0:-form-item&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='button({&apos;dir&apos;:&apos;ltr&apos;})' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;p-6 pt-0&quot;] &gt; form[class=&quot;flex flex-col justify-center gap-4&quot;] &gt; div[class=&quot;grid grid-cols-1 gap-4 md:grid-cols-2&quot;] &gt; div[class=&quot;space-y-2 mt-2 flex flex-col&quot;] &gt; button[class=&quot;flex h-10 w-full items-center justify-between rounded-md border border-input bg-root px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&amp;&gt;span]:line-clamp-1&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;:rd0:-form-item&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Text' value='button(&quot;current&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='Select previous from dropdown.' isThinkTime='false' isCommented='true' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='span(&quot;previous&quot;)' fallback='true' selected='true'/>
+   <accessor type='Id' value='span(&quot;radix-:rdn:&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//span[@id=&apos;radix-:rdn:&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div[5]/div/div/div/span[2]&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;radix-:rdn:&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;radix-:rdn:&quot;]&apos;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='assertExists' value='' type='web' desc='Validate that Close the dialog to view results button is visible.' isThinkTime='false' isCommented='true' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='button(&quot;Close the dialog to view results.&quot;)' fallback='true' selected='true'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;radix-:rc1:&apos;]/div[3]&quot;).xy(0.99, 0.40 )' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2 hover:cursor-pointer hover:text-destructive-foreground&quot;]&apos;).xy(0.99, 0.40 )' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Close the dialog to view results.&quot;]&apos;).xy(0.99, 0.40 )' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div[4]/div[3]&apos;).xy(0.99, 0.40 )' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;radix-:rc1:&apos;)/div[@class=&apos;flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2 hover:cursor-pointer hover:text-destructive-foreground&apos;]&quot;).xy(0.99, 0.40 )' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='div({&apos;type&apos;:&apos;button&apos;}).xy(0.99, 0.40 )' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:rounded-lg min-w-full&quot;] &gt; div[class=&quot;flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2 hover:cursor-pointer hover:text-destructive-foreground&quot;]&apos;).xy(0.99, 0.40 )' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='div(&quot;flex flex-col-reverse hover:cursor-pointer hover:text-destructive-foreground sm:flex-row sm:justify-end sm:space-x-2&quot;).xy(0.99, 0.40 )' fallback='true' selected='false'/>
+   <accessor type='Text' value='div(&quot;Close the dialog to view results.&quot;).xy(0.99, 0.40 )' fallback='true' selected='false'/>
+   <accessor type='unknown' value='div(&quot;Close the dialog to view results.&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='focus' value='' type='web' desc='Add focus' isThinkTime='false' isCommented='true' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='button(&quot;Close the dialog to view results.&quot;)' fallback='true' selected='true'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;radix-:rc1:&apos;]/div[3]&quot;).xy(0.99, 0.40 )' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2 hover:cursor-pointer hover:text-destructive-foreground&quot;]&apos;).xy(0.99, 0.40 )' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Close the dialog to view results.&quot;]&apos;).xy(0.99, 0.40 )' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div[4]/div[3]&apos;).xy(0.99, 0.40 )' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;radix-:rc1:&apos;)/div[@class=&apos;flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2 hover:cursor-pointer hover:text-destructive-foreground&apos;]&quot;).xy(0.99, 0.40 )' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='div({&apos;type&apos;:&apos;button&apos;}).xy(0.99, 0.40 )' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:rounded-lg min-w-full&quot;] &gt; div[class=&quot;flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2 hover:cursor-pointer hover:text-destructive-foreground&quot;]&apos;).xy(0.99, 0.40 )' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='div(&quot;flex flex-col-reverse hover:cursor-pointer hover:text-destructive-foreground sm:flex-row sm:justify-end sm:space-x-2&quot;).xy(0.99, 0.40 )' fallback='true' selected='false'/>
+   <accessor type='Text' value='div(&quot;Close the dialog to view results.&quot;).xy(0.99, 0.40 )' fallback='true' selected='false'/>
+   <accessor type='unknown' value='div(&quot;Close the dialog to view results.&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='div(&quot;Close the dialog to view results.&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='' type='web' desc='Click on Close the dialog to view results button.' isThinkTime='false' isCommented='true' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='button(&quot;Close the dialog to view results.&quot;)' fallback='true' selected='true'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;radix-:rc1:&apos;]/div[3]&quot;).xy(0.99, 0.40 )' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2 hover:cursor-pointer hover:text-destructive-foreground&quot;]&apos;).xy(0.99, 0.40 )' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Close the dialog to view results.&quot;]&apos;).xy(0.99, 0.40 )' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div[4]/div[3]&apos;).xy(0.99, 0.40 )' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;radix-:rc1:&apos;)/div[@class=&apos;flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2 hover:cursor-pointer hover:text-destructive-foreground&apos;]&quot;).xy(0.99, 0.40 )' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='div({&apos;type&apos;:&apos;button&apos;}).xy(0.99, 0.40 )' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:rounded-lg min-w-full&quot;] &gt; div[class=&quot;flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2 hover:cursor-pointer hover:text-destructive-foreground&quot;]&apos;).xy(0.99, 0.40 )' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='div(&quot;flex flex-col-reverse hover:cursor-pointer hover:text-destructive-foreground sm:flex-row sm:justify-end sm:space-x-2&quot;).xy(0.99, 0.40 )' fallback='true' selected='false'/>
+   <accessor type='Text' value='div(&quot;Close the dialog to view results.&quot;).xy(0.99, 0.40 )' fallback='true' selected='false'/>
+   <accessor type='unknown' value='div(&quot;Close the dialog to view results.&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='div(&quot;Close the dialog to view results.&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../Utility Functions/Logout_Function.ds"' fallback='true' selected='true'/>
+</dialect>
+</step>
+</testcase>

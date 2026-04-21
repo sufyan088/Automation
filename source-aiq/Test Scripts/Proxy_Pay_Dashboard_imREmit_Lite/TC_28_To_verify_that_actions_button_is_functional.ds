@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testcase   name= 'TC_28_To_verify_that_actions_button_is_functional.ds' description= '' author= '' version= ''>
+<dpl filename='{ds}/../../Resources/IM_DPL1.csv' exectype='runstepbystep' errorhandling='' type='JsDPL' locale='null'/>
+<fallback useFallback='true'/>
+<shadowDOM useShadowDOM='true'/>
+<step action='setShadowDOM' value='true' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='setFindOnlyVisible' value='false' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='setFindOnlyEnabled' value='false' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='Click on Admin module' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../Utility Functions/Login_As_An_Admin.ds"' fallback='true' selected='true'/>
+   <accessor type='unknown' value='"{ds}/../UtilityFunction/Login_As_An_Admin.ds"' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='Click on ImRemit(Lite) tab' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../Utility Functions/imREmit_Lite/Click_on_imREmit_module.ds"' fallback='true' selected='true'/>
+   <accessor type='unknown' value='byXPath(&quot;//*[contains(@class,&apos;w-full h-full flex flex-col justify-center items-center&apos;)][5]&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='byXPath(&quot;//*[contains(@class,&apos;w-full h-full flex flex-col justify-center items-center&apos;)][1]&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='byXPath(&quot;//*[contains(@class,&apos;w-full h-full flex flex-col justify-center items-center&apos;)][2]&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../Utility Functions/imREmit/Click_on_imREmit_modulet.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../Utility Functions/imREmit/Click_on_imREmit_module.ds"' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='Click on the Proxy Pay Dashboard sub module' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='link(&quot;Proxy Pay Dashboard&quot;)' fallback='true' selected='true'/>
+   <accessor type='AttrClass' value='link(&quot;active:translate-y-px bg-primary disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring font-medium h-10 hover:bg-primary/80 inline-flex items-center justify-between px-4 py-6 ring-offset-background rounded-md text-root text-sm transition-colors w-full[1]&quot;)' fallback='true' selected='false'/>
+   <accessor type='AttrHref' value='link(&quot;/app/imremit/proxy-pay-dashboard[1]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&apos;//div[3]/div/section/nav/a[4]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div[3]/div/section/nav/a[4]&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;/html[1]/body[1]/div[3]/div[@class=&apos;z-50 rounded-md border bg-root p-4 text-foreground shadow-md outline-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 max-w-sm&apos;]/section[@class=&apos;pt-4&apos;]/nav[@class=&apos;grid gap-2 grid-rows-1&apos;]/a[@class=&apos;inline-flex items-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px bg-primary text-root hover:bg-primary/80 h-10 px-4 w-full justify-between py-6 text-sm&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;z-50 rounded-md border bg-root p-4 text-foreground shadow-md outline-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 max-w-sm&quot;] &gt; section[class=&quot;pt-4&quot;] &gt; nav[class=&quot;grid gap-2 grid-rows-1&quot;] &gt; a[class=&quot;inline-flex items-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px bg-primary text-root hover:bg-primary/80 h-10 px-4 w-full justify-between py-6 text-sm&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='link(3, _in(section({&apos;aria-label&apos;:&apos;ImREmit subroute navigation&apos;})))' fallback='true' selected='false'/>
+   <accessor type='Text' value='link(&quot;Proxy Pay Dashboard[1]&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../Utility Functions/imREmit_Lite/Select_Customer_ProxyPay_Dashboard_imREmit_Lite.ds"' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='assertExists' value='' type='web' desc='Validate the Proxy Pay Dashboard heading is visible' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='heading2(&quot;Proxy Pay Dashboard&quot;)' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='assertExists' value='' type='web' desc='Click on the Actions button' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='svg(&quot;class==lucide lucide-grip-vertical size-6 bg-inherit&quot;,below(paragraph(&quot;Actions&quot;)))' fallback='true' selected='true'/>
+   <accessor type='unknown' value='button(&quot;Status&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;Advanced Search&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Column Views&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='paragraph(&quot;Organization ID&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;Return to top&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;type==button&quot;,_ds._below(_ds.paragraph(&quot;Actions&quot;)))' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;type==button&quot;,below(paragraph(&quot;Actions&quot;)))' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;type==button&quot;,below(paragraph(&quot;Actions&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='' type='web' desc='Click on the Actions button' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='svg(&quot;class==lucide lucide-grip-vertical size-6 bg-inherit&quot;,below(paragraph(&quot;Actions&quot;)))' fallback='true' selected='true'/>
+   <accessor type='unknown' value='button(&quot;Status&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;Advanced Search&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Column Views&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='paragraph(&quot;Organization ID&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;Return to top&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;type==button&quot;,_ds._below(_ds.paragraph(&quot;Actions&quot;)))' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;type==button&quot;,below(paragraph(&quot;Actions&quot;)))' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;type==button&quot;,below(paragraph(&quot;Actions&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='assertExists' value='' type='web' desc='Validate that View Payment Details button is visible on action icon' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='span(&quot;View Payment Details&quot;)' fallback='true' selected='true'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;radix-:rpp:&apos;]/div&quot;).xy(0.22, 0.48 )' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;relative cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors hover:cursor-pointer focus:bg-accent focus:text-accent-foreground data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50 flex justify-between gap-4&quot;]&apos;).xy(0.22, 0.48 )' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div[3]/div/div&apos;).xy(0.22, 0.48 )' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;radix-:rpp:&apos;)/div[@class=&apos;relative cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors hover:cursor-pointer focus:bg-accent focus:text-accent-foreground data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50 flex justify-between gap-4&apos;]&quot;).xy(0.22, 0.48 )' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='div({&apos;tabindex&apos;:&apos;0&apos;}).xy(0.22, 0.48 )' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;z-50 overflow-hidden rounded-md border bg-root/70 p-1 text-foreground shadow-md backdrop-blur-xl backdrop-brightness-150 animate-in data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 min-w-fit&quot;] &gt; div[class=&quot;relative cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors hover:cursor-pointer focus:bg-accent focus:text-accent-foreground data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50 flex justify-between gap-4&quot;]&apos;).xy(0.22, 0.48 )' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='div(&quot;cursor-default data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50 flex focus:bg-accent focus:text-accent-foreground gap-4 hover:cursor-pointer items-center justify-between outline-none px-2 py-1.5 relative rounded-sm select-none text-sm transition-colors&quot;).xy(0.22, 0.48 )' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../Utility Functions/Logout_Function.ds"' fallback='true' selected='true'/>
+</dialect>
+</step>
+</testcase>

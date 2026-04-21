@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testcase   name= 'TS_53_To_verify_that_screen_displays_all_available_match_statuses_as_separate_labeled_cards_in_grid_layout.ds' description= '' author= 'null' version= ''>
+<dpl filename='{ds}/../../Resources/IM_DPL1.csv' exectype='runstepbystep' errorhandling='' type='JsDPL' locale='null'/>
+<fallback useFallback='true'/>
+<shadowDOM useShadowDOM='true'/>
+<step action='setShadowDOM' value='true' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='setFindOnlyEnabled' value='false' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='setFindOnlyVisible' value='false' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='Logged in as an &quot;Admin&quot;' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../Utility Functions/Login_As_An_Admin.ds"' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='click' value='' type='web' desc='Navigate to SR module' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='image(&quot;Statement Recon Icon&quot;)' fallback='true' selected='true'/>
+   <accessor type='AttrClass' value='image(&quot;size-10[5]&quot;).xy(0.33, 0.25 )' fallback='true' selected='false'/>
+   <accessor type='Src' value='image(&quot;data:image/svg+xml,%3c?xml%20version=%271.0%27%20encoding=%27utf-8%27?%3e%3c!--%20Generator:%20Adobe%20Illustrator%2028.2.0,%20SVG%20Export%20Plug-In%20.%20SVG%20Version:%206.00%20Build%200)%20--%3e%3csvg%20version=%271.1%27%20id=%27Layer_1%27%20xmlns=%27http://www.w3.org/2000/svg%27%20xmlns:xlink=%27http://www.w3.org/1999/xlink%27%20x=%270px%27%20y=%270px%27%20viewBox=%270%200%202000%202000%27%20style=%27enable-background:new%200%200%202000%202000;%27%20xml:space=%27preserve%27%3e%3cstyle%20type=%27text/css%27%3e%20.st0{fill:%23C900FF;}%20%3c/style%3e%3cpath%20class=%27st0%27%20d=%27M1629.9,179.6h-183.5v64.5h183.5c75.7,0,146.9,30.8,200.4,86.7c53.5,55.9,83,130.3,83,209.4v919.7%20c0,79.1-29.5,153.4-83,209.4c-53.5,55.9-124.7,86.7-200.4,86.7h-183.5v64.5h183.5c190.3,0,345.1-161.7,345.1-360.6V540.2%20C1975,341.3,1820.2,179.6,1629.9,179.6z%27/%3e%3cg%3e%3cpath%20class=%27st0%27%20d=%27M35.6,540.1v919.7c0,193,149.8,349.4,334.5,349.4H543v-42.2H370.2c-78.5,0-152.4-32-207.9-90%20c-55.5-58-86.1-135.2-86.1-217.2V540.1c0-82.1,30.6-159.2,86.1-217.2s129.4-90,207.9-90H543v-42.2H370.2%20C185.4,190.7,35.6,347.2,35.6,540.1z%27/%3e%3cpath%20class=%27st0%27%20d=%27M553.6,1820.4H370.1c-190.3,0-345.1-161.7-345.1-360.6V540.2c0-198.8,154.8-360.6,345.1-360.6h183.5v64.5%20H370.1c-75.7,0-146.9,30.8-200.4,86.7c-53.5,55.9-83,130.3-83,209.4v919.7c0,79.1,29.5,153.4,83,209.4%20c53.5,55.9,124.7,86.7,200.4,86.7h183.5V1820.4z%20M370.1,201.8c-178.6,0-323.9,151.8-323.9,338.3v919.7%20c0,186.6,145.3,338.3,323.9,338.3h162.2v-20H370.1c-81.4,0-157.9-33.1-215.5-93.2c-57.6-60.1-89.2-140.1-89.2-225.1V540.2%20c0-85,31.7-165,89.2-225.1c57.6-60.1,134.1-93.2,215.5-93.2h162.2v-20H370.1z%27/%3e%3c/g%3e%3cg%3e%3cpath%20d=%27M429.2,1137.1h138.1c0,50.6,50.6,90.5,114.8,90.5c59.3,0,108-32.1,108-77.8c0-117.7-350.2-65.2-350.2-293.8%20c0-123.6,105.1-203.3,237.4-203.3c136.2,0,240.3,86.6,240.3,201.4H779.5c0-46.7-44.8-81.7-104.1-81.7c-52.5,0-97.3,28.2-97.3,73%20c0,119.7,350.2,56.4,350.2,288.9c0,129.4-109,213.1-247.1,213.1C537.2,1347.2,429.2,1255.8,429.2,1137.1z%27/%3e%3cpath%20d=%27M1029.5,664.3h298.7c129.4,0,227.6,94.4,227.6,219.9c0,96.3-60.3,173.2-148.8,200.4l168.3,251h-166.4l-153.7-239.3h-91.4%20v239.3h-134.3V664.3z%20M1163.7,790.7v188.7h161.5c52.5,0,92.4-40.9,92.4-94.4s-39.9-94.4-92.4-94.4H1163.7z%27/%3e%3c/g%3e%3c/svg%3e&quot;).xy(0.33, 0.25 )' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;root&apos;]/article/aside/section[1]/a[5]/img&quot;).xy(0.33, 0.25 )' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/aside/section/a[5]/img&apos;).xy(0.33, 0.25 )' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='image({&apos;src&apos;:&quot;data:image/svg+xml,%3c?xml%20version=&apos;1.0&apos;%20encoding=&apos;utf-8&apos;?%3e%3c!--%20Generator:%20Adobe%20Illustrator%2028.2.0,%20SVG%20Export%20Plug-In%20.%20SVG%20Version:%206.00%20Build%200)%20--%3e%3csvg%20version=&apos;1.1&apos;%20id=&apos;Layer_1&apos;%20xmlns=&apos;http://www.w3.org/2000/svg&apos;%20xmlns:xlink=&apos;http://www.w3.org/1999/xlink&apos;%20x=&apos;0px&apos;%20y=&apos;0px&apos;%20viewBox=&apos;0%200%202000%202000&apos;%20style=&apos;enable-background:new%200%200%202000%202000;&apos;%20xml:space=&apos;preserve&apos;%3e%3cstyle%20type=&apos;text/css&apos;%3e%20.st0{fill:%23C900FF;}%20%3c/style%3e%3cpath%20class=&apos;st0&apos;%20d=&apos;M1629.9,179.6h-183.5v64.5h183.5c75.7,0,146.9,30.8,200.4,86.7c53.5,55.9,83,130.3,83,209.4v919.7%20c0,79.1-29.5,153.4-83,209.4c-53.5,55.9-124.7,86.7-200.4,86.7h-183.5v64.5h183.5c190.3,0,345.1-161.7,345.1-360.6V540.2%20C1975,341.3,1820.2,179.6,1629.9,179.6z&apos;/%3e%3cg%3e%3cpath%20class=&apos;st0&apos;%20d=&apos;M35.6,540.1v919.7c0,193,149.8,349.4,334.5,349.4H543v-42.2H370.2c-78.5,0-152.4-32-207.9-90%20c-55.5-58-86.1-135.2-86.1-217.2V540.1c0-82.1,30.6-159.2,86.1-217.2s129.4-90,207.9-90H543v-42.2H370.2%20C185.4,190.7,35.6,347.2,35.6,540.1z&apos;/%3e%3cpath%20class=&apos;st0&apos;%20d=&apos;M553.6,1820.4H370.1c-190.3,0-345.1-161.7-345.1-360.6V540.2c0-198.8,154.8-360.6,345.1-360.6h183.5v64.5%20H370.1c-75.7,0-146.9,30.8-200.4,86.7c-53.5,55.9-83,130.3-83,209.4v919.7c0,79.1,29.5,153.4,83,209.4%20c53.5,55.9,124.7,86.7,200.4,86.7h183.5V1820.4z%20M370.1,201.8c-178.6,0-323.9,151.8-323.9,338.3v919.7%20c0,186.6,145.3,338.3,323.9,338.3h162.2v-20H370.1c-81.4,0-157.9-33.1-215.5-93.2c-57.6-60.1-89.2-140.1-89.2-225.1V540.2%20c0-85,31.7-165,89.2-225.1c57.6-60.1,134.1-93.2,215.5-93.2h162.2v-20H370.1z&apos;/%3e%3c/g%3e%3cg%3e%3cpath%20d=&apos;M429.2,1137.1h138.1c0,50.6,50.6,90.5,114.8,90.5c59.3,0,108-32.1,108-77.8c0-117.7-350.2-65.2-350.2-293.8%20c0-123.6,105.1-203.3,237.4-203.3c136.2,0,240.3,86.6,240.3,201.4H779.5c0-46.7-44.8-81.7-104.1-81.7c-52.5,0-97.3,28.2-97.3,73%20c0,119.7,350.2,56.4,350.2,288.9c0,129.4-109,213.1-247.1,213.1C537.2,1347.2,429.2,1255.8,429.2,1137.1z&apos;/%3e%3cpath%20d=&apos;M1029.5,664.3h298.7c129.4,0,227.6,94.4,227.6,219.9c0,96.3-60.3,173.2-148.8,200.4l168.3,251h-166.4l-153.7-239.3h-91.4%20v239.3h-134.3V664.3z%20M1163.7,790.7v188.7h161.5c52.5,0,92.4-40.9,92.4-94.4s-39.9-94.4-92.4-94.4H1163.7z&apos;/%3e%3c/g%3e%3c/svg%3e&quot;}).xy(0.33, 0.25 )' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;img[alt=&quot;Statement Recon Icon&quot;]&apos;).xy(0.33, 0.25 )' fallback='true' selected='false'/>
+   <accessor type='Parent' value='image(0, _in(link({&apos;aria-label&apos;:&apos;Statement Recon&apos;}))).xy(0.33, 0.25 )' fallback='true' selected='false'/>
+   <accessor type='AttrAlt' value='image(&quot;Statement Recon Icon&quot;).xy(0.33, 0.25 )' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../Utility Functions/Select_Customer_SR.ds"' fallback='true' selected='true'/>
+   <accessor type='unknown' value='' fallback='false' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../Utility Functions/Logout_Function.ds"' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='Click on search button' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='link(&quot;Search&quot;)' fallback='true' selected='true'/>
+   <accessor type='AttrHref' value='link(&quot;/app/statement-recon/file-history&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;root&apos;]/article/main/article/section/nav/a[3]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Search&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/section/nav/a[3]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;a[href=&quot;/app/statement-recon/file-history&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='link(&quot;active:translate-y-px bg-primary disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring font-medium h-10 hover:bg-primary/80 inline-flex items-center justify-between px-4 py-6 ring-offset-background rounded-md text-base text-root transition-colors w-full[2]&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='assertExists' value='""' type='web' desc='Validate that Rematch Date. section is visible' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='span(&quot;Rematch Date...&quot;)' fallback='true' selected='true'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;radix-:rku:-content-in-progress&apos;]/section/form/div/div[6]/button/span&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Rematch Date...&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/div[2]/div/div/div[2]/div[2]/section/form/div/div[6]/button/span&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='span(&quot;text-accent-foreground[1]&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='Click on Rematch Date.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='span(&quot;Rematch Date...&quot;)' fallback='true' selected='true'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;radix-:rku:-content-in-progress&apos;]/section/form/div/div[6]/button/span&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Rematch Date...&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/div[2]/div/div/div[2]/div[2]/section/form/div/div[6]/button/span&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='span(&quot;text-accent-foreground[1]&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='button(&quot;1[1]&quot;)' fallback='true' selected='true'/>
+   <accessor type='AttrName' value='button(&quot;day[2]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;radix-:rlk:&apos;]/div/div/div/table/tbody/tr[1]/td[3]/button&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;rdp-button_reset rdp-button inline-flex items-center justify-center rounded-md text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px size-10 p-0 font-normal hover:bg-accent/50 hover:text-accent-foreground aria-selected:opacity-100 transition-all duration-200&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/div[2]/div/div/div[2]/div[2]/section/form/div/div[6]/div/div/div/div/div/table/tbody/tr/td[3]/button&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;radix-:rlk:&apos;)/div[@class=&apos;rdp p-2 rounded-md border shadow-sm&apos;]/div[@class=&apos;flex flex-col sm:flex-row space-y-4 sm:space-x-4 sm:space-y-0&apos;]/div[@class=&apos;space-y-6 rdp-caption_start rdp-caption_end&apos;]/table[@class=&apos;w-full border-collapse space-y-2&apos;]/tbody[@class=&apos;rdp-tbody&apos;]/tr[@class=&apos;flex w-full mt-2&apos;]/td[@class=&apos;text-center text-sm p-0 relative [&amp;:has([aria-selected])]:bg-accent first:[&amp;:has([aria-selected])]:rounded-l-md last:[&amp;:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20 transition-colors duration-200&apos;]/button[@class=&apos;rdp-button_reset rdp-button inline-flex items-center justify-center rounded-md text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px size-10 p-0 font-normal hover:bg-accent/50 hover:text-accent-foreground aria-selected:opacity-100 transition-all duration-200&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[1]//td[3]//button[@class=&quot;rdp-button_reset rdp-button inline-flex items-center justify-center rounded-md text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px size-10 p-0 font-normal hover:bg-accent/50 hover:text-accent-foreground aria-selected:opacity-100 transition-all duration-200&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[1]//td[3]//button[@name=&quot;day&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[1]//td[3]//button[text()=&quot;1&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;table[class=&quot;w-full border-collapse space-y-2&quot;] &gt; tbody[class=&quot;rdp-tbody&quot;] &gt; tr[class=&quot;flex w-full mt-2&quot;] &gt; td[class=&quot;text-center text-sm p-0 relative [&amp;:has([aria-selected])]:bg-accent first:[&amp;:has([aria-selected])]:rounded-l-md last:[&amp;:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20 transition-colors duration-200&quot;] &gt; button[class=&quot;rdp-button_reset rdp-button inline-flex items-center justify-center rounded-md text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px size-10 p-0 font-normal hover:bg-accent/50 hover:text-accent-foreground aria-selected:opacity-100 transition-all duration-200&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='button(&quot;active:translate-y-px aria-selected:opacity-100 disabled:cursor-not-allowed disabled:opacity-50 duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring font-normal hover:bg-accent/50 hover:text-accent-foreground inline-flex items-center justify-center p-0 rdp-button rdp-button_reset ring-offset-background rounded-md size-10 text-sm transition-all&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../Utility Functions/Logout_Function.ds"' fallback='true' selected='true'/>
+   <accessor type='unknown' value='' fallback='false' selected='false'/>
+</dialect>
+</step>
+</testcase>

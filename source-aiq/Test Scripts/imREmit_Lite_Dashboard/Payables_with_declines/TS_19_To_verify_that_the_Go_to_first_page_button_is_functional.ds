@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testcase   name= 'TS_19_To_verify_that_the_Go_to_first_page_button_is_functional.ds' description= '' author= 'null' version= ''>
+<dpl filename='REPOSITORY/IM/Resources/IM_DPL1.csv' exectype='runstepbystep' errorhandling='' type='JsDPL' locale='en_US'/>
+<fallback useFallback='true'/>
+<shadowDOM useShadowDOM='true'/>
+<step action='setShadowDOM' value='true' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='setFindOnlyVisible' value='false' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='setFindOnlyEnabled' value='false' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='Logged in as an Admin' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../Utility Functions/Login_As_An_Admin.ds"' fallback='true' selected='true'/>
+   <accessor type='unknown' value='"{ds}/../UtilityFunction/Login_As_An_Admin.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../Utility Functions/Login_As_An_Admin.ds"' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='Click on ImREmit (lite) module ' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../Utility Functions/imREmit_Lite/Click_on_imREmit_module.ds"' fallback='true' selected='true'/>
+   <accessor type='unknown' value='byXPath(&quot;//*[contains(@class,&apos;w-full h-full flex flex-col justify-center items-center&apos;)][5]&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='byXPath(&quot;//*[contains(@class,&apos;w-full h-full flex flex-col justify-center items-center&apos;)][1]&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='byXPath(&quot;//*[contains(@class,&apos;w-full h-full flex flex-col justify-center items-center&apos;)][2]&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../Utility Functions/imREmit/Click_on_imREmit_modulet.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../Utility Functions/imREmit/Click_on_imREmit_module.ds"' fallback='true' selected='false'/>
+   <accessor type='unknown' value='"{ds}/../../../Utility Functions/imREmit/Click_on_imREmit_module.ds"' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='Click on imREmit lite dashboard button.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='link([&quot;Dashboard&quot;])' fallback='true' selected='true'/>
+   <accessor type='AttrHref' value='link(&quot;/app/imremit-lite/dashboard[2]&quot;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='link(0, _in(section({&apos;aria-label&apos;:&apos;ImREmit Lite subroute navigation&apos;})))' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div[3]/div/section/nav/a&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&apos;//div[3]/div/section/nav/a[1]&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;/html[1]/body[1]/div[3]/div[@class=&apos;z-50 rounded-md border bg-root p-4 text-foreground shadow-md outline-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 max-w-sm&apos;]/section[@class=&apos;pt-4&apos;]/nav[@class=&apos;grid gap-2 grid-rows-1&apos;]/a[@class=&apos;inline-flex items-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px h-10 px-4 w-full justify-between py-6 bg-success-foreground hover:bg-success-foreground/70 active:bg-success-foreground/80 text-root text-base active&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;z-50 rounded-md border bg-root p-4 text-foreground shadow-md outline-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 max-w-sm&quot;] &gt; section[class=&quot;pt-4&quot;] &gt; nav[class=&quot;grid gap-2 grid-rows-1&quot;] &gt; a[class=&quot;inline-flex items-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px h-10 px-4 w-full justify-between py-6 bg-success-foreground hover:bg-success-foreground/70 active:bg-success-foreground/80 text-root text-base active&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='link({&apos;tabindex&apos;:&apos;-1&apos;})' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='link(&quot;active active:bg-success-foreground/80 active:translate-y-px bg-success-foreground disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring font-medium h-10 hover:bg-success-foreground/70 inline-flex items-center justify-between px-4 py-6 ring-offset-background rounded-md text-base text-root transition-colors w-full[1]&quot;)' fallback='true' selected='false'/>
+   <accessor type='Text' value='link(&quot;imREmit Lite Dashboard[1]&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='link([&quot;imREmit Lite Dashboard&quot;])' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../Utility Functions/imREmit_Lite/Select_Customer_imREmit_Lite_Dashboard.ds"' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='assertExists' value='""' type='web' desc='Click on review button.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='paragraph(&quot;Review&quot;,below(heading3(&quot;Payables with declines&quot;)))' fallback='true' selected='true'/>
+   <accessor type='AttrHref' value='link(&quot;/app/imremit-lite/payment-management/1/payments/filter-declined-payable-imRemitLite&quot;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='link(18, _in(div(&quot;root&quot;)))' fallback='true' selected='false'/>
+   <accessor type='Parent' value='link(18, _in(div({&apos;id&apos;:&apos;root&apos;})))' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/section[2]/div[2]/div[4]/div/a&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;root&apos;]/article/main/article/section[2]/div[2]/div[4]/div/a&quot;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;a[href=&quot;/app/imremit-lite/payment-management/1/payments/filter-declined-payable-imRemitLite&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='link(&quot;active:bg-success-foreground/80 active:translate-y-px bg-success-foreground disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring font-medium gap-2 h-9 hover:bg-success-foreground/70 inline-flex items-center justify-center mt-4 px-3 ring-offset-background rounded-md text-root text-sm transition-colors uppercase[2]&quot;)' fallback='true' selected='false'/>
+   <accessor type='Text' value='link(&quot;Review Review[2]&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='link([&quot;Review Review&quot;])' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;Review&quot;,below(heading3(&quot;Payables with declines&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='Click on review button.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='paragraph(&quot;Review&quot;,below(heading3(&quot;Payables with declines&quot;)))' fallback='true' selected='true'/>
+   <accessor type='AttrHref' value='link(&quot;/app/imremit-lite/payment-management/1/payments/filter-declined-payable-imRemitLite&quot;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='link(18, _in(div(&quot;root&quot;)))' fallback='true' selected='false'/>
+   <accessor type='Parent' value='link(18, _in(div({&apos;id&apos;:&apos;root&apos;})))' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/section[2]/div[2]/div[4]/div/a&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;root&apos;]/article/main/article/section[2]/div[2]/div[4]/div/a&quot;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;a[href=&quot;/app/imremit-lite/payment-management/1/payments/filter-declined-payable-imRemitLite&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='link(&quot;active:bg-success-foreground/80 active:translate-y-px bg-success-foreground disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring font-medium gap-2 h-9 hover:bg-success-foreground/70 inline-flex items-center justify-center mt-4 px-3 ring-offset-background rounded-md text-root text-sm transition-colors uppercase[2]&quot;)' fallback='true' selected='false'/>
+   <accessor type='Text' value='link(&quot;Review Review[2]&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='link([&quot;Review Review&quot;])' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;Review&quot;,below(heading3(&quot;Payables with declines&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='' type='web' desc='Click on last page button.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='svg(&quot;class==lucide lucide-arrow-right-to-line size-4 transition-transform duration-200&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='svg(14, _in(div(&quot;root&quot;)))' fallback='true' selected='false'/>
+   <accessor type='Parent' value='svg(14, _in(div({&apos;id&apos;:&apos;root&apos;})))' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;lucide lucide-arrow-right-from-line size-4&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;space-y-4&quot;] &gt; section[class=&quot;flex w-full justify-between&quot;] &gt; div[class=&quot;flex items-center justify-center gap-x-2&quot;] &gt; button[class=&quot;inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px bg-primary text-root hover:bg-primary/80 h-10 py-2 px-4&quot;] &gt; svg[class=&quot;lucide lucide-arrow-right-from-line size-4&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='svg(&quot;lucide lucide-arrow-right-from-line size-4&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='svg(&quot;class==lucide lucide-arrow-right-from-line size-4&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='assertExists' value='' type='web' desc='Validate first page button is visible.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='svg(&quot;class==lucide lucide-arrow-left-to-line size-4 transition-transform duration-200&quot;) ' fallback='true' selected='true'/>
+   <accessor type='Parent' value='path(34, _in(div({&apos;id&apos;:&apos;root&apos;})))' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='path({&apos;d&apos;:&apos;M3 12h14&apos;})' fallback='true' selected='false'/>
+   <accessor type='Parent' value='path(34, _in(div(&quot;root&quot;)))' fallback='true' selected='false'/>
+   <accessor type='unknown' value='svg(&quot;class==lucide lucide-arrow-left-from-line size-4&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='' type='web' desc='Click on first page button.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='svg(&quot;class==lucide lucide-arrow-left-to-line size-4 transition-transform duration-200&quot;) ' fallback='true' selected='true'/>
+   <accessor type='Parent' value='path(34, _in(div({&apos;id&apos;:&apos;root&apos;})))' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='path({&apos;d&apos;:&apos;M3 12h14&apos;})' fallback='true' selected='false'/>
+   <accessor type='Parent' value='path(34, _in(div(&quot;root&quot;)))' fallback='true' selected='false'/>
+   <accessor type='unknown' value='svg(&quot;class==lucide lucide-arrow-left-from-line size-4&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../../Utility Functions/Logout_Function.ds"' fallback='true' selected='true'/>
+</dialect>
+</step>
+</testcase>

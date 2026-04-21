@@ -1,0 +1,129 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testcase   name= 'TS_15_To_verify_system_requires_the_user_to_apply_at_least_one_additional_filter_after_selecting_a_Customer.ds' description= '' author= 'null' version= ''>
+<dpl filename='REPOSITORY/IM/Resources/IM_DPL1.csv' exectype='runstepbystep' errorhandling='' type='JsDPL' locale='null'/>
+<fallback useFallback='true'/>
+<shadowDOM useShadowDOM='true'/>
+<step action='setShadowDOM' value='true' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='setFindOnlyVisible' value='false' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='setFindOnlyEnabled' value='false' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='Logged in as an Admin' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../Utility Functions/Login_As_An_Admin.ds"' fallback='true' selected='true'/>
+   <accessor type='unknown' value='"{ds}/../UtilityFunction/Login_As_An_Admin.ds"' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='Click on &quot;Invoice Tracker&quot; module ' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../Utility Functions/Invoice_Tracker/Click_on_Invoice_Tracker_Module.ds"' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='assertExists' value='' type='web' desc='Validate invoices page' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='heading1(&quot;Invoices&quot;)' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='click' value='' type='web' desc='Click on the select customer dropdown field' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='div([&quot;Select customers (min 3 characters)&quot;]).xy(0.76, 0.36 )' fallback='true' selected='true'/>
+   <accessor type='XPath' value='byXPath(&quot;//main[@id=&apos;root&apos;]/article/main/article/div[2]/div[1]/form/div/div[1]/div[1]/button/div&quot;).xy(0.76, 0.36 )' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;flex min-w-0 max-w-full flex-1 flex-wrap gap-1 overflow-hidden&quot;]&apos;).xy(0.76, 0.36 )' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Select customers (min 3 characters)...&quot;]&apos;).xy(0.76, 0.36 )' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/main/article/main/article/div[2]/div/form/div/div/div/button/div&apos;).xy(0.76, 0.36 )' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;root&apos;)/article[@class=&apos;flex min-h-screen flex-col&apos;]/main[@class=&apos;break-word flex-1 overflow-auto bg-background px-6 py-4 md:ml-16&apos;]/article[1]/div[@class=&apos;space-y-2&apos;]/div[@class=&apos;flex flex-col gap-2&apos;]/form[1]/div[@class=&apos;flex flex-col gap-4 lg:flex-row lg:justify-between&apos;]/div[@class=&apos;flex flex-wrap items-end gap-2&apos;]/div[@class=&apos;space-y-2 flex flex-col&apos;]/button[@class=&apos;inline-flex items-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px border border-input bg-root hover:bg-accent/70 hover:text-accent-foreground hover:border-accent-foreground h-10 py-2 px-4 cursor-pointer font-sans min-h-10 justify-between w-full min-w-64 max-w-96 overflow-hidden&apos;]/div[@class=&apos;flex min-w-0 max-w-full flex-1 flex-wrap gap-1 overflow-hidden&apos;]&quot;).xy(0.76, 0.36 )' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;flex flex-col gap-4 lg:flex-row lg:justify-between&quot;] &gt; div[class=&quot;flex flex-wrap items-end gap-2&quot;] &gt; div[class=&quot;space-y-2 flex flex-col&quot;] &gt; button[class=&quot;inline-flex items-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px border border-input bg-root hover:bg-accent/70 hover:text-accent-foreground hover:border-accent-foreground h-10 py-2 px-4 cursor-pointer font-sans min-h-10 justify-between w-full min-w-64 max-w-96 overflow-hidden&quot;] &gt; div[class=&quot;flex min-w-0 max-w-full flex-1 flex-wrap gap-1 overflow-hidden&quot;]&apos;).xy(0.76, 0.36 )' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='div(&quot;flex flex-1 flex-wrap gap-1 max-w-full min-w-0 overflow-hidden&quot;).xy(0.76, 0.36 )' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='setValue' value='"Lake Superior Consulting"' type='web' desc='Search the Customer to select' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='textbox(&quot;placeholder==Search customers (min 3 characters)...&quot;)' fallback='true' selected='true'/>
+   <accessor type='AttrClass' value='textbox(&quot;bg-transparent disabled:cursor-not-allowed disabled:opacity-50 flex h-11 outline-none placeholder:text-accent-foreground py-3 rounded-md text-sm w-full&quot;)' fallback='true' selected='false'/>
+   <accessor type='Id' value='textbox(&quot;:r1au:&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//input[@id=&apos;:r1au:&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;flex h-11 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-accent-foreground disabled:cursor-not-allowed disabled:opacity-50&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/main/article/main/article/div[2]/div/form/div/div/div/div/div/div/div/input&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;:r1au:&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='textbox({&apos;type&apos;:&apos;text&apos;})' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;z-50 rounded-md border bg-root/80 font-sans text-foreground shadow-md outline-none backdrop-blur-sm animate-in data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 w-[--radix-popover-trigger-width] max-w-[--radix-popover-trigger-width] overflow-hidden p-0 [&amp;&gt;*]:overflow-hidden&quot;] &gt; div[class=&quot;flex h-full max-h-96 flex-col rounded-md bg-root/80 font-sans text-foreground backdrop-blur-sm w-full overflow-hidden&quot;] &gt; div[class=&quot;flex items-center border-b px-3&quot;] &gt; input[class=&quot;flex h-11 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-accent-foreground disabled:cursor-not-allowed disabled:opacity-50&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;input[value=&quot;LA&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;:r1au:&quot;]&apos;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='focus' value='""' type='web' desc='Select the searched customer' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='AttrTitle' value='span(&quot;Lake Superior Consulting&quot;)' fallback='true' selected='true'/>
+   <accessor type='AttrClass' value='span(&quot;flex-1 max-w-[calc(100%-4rem)] min-w-0 pr-4 truncate&quot;)' fallback='true' selected='false'/>
+   <accessor type='Text' value='span(&quot;Lake Superior Consulting&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;:r1bb:&apos;]/span&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;min-w-0 max-w-[calc(100%-4rem)] flex-1 truncate pr-4&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Lake Superior Consulting&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/main/article/main/article/div[2]/div/form/div/div/div/div/div/div/div[2]/div/div/div/div/div/div/span&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;:r1bb:&apos;)/span[@class=&apos;min-w-0 max-w-[calc(100%-4rem)] flex-1 truncate pr-4&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;span[title=&quot;Lake Superior Consulting&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;flex cursor-pointer select-none items-center px-2 py-1.5 text-sm outline-none aria-selected:bg-accent aria-selected:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 relative z-0 w-full min-w-0 max-w-full overflow-hidden rounded-sm pl-2 pr-6&quot;] &gt; span[class=&quot;min-w-0 max-w-[calc(100%-4rem)] flex-1 truncate pr-4&quot;]&apos;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='Select the searched customer' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='AttrTitle' value='span(&quot;Lake Superior Consulting&quot;)' fallback='true' selected='true'/>
+   <accessor type='AttrClass' value='span(&quot;flex-1 max-w-[calc(100%-4rem)] min-w-0 pr-4 truncate&quot;)' fallback='true' selected='false'/>
+   <accessor type='Text' value='span(&quot;Lake Superior Consulting&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;:r1bb:&apos;]/span&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;min-w-0 max-w-[calc(100%-4rem)] flex-1 truncate pr-4&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Lake Superior Consulting&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/main/article/main/article/div[2]/div/form/div/div/div/div/div/div/div[2]/div/div/div/div/div/div/span&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;:r1bb:&apos;)/span[@class=&apos;min-w-0 max-w-[calc(100%-4rem)] flex-1 truncate pr-4&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;span[title=&quot;Lake Superior Consulting&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;flex cursor-pointer select-none items-center px-2 py-1.5 text-sm outline-none aria-selected:bg-accent aria-selected:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 relative z-0 w-full min-w-0 max-w-full overflow-hidden rounded-sm pl-2 pr-6&quot;] &gt; span[class=&quot;min-w-0 max-w-[calc(100%-4rem)] flex-1 truncate pr-4&quot;]&apos;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='assertExists' value='' type='web' desc='Verify the selected customer is appearing in the table' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='div(&quot;Lake Superior Consulting&quot;)' fallback='true' selected='true'/>
+   <accessor type='XPath' value='byXPath(&quot;//main[@id=&apos;root&apos;]/article/main/article/div[2]/div[2]/div/table/tbody/tr[1]/td[12]/div&quot;).xy(0.29, 0.81 )' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/main/article/main/article/div[2]/div[2]/div/table/tbody/tr/td[12]/div&apos;).xy(0.29, 0.81 )' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[1]//td[12]//div[@class=&quot;w-fit whitespace-nowrap&quot;]&apos;).xy(0.29, 0.81 )' fallback='true' selected='false'/>
+   <accessor type='TableXPath' value='byXPath(&apos;//tbody//tr[1]//td[12]//div[text()=&quot;Lake Superior Consulting&quot;]&apos;).xy(0.29, 0.81 )' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='div(&quot;w-fit whitespace-nowrap[4]&quot;).xy(0.29, 0.81 )' fallback='true' selected='false'/>
+   <accessor type='Text' value='div(&quot;Lake Superior Consulting[2]&quot;).xy(0.29, 0.81 )' fallback='true' selected='false'/>
+   <accessor type='unknown' value='div(&quot;Lake Superior Consulting[2]&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='wait' value='2000' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='assertExists' value='' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='span(&quot;Export Invoices&quot;)' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='click' value='' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='span(&quot;Export Invoices&quot;)' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='assertExists' value='' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='button(&quot;title==Select at least one additional filter (e.g., Supplier Name, Invoice Number, Status, Date Range, Facility) to enable export.&quot;)' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../Utility Functions/Logout_Function.ds"' fallback='true' selected='true'/>
+</dialect>
+</step>
+</testcase>

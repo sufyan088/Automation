@@ -1,0 +1,418 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testcase   name= 'TS_11_To_verify_that_Select_All_button_in_status_field_is_functional.ds' description= '' author= 'null' version= ''>
+<dpl filename='REPOSITORY/IM/Resources/IM_DPL1.csv' exectype='runstepbystep' errorhandling='' type='JsDPL' locale='en_US'/>
+<fallback useFallback='true'/>
+<shadowDOM useShadowDOM='true'/>
+<step action='setShadowDOM' value='true' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='setFindOnlyVisible' value='false' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='setFindOnlyEnabled' value='false' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='Logged in as an Admin' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../Utility Functions/Login_As_An_Admin.ds"' fallback='true' selected='true'/>
+   <accessor type='unknown' value='"{ds}/../UtilityFunction/Login_As_An_Admin.ds"' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='Click on &quot;Invoice Tracker&quot; module ' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../Utility Functions/Invoice_Tracker/Click_on_Invoice_Tracker_Module.ds"' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='assertExists' value='' type='web' desc='Validate invoices page' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='heading1(&quot;Invoices&quot;)' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='assertExists' value='""' type='web' desc='Verify Status button' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='button(&quot;Status&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='button(13, _in(div({&apos;id&apos;:&apos;root&apos;})))' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='button(&quot;active:translate-y-px bg-root border border-dashed border-input cursor-pointer disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring font-medium font-sans h-8 hover:bg-accent hover:text-accent-foreground inline-flex items-center justify-center px-3 ring-offset-background rounded-md text-sm transition-colors&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;root&apos;]/article/main/article/section[2]/section/div[2]/div[2]/button[1]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;inline-flex items-center justify-center text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px border border-input hover:bg-accent hover:text-accent-foreground px-3 rounded-md cursor-pointer font-sans h-8 border-dashed bg-root&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Status&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/section[2]/section/div[2]/div[2]/button&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;root&apos;)/article[@class=&apos;flex min-h-screen flex-col&apos;]/main[@class=&apos;break-word flex-1 overflow-auto bg-background px-6 py-4 md:ml-16&apos;]/article[@class=&apos;w-full flex-1 bg-background&apos;]/section[2]/section[@class=&apos;space-y-2&apos;]/div[@class=&apos;flex items-center justify-between gap-4&apos;]/div[@class=&apos;flex items-center space-x-2&apos;]/button[@class=&apos;inline-flex items-center justify-center text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px border border-input hover:bg-accent hover:text-accent-foreground px-3 rounded-md cursor-pointer font-sans h-8 border-dashed bg-root&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='button({&apos;aria-controls&apos;:&apos;radix-:r58:&apos;})' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;section[class=&quot;space-y-2&quot;] &gt; div[class=&quot;flex items-center justify-between gap-4&quot;] &gt; div[class=&quot;flex items-center space-x-2&quot;] &gt; button[class=&quot;inline-flex items-center justify-center text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px border border-input hover:bg-accent hover:text-accent-foreground px-3 rounded-md cursor-pointer font-sans h-8 border-dashed bg-root&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='button(13, _in(div(&quot;root&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='Click on Status button' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='button(&quot;Status&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='button(13, _in(div({&apos;id&apos;:&apos;root&apos;})))' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='button(&quot;active:translate-y-px bg-root border border-dashed border-input cursor-pointer disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring font-medium font-sans h-8 hover:bg-accent hover:text-accent-foreground inline-flex items-center justify-center px-3 ring-offset-background rounded-md text-sm transition-colors&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;root&apos;]/article/main/article/section[2]/section/div[2]/div[2]/button[1]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;inline-flex items-center justify-center text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px border border-input hover:bg-accent hover:text-accent-foreground px-3 rounded-md cursor-pointer font-sans h-8 border-dashed bg-root&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Status&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/section[2]/section/div[2]/div[2]/button&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;root&apos;)/article[@class=&apos;flex min-h-screen flex-col&apos;]/main[@class=&apos;break-word flex-1 overflow-auto bg-background px-6 py-4 md:ml-16&apos;]/article[@class=&apos;w-full flex-1 bg-background&apos;]/section[2]/section[@class=&apos;space-y-2&apos;]/div[@class=&apos;flex items-center justify-between gap-4&apos;]/div[@class=&apos;flex items-center space-x-2&apos;]/button[@class=&apos;inline-flex items-center justify-center text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px border border-input hover:bg-accent hover:text-accent-foreground px-3 rounded-md cursor-pointer font-sans h-8 border-dashed bg-root&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='button({&apos;aria-controls&apos;:&apos;radix-:r58:&apos;})' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;section[class=&quot;space-y-2&quot;] &gt; div[class=&quot;flex items-center justify-between gap-4&quot;] &gt; div[class=&quot;flex items-center space-x-2&quot;] &gt; button[class=&quot;inline-flex items-center justify-center text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px border border-input hover:bg-accent hover:text-accent-foreground px-3 rounded-md cursor-pointer font-sans h-8 border-dashed bg-root&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='button(13, _in(div(&quot;root&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='setChecked' value='true' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='span(&quot;(Select All)&quot;)' fallback='true' selected='true'/>
+   <accessor type='AttrClass' value='div(&quot;[&amp;_svg]:invisible border border-primary flex h-4 items-center justify-center mr-2 opacity-50 rounded-sm w-4&quot;).xy(0.63, 0.53 )' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;:ri0:&apos;]/div&quot;).xy(0.63, 0.53 )' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;mr-2 flex h-4 w-4 items-center justify-center rounded-sm border border-primary opacity-50 [&amp;_svg]:invisible&quot;]&apos;).xy(0.63, 0.53 )' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/div/form/div/div[2]/div/div/div/div/div[2]/div/div/div/div/div/div/div&apos;).xy(0.63, 0.53 )' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;:ri0:&apos;)/div[@class=&apos;mr-2 flex h-4 w-4 items-center justify-center rounded-sm border border-primary opacity-50 [&amp;_svg]:invisible&apos;]&quot;).xy(0.63, 0.53 )' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;relative flex select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none aria-selected:bg-accent aria-selected:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 cursor-pointer&quot;] &gt; div[class=&quot;mr-2 flex h-4 w-4 items-center justify-center rounded-sm border border-primary opacity-50 [&amp;_svg]:invisible&quot;]&apos;).xy(0.63, 0.53 )' fallback='true' selected='false'/>
+   <accessor type='Parent' value='div(6, _in(div({&apos;aria-label&apos;:&apos;Suggestions&apos;}))).xy(0.63, 0.53 )' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='assertExists' value='true' type='web' desc='Validate the Pending Approval status ' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='span(&quot;Pending Approval&quot;)' fallback='true' selected='true'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/section[2]/form/div/section/div/div[9]/button&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='button(&quot;border border-primary data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring peer ring-offset-background rounded-sm shrink-0 size-4[2]&quot;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='button(7, _in(div(&quot;root&quot;)))' fallback='false' selected='false'/>
+   <accessor type='Parent' value='button(6, _in(div(&quot;root&quot;)))' fallback='false' selected='false'/>
+   <accessor type='Parent' value='button(7, _in(div({&apos;id&apos;:&apos;root&apos;})))' fallback='false' selected='false'/>
+   <accessor type='Parent' value='button(6, _in(div({&apos;id&apos;:&apos;root&apos;})))' fallback='false' selected='false'/>
+   <accessor type='Id' value='button(&quot;:rda:-form-item&quot;)' fallback='false' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;:rda:-form-item&apos;)&quot;)' fallback='false' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;:rc6:-form-item&apos;)&quot;)' fallback='false' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;:rda:-form-item&quot;]&apos;)' fallback='false' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//button[@id=&apos;:rda:-form-item&apos;]&quot;)' fallback='false' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//button[@id=&apos;:rc6:-form-item&apos;]&quot;)' fallback='false' selected='false'/>
+   <accessor type='Attribute' value='button({&apos;aria-describedby&apos;:&apos;:rda:-form-item-description&apos;})' fallback='false' selected='false'/>
+   <accessor type='AttrValue' value='button(&quot;on[2]&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;Active]&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;Active&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;Active&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Pending Approval&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Approved&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Approved&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Approved&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Approved&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Cancelled&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Cancelled&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Pending Approval&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Approved&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Deleted&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Paid&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Exception&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Cancelled&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Void&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Pending Test&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Pending Approval&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='div(&quot;Pending Approval&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Approved&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Deleted&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Paid&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Exception&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Cancelled&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Void&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Pending Test&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Pending Test&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='assertExists' value='true' type='web' desc='Validate the Approved status ' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='span(&quot;Approved&quot;)' fallback='true' selected='true'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/section[2]/form/div/section/div/div[9]/button&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='button(&quot;border border-primary data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring peer ring-offset-background rounded-sm shrink-0 size-4[2]&quot;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='button(7, _in(div(&quot;root&quot;)))' fallback='false' selected='false'/>
+   <accessor type='Parent' value='button(6, _in(div(&quot;root&quot;)))' fallback='false' selected='false'/>
+   <accessor type='Parent' value='button(7, _in(div({&apos;id&apos;:&apos;root&apos;})))' fallback='false' selected='false'/>
+   <accessor type='Parent' value='button(6, _in(div({&apos;id&apos;:&apos;root&apos;})))' fallback='false' selected='false'/>
+   <accessor type='Id' value='button(&quot;:rda:-form-item&quot;)' fallback='false' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;:rda:-form-item&apos;)&quot;)' fallback='false' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;:rc6:-form-item&apos;)&quot;)' fallback='false' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;:rda:-form-item&quot;]&apos;)' fallback='false' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//button[@id=&apos;:rda:-form-item&apos;]&quot;)' fallback='false' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//button[@id=&apos;:rc6:-form-item&apos;]&quot;)' fallback='false' selected='false'/>
+   <accessor type='Attribute' value='button({&apos;aria-describedby&apos;:&apos;:rda:-form-item-description&apos;})' fallback='false' selected='false'/>
+   <accessor type='AttrValue' value='button(&quot;on[2]&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;Active]&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;Active&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;Active&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Pending Approval&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Approved&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Approved&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Approved&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Approved&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Cancelled&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Cancelled&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Pending Approval&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Approved&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Deleted&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Paid&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Exception&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Cancelled&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Void&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Pending Test&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Pending Approval&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='div(&quot;Pending Approval&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Approved&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Deleted&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Paid&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Exception&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Cancelled&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Void&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Pending Test&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Pending Test&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='assertExists' value='true' type='web' desc='Validate the Deleted status ' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='span(&quot;Deleted&quot;)' fallback='true' selected='true'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/section[2]/form/div/section/div/div[9]/button&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='button(&quot;border border-primary data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring peer ring-offset-background rounded-sm shrink-0 size-4[2]&quot;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='button(7, _in(div(&quot;root&quot;)))' fallback='false' selected='false'/>
+   <accessor type='Parent' value='button(6, _in(div(&quot;root&quot;)))' fallback='false' selected='false'/>
+   <accessor type='Parent' value='button(7, _in(div({&apos;id&apos;:&apos;root&apos;})))' fallback='false' selected='false'/>
+   <accessor type='Parent' value='button(6, _in(div({&apos;id&apos;:&apos;root&apos;})))' fallback='false' selected='false'/>
+   <accessor type='Id' value='button(&quot;:rda:-form-item&quot;)' fallback='false' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;:rda:-form-item&apos;)&quot;)' fallback='false' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;:rc6:-form-item&apos;)&quot;)' fallback='false' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;:rda:-form-item&quot;]&apos;)' fallback='false' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//button[@id=&apos;:rda:-form-item&apos;]&quot;)' fallback='false' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//button[@id=&apos;:rc6:-form-item&apos;]&quot;)' fallback='false' selected='false'/>
+   <accessor type='Attribute' value='button({&apos;aria-describedby&apos;:&apos;:rda:-form-item-description&apos;})' fallback='false' selected='false'/>
+   <accessor type='AttrValue' value='button(&quot;on[2]&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;Active]&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;Active&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;Active&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Pending Approval&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Approved&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Approved&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Approved&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Approved&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Cancelled&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Cancelled&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Pending Approval&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Approved&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Deleted&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Paid&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Exception&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Cancelled&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Void&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Pending Test&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Pending Approval&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='div(&quot;Pending Approval&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Approved&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Deleted&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Paid&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Exception&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Cancelled&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Void&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Pending Test&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Pending Test&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='assertExists' value='true' type='web' desc='Validate the Paid status ' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='span(&quot;Paid&quot;)' fallback='true' selected='true'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/section[2]/form/div/section/div/div[9]/button&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='button(&quot;border border-primary data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring peer ring-offset-background rounded-sm shrink-0 size-4[2]&quot;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='button(7, _in(div(&quot;root&quot;)))' fallback='false' selected='false'/>
+   <accessor type='Parent' value='button(6, _in(div(&quot;root&quot;)))' fallback='false' selected='false'/>
+   <accessor type='Parent' value='button(7, _in(div({&apos;id&apos;:&apos;root&apos;})))' fallback='false' selected='false'/>
+   <accessor type='Parent' value='button(6, _in(div({&apos;id&apos;:&apos;root&apos;})))' fallback='false' selected='false'/>
+   <accessor type='Id' value='button(&quot;:rda:-form-item&quot;)' fallback='false' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;:rda:-form-item&apos;)&quot;)' fallback='false' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;:rc6:-form-item&apos;)&quot;)' fallback='false' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;:rda:-form-item&quot;]&apos;)' fallback='false' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//button[@id=&apos;:rda:-form-item&apos;]&quot;)' fallback='false' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//button[@id=&apos;:rc6:-form-item&apos;]&quot;)' fallback='false' selected='false'/>
+   <accessor type='Attribute' value='button({&apos;aria-describedby&apos;:&apos;:rda:-form-item-description&apos;})' fallback='false' selected='false'/>
+   <accessor type='AttrValue' value='button(&quot;on[2]&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;Active]&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;Active&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;Active&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Pending Approval&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Approved&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Approved&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Approved&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Approved&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Cancelled&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Cancelled&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Pending Approval&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Approved&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Deleted&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Paid&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Exception&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Cancelled&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Void&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Pending Test&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Pending Approval&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='div(&quot;Pending Approval&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Approved&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Deleted&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Paid&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Exception&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Cancelled&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Void&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Pending Test&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Pending Test&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='assertExists' value='true' type='web' desc='Validate the Exception status ' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='span(&quot;Exception&quot;)' fallback='true' selected='true'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/section[2]/form/div/section/div/div[9]/button&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='button(&quot;border border-primary data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring peer ring-offset-background rounded-sm shrink-0 size-4[2]&quot;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='button(7, _in(div(&quot;root&quot;)))' fallback='false' selected='false'/>
+   <accessor type='Parent' value='button(6, _in(div(&quot;root&quot;)))' fallback='false' selected='false'/>
+   <accessor type='Parent' value='button(7, _in(div({&apos;id&apos;:&apos;root&apos;})))' fallback='false' selected='false'/>
+   <accessor type='Parent' value='button(6, _in(div({&apos;id&apos;:&apos;root&apos;})))' fallback='false' selected='false'/>
+   <accessor type='Id' value='button(&quot;:rda:-form-item&quot;)' fallback='false' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;:rda:-form-item&apos;)&quot;)' fallback='false' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;:rc6:-form-item&apos;)&quot;)' fallback='false' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;:rda:-form-item&quot;]&apos;)' fallback='false' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//button[@id=&apos;:rda:-form-item&apos;]&quot;)' fallback='false' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//button[@id=&apos;:rc6:-form-item&apos;]&quot;)' fallback='false' selected='false'/>
+   <accessor type='Attribute' value='button({&apos;aria-describedby&apos;:&apos;:rda:-form-item-description&apos;})' fallback='false' selected='false'/>
+   <accessor type='AttrValue' value='button(&quot;on[2]&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;Active]&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;Active&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;Active&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Pending Approval&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Approved&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Approved&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Approved&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Approved&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Cancelled&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Cancelled&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Pending Approval&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Approved&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Deleted&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Paid&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Exception&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Cancelled&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Void&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Pending Test&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Pending Approval&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='div(&quot;Pending Approval&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Approved&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Deleted&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Paid&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Exception&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Cancelled&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Void&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Pending Test&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Pending Test&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='assertExists' value='true' type='web' desc='Validate the Cancelled status ' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='span(&quot;Cancelled&quot;)' fallback='true' selected='true'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/section[2]/form/div/section/div/div[9]/button&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='button(&quot;border border-primary data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring peer ring-offset-background rounded-sm shrink-0 size-4[2]&quot;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='button(7, _in(div(&quot;root&quot;)))' fallback='false' selected='false'/>
+   <accessor type='Parent' value='button(6, _in(div(&quot;root&quot;)))' fallback='false' selected='false'/>
+   <accessor type='Parent' value='button(7, _in(div({&apos;id&apos;:&apos;root&apos;})))' fallback='false' selected='false'/>
+   <accessor type='Parent' value='button(6, _in(div({&apos;id&apos;:&apos;root&apos;})))' fallback='false' selected='false'/>
+   <accessor type='Id' value='button(&quot;:rda:-form-item&quot;)' fallback='false' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;:rda:-form-item&apos;)&quot;)' fallback='false' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;:rc6:-form-item&apos;)&quot;)' fallback='false' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;:rda:-form-item&quot;]&apos;)' fallback='false' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//button[@id=&apos;:rda:-form-item&apos;]&quot;)' fallback='false' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//button[@id=&apos;:rc6:-form-item&apos;]&quot;)' fallback='false' selected='false'/>
+   <accessor type='Attribute' value='button({&apos;aria-describedby&apos;:&apos;:rda:-form-item-description&apos;})' fallback='false' selected='false'/>
+   <accessor type='AttrValue' value='button(&quot;on[2]&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;Active]&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;Active&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;Active&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Pending Approval&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Approved&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Approved&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Approved&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Approved&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Cancelled&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Cancelled&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Pending Approval&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Approved&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Deleted&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Paid&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Exception&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Cancelled&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Void&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Pending Test&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Pending Approval&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='div(&quot;Pending Approval&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Approved&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Deleted&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Paid&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Exception&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Cancelled&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Void&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Pending Test&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Pending Test&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='assertExists' value='true' type='web' desc='Validate the Void status ' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='span(&quot;Void&quot;)' fallback='true' selected='true'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/section[2]/form/div/section/div/div[9]/button&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='button(&quot;border border-primary data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring peer ring-offset-background rounded-sm shrink-0 size-4[2]&quot;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='button(7, _in(div(&quot;root&quot;)))' fallback='false' selected='false'/>
+   <accessor type='Parent' value='button(6, _in(div(&quot;root&quot;)))' fallback='false' selected='false'/>
+   <accessor type='Parent' value='button(7, _in(div({&apos;id&apos;:&apos;root&apos;})))' fallback='false' selected='false'/>
+   <accessor type='Parent' value='button(6, _in(div({&apos;id&apos;:&apos;root&apos;})))' fallback='false' selected='false'/>
+   <accessor type='Id' value='button(&quot;:rda:-form-item&quot;)' fallback='false' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;:rda:-form-item&apos;)&quot;)' fallback='false' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;:rc6:-form-item&apos;)&quot;)' fallback='false' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;:rda:-form-item&quot;]&apos;)' fallback='false' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//button[@id=&apos;:rda:-form-item&apos;]&quot;)' fallback='false' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//button[@id=&apos;:rc6:-form-item&apos;]&quot;)' fallback='false' selected='false'/>
+   <accessor type='Attribute' value='button({&apos;aria-describedby&apos;:&apos;:rda:-form-item-description&apos;})' fallback='false' selected='false'/>
+   <accessor type='AttrValue' value='button(&quot;on[2]&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;Active]&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;Active&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;Active&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Pending Approval&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Approved&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Approved&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Approved&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Approved&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Cancelled&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Cancelled&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Pending Approval&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Approved&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Deleted&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Paid&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Exception&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Cancelled&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Void&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Pending Test&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Pending Approval&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='div(&quot;Pending Approval&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Approved&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Deleted&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Paid&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Exception&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Cancelled&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Void&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Pending Test&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button(&quot;Pending Test&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='div(&quot;Close&quot;)' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../Utility Functions/Logout_Function.ds"' fallback='true' selected='true'/>
+</dialect>
+</step>
+</testcase>

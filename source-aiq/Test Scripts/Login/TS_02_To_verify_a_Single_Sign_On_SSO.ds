@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testcase   name= 'TS_02_To_verify_a_Single_Sign_On_SSO.ds' description= '' author= 'null' version= ''>
+<dpl filename='REPOSITORY/IM/Resources/IM_DPL1.csv' exectype='runstepbystep' errorhandling='' type='JsDPL' locale='null'/>
+<fallback useFallback='true'/>
+<shadowDOM useShadowDOM='true'/>
+<step action='navigateTo' value='$URL' type='web' desc='Navigate to URL' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='assertExists' value='""' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='span([&quot;Or continue with SSO (Single Sign-O&quot;])' fallback='true' selected='true'/>
+   <accessor type='Parent' value='span(5, _in(section({&apos;id&apos;:&apos;main-form-content&apos;})))' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='span(&quot;bg-background px-2 text-accent-foreground&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//section[@id=&apos;main-form-content&apos;]/section/div[1]/div[2]/span&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;bg-background px-2 text-accent-foreground&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Or continue with SSO (Single Sign-On)&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/section/div/section/section/section/div/div[2]/span&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;main-form-content&apos;)/section[@class=&apos;w-full space-y-2 px-8&apos;]/div[@class=&apos;relative&apos;]/div[@class=&apos;relative flex justify-center text-xs uppercase&apos;]/span[@class=&apos;bg-background px-2 text-accent-foreground&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;section[class=&quot;w-full&quot;] &gt; section[class=&quot;w-full space-y-2 px-8&quot;] &gt; div[class=&quot;relative&quot;] &gt; div[class=&quot;relative flex justify-center text-xs uppercase&quot;] &gt; span[class=&quot;bg-background px-2 text-accent-foreground&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;#main-form-content &gt; .w-full.space-y-2.px-8 &gt; .relative &gt; .relative.flex.justify-center.text-xs.uppercase &gt; .bg-background.px-2.text-accent-foreground&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='span(5, _in(section(&quot;main-form-content&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+</testcase>

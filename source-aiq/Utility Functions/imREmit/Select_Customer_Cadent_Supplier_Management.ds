@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testcase   name= 'Select_Customer_Cadent_Supplier_Management.ds' description= '' author= 'null' version= ''>
+<dpl filename='' exectype='runstepbystep' errorhandling='' type='JsDPL' locale='null'/>
+<fallback useFallback='true'/>
+<shadowDOM useShadowDOM='true'/>
+<step action='wait' value='5000' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='span(&quot;Select All&quot;)' fallback='true' selected='true'/>
+   <accessor type='XPath' value='byXPath(&quot;//main[@id=&apos;root&apos;]/article/main/article/section[2]/div[2]/form/div/button/div/span&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;inline-flex text-center items-center border py-0.5 text-xs transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 capitalize max-w-fit whitespace-nowrap bg-neutral-foreground hover:bg-neutral-foreground/80 border-transparent text-foreground mr-1 truncate rounded-sm px-1 font-normal&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Select All&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/main/article/main/article/section[2]/div[2]/form/div/button/div/span&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;root&apos;)/article[@class=&apos;flex min-h-screen flex-col&apos;]/main[@class=&apos;break-word flex-1 overflow-auto bg-background px-6 py-4 md:ml-16&apos;]/article[@class=&apos;w-full flex-1 bg-background&apos;]/section[@class=&apos;flex items-center justify-between&apos;]/div[@class=&apos;flex gap-2&apos;]/form[1]/div[@class=&apos;flex flex-col space-y-0&apos;]/button[@class=&apos;inline-flex items-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px border border-input bg-root hover:bg-accent/70 hover:text-accent-foreground hover:border-accent-foreground py-2 px-4 cursor-pointer font-sans min-h-10 justify-between w-full min-w-64 max-w-96 h-full&apos;]/div[@class=&apos;flex flex-1 flex-wrap gap-1 overflow-hidden&apos;]/span[@class=&apos;inline-flex text-center items-center border py-0.5 text-xs transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 capitalize max-w-fit whitespace-nowrap bg-neutral-foreground hover:bg-neutral-foreground/80 border-transparent text-foreground mr-1 truncate rounded-sm px-1 font-normal&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='span({&apos;data-state&apos;:&apos;closed&apos;})' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;flex flex-col space-y-0&quot;] &gt; button[class=&quot;inline-flex items-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px border border-input bg-root hover:bg-accent/70 hover:text-accent-foreground hover:border-accent-foreground py-2 px-4 cursor-pointer font-sans min-h-10 justify-between w-full min-w-64 max-w-96 h-full&quot;] &gt; div[class=&quot;flex flex-1 flex-wrap gap-1 overflow-hidden&quot;] &gt; span[class=&quot;inline-flex text-center items-center border py-0.5 text-xs transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 capitalize max-w-fit whitespace-nowrap bg-neutral-foreground hover:bg-neutral-foreground/80 border-transparent text-foreground mr-1 truncate rounded-sm px-1 font-normal&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='span(&quot;bg-neutral-foreground border border-transparent capitalize focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-ring font-normal hover:bg-neutral-foreground/80 inline-flex items-center max-w-fit mr-1 px-1 py-0.5 rounded-sm text-center text-foreground text-xs transition-colors truncate whitespace-nowrap&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='setValue' value='"Cadent"' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='textbox(&quot;placeholder==Search customers (min. 3 characters)...&quot;)' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='wait' value='3000' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='2000' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='focus' value='' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='div(&quot;Cadent&quot;)' fallback='true' selected='true'/>
+   <accessor type='AttrClass' value='div(&quot;aria-selected:bg-accent aria-selected:text-accent-foreground cursor-pointer data-[disabled]:opacity-50 data-[disabled]:pointer-events-none flex items-center outline-none px-2 py-1.5 relative rounded-sm select-none text-sm z-0[1]&quot;).xy(0.16, 0.55 )' fallback='true' selected='false'/>
+   <accessor type='Id' value='div(&quot;:rqb:&quot;).xy(0.16, 0.55 )' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;:rqb:&apos;]&quot;).xy(0.16, 0.55 )' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Cadent&quot;]&apos;).xy(0.16, 0.55 )' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/main/article/main/article/section[2]/div[2]/form/div/div/div/div/div[2]/div/div/div/div/div/div/div/div[2]&apos;).xy(0.16, 0.55 )' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;:rqb:&apos;)&quot;).xy(0.16, 0.55 )' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='div({&apos;aria-selected&apos;:&apos;true&apos;}).xy(0.16, 0.55 )' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;:rqb:&quot;]&apos;).xy(0.16, 0.55 )' fallback='true' selected='false'/>
+   <accessor type='Text' value='div(&quot;Cadent&quot;).xy(0.16, 0.55 )' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='span(&quot;Cadent&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='span(0, _in(div({&apos;id&apos;:&apos;_r_q8_&apos;})))' fallback='true' selected='false'/>
+   <accessor type='AttrTitle' value='span(&quot;Cadent&quot;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='span(&quot;flex-1 max-w-[calc(100%-4rem)] min-w-0 pr-4 truncate[1]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;_r_q8_&apos;]/span&quot;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div[2]/div/div/div[2]/div/div/div/div/div/div[2]/span&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;_r_q8_&apos;)/span[@class=&apos;min-w-0 max-w-[calc(100%-4rem)] flex-1 truncate pr-4&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;span[title=&quot;Cadent&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='span(0, _in(div(&quot;_r_q8_&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='wait' value='3000' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+</testcase>

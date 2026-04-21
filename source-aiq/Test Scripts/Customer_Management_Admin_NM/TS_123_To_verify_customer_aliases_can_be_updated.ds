@@ -1,0 +1,577 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testcase   name= 'TS_123_To_verify_customer_aliases_can_be_updated.ds' description= '' author= 'null' version= ''>
+<dpl filename='{ds}/../../Resources/IM_DPL1.csv' exectype='runstepbystep' errorhandling='' type='JsDPL' locale='null'/>
+<fallback useFallback='true'/>
+<shadowDOM useShadowDOM='true'/>
+<step action='setShadowDOM' value='true' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='setFindOnlyEnabled' value='false' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='setFindOnlyVisible' value='false' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='Logged in as an &quot;Admin&quot;' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../Utility Functions/Login_As_An_Admin.ds"' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='Click on &quot;Admin&quot; Module' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../Utility Functions/Admin/Click_on_Admin_Module.ds"' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='click' value='' type='web' desc='Click on the &quot;Customer Management&quot; module' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='link(&quot;Customer Management&quot;)' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='assertExists' value='""' type='web' desc='Verify Customer Mangement Tab is opened' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='heading2(&quot;Customer Management&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='heading2(1, _in(div(&quot;root&quot;)))' fallback='true' selected='false'/>
+   <accessor type='Parent' value='heading2(1, _in(div({&apos;id&apos;:&apos;root&apos;})))' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;root&apos;]/article/main/article/section[2]/header/div/h2&quot;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/section[2]/header/div/h2&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='heading2(&quot;font-semibold scroll-m-20 text-2xl tracking-tight transition-colors&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;scroll-m-20 text-2xl font-semibold tracking-tight transition-colors&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;.flex.items-center.justify-between &gt; .flex.flex-col.justify-center &gt; .scroll-m-20.text-2xl.font-semibold.tracking-tight.transition-colors&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;header[class=&quot;flex items-center justify-between&quot;] &gt; div[class=&quot;flex flex-col justify-center&quot;] &gt; h2[class=&quot;scroll-m-20 text-2xl font-semibold tracking-tight transition-colors&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;root&apos;)/article[@class=&apos;flex min-h-screen flex-col&apos;]/main[@class=&apos;break-word flex-1 overflow-auto bg-background px-6 py-4 md:ml-16&apos;]/article[@class=&apos;w-full flex-1 bg-background&apos;]/section[2]/header[@class=&apos;flex items-center justify-between&apos;]/div[@class=&apos;flex flex-col justify-center&apos;]/h2[@class=&apos;scroll-m-20 text-2xl font-semibold tracking-tight transition-colors&apos;]&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='Click on &quot;Add Customer&quot; button' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='span(&quot;Add customer&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='span(9, _in(div(&quot;root&quot;)))' fallback='false' selected='false'/>
+   <accessor type='Text' value='link(&quot;Add customerAdd Customer&quot;)' fallback='false' selected='false'/>
+   <accessor type='Parent' value='span(9, _in(div({&apos;id&apos;:&apos;root&apos;})))' fallback='false' selected='false'/>
+   <accessor type='AttrClass' value='span(&quot;sr-only[1]&quot;)' fallback='false' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Add customer&quot;]&apos;)' fallback='false' selected='false'/>
+   <accessor type='AttrHref' value='link(&quot;/app/admin/customer-management/create&quot;)' fallback='false' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;a[href=&quot;/app/admin/customer-management/create&quot;]&apos;)' fallback='false' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;root&apos;]/article/main/article/section[2]/header/a&quot;)' fallback='false' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/section[2]/header/a&apos;)' fallback='false' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;root&apos;]/article/main/article/section[2]/header/a/span&quot;)' fallback='false' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/section[2]/header/a/span&apos;)' fallback='false' selected='false'/>
+   <accessor type='Parent' value='link(14, _in(div(&quot;root&quot;)))' fallback='false' selected='false'/>
+   <accessor type='Parent' value='link(14, _in(div({&apos;id&apos;:&apos;root&apos;})))' fallback='false' selected='false'/>
+   <accessor type='AttrClass' value='link(&quot;active:translate-y-px bg-primary disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring font-medium gap-2 h-10 hover:bg-primary/90 inline-flex items-center justify-center mb-4 px-4 py-2 ring-offset-background rounded-md text-root text-sm transition-colors&quot;)' fallback='false' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px bg-primary text-root hover:bg-primary/90 h-10 py-2 px-4 mb-4 gap-2&quot;]&apos;)' fallback='false' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;header[class=&quot;flex items-center justify-between&quot;] &gt; a[class=&quot;inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px bg-primary text-root hover:bg-primary/90 h-10 py-2 px-4 mb-4 gap-2&quot;]&apos;)' fallback='false' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;header[class=&quot;flex items-center justify-between&quot;] &gt; a[class=&quot;inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px bg-primary text-root hover:bg-primary/90 h-10 py-2 px-4 mb-4 gap-2&quot;] &gt; span[class=&quot;sr-only&quot;]&apos;)' fallback='false' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;root&apos;)/article[@class=&apos;flex min-h-screen flex-col&apos;]/main[@class=&apos;break-word flex-1 overflow-auto bg-background px-6 py-4 md:ml-16&apos;]/article[@class=&apos;w-full flex-1 bg-background&apos;]/section[2]/header[@class=&apos;flex items-center justify-between&apos;]/a[@class=&apos;inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px bg-primary text-root hover:bg-primary/90 h-10 py-2 px-4 mb-4 gap-2&apos;]&quot;)' fallback='false' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;root&apos;)/article[@class=&apos;flex min-h-screen flex-col&apos;]/main[@class=&apos;break-word flex-1 overflow-auto bg-background px-6 py-4 md:ml-16&apos;]/article[@class=&apos;w-full flex-1 bg-background&apos;]/section[2]/header[@class=&apos;flex items-center justify-between&apos;]/a[@class=&apos;inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px bg-primary text-root hover:bg-primary/90 h-10 py-2 px-4 mb-4 gap-2&apos;]/span[@class=&apos;sr-only&apos;]&quot;)' fallback='false' selected='false'/>
+</dialect>
+</step>
+<step action='wait' value='2000' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='setValue' value='$CustomerName' type='web' desc='Enter the Customer name' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='textbox(&quot;placeholder==Enter the customer name...&quot;)' fallback='true' selected='true'/>
+   <accessor type='AttrClass' value='textbox(&quot;bg-root border border-input disabled:cursor-not-allowed disabled:placeholder:text-accent-foreground/50 disabled:text-accent-foreground/50 file:bg-transparent file:border-0 file:font-medium file:text-sm flex focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring h-10 placeholder:text-accent-foreground px-3 py-2 ring-offset-background rounded-md text-sm w-full&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathName' value='byXPath(&apos;//*[@name=&quot;buyerName&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Id' value='textbox(&quot;:rm2:-form-item&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//input[@id=&apos;:rm2:-form-item&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;flex h-10 w-full rounded-md border border-input bg-root px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:text-accent-foreground/50 disabled:placeholder:text-accent-foreground/50&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/main/article/main/article/section[2]/form/div/div/div/div/div[3]/div/input&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;:rm2:-form-item&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='textbox({&apos;type&apos;:&apos;text&apos;})' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;p-6&quot;] &gt; div[class=&quot;space-y-6&quot;] &gt; div[class=&quot;grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3&quot;] &gt; div[class=&quot;space-y-2&quot;] &gt; input[class=&quot;flex h-10 w-full rounded-md border border-input bg-root px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:text-accent-foreground/50 disabled:placeholder:text-accent-foreground/50&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;input[name=&quot;buyerName&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;:rm2:-form-item&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrName' value='textbox(&quot;buyerName&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;placeholder==Enter the customer name...&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='focus' value='' type='web' desc='Focus on &quot;Module Subscription&quot; field' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='div(&quot;Select modules for this customer...&quot;,below(label(&quot;Available Modules *&quot;)))' fallback='true' selected='true'/>
+   <accessor type='JQuery' value='byJQuery(&apos;input[value=&quot;&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;placeholder==Search modules...&quot;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/section[2]/form/div/section[2]/div/div/div/div[2]/input&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='textbox(&quot;bg-transparent disabled:cursor-not-allowed disabled:opacity-50 flex-1 ml-2 outline-none placeholder:text-muted-foreground&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;ml-2 flex-1 bg-transparent outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;grid w-full items-center gap-2&quot;] &gt; div[class=&quot;flex h-full w-full flex-col rounded-md font-sans text-foreground overflow-visible bg-root/95 backdrop-blur-lg backdrop-brightness-150 max-w-md&quot;] &gt; div[class=&quot;group rounded-md border border-input px-3 py-2 text-sm ring-offset-background focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2&quot;] &gt; div[class=&quot;flex items-center&quot;] &gt; input[class=&quot;ml-2 flex-1 bg-transparent outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Id' value='textbox(&quot;:re9:&quot;)' fallback='false' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;:re9:&apos;)&quot;)' fallback='false' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;:rcv:&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='textbox({&apos;role&apos;:&apos;combobox&apos;})' fallback='false' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;:rcv:&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//input[@id=&apos;:re9:&apos;]&quot;)' fallback='false' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//input[@id=&apos;:rcv:&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox([&quot;Search modules&quot;],below(label(&quot;Module Subscription:&quot;)))' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox([&quot;Select module...&quot;],below(label(&quot;Module Subscription:&quot;)))' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button([&quot;Select module...&quot;],below(label(&quot;Module Subscription:&quot;)))' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button([&quot;Select modules...&quot;],below(label(&quot;Module Subscription:&quot;)))' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;placeholder==Search modules...&quot;,below(label(&quot;Module Subscription:&quot;)))' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;placeholder==Search modules...&quot;,below(label(&quot;Module Subscription:*&quot;)))' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;Select items...&quot;,below(label(&quot;Module Subscription:*&quot;)))' fallback='true' selected='false'/>
+   <accessor type='unknown' value='div(&quot;Select items...&quot;,below(label(&quot;Module Subscription:*&quot;)))' fallback='true' selected='false'/>
+   <accessor type='unknown' value='div(&quot;Select modules&quot;,below(label(&quot;Module Subscription:*&quot;)))' fallback='true' selected='false'/>
+   <accessor type='unknown' value='div(&quot;Select modules&quot;,below(heading3(&quot;Module Subscriptions&quot;)))' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;:re9:&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='div(&quot;Select modules for this customer...&quot;,rightOf(label(&quot;Available Modules *&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='' type='web' desc='Click on the &quot;Module Subscription&quot; field' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='div(&quot;Select modules for this customer...&quot;,below(label(&quot;Available Modules *&quot;)))' fallback='true' selected='true'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;root&apos;]/article/main/article/section[2]/form/div/div[2]/div[1]/div/div/div[2]/button/div&quot;).xy(0.37, 0.50 )' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;flex flex-wrap items-center gap-1 overflow-hidden font-normal&quot;]&apos;).xy(0.37, 0.50 )' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Select modules for this customer...&quot;]&apos;).xy(0.37, 0.50 )' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/section[2]/form/div/div[2]/div/div/div/div[2]/button/div&apos;).xy(0.37, 0.50 )' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;root&apos;)/article[@class=&apos;flex min-h-screen flex-col&apos;]/main[@class=&apos;break-word flex-1 overflow-auto bg-background px-6 py-4 md:ml-16&apos;]/article[@class=&apos;w-full flex-1 bg-background&apos;]/section[2]/form[1]/div[@class=&apos;mb-8 rounded-md border border-border bg-root p-4&apos;]/div[@class=&apos;space-y-8&apos;]/div[@class=&apos;rounded-lg bg-root text-card-foreground shadow-sm border-2 border-border transition-all duration-300 hover:border-accent-foreground/30&apos;]/div[@class=&apos;p-6&apos;]/div[@class=&apos;space-y-4&apos;]/div[@class=&apos;space-y-3&apos;]/button[@class=&apos;inline-flex items-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px border border-input bg-root hover:bg-accent/70 hover:text-accent-foreground hover:border-accent-foreground h-10 py-2 px-4 cursor-pointer font-sans min-h-10 justify-between whitespace-nowrap min-w-96&apos;]/div[@class=&apos;flex flex-wrap items-center gap-1 overflow-hidden font-normal&apos;]&quot;).xy(0.37, 0.50 )' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;p-6&quot;] &gt; div[class=&quot;space-y-4&quot;] &gt; div[class=&quot;space-y-3&quot;] &gt; button[class=&quot;inline-flex items-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px border border-input bg-root hover:bg-accent/70 hover:text-accent-foreground hover:border-accent-foreground h-10 py-2 px-4 cursor-pointer font-sans min-h-10 justify-between whitespace-nowrap min-w-96&quot;] &gt; div[class=&quot;flex flex-wrap items-center gap-1 overflow-hidden font-normal&quot;]&apos;).xy(0.37, 0.50 )' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='div(&quot;flex flex-wrap font-normal gap-1 items-center overflow-hidden&quot;).xy(0.37, 0.50 )' fallback='true' selected='false'/>
+   <accessor type='unknown' value='div([&quot;Select modules for this customer...&quot;]).xy(0.37, 0.50 )' fallback='true' selected='false'/>
+   <accessor type='unknown' value='div(&quot;Select modules for this customer...&quot;,rightOf(label(&quot;Available Modules *&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='' type='web' desc='Select imREmit Lite module' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='div(&quot;ImREmit Lite&quot;)' fallback='true' selected='true'/>
+   <accessor type='unknown' value='div(imREmit)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='div(&quot;imREmit&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='div(&quot;ImREmit&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='wait' value='2000' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='setChecked' value='true' type='web' desc='Enabled the Alias toggle' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Id' value='button(&quot;aliasSwitch&quot;)' fallback='true' selected='true'/>
+   <accessor type='AttrClass' value='button(&quot;bg-destructive-foreground border-2 border-transparent cursor-pointer disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:ring-ring h-6 inline-flex items-center peer rounded-full shrink-0 transition-colors w-11&quot;)' fallback='true' selected='false'/>
+   <accessor type='AttrValue' value='button(&quot;on[1]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//button[@id=&apos;aliasSwitch&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;peer inline-flex shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 h-6 w-11 bg-destructive-foreground&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/main/article/main/article/section[2]/form/div[2]/div[4]/div/div/div[2]/div/button&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;aliasSwitch&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='button({&apos;role&apos;:&apos;switch&apos;})' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;flex flex-col space-y-1.5 p-6 pb-0&quot;] &gt; div[class=&quot;flex items-center justify-between gap-8&quot;] &gt; div[class=&quot;space-y-0&quot;] &gt; div[class=&quot;flex items-center gap-3&quot;] &gt; button[class=&quot;peer inline-flex shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 h-6 w-11 bg-destructive-foreground&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;#aliasSwitch&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;aliasSwitch&quot;]&apos;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='wait' value='2000' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='focus' value='""' type='web' desc='Focus on Add First Alias' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='svg(&quot;lucide lucide-plus size-4&quot;)' fallback='true' selected='true'/>
+   <accessor type='XPath' value='byXPath(&quot;//main[@id=&apos;root&apos;]/article/main/article/section[2]/form/div[2]/div[4]/div[2]/div/div[4]/div/div/div/button&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;inline-flex items-center justify-center text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px bg-primary text-root hover:bg-primary/80 h-11 px-8 rounded-md duration-125 gap-2 shadow-lg transition-all hover:shadow-xl&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Add First Alias&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/main/article/main/article/section[2]/form/div[2]/div[4]/div[2]/div/div[4]/div/div/div/button&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;root&apos;)/article[@class=&apos;flex min-h-screen flex-col&apos;]/main[@class=&apos;break-word flex-1 overflow-auto bg-background px-6 py-4 md:ml-16&apos;]/article[@class=&apos;w-full flex-1 bg-background&apos;]/section[2]/form[1]/div[@class=&apos;mt-6 space-y-6&apos;]/div[@class=&apos;rounded-lg border border-foreground bg-root text-card-foreground shadow-sm&apos;]/div[@class=&apos;p-6&apos;]/div[@class=&apos;space-y-6&apos;]/div[@class=&apos;space-y-3&apos;]/div[@class=&apos;rounded-lg bg-root text-card-foreground border-2 transition-all duration-300 ease-in-out border-yellow-400 shadow-lg shadow-yellow-400/20&apos;]/div[@class=&apos;p-6&apos;]/div[@class=&apos;flex flex-col items-center justify-center py-12 text-center&apos;]/button[@class=&apos;inline-flex items-center justify-center text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px bg-primary text-root hover:bg-primary/80 h-11 px-8 rounded-md duration-125 gap-2 shadow-lg transition-all hover:shadow-xl&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;space-y-3&quot;] &gt; div[class=&quot;rounded-lg bg-root text-card-foreground border-2 transition-all duration-300 ease-in-out border-yellow-400 shadow-lg shadow-yellow-400/20&quot;] &gt; div[class=&quot;p-6&quot;] &gt; div[class=&quot;flex flex-col items-center justify-center py-12 text-center&quot;] &gt; button[class=&quot;inline-flex items-center justify-center text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px bg-primary text-root hover:bg-primary/80 h-11 px-8 rounded-md duration-125 gap-2 shadow-lg transition-all hover:shadow-xl&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='button(&quot;active:translate-y-px bg-primary disabled:cursor-not-allowed disabled:opacity-50 duration-125 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring font-medium gap-2 h-11 hover:bg-primary/80 hover:shadow-xl inline-flex items-center justify-center px-8 ring-offset-background rounded-md shadow-lg text-root text-sm transition-all&quot;)' fallback='true' selected='false'/>
+   <accessor type='Text' value='button(&quot;Add First Alias&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='Click on Add First Alias' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='svg(&quot;lucide lucide-plus size-4&quot;)' fallback='true' selected='true'/>
+   <accessor type='XPath' value='byXPath(&quot;//main[@id=&apos;root&apos;]/article/main/article/section[2]/form/div[2]/div[4]/div[2]/div/div[4]/div/div/div/button&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;inline-flex items-center justify-center text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px bg-primary text-root hover:bg-primary/80 h-11 px-8 rounded-md duration-125 gap-2 shadow-lg transition-all hover:shadow-xl&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Add First Alias&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/main/article/main/article/section[2]/form/div[2]/div[4]/div[2]/div/div[4]/div/div/div/button&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;root&apos;)/article[@class=&apos;flex min-h-screen flex-col&apos;]/main[@class=&apos;break-word flex-1 overflow-auto bg-background px-6 py-4 md:ml-16&apos;]/article[@class=&apos;w-full flex-1 bg-background&apos;]/section[2]/form[1]/div[@class=&apos;mt-6 space-y-6&apos;]/div[@class=&apos;rounded-lg border border-foreground bg-root text-card-foreground shadow-sm&apos;]/div[@class=&apos;p-6&apos;]/div[@class=&apos;space-y-6&apos;]/div[@class=&apos;space-y-3&apos;]/div[@class=&apos;rounded-lg bg-root text-card-foreground border-2 transition-all duration-300 ease-in-out border-yellow-400 shadow-lg shadow-yellow-400/20&apos;]/div[@class=&apos;p-6&apos;]/div[@class=&apos;flex flex-col items-center justify-center py-12 text-center&apos;]/button[@class=&apos;inline-flex items-center justify-center text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px bg-primary text-root hover:bg-primary/80 h-11 px-8 rounded-md duration-125 gap-2 shadow-lg transition-all hover:shadow-xl&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;space-y-3&quot;] &gt; div[class=&quot;rounded-lg bg-root text-card-foreground border-2 transition-all duration-300 ease-in-out border-yellow-400 shadow-lg shadow-yellow-400/20&quot;] &gt; div[class=&quot;p-6&quot;] &gt; div[class=&quot;flex flex-col items-center justify-center py-12 text-center&quot;] &gt; button[class=&quot;inline-flex items-center justify-center text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px bg-primary text-root hover:bg-primary/80 h-11 px-8 rounded-md duration-125 gap-2 shadow-lg transition-all hover:shadow-xl&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='button(&quot;active:translate-y-px bg-primary disabled:cursor-not-allowed disabled:opacity-50 duration-125 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring font-medium gap-2 h-11 hover:bg-primary/80 hover:shadow-xl inline-flex items-center justify-center px-8 ring-offset-background rounded-md shadow-lg text-root text-sm transition-all&quot;)' fallback='true' selected='false'/>
+   <accessor type='Text' value='button(&quot;Add First Alias&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='setValue' value='"Test Alias New"' type='web' desc='Enter the Alias' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.0.value&quot;)' fallback='true' selected='true'/>
+   <accessor type='unknown' value='textbox(&quot;placeholder==Enter alias 1...&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;placeholder==Enter alias 1...&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;placeholder==Enter alias 2...&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.1.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.2.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.3.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.3.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.3.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.6.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.6.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.6.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.6.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.6.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.6.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.12.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.12.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.12.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.12.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.16.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.17.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.17.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.17.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.20.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.20.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.20.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.23.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.24.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.24.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.24.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.24.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.24.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.29.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.30.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.30.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.30.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.33.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.33.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.35.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.35.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.37.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.37.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.37.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.37.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.37.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.37.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.43.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.43.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.43.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.43.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.43.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.43.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.43.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.43.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.52.value&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='focus' value='""' type='web' desc='Verify &quot;Create Customer&quot; button is visible' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='submit(&quot;Submit formCreate customer&quot;)' fallback='true' selected='true'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;root&apos;]/article/main/article/section[2]/form/div/section[2]/button&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px h-10 py-2 px-4 gap-2 whitespace-nowrap bg-success-foreground text-root hover:bg-success-foreground/80 active:bg-success-foreground/90&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/section[2]/form/div/section[2]/button&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;root&apos;)/article[@class=&apos;flex min-h-screen flex-col&apos;]/main[@class=&apos;break-word flex-1 overflow-auto bg-background px-6 py-4 md:ml-16&apos;]/article[@class=&apos;w-full flex-1 bg-background&apos;]/section[2]/form[1]/div[@class=&apos;mb-8 rounded-md border border-border bg-root p-4&apos;]/section[@class=&apos;flex items-center justify-between&apos;]/button[@class=&apos;inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px h-10 py-2 px-4 gap-2 whitespace-nowrap bg-success-foreground text-root hover:bg-success-foreground/80 active:bg-success-foreground/90&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='submit({&apos;type&apos;:&apos;submit&apos;})' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;mb-8 rounded-md border border-border bg-root p-4&quot;] &gt; section[class=&quot;flex items-center justify-between&quot;] &gt; button[class=&quot;inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px h-10 py-2 px-4 gap-2 whitespace-nowrap bg-success-foreground text-root hover:bg-success-foreground/80 active:bg-success-foreground/90&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='submit(&quot;active:bg-success-foreground/90 active:translate-y-px bg-success-foreground disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring font-medium gap-2 h-10 hover:bg-success-foreground/80 inline-flex items-center justify-center px-4 py-2 ring-offset-background rounded-md text-root text-sm transition-colors whitespace-nowrap&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='' type='web' desc='Click on &quot;Create Customer&quot; button ' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='span(&quot;Submit form&quot;)' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='assertExists' value='' type='web' desc='Customer is not created and displaying error because of the same aliases' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='div(&quot;Success!&quot;)' fallback='true' selected='true'/>
+   <accessor type='unknown' value='div(&quot;Error!&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='store' value='$CustomerName' type='web' desc='Store customer name' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='Customer_Name' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='log' value='Customer_Name' type='web' desc='Log customer name' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='setValue' value='$CustomerName' type='web' desc='Enter value in &quot;Search all entries&quot; field' isThinkTime='false' isCommented='false' isMasked='true' isHidden='true' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='textbox(&quot;placeholder==Search all customers...&quot;)' fallback='true' selected='true'/>
+   <accessor type='unknown' value='textbox(&quot;placeholder==Search all entries...&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='wait' value='2000' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='assertExists' value='' type='web' desc='Verify &quot;Customer name&quot; is visible ' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='div($CustomerName)' fallback='true' selected='true'/>
+   <accessor type='unknown' value='$CustomerName' fallback='true' selected='false'/>
+   <accessor type='unknown' value='div(&quot;&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='' type='web' desc='Click on &quot;Actions&quot; icon button' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='span(&quot;Open actions menu&quot;)' fallback='true' selected='true'/>
+   <accessor type='unknown' value='span(&quot;Open menu&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='span(&quot;Edit Customer Details&quot;)' fallback='true' selected='true'/>
+   <accessor type='unknown' value='' fallback='false' selected='false'/>
+</dialect>
+</step>
+<step action='wait' value='2000' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='setValue' value='"Test Alias Updated"' type='web' desc='Enter the Alias' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.0.value&quot;)' fallback='true' selected='true'/>
+   <accessor type='unknown' value='textbox(&quot;placeholder==Enter alias 1...&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;placeholder==Enter alias 1...&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;placeholder==Enter alias 2...&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.1.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.2.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.3.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.3.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.3.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.6.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.6.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.6.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.6.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.6.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.6.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.12.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.12.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.12.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.12.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.16.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.17.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.17.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.17.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.20.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.20.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.20.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.23.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.24.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.24.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.24.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.24.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.24.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.29.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.30.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.30.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.30.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.33.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.33.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.35.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.35.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.37.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.37.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.37.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.37.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.37.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.37.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.43.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.43.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.43.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.43.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.43.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.43.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.43.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.43.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.52.value&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='span(&quot;Submit form&quot;)' fallback='true' selected='true'/>
+   <accessor type='unknown' value='' fallback='false' selected='false'/>
+</dialect>
+</step>
+<step action='assertExists' value='' type='web' desc='Customer is not created and displaying error because of the same aliases' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='div(&quot;Success!&quot;)' fallback='true' selected='true'/>
+   <accessor type='unknown' value='div(&quot;Error!&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='store' value='$CustomerName' type='web' desc='Store customer name' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='Customer_Name' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='log' value='Customer_Name' type='web' desc='Log customer name' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='setValue' value='$CustomerName' type='web' desc='Enter value in &quot;Search all entries&quot; field' isThinkTime='false' isCommented='false' isMasked='true' isHidden='true' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='textbox(&quot;placeholder==Search all customers...&quot;)' fallback='true' selected='true'/>
+   <accessor type='unknown' value='textbox(&quot;placeholder==Search all entries...&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='wait' value='2000' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='assertExists' value='' type='web' desc='Verify &quot;Customer name&quot; is visible ' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='div($CustomerName)' fallback='true' selected='true'/>
+   <accessor type='unknown' value='$CustomerName' fallback='true' selected='false'/>
+   <accessor type='unknown' value='div(&quot;&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='' type='web' desc='Click on &quot;Actions&quot; icon button' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='span(&quot;Open actions menu&quot;)' fallback='true' selected='true'/>
+   <accessor type='unknown' value='span(&quot;Open menu&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='span(&quot;Edit Customer Details&quot;)' fallback='true' selected='true'/>
+   <accessor type='unknown' value='' fallback='false' selected='false'/>
+</dialect>
+</step>
+<step action='wait' value='2000' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='assertContainsText' value='"Test Alias Updated"' type='web' desc='Enter the Alias' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.0.value&quot;)' fallback='true' selected='true'/>
+   <accessor type='unknown' value='textbox(&quot;placeholder==Enter alias 1...&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;placeholder==Enter alias 1...&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;placeholder==Enter alias 2...&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.1.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.2.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.3.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.3.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.3.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.6.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.6.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.6.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.6.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.6.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.6.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.12.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.12.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.12.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.12.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.16.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.17.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.17.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.17.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.20.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.20.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.20.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.23.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.24.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.24.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.24.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.24.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.24.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.29.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.30.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.30.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.30.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.33.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.33.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.35.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.35.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.37.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.37.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.37.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.37.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.37.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.37.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.43.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.43.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.43.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.43.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.43.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.43.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.43.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.43.value&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='textbox(&quot;name==buyerAliases.52.value&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='button(&quot;Back to list&quot;)' fallback='true' selected='true'/>
+   <accessor type='unknown' value='' fallback='false' selected='false'/>
+   <accessor type='unknown' value='button(&quot; &quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='store' value='$CustomerName' type='web' desc='Store customer name' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='Customer_Name' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='log' value='Customer_Name' type='web' desc='Log customer name' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='setValue' value='$CustomerName' type='web' desc='Enter value in &quot;Search all entries&quot; field' isThinkTime='false' isCommented='false' isMasked='true' isHidden='true' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='textbox(&quot;placeholder==Search all customers...&quot;)' fallback='true' selected='true'/>
+   <accessor type='unknown' value='textbox(&quot;placeholder==Search all entries...&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='wait' value='2000' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='assertExists' value='' type='web' desc='Verify &quot;Customer name&quot; is visible ' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='div($CustomerName)' fallback='true' selected='true'/>
+   <accessor type='unknown' value='$CustomerName' fallback='true' selected='false'/>
+   <accessor type='unknown' value='div(&quot;&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='' type='web' desc='Click on &quot;Actions&quot; icon button' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='span(&quot;Open actions menu&quot;)' fallback='true' selected='true'/>
+   <accessor type='unknown' value='span(&quot;Open menu&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='span(&quot;View Customer Profile&quot;)' fallback='true' selected='true'/>
+   <accessor type='unknown' value='' fallback='false' selected='false'/>
+</dialect>
+</step>
+<step action='wait' value='2000' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='assertExists' value='' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='span(&quot;Test Alias Updated&quot;)' fallback='true' selected='true'/>
+   <accessor type='unknown' value='' fallback='false' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='svg(&quot;lucide lucide-arrow-right size-4&quot;)' fallback='true' selected='true'/>
+   <accessor type='unknown' value='' fallback='false' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../Utility Functions/Customer_Onboarding/Delete_Customer.ds"' fallback='true' selected='true'/>
+   <accessor type='unknown' value='' fallback='false' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../Utility Functions/Logout_Function.ds"' fallback='true' selected='true'/>
+</dialect>
+</step>
+</testcase>

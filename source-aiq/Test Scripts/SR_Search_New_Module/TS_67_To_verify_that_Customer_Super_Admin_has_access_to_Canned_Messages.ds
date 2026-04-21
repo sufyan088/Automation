@@ -1,0 +1,124 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testcase   name= 'TS_67_To_verify_that_Customer_Super_Admin_has_access_to_Canned_Messages.ds' description= '' author= 'null' version= ''>
+<dpl filename='{ds}/../../Resources/IM_DPL1.csv' exectype='runstepbystep' errorhandling='' type='JsDPL' locale='null'/>
+<fallback useFallback='true'/>
+<shadowDOM useShadowDOM='true'/>
+<step action='navigateTo' value='$URL' type='web' desc='Navigate to URL' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='setValue' value='"customersuperadmin"' type='web' desc='Enter username.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Id' value='textbox(&quot;username&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='textbox(0, _in(div({&apos;id&apos;:&apos;form-group&apos;})))' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;username&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='textbox(&quot;bg-background border border-input disabled:cursor-not-allowed disabled:opacity-50 file:bg-transparent file:border-0 file:font-medium file:text-sm flex focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring h-10 placeholder:text-muted-foreground px-3 py-2 ring-offset-background rounded-md text-sm w-full&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathName' value='byXPath(&apos;//*[@name=&quot;username&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrName' value='textbox(&quot;username&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//input[@id=&apos;username&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/section/div/section/section/form/div/input&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;username&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='textbox({&apos;type&apos;:&apos;text&apos;})' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;input[class=&quot;flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;#username&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;input[name=&quot;username&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;input[value=&quot;&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='textbox(0, _in(div(&quot;form-group&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='setValue' value='"1111"' type='web' desc='Enter password.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='true' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='AttrName' value='password(&quot;password&quot;)' fallback='true' selected='true'/>
+   <accessor type='XPathName' value='byXPath(&apos;//*[@name=&quot;password&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/section/div/section/section/form/div[2]/input&apos;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='password({&apos;tabindex&apos;:&apos;2&apos;})' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;input[name=&quot;password&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='password(&quot;bg-background border border-input disabled:cursor-not-allowed disabled:opacity-50 file:bg-transparent file:border-0 file:font-medium file:text-sm flex focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring h-10 placeholder:text-muted-foreground px-3 py-2 ring-offset-background rounded-md text-sm w-full&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='Check the remember me checkbox.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Id' value='button(&quot;rememberMe&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='button(0, _in(div({&apos;id&apos;:&apos;remember-me-section&apos;})))' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;rememberMe&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='button(&quot;border border-primary data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring h-4 peer ring-offset-background rounded-sm shrink-0 w-4&quot;)' fallback='true' selected='false'/>
+   <accessor type='AttrValue' value='button(&quot;on&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//button[@id=&apos;rememberMe&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;peer h-4 w-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/section/div/section/section/form/div[3]/div/button&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;rememberMe&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='button({&apos;tabindex&apos;:&apos;3&apos;})' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;section[class=&quot;w-full&quot;] &gt; form[class=&quot;flex w-full flex-col px-8&quot;] &gt; div[class=&quot;flex flex-col items-center&quot;] &gt; div[class=&quot;flex gap-2 self-end py-2&quot;] &gt; button[class=&quot;peer h-4 w-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;#rememberMe&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;button[value=&quot;on&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='button(0, _in(div(&quot;remember-me-section&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='Click on sign in button.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='AttrValue' value='submit(&quot;Sign In&quot;)' fallback='true' selected='true'/>
+   <accessor type='XPathName' value='byXPath(&apos;//*[@name=&quot;login&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Text' value='submit(&quot;Sign In with Keycloak&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;form-group-and-settings&apos;]/button&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background bg-primary text-root hover:bg-primary/80 h-10 py-2 px-4 w-full gap-2&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/section/div/section/section/form/div[3]/button&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;form-group-and-settings&apos;)/button[@class=&apos;inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background bg-primary text-root hover:bg-primary/80 h-10 py-2 px-4 w-full gap-2&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='submit({&apos;tabindex&apos;:&apos;4&apos;})' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;section[class=&quot;flex w-full flex-col items-center justify-center pl-1&quot;] &gt; section[class=&quot;w-full&quot;] &gt; form[class=&quot;flex w-full flex-col px-8&quot;] &gt; div[class=&quot;flex flex-col items-center&quot;] &gt; button[class=&quot;inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background bg-primary text-root hover:bg-primary/80 h-10 py-2 px-4 w-full gap-2&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;button[name=&quot;login&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;button[value=&quot;Sign In&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='submit(&quot;bg-primary disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring font-medium gap-2 h-10 hover:bg-primary/80 inline-flex items-center justify-center px-4 py-2 ring-offset-background rounded-md text-root text-sm transition-colors w-full&quot;)' fallback='true' selected='false'/>
+   <accessor type='AttrName' value='submit(&quot;login&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='wait' value='7000' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='click' value='' type='web' desc='Navigate to SR' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='image(&quot;Statement Recon Icon&quot;)' fallback='true' selected='true'/>
+   <accessor type='AttrClass' value='image(&quot;size-10[5]&quot;).xy(0.60, 0.50 )' fallback='true' selected='false'/>
+   <accessor type='Src' value='image(&quot;data:image/svg+xml,%3c?xml%20version=%271.0%27%20encoding=%27utf-8%27?%3e%3c!--%20Generator:%20Adobe%20Illustrator%2028.2.0,%20SVG%20Export%20Plug-In%20.%20SVG%20Version:%206.00%20Build%200)%20--%3e%3csvg%20version=%271.1%27%20id=%27Layer_1%27%20xmlns=%27http://www.w3.org/2000/svg%27%20xmlns:xlink=%27http://www.w3.org/1999/xlink%27%20x=%270px%27%20y=%270px%27%20viewBox=%270%200%202000%202000%27%20style=%27enable-background:new%200%200%202000%202000;%27%20xml:space=%27preserve%27%3e%3cstyle%20type=%27text/css%27%3e%20.st0{fill:%23C900FF;}%20%3c/style%3e%3cpath%20class=%27st0%27%20d=%27M1629.9,179.6h-183.5v64.5h183.5c75.7,0,146.9,30.8,200.4,86.7c53.5,55.9,83,130.3,83,209.4v919.7%20c0,79.1-29.5,153.4-83,209.4c-53.5,55.9-124.7,86.7-200.4,86.7h-183.5v64.5h183.5c190.3,0,345.1-161.7,345.1-360.6V540.2%20C1975,341.3,1820.2,179.6,1629.9,179.6z%27/%3e%3cg%3e%3cpath%20class=%27st0%27%20d=%27M35.6,540.1v919.7c0,193,149.8,349.4,334.5,349.4H543v-42.2H370.2c-78.5,0-152.4-32-207.9-90%20c-55.5-58-86.1-135.2-86.1-217.2V540.1c0-82.1,30.6-159.2,86.1-217.2s129.4-90,207.9-90H543v-42.2H370.2%20C185.4,190.7,35.6,347.2,35.6,540.1z%27/%3e%3cpath%20class=%27st0%27%20d=%27M553.6,1820.4H370.1c-190.3,0-345.1-161.7-345.1-360.6V540.2c0-198.8,154.8-360.6,345.1-360.6h183.5v64.5%20H370.1c-75.7,0-146.9,30.8-200.4,86.7c-53.5,55.9-83,130.3-83,209.4v919.7c0,79.1,29.5,153.4,83,209.4%20c53.5,55.9,124.7,86.7,200.4,86.7h183.5V1820.4z%20M370.1,201.8c-178.6,0-323.9,151.8-323.9,338.3v919.7%20c0,186.6,145.3,338.3,323.9,338.3h162.2v-20H370.1c-81.4,0-157.9-33.1-215.5-93.2c-57.6-60.1-89.2-140.1-89.2-225.1V540.2%20c0-85,31.7-165,89.2-225.1c57.6-60.1,134.1-93.2,215.5-93.2h162.2v-20H370.1z%27/%3e%3c/g%3e%3cg%3e%3cpath%20d=%27M429.2,1137.1h138.1c0,50.6,50.6,90.5,114.8,90.5c59.3,0,108-32.1,108-77.8c0-117.7-350.2-65.2-350.2-293.8%20c0-123.6,105.1-203.3,237.4-203.3c136.2,0,240.3,86.6,240.3,201.4H779.5c0-46.7-44.8-81.7-104.1-81.7c-52.5,0-97.3,28.2-97.3,73%20c0,119.7,350.2,56.4,350.2,288.9c0,129.4-109,213.1-247.1,213.1C537.2,1347.2,429.2,1255.8,429.2,1137.1z%27/%3e%3cpath%20d=%27M1029.5,664.3h298.7c129.4,0,227.6,94.4,227.6,219.9c0,96.3-60.3,173.2-148.8,200.4l168.3,251h-166.4l-153.7-239.3h-91.4%20v239.3h-134.3V664.3z%20M1163.7,790.7v188.7h161.5c52.5,0,92.4-40.9,92.4-94.4s-39.9-94.4-92.4-94.4H1163.7z%27/%3e%3c/g%3e%3c/svg%3e&quot;).xy(0.60, 0.50 )' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;root&apos;]/article/aside/section[1]/a[5]/img&quot;).xy(0.60, 0.50 )' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/aside/section/a[5]/img&apos;).xy(0.60, 0.50 )' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='image({&apos;src&apos;:&quot;data:image/svg+xml,%3c?xml%20version=&apos;1.0&apos;%20encoding=&apos;utf-8&apos;?%3e%3c!--%20Generator:%20Adobe%20Illustrator%2028.2.0,%20SVG%20Export%20Plug-In%20.%20SVG%20Version:%206.00%20Build%200)%20--%3e%3csvg%20version=&apos;1.1&apos;%20id=&apos;Layer_1&apos;%20xmlns=&apos;http://www.w3.org/2000/svg&apos;%20xmlns:xlink=&apos;http://www.w3.org/1999/xlink&apos;%20x=&apos;0px&apos;%20y=&apos;0px&apos;%20viewBox=&apos;0%200%202000%202000&apos;%20style=&apos;enable-background:new%200%200%202000%202000;&apos;%20xml:space=&apos;preserve&apos;%3e%3cstyle%20type=&apos;text/css&apos;%3e%20.st0{fill:%23C900FF;}%20%3c/style%3e%3cpath%20class=&apos;st0&apos;%20d=&apos;M1629.9,179.6h-183.5v64.5h183.5c75.7,0,146.9,30.8,200.4,86.7c53.5,55.9,83,130.3,83,209.4v919.7%20c0,79.1-29.5,153.4-83,209.4c-53.5,55.9-124.7,86.7-200.4,86.7h-183.5v64.5h183.5c190.3,0,345.1-161.7,345.1-360.6V540.2%20C1975,341.3,1820.2,179.6,1629.9,179.6z&apos;/%3e%3cg%3e%3cpath%20class=&apos;st0&apos;%20d=&apos;M35.6,540.1v919.7c0,193,149.8,349.4,334.5,349.4H543v-42.2H370.2c-78.5,0-152.4-32-207.9-90%20c-55.5-58-86.1-135.2-86.1-217.2V540.1c0-82.1,30.6-159.2,86.1-217.2s129.4-90,207.9-90H543v-42.2H370.2%20C185.4,190.7,35.6,347.2,35.6,540.1z&apos;/%3e%3cpath%20class=&apos;st0&apos;%20d=&apos;M553.6,1820.4H370.1c-190.3,0-345.1-161.7-345.1-360.6V540.2c0-198.8,154.8-360.6,345.1-360.6h183.5v64.5%20H370.1c-75.7,0-146.9,30.8-200.4,86.7c-53.5,55.9-83,130.3-83,209.4v919.7c0,79.1,29.5,153.4,83,209.4%20c53.5,55.9,124.7,86.7,200.4,86.7h183.5V1820.4z%20M370.1,201.8c-178.6,0-323.9,151.8-323.9,338.3v919.7%20c0,186.6,145.3,338.3,323.9,338.3h162.2v-20H370.1c-81.4,0-157.9-33.1-215.5-93.2c-57.6-60.1-89.2-140.1-89.2-225.1V540.2%20c0-85,31.7-165,89.2-225.1c57.6-60.1,134.1-93.2,215.5-93.2h162.2v-20H370.1z&apos;/%3e%3c/g%3e%3cg%3e%3cpath%20d=&apos;M429.2,1137.1h138.1c0,50.6,50.6,90.5,114.8,90.5c59.3,0,108-32.1,108-77.8c0-117.7-350.2-65.2-350.2-293.8%20c0-123.6,105.1-203.3,237.4-203.3c136.2,0,240.3,86.6,240.3,201.4H779.5c0-46.7-44.8-81.7-104.1-81.7c-52.5,0-97.3,28.2-97.3,73%20c0,119.7,350.2,56.4,350.2,288.9c0,129.4-109,213.1-247.1,213.1C537.2,1347.2,429.2,1255.8,429.2,1137.1z&apos;/%3e%3cpath%20d=&apos;M1029.5,664.3h298.7c129.4,0,227.6,94.4,227.6,219.9c0,96.3-60.3,173.2-148.8,200.4l168.3,251h-166.4l-153.7-239.3h-91.4%20v239.3h-134.3V664.3z%20M1163.7,790.7v188.7h161.5c52.5,0,92.4-40.9,92.4-94.4s-39.9-94.4-92.4-94.4H1163.7z&apos;/%3e%3c/g%3e%3c/svg%3e&quot;}).xy(0.60, 0.50 )' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;img[alt=&quot;Statement Recon Icon&quot;]&apos;).xy(0.60, 0.50 )' fallback='true' selected='false'/>
+   <accessor type='Parent' value='image(0, _in(link({&apos;aria-label&apos;:&apos;Statement Recon&apos;}))).xy(0.60, 0.50 )' fallback='true' selected='false'/>
+   <accessor type='AttrAlt' value='image(&quot;Statement Recon Icon&quot;).xy(0.60, 0.50 )' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='Click on search button' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='link(&quot;Search&quot;)' fallback='true' selected='true'/>
+   <accessor type='AttrHref' value='link(&quot;/app/statement-recon/file-history&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;root&apos;]/article/main/article/section[1]/nav/a[3]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Search&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/section/nav/a[3]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;a[href=&quot;/app/statement-recon/file-history&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='link(&quot;active:translate-y-px bg-primary disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring font-medium h-10 hover:bg-primary/80 inline-flex items-center justify-between px-4 py-6 ring-offset-background rounded-md text-base text-root transition-colors w-full[2]&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='Click on matched' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='button(&quot;Matched&quot;)' fallback='true' selected='true'/>
+   <accessor type='AttrClass' value='button(&quot;data-[state=active]:bg-root data-[state=active]:shadow-sm data-[state=active]:text-foreground disabled:opacity-50 disabled:pointer-events-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring font-medium inline-flex items-center justify-center px-3 py-1.5 ring-offset-background rounded-sm text-sm transition-all whitespace-nowrap[2]&quot;)' fallback='true' selected='false'/>
+   <accessor type='Id' value='button(&quot;radix-:rts:-trigger-matched&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//button[@id=&apos;radix-:rts:-trigger-matched&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Matched&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/div[2]/div/div/div/section/div/div/button[3]&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;radix-:rts:-trigger-matched&apos;)&quot;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='button({&apos;data-state&apos;:&apos;active&apos;})' fallback='true' selected='false'/>
+   <accessor type='XPathId' value='byXPath(&apos;//*[@id=&quot;radix-:rts:-trigger-matched&quot;]&apos;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='include' value='' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='"{ds}/../../Utility Functions/Logout_Function.ds"' fallback='true' selected='true'/>
+   <accessor type='unknown' value='' fallback='false' selected='false'/>
+</dialect>
+</step>
+</testcase>
