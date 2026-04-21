@@ -247,6 +247,7 @@ Use the packaged client-report flows whenever the output is meant to be shared.
 ### DigitEYESCamp Cluster
 
 - `npm run report:camp-cluster:client` is the preferred whole-track shareable report command.
+- `npm run report:camp-cluster:last-failed:client` reruns only the last failed Cluster tests, replaces those prior test entries inside the existing `allure-results` baseline, and rebuilds the branded client-shareable artifact without duplicating unchanged tests.
 - `npm run report:camp-cluster-participants:client` is the current dedicated module client-report command.
 - `npm run report:combined:client` remains available as the legacy alias for the same whole-track Cluster flow.
 - The combined package shortcuts in `package.json` now normalize suites before `allure generate`, so older combined-report entry points no longer leak a `chromium` Suites grouping.
@@ -256,6 +257,7 @@ Use the packaged client-report flows whenever the output is meant to be shared.
 ### DigitEYESCamp Server
 
 - `npm run report:camp-server:client` is the preferred whole-track shareable report command.
+- `npm run report:camp-server:last-failed:client` reruns only the last failed Camp Server tests, replaces those prior test entries inside the existing `allure-results` baseline, and rebuilds the branded client-shareable artifact without duplicating unchanged tests.
 - `npm run report:camp-server-registration:client` is the dedicated Registration client-report command.
 - Camp Server client-report flows normalize suites before report generation so the Suites card groups by module instead of Playwright project metadata.
 - Camp Server client-report flows also flatten the generic `Run converted flow` wrapper step from legacy result files so the Execution panel shows the nested business steps directly.

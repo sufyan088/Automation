@@ -92,6 +92,7 @@ The current source-aiq2 Camp Server intake maps into the Playwright workspace as
 ## Reporting Workflow
 
 - The preferred whole-track client-report command is `npm run report:camp-server:client`.
+- `npm run report:camp-server:last-failed:client` reruns only the last failed Camp Server tests, merges those rerun results back into the prior `allure-results` baseline by test identity, and then regenerates the branded shareable report without inflating unchanged counts.
 - The dedicated Registration client-report command is `npm run report:camp-server-registration:client`.
 - Camp Server client-report flows run `scripts/normalize-allure-suites.js` before `allure generate`, so the Allure Suites card groups by Camp Server module rather than Playwright project metadata.
 - Camp Server client-report flows also run `scripts/flatten-generic-allure-steps.js` before report generation. This removes the legacy generic `Run converted flow` wrapper from Allure result JSON and exposes the nested business steps directly in the Execution panel.

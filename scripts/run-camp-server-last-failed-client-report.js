@@ -2,6 +2,13 @@ const fs = require('fs');
 const path = require('path');
 const { spawnSync } = require('child_process');
 const { flattenGenericAllureSteps } = require('./flatten-generic-allure-steps');
+const {
+  cleanDir,
+  createBackup,
+  restoreBackup,
+  cleanupBackup,
+  mergeBaselineIntoRerunResults,
+} = require('./merge-last-failed-allure-results');
 const { stripSourceAiqDescriptions } = require('./strip-source-aiq-from-allure-results');
 
 const rootDir = path.resolve(__dirname, '..');
@@ -92,7 +99,9 @@ function syncResultIndex() {
 }
 
 function main() {
+  const baselineBackupDir = createBackup(resultsDir, 'vision-spring-camp-server-allure-');
   fs.mkdirSync(path.join(rootDir, 'Result'), { recursive: true });
+  cleanDir(resultsDir);
 
   const testExitCode = run('npx', [
     'playwright',
@@ -104,7 +113,20 @@ function main() {
   ]);
 
   if (!hasAllureResults()) {
+    restoreBackup(baselineBackupDir, resultsDir);
+    cleanupBackup(baselineBackupDir);
     process.exit(testExitCode || 1);
+  }
+
+  const mergeSummary = mergeBaselineIntoRerunResults({
+    baselineDir: baselineBackupDir,
+    resultsDir,
+  });
+  cleanupBackup(baselineBackupDir);
+  if (mergeSummary.replacedBaselineResults > 0 || mergeSummary.mergedBaselineResults > 0) {
+    console.log(
+      `Merged last-failed rerun into baseline Allure results: replaced ${mergeSummary.replacedBaselineResults} previous test entries and kept ${mergeSummary.mergedBaselineResults} unchanged baseline entries.`
+    );
   }
 
   const normalizeExitCode = run('node', ['scripts/normalize-allure-suites.js']);
