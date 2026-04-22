@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, cardOnFileHelpers } = require('./_shared');
 
 test("TS_02_To_verify_that_the_Card_Limit_Buffer_field_is_visible_and_editable_after_selecting_the_Card_on_File_radio_button_on_the_edit_supplier_page", async ({ page }) => {
   const data = loadRuntimeData();
@@ -12,6 +12,12 @@ test("TS_02_To_verify_that_the_Card_Limit_Buffer_field_is_visible_and_editable_a
   });
 
   await test.step('Run converted flow', async () => {
+    await cardOnFileHelpers.openSupplierManagementForCustomer(page, 'Cadent');
+    await cardOnFileHelpers.openEditSupplierDetails(page, 'CardOnFile');
+    await cardOnFileHelpers.ensureSupplierEnrollmentYes(page);
+    await cardOnFileHelpers.selectCardOnFile(page);
+    await cardOnFileHelpers.expectVisible(page, cardOnFileHelpers.selectors.editSupplier.cardLimitBufferLabel);
+    await cardOnFileHelpers.expectInputEditable(page, cardOnFileHelpers.selectors.editSupplier.cardLimitBufferInput);
   });
 
   await test.step('Logout from the application', async () => {

@@ -165,8 +165,54 @@ function loadRuntimeData() {
     csvRecord.Password
   );
 
+  const roleCredentials = {
+    Username_ProgramManager: firstNonEmpty(
+      process.env.ITERATION_MATRIX_USERNAME_PROGRAM_MANAGER,
+      process.env.USERNAME_PROGRAM_MANAGER,
+      csvRecord.Username_ProgramManager,
+      csvRecord.ProgramManagerUsername
+    ),
+    Password_ProgramManager: firstNonEmpty(
+      process.env.ITERATION_MATRIX_PASSWORD_PROGRAM_MANAGER,
+      process.env.PASSWORD_PROGRAM_MANAGER,
+      csvRecord.Password_ProgramManager,
+      csvRecord.ProgramManagerPassword
+    ),
+    Username_imREmit_Admin: firstNonEmpty(
+      process.env.ITERATION_MATRIX_USERNAME_IMREMIT_ADMIN,
+      process.env.USERNAME_IMREMIT_ADMIN,
+      csvRecord.Username_imREmit_Admin,
+      csvRecord.Username_imRemit_Admin,
+      csvRecord.Username_EPay_Admin,
+      username
+    ),
+    Password_imREmit_Admin: firstNonEmpty(
+      process.env.ITERATION_MATRIX_PASSWORD_IMREMIT_ADMIN,
+      process.env.PASSWORD_IMREMIT_ADMIN,
+      csvRecord.Password_imREmit_Admin,
+      csvRecord.Password_imRemit_Admin,
+      csvRecord.Password_EPay_Admin,
+      password
+    ),
+    Username_imREmit_User: firstNonEmpty(
+      process.env.ITERATION_MATRIX_USERNAME_IMREMIT_USER,
+      process.env.USERNAME_IMREMIT_USER,
+      csvRecord.Username_imREmit_User,
+      csvRecord.Username_imRemit_User,
+      csvRecord.Username_EPay_User
+    ),
+    Password_imREmit_User: firstNonEmpty(
+      process.env.ITERATION_MATRIX_PASSWORD_IMREMIT_USER,
+      process.env.PASSWORD_IMREMIT_USER,
+      csvRecord.Password_imREmit_User,
+      csvRecord.Password_imRemit_User,
+      csvRecord.Password_EPay_User
+    )
+  };
+
   return {
     ...csvRecord,
+    ...roleCredentials,
     dataFilePath: csvFilePath,
     URL: baseUrl,
     Username_Admin: username,

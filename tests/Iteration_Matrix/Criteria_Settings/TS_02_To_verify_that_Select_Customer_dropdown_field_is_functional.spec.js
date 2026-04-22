@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, criteriaSettingsHelpers } = require('./_shared');
 
 test("TS_02_To_verify_that_Select_Customer_dropdown_field_is_functional", async ({ page }) => {
   const data = loadRuntimeData();
@@ -11,7 +11,12 @@ test("TS_02_To_verify_that_Select_Customer_dropdown_field_is_functional", async 
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
+  await test.step('Open Criteria Settings page', async () => {
+    await criteriaSettingsHelpers.openModule(page);
+  });
+
+  await test.step('Select customer from dropdown', async () => {
+    await criteriaSettingsHelpers.selectCustomer(page, 'Stanford U');
   });
 
   await test.step('Logout from the application', async () => {

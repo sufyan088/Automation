@@ -107,15 +107,15 @@ function getModuleInfo(dirPath) {
 function buildSharedTemplate(moduleInfo) {
   return `const { test } = require('@playwright/test');
 const { loadRuntimeData } = require('../../../helpers/iteration-matrix/dataLoader');
-const { loginAsAdmin, logout } = require('../../../helpers/iteration-matrix/auth');
+const { loginAsAdmin } = require('../../../helpers/iteration-matrix/auth');
 const { registerModuleSuite } = require('../../../helpers/allureHierarchy');
 const { ${moduleInfo.helperExportName} } = require('../../../helpers/iteration-matrix/${moduleInfo.helperFileName.replace(/\\/g, '/')}');
 const { ${moduleInfo.selectorExportName} } = require('../../../selectors/iteration-matrix/${moduleInfo.selectorFileName.replace(/\\/g, '/')}');
 
 registerModuleSuite(test, __dirname);
 
-async function closeSession(page) {
-  await logout(page);
+async function closeSession() {
+  return;
 }
 
 module.exports = {
@@ -130,17 +130,18 @@ module.exports = {
 }
 
 function buildHelperTemplate(moduleInfo) {
-  return `const { ${moduleInfo.selectorExportName} } = require('../../selectors/iteration-matrix/${moduleInfo.selectorFileName.replace(/\\/g, '/')}');
+  return `const { wrapHelperMapWithReadableSteps } = require('../clientReadableSteps');
+const { ${moduleInfo.selectorExportName} } = require('../../selectors/iteration-matrix/${moduleInfo.selectorFileName.replace(/\\/g, '/')}');
 
 async function openModule(page) {
   return page;
 }
 
 module.exports = {
-  ${moduleInfo.helperExportName}: {
+  ${moduleInfo.helperExportName}: wrapHelperMapWithReadableSteps({
     openModule,
     selectors: ${moduleInfo.selectorExportName}
-  }
+  })
 };
 `;
 }

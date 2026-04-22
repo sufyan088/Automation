@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsRole, closeSession, cardOnFileHelpers } = require('./_shared');
 
 test("TS_09_To_verify_that_the_Flag_Reset_button_is_visible_and_clickable_to_Program_Manager_role", async ({ page }) => {
   const data = loadRuntimeData();
@@ -8,10 +8,15 @@ test("TS_09_To_verify_that_the_Flag_Reset_button_is_visible_and_clickable_to_Pro
   });
 
   await test.step('Login into Application', async () => {
-    await loginAsAdmin(page, data);
+    await loginAsRole(page, data, 'programManager');
   });
 
   await test.step('Run converted flow', async () => {
+    await cardOnFileHelpers.openSupplierManagementForCustomer(page, 'Cadent');
+    await cardOnFileHelpers.openEditSupplierDetails(page, 'CardOnFile');
+    await cardOnFileHelpers.ensureSupplierEnrollmentYes(page);
+    await cardOnFileHelpers.selectCardOnFile(page);
+    await cardOnFileHelpers.expectFlagResetVisible(page);
   });
 
   await test.step('Logout from the application', async () => {

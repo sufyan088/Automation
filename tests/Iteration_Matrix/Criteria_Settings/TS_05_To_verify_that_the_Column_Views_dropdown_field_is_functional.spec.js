@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, criteriaSettingsHelpers } = require('./_shared');
 
 test("TS_05_To_verify_that_the_Column_Views_dropdown_field_is_functional", async ({ page }) => {
   const data = loadRuntimeData();
@@ -11,7 +11,16 @@ test("TS_05_To_verify_that_the_Column_Views_dropdown_field_is_functional", async
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
+  await test.step('Open Criteria Settings page', async () => {
+    await criteriaSettingsHelpers.openModule(page);
+    await criteriaSettingsHelpers.selectCustomer(page, 'Stanford U');
+  });
+
+  await test.step('Open column views and verify available columns', async () => {
+    await criteriaSettingsHelpers.openColumnViewsMenu(page);
+    for (const label of ['Criteria Type', 'Character', 'Type Key', 'Weight', 'Description', 'Date Created', 'Date Modified']) {
+      await criteriaSettingsHelpers.verifyColumnViewOptionVisible(page, label);
+    }
   });
 
   await test.step('Logout from the application', async () => {

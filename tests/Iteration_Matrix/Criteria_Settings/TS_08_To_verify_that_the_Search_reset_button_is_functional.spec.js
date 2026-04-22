@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, criteriaSettingsHelpers } = require('./_shared');
 
 test("TS_08_To_verify_that_the_Search_reset_button_is_functional", async ({ page }) => {
   const data = loadRuntimeData();
@@ -11,7 +11,16 @@ test("TS_08_To_verify_that_the_Search_reset_button_is_functional", async ({ page
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
+  await test.step('Open Criteria Settings page', async () => {
+    await criteriaSettingsHelpers.openModule(page);
+    await criteriaSettingsHelpers.selectCustomer(page, 'Stanford U');
+  });
+
+  await test.step('Apply and reset search filters', async () => {
+    await criteriaSettingsHelpers.searchAllEntries(page, 'Recurring Payments');
+    await criteriaSettingsHelpers.expectTableContainsText(page, 'Recurring Payments');
+    await criteriaSettingsHelpers.clickResetSearchFilters(page);
+    await criteriaSettingsHelpers.expectSearchFieldValue(page, 'allEntries', '');
   });
 
   await test.step('Logout from the application', async () => {

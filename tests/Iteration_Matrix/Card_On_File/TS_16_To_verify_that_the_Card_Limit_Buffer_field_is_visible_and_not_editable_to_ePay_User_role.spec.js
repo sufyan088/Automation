@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsRole, closeSession, cardOnFileHelpers } = require('./_shared');
 
 test("TS_16_To_verify_that_the_Card_Limit_Buffer_field_is_visible_and_not_editable_to_ePay_User_role", async ({ page }) => {
   const data = loadRuntimeData();
@@ -8,10 +8,15 @@ test("TS_16_To_verify_that_the_Card_Limit_Buffer_field_is_visible_and_not_editab
   });
 
   await test.step('Login into Application', async () => {
-    await loginAsAdmin(page, data);
+    await loginAsRole(page, data, 'ePayUser');
   });
 
   await test.step('Run converted flow', async () => {
+    await cardOnFileHelpers.openSupplierManagementForCustomer(page, 'Cadent');
+    await cardOnFileHelpers.openEditSupplierDetails(page, 'CardOnFile');
+    await cardOnFileHelpers.ensureSupplierEnrollmentYes(page);
+    await cardOnFileHelpers.expectVisible(page, cardOnFileHelpers.selectors.editSupplier.cardLimitBufferLabel);
+    await cardOnFileHelpers.expectInputDisabled(page, cardOnFileHelpers.selectors.editSupplier.cardLimitBufferInput);
   });
 
   await test.step('Logout from the application', async () => {

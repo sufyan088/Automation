@@ -1,24 +1,30 @@
-# Vision Spring Playwright Automation
+# Iteration Matrix Playwright Automation
 
-This repository is the current AIQ-to-Playwright conversion project for the Vision Spring application. The active work in this repo is maintaining Vision Spring Playwright coverage with shared helpers, centralized selectors, fallback locator handling, and reusable Allure reporting workflows.
+This repository is the current Iteration Matrix AIQ-to-Playwright conversion project.
 
-The repository currently has two main automation tracks for the same Vision Spring project:
+The active executable automation in this workspace lives under `tests/Iteration_Matrix/`. Some older helpers, selectors, scripts, and documents from earlier Mammoth automation work are still present in the repo as reference material, but they do not define the identity or active scope of this project.
 
-- `DigitEYESCamp_Cluster` for the original `source-aiq` web-app intake and its multiple sub-modules across Camps, Data Loader, Reporting, and Settings.
-- `DigitEYESCamp_Server` for the separate `source-aiq2` Camp Server intake and its multiple station sub-modules.
+What this project reuses from that earlier work is strategy, not project ownership:
+
+- helper-backed module architecture
+- centralized selectors
+- fallback locator handling
+- no-op shared-session teardown
+- client-shareable Allure reporting
+- rerun-only-failed report merge workflows
 
 ## Project Goal
 
-Convert the Vision Spring AIQ automation assets under `source-aiq/` and `source-aiq2/` into maintainable Playwright coverage with:
+Convert the Iteration Matrix AIQ intake into maintainable Playwright coverage with:
 
-- one Playwright module folder per AIQ module
+- one module folder per AIQ module
 - thin spec files with business-readable `test.step()` flow
 - shared helper and selector layers
-- centralized auth, fallback locator, and wait behavior
+- centralized auth, wait, and fallback behavior
 - reusable branded Allure reporting
-- a pull-friendly handoff for ongoing maintenance and future AIQ delta intake
+- durable handoff guidance for future conversion and maintenance work
 
-## Current Repository Structure
+## Active Project Structure
 
 ```text
 package.json
@@ -30,148 +36,77 @@ allure-results/
 playwright-report/
 test-results/
 Result/
-  generated reports and shareable artifacts
 
 assets/
 data/
-docs/
+  iteration-matrix/
 
+docs/
 helpers/
-  actions.js
   allureHierarchy.js
-  auth.js
   clientReadableSteps.js
-  dataLoader.js
   fallback.js
-  digiteyes* module helpers
-  source-aiq2/ Camp Server helpers
+  iteration-matrix/
 
 selectors/
   common.selectors.js
-  digiteyes* selector files
-  source-aiq2/ Camp Server selector files
+  iteration-matrix/
 
 scripts/
-  bootstrap-aiq-structure.js
-  bootstrap-source-aiq2-structure.js
-  camp-server-modules.js
-  customize-allure-report.js
-  flatten-generic-allure-steps.js
+  bootstrap-iteration-matrix-structure.js
+  module-client-report-runner.js
   normalize-allure-suites.js
-  run-camp-cluster-participants-client-report.js
-  run-camp-server-client-report.js
-  run-camp-server-registration-client-report.js
-  run-camp-server-sequence.js
-  run-combined-client-report.js
-  scaffold-module.js
+  flatten-generic-allure-steps.js
   strip-source-aiq-from-allure-results.js
-
-tests/
-  DigitEYESCamp_Cluster/
-    DigitEYESCamps_*/
-    DigitEYESDataLoader_*/
-    DigitEYESReporting_*/
-    DigitEYESSettings_*/
-  DigitEYESCamp_Server/
+  customize-allure-report.js
+  run-iteration-matrix-client-report.js
+  run-iteration-matrix-last-failed-client-report.js
+  run-iteration-matrix-card-on-file-client-report.js
+  run-iteration-matrix-criteria-settings-client-report.js
+  run-iteration-matrix-criteria-settings-last-failed-client-report.js
 
 source-aiq/
-  TestScripts/
-  UtilityFunctions/
-
-source-aiq2/
   Test Scripts/
   Utility Functions/
-  Digit_Eyes_JS_DPL.csv
-  Digit_Eyes_Synthetic_DPL.csv
 
-data/
-  JS_DPL_Camp_Cluster.csv
-  source-aiq2/
+tests/
+  Iteration_Matrix/
 ```
 
-## Current Module Inventory
+## Active Module Inventory
 
-The repo is organized around the two main Vision Spring tracks below.
+The active project inventory is the Iteration Matrix module set under `tests/Iteration_Matrix/`, together with matching shared logic under `helpers/iteration-matrix/` and `selectors/iteration-matrix/`.
 
-### DigitEYESCamp Cluster
+Current module folders include areas such as:
 
-This track contains the original web-app families and their sub-modules:
+- `Card_On_File`
+- `Criteria_Settings`
+- `Customer_Management_Admin`
+- `Customer_Onboarding`
+- `Duplicates_Dashboard`
+- `FileProcessing`
+- `Invoice_Tracker`
+- `Login`
+- `Payment_Management_imREmit`
+- `Remittance_Management`
+- `Runner_Configuration`
+- `Settings`
+- `SR_Search`
+- `SR_Upload_New`
+- `Statement_Search`
+- `Statement_Upload`
+- `Supplier_Master_List`
+- `User_Management_Admin`
 
-### DigitEYES Camps
-
-- `DigitEYESCamps_DataForSalesforce`
-- `DigitEYESCamps_ManageCampsCluster`
-- `DigitEYESCamps_Participants`
-
-### DigitEYES Data Loader
-
-- `DigitEYESDataLoader_DataForSalesForce`
-- `DigitEYESDataLoader_ParticipantConsents`
-- `DigitEYESDataLoader_SFDataLoaderChangeLog`
-- `DigitEYESDataLoader_SFDataLoaderErrorCases`
-- `DigitEYESDataLoader_SFDataLoaderQueue`
-
-### DigitEYES Reporting
-
-- `DigitEYESReporting_CampTrends`
-- `DigitEYESReporting_InternetAvailability`
-- `DigitEYESReporting_PopinAvailability`
-- `DigitEYESReporting_SummarySheetData`
-- `DigitEYESReporting_WorkReportIPTeams`
-- `DigitEYESReporting_WorkReportVSTeams`
-
-### DigitEYES Settings
-
-- `DigitEYESSettings_CountrySettings`
-- `DigitEYESSettings_DESalesforceFieldMapping`
-- `DigitEYESSettings_Hospitals`
-- `DigitEYESSettings_ImplementationPartners`
-
-### DigitEYES Camp Server
-
-This track contains the Camp Server family and its station sub-modules:
-
-- `Camp_Server_Login`
-- `01_Camp_Server_India_Registration`
-- `02_Camp_Server_India_Prescreening`
-- `03_Camp_Server_India_PreExam`
-- `04_Camp_Server_India_Examination`
-- `05_Camp_Server_India_Opthalm`
-- `06_Camp_Server_India_Dispense`
-- `07_Camp_Server_India_Participants`
-- `08_Camp_Server_India_Summary`
+Additional module folders already exist under `tests/Iteration_Matrix/`; treat that directory as the source of truth for current project scope.
 
 ## Current Status
 
-Conversion parity is complete for the current tracked DigitEYESCampsCluster intake (all 18 source module folders under `source-aiq/TestScripts/DigitEYESCampsCluster`).
-
-- Shared auth, fallback locator handling, Allure hierarchy, and reporting customization are already in place.
-- All four module families are validated clean at `--workers=3`.
-- Any new AIQ scripts arriving under `source-aiq/TestScripts` are future delta conversions; use the recommended workflow in the handoff doc.
-- Current run-level numbers are intentionally maintained in the handoff doc instead of README to keep this file stable.
-
-Camp Server is a separate `source-aiq2` conversion track.
-
-- The Camp Server scaffold is generated under `tests/DigitEYESCamp_Server/`, `helpers/source-aiq2/`, `selectors/source-aiq2/`, and `data/source-aiq2/`.
-- Camp Server conversion coverage is now complete across login plus all 8 India modules.
-- `01_Camp_Server_India_Registration` is now fully converted at 24 helper-backed specs.
-- `02_Camp_Server_India_Prescreening` is now fully converted at 8 helper-backed specs and validated clean at 8/8 with `--workers=1`.
-- `03_Camp_Server_India_PreExam` is now fully converted at 9 helper-backed specs and validated clean at 9/9 with `--workers=1`.
-- `04_Camp_Server_India_Examination` is now fully converted at 16 helper-backed specs and validated clean at 16/16 with `--workers=1`.
-- `06_Camp_Server_India_Dispense` is now fully converted at 10 helper-backed specs and validated clean at 10/10 with `--workers=1`.
-- `07_Camp_Server_India_Participants` is now fully helper-backed at 10 specs, and the latest combined Participants plus Dispense validation passed clean at 20/20.
-- `08_Camp_Server_India_Summary` is fully converted at 4 helper-backed specs and validated clean at 4/4 with `--workers=1`.
-- `05_Camp_Server_India_Opthalm` is also converted and helper-backed, but its latest rerun finished at 2/3 because the live product does not carry `Suspected Cataract` into Ophthalm from Examination.
-- A dedicated Registration client report flow now exists via `npm run report:camp-server-registration:client` and produces a Mammoth-branded single-file artifact under `Result/`.
-- Cluster client-report flows normalize Allure suite labels before report generation and strip `Source AIQ:` lines so client-facing descriptions keep only `Scenario:` and `Spec File:`.
-- Camp Server client-report flows normalize Allure suite labels, flatten the legacy generic `Run converted flow` wrapper step from result JSON, strip `Source AIQ:` lines, and then generate the Mammoth-branded portable artifact.
-- The remaining Camp Server gap is not a conversion gap. It is the current product-side Ophthalm carry-forward defect documented in the Camp Server handoff.
-
-For the most current module-by-module handoff and remaining conversion guidance:
-
-- use [docs/vision-spring-camp-cluster-handoff.md](docs/vision-spring-camp-cluster-handoff.md) for the DigitEYESCampsCluster families
-- use [docs/vision-spring-camp-server-handoff.md](docs/vision-spring-camp-server-handoff.md) for the `source-aiq2` Camp Server track
-- use [docs/vision-spring-conversion-handoff.md](docs/vision-spring-conversion-handoff.md) for the older general conversion guidance and durable cross-family lessons
+- Iteration Matrix is the only active top-level test track in this workspace.
+- Runtime data for this track is loaded from `data/iteration-matrix/IM_DPL1.csv` unless overridden by environment variables.
+- Criteria Settings is fully helper-backed and validated clean at 66 passing specs.
+- Module-level client reporting now supports rerun-only-failed merge flows through shared runner logic in `scripts/module-client-report-runner.js`.
+- Durable project-specific continuation guidance lives in `docs/iteration-matrix-handoff.md`.
 
 ## Install
 
@@ -182,49 +117,25 @@ npx playwright install
 
 ## Preferred Test Commands
 
-Use direct Playwright commands for the active Vision Spring modules.
+Use direct Playwright commands for Iteration Matrix work.
 
-### Run everything
-
-```bash
-npm test
-```
-
-### Run one family
+### Run the full track
 
 ```bash
-npx playwright test tests/DigitEYESReporting_* --workers=3
-npx playwright test tests/DigitEYESSettings_* --workers=3
-npx playwright test tests/DigitEYESDataLoader_* --workers=3
-npx playwright test tests/DigitEYESCamps_* --workers=3
-npx playwright test tests/DigitEYESCamp_Server/01_Camp_Server_India_Registration --workers=1
+npm run test:iteration-matrix
 ```
 
 ### Run one module
 
 ```bash
-npx playwright test tests/DigitEYESReporting_CampTrends
-npx playwright test tests/DigitEYESReporting_WorkReportVSTeams
-npx playwright test tests/DigitEYESCamp_Server/01_Camp_Server_India_Registration --workers=1
-npx playwright test tests/DigitEYESCamp_Server/02_Camp_Server_India_Prescreening --workers=1
-npx playwright test tests/DigitEYESCamp_Server/03_Camp_Server_India_PreExam --workers=1
-npx playwright test tests/DigitEYESCamp_Server/04_Camp_Server_India_Examination --workers=1
-npx playwright test tests/DigitEYESCamp_Server/05_Camp_Server_India_Opthalm --workers=1
-npx playwright test tests/DigitEYESCamp_Server/06_Camp_Server_India_Dispense --workers=1
+npx playwright test tests/Iteration_Matrix/Criteria_Settings --workers=3
+npx playwright test tests/Iteration_Matrix/Card_On_File --workers=3
 ```
 
-### Camp Server shortcuts
+### Run one spec
 
 ```bash
-npm run test:camp-server-login
-npm run test:camp-server-registration
-npm run test:camp-server-prescreening
-npm run test:camp-server-preexam
-npm run test:camp-server-examination
-npm run test:camp-server-opthalm
-npm run test:camp-server-dispense
-npm run test:camp-server-participants
-npm run test:camp-server-summary
+npx playwright test tests/Iteration_Matrix/Criteria_Settings/TS_03_To_verify_that_Search_character_field_is_functional.spec.js --headed --debug
 ```
 
 ### Run headed or debug
@@ -234,97 +145,59 @@ npm run test:headed
 npm run test:debug
 ```
 
-### Run one spec
+## Reporting Commands
 
-```bash
-npx playwright test tests/DigitEYESReporting_CampTrends/TC_01_To_verify_that_DigitEYES_Reporting_displays_the_Camps_Trend_button.spec.js --headed --debug
-```
+Use the packaged Iteration Matrix report flows whenever output is meant to be shared.
 
-## Reporting Workflow
+### Whole-track reports
 
-Use the packaged client-report flows whenever the output is meant to be shared.
+- `npm run report:iteration-matrix:client`
+- `npm run report:iteration-matrix:last-failed:client`
 
-### DigitEYESCamp Cluster
+### Module reports
 
-- `npm run report:camp-cluster:client` is the preferred whole-track shareable report command.
-- `npm run report:camp-cluster:last-failed:client` reruns only the last failed Cluster tests, replaces those prior test entries inside the existing `allure-results` baseline, and rebuilds the branded client-shareable artifact without duplicating unchanged tests.
-- `npm run report:camp-cluster-participants:client` is the current dedicated module client-report command.
-- `npm run report:combined:client` remains available as the legacy alias for the same whole-track Cluster flow.
-- The combined package shortcuts in `package.json` now normalize suites before `allure generate`, so older combined-report entry points no longer leak a `chromium` Suites grouping.
-- Cluster client-facing descriptions intentionally keep only `Scenario:` and `Spec File:`.
-- Cluster execution readability is driven primarily from helper-layer nested `test.step()` titles rather than report-time step rewriting.
+- `npm run report:iteration-matrix:card-on-file:client`
+- `npm run report:iteration-matrix:criteria-settings:client`
+- `npm run report:iteration-matrix:criteria-settings:last-failed:client`
 
-### DigitEYESCamp Server
+### Reporting behavior
 
-- `npm run report:camp-server:client` is the preferred whole-track shareable report command.
-- `npm run report:camp-server:last-failed:client` reruns only the last failed Camp Server tests, replaces those prior test entries inside the existing `allure-results` baseline, and rebuilds the branded client-shareable artifact without duplicating unchanged tests.
-- `npm run report:camp-server-registration:client` is the dedicated Registration client-report command.
-- Camp Server client-report flows normalize suites before report generation so the Suites card groups by module instead of Playwright project metadata.
-- Camp Server client-report flows also flatten the generic `Run converted flow` wrapper step from legacy result files so the Execution panel shows the nested business steps directly.
-- Camp Server client-facing descriptions also keep only `Scenario:` and `Spec File:`.
+- shareable artifacts are written under `Result/`
+- suite labels are normalized before report generation
+- `Source AIQ:` lines are stripped from client-facing descriptions
+- module suites are preserved from their folder names
+- dedicated module last-failed flows rerun only failed specs, replace only those result entries, and keep unchanged baseline results intact
+- dedicated module report scripts should be thin wrappers over `scripts/module-client-report-runner.js`
 
-### Ad hoc report generation
-
-If you build a report outside the packaged client scripts, run the same result processing first:
+If you generate a report manually from existing `allure-results`, run the same result processing first:
 
 ```bash
 node scripts/normalize-allure-suites.js
-node scripts/flatten-generic-allure-steps.js   # Camp Server / legacy wrapper-step results only
+node scripts/flatten-generic-allure-steps.js
 node scripts/strip-source-aiq-from-allure-results.js
 ```
 
-## Data and Authentication Behavior
+## Runtime Data And Authentication
 
-- Runtime data is loaded through `helpers/dataLoader.js`.
-- The current DPL file is `data/JS_DPL_Camp_Cluster.csv`.
-- The runtime copy under `data/JS_DPL_Camp_Cluster.csv` has been repaired to a valid minimal CSV; default credential fallback remains only as a safety net in `helpers/dataLoader.js` when intake data is malformed.
-- Auth is centralized in `helpers/auth.js` and supports the working Microsoft-backed Vision Spring flow:
-  - Microsoft username
-  - Microsoft password
-  - Stay signed in
-  - app Office 365 Sign In
-  - country picker
-  - target module navigation
-- Module `_shared.js` files intentionally use a no-op `closeSession(page)` to avoid shared-account logout collisions across parallel workers.
+- Runtime data is loaded through `helpers/iteration-matrix/dataLoader.js`.
+- Default runtime CSV preference is `data/iteration-matrix/IM_DPL1.csv`.
+- Supported overrides include:
+  - `ITERATION_MATRIX_DATA_FILE`
+  - `ITERATION_MATRIX_BASE_URL`
+  - `ITERATION_MATRIX_USERNAME_ADMIN`
+  - `ITERATION_MATRIX_PASSWORD_ADMIN`
+- Auth is handled by `helpers/iteration-matrix/auth.js` using a direct username/password login flow.
+- Module teardown must remain a no-op. Do not reintroduce real UI logout in `_shared.js` files.
 
-### Camp Server data and authentication
+## Core Framework Rules
 
-- Camp Server runtime data is loaded through `helpers/source-aiq2/dataLoader.js`.
-- Camp Server intake lives under `source-aiq2/`, and the runtime CSV search path defaults to `data/source-aiq2/*.csv`.
-- The default runtime CSV preference is now `data/source-aiq2/Digit_Eyes_Runtime_DPL.csv`, which avoids the malformed imported intake CSV and keeps Camp Server runs off hardcoded fallback defaults.
-- The loader supports environment overrides such as `SOURCE_AIQ2_DATA_FILE`, `SOURCE_AIQ2_BASE_URL`, `SOURCE_AIQ2_USERNAME`, `SOURCE_AIQ2_PASSWORD`, `SOURCE_AIQ2_PERSON_NAME`, and the participant/address field overrides used by the Registration helper.
-- If the `data/source-aiq2/*.csv` file is malformed, the loader logs a fallback message and uses environment/default values.
-- Camp Server auth is separate from the Microsoft web-app flow. The current logic in `helpers/source-aiq2/auth.js` goes directly to `server.php`, supports the `Run as Station` flow, extracts the on-page camp password when needed, fills `emailid`, `personname`, and `password`, and then waits for `#navbars`.
-- Camp Server module `_shared.js` files also use a no-op `closeSession(page)` for consistency and to avoid teardown side effects.
-- The current Prescreening module is helper-backed in `helpers/source-aiq2/campServerIndiaPrescreening.js` and uses the same thin-spec pattern as Registration.
-- Prescreening live-form lesson: some left-eye Near Vision fields are readonly mirrored inputs in the runtime UI, so helper logic must drive the editable right-eye control and assert the mirrored value instead of forcing direct selection on every field.
-- Prescreening validation lesson: the missing Distance Vision cases block submission through native required-field behavior on the invalid control rather than a reusable toast message, so assertions should target submission blocking and invalid field state instead of overfitting to a toast.
-- Prescreening success lesson: the durable client-visible completion dialog currently says `Please direct the Participant to the Pre Exam station.` in the visible `#divExaSuccess` modal after Finish.
-- Examination validation lesson: in the current live runtime, the `Other Eye Conditions` parent checkbox path is most stable when asserted as blocked submission on the Diagnosis step instead of overfitting to the short-lived top-right toast from the older AIQ expectation.
+### Fix shared behavior at the root
 
-## Core Framework Rules Used In This Repo
+If multiple specs fail for the same reason, fix the shared helper or selector layer first instead of patching each spec separately.
 
-### Shared fixes belong in helpers and selectors
+### Keep selectors resilient
 
-If multiple specs show the same failure pattern, fix:
-
-- `helpers/`
-- `selectors/`
-
-Do not patch each spec separately unless the behavior is truly one-off.
-
-### Fallback locator strategy is required
-
-`helpers/fallback.js` is the Playwright equivalent of AIQ fallback accessors.
-
-Use candidate selector arrays in selector files instead of relying on a single brittle locator.
-
-### Prefer visible form-scoped selectors when pages duplicate hidden DOM
-
-Some Vision Spring pages leave hidden duplicate modal fields after Apply, Reset, or Close. When that happens:
-
-- prefer visible form-scoped selectors first
-- then keep the generic selector as a fallback
+Use candidate selector arrays and fallback handling for brittle UI surfaces. Prefer visible, form-scoped locators when pages duplicate hidden DOM.
 
 ### Keep specs thin
 
@@ -332,38 +205,23 @@ Each spec should usually do only this:
 
 1. load runtime data
 2. login
-3. call one helper-driven business verification
-4. call the shared no-op logout
+3. run one helper-backed business flow
+4. call the shared no-op close session
 
-### Match AIQ initialization steps exactly when asserting defaults
+### Match AIQ semantics exactly
 
-If a source AIQ script performs an in-form selection before checking a default, keep that step in the converted helper even if the form already appears open. The latest Country Settings fix depended on selecting `India` in the New Camp Cluster form before asserting reflected checkbox state.
+Do not strengthen assertions beyond what the source AIQ script actually verifies. If the source checks presence or minimum occurrence, keep that same semantic level in Playwright.
 
-## Reporting Workflow
+### Keep reports client-readable
 
-- Local and client-shareable reports are generated from `allure-results`.
-- Shareable artifacts and report folders belong under `Result/`.
-- Branded single-file Allure customization is handled by `scripts/customize-allure-report.js`.
-- If a report needs correct suite grouping from existing result files, use `scripts/normalize-allure-suites.js` before generating the final artifact.
-- Before generating a client-facing report, make sure `allure-results` contains:
-  - `environment.properties`
-  - `executor.json`
-  - `categories.json`
+Readable Allure execution detail should come from helper-layer wrapped `test.step()` titles, not from raw Playwright click/fill noise.
 
-### Camp Server reporting
+## Scaffold Commands
 
-- `npm run report:camp-server:client` runs the ordered Camp Server module sequence from `scripts/camp-server-modules.js`, generates a single-file Allure report, applies Mammoth branding, and packages it under `Result/`.
-- `npm run report:camp-server-registration:client` runs only `tests/DigitEYESCamp_Server/01_Camp_Server_India_Registration`, enriches Allure descriptions from the converted spec/source mapping, generates a single-file Mammoth-branded report, syncs `Result/index.html`, and packages the shareable zip under `Result/`.
-- The Camp Server report runners now use Windows-safe command launching for `npx` and branding steps, which avoids path-splitting failures in workspace paths such as `C:\vision spring`.
-- For other targeted Camp Server client artifacts, rerun only the intended spec batch with `--reporter=allure-playwright`, add `environment.properties`, `executor.json`, and `categories.json`, run `scripts/normalize-allure-suites.js`, then generate and brand the single-file report.
-- Do not present a full Camp Server client report as complete converted coverage unless the included specs are actually implemented; non-converted placeholder specs are scaffolds, not finished automation.
-
-## Conversion Commands
-
-### Bootstrap scaffold from source AIQ structure
+### Bootstrap the Iteration Matrix structure
 
 ```bash
-npm run scaffold:source-aiq
+npm run scaffold:iteration-matrix
 ```
 
 ### Scaffold one module manually
@@ -374,21 +232,19 @@ npm run scaffold:module -- <ModuleName>
 
 ## Documentation
 
+- [docs/iteration-matrix-handoff.md](docs/iteration-matrix-handoff.md)
+  Primary project handoff for Iteration Matrix conversion, reporting, runtime data, and continuation workflow.
 - [docs/conversion-framework.md](docs/conversion-framework.md)
-  General conversion framework used by the team.
+  Reusable conversion strategy and framework rules that still apply here.
 - [docs/team-project-setup-guide.md](docs/team-project-setup-guide.md)
-  How to reuse this framework in another project.
-- [docs/vision-spring-conversion-handoff.md](docs/vision-spring-conversion-handoff.md)
-  Current DigitEYESCampsCluster-specific status, latest fixes, completed delta batches, and recommended next modules.
-- [docs/vision-spring-camp-server-handoff.md](docs/vision-spring-camp-server-handoff.md)
-  Current Camp Server-specific intake mapping, helper architecture, partial conversion status, reporting workflow, and next conversion guidance.
+  Framework reuse guidance when setting up another project.
 
-For teammate onboarding and AI agent overviews, start with the family-specific handoff doc that matches the active track, then read this README for commands and structure.
+Older Vision Spring documents remain in `docs/archive/` only as archival examples of patterns that were later reused here. They are not the project handoff for Iteration Matrix.
 
 ## Notes For Future Work
 
-- Treat this repo as a maintenance and regression-stability workflow for the current converted intake.
-- If new AIQ deltas arrive under `source-aiq/TestScripts`, convert module-by-module using existing shared helper and selector surfaces first.
-- For Reporting specifically, continue through shared `digiteyesreportingCommon.js` behavior rather than introducing module-specific one-off modal logic where the same fix can be centralized.
-- Generated `Result/` artifacts should not be treated as source files for ongoing development work.
-- Temporary audit files (for example `.tmp_*`) should be removed after decisions are captured in durable docs.
+- Treat this repo as an Iteration Matrix maintenance and conversion workflow.
+- When new AIQ deltas arrive under `source-aiq/Test Scripts/`, extend the shared helper and selector layers before widening spec changes.
+- Keep generated `Result/` artifacts out of normal source-editing workflows.
+- Remove temporary audit files once their outcomes are captured in durable docs.
+

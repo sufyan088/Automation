@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, criteriaSettingsHelpers } = require('./_shared');
 
 test("TS_09_To_verify_the_sorting_arrows_in_the_entries_Asc", async ({ page }) => {
   const data = loadRuntimeData();
@@ -11,7 +11,15 @@ test("TS_09_To_verify_the_sorting_arrows_in_the_entries_Asc", async ({ page }) =
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
+  await test.step('Open Criteria Settings page', async () => {
+    await criteriaSettingsHelpers.openModule(page);
+    await criteriaSettingsHelpers.selectCustomer(page, 'Stanford U');
+  });
+
+  await test.step('Sort criteria type ascending', async () => {
+    await criteriaSettingsHelpers.openTableHeaderMenu(page, 'Criteria Type');
+    await criteriaSettingsHelpers.chooseTableHeaderAction(page, 'Ascending');
+    await criteriaSettingsHelpers.expectColumnSorted(page, 'Criteria Type', 'asc');
   });
 
   await test.step('Logout from the application', async () => {
