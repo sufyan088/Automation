@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, cardOnFileHelpers } = require('./_shared');
 
 test("TS_22_To_verify_that_the_Card_Limit_Buffer_and_Card_Limit_Amount_fields_are_enabled_and_editable_when_the_payment_is_Blocked", async ({ page }) => {
   const data = loadRuntimeData();
@@ -12,6 +12,12 @@ test("TS_22_To_verify_that_the_Card_Limit_Buffer_and_Card_Limit_Amount_fields_ar
   });
 
   await test.step('Run converted flow', async () => {
+    await cardOnFileHelpers.openSupplierManagementForCustomer(page, 'Cadent');
+    await cardOnFileHelpers.openEditSupplierDetails(page, 'CardOnFile');
+    await cardOnFileHelpers.ensureSupplierEnrollmentYes(page);
+    await cardOnFileHelpers.selectCardOnFile(page);
+    await cardOnFileHelpers.expectInputEditable(page, cardOnFileHelpers.selectors.editSupplier.cardLimitBufferInput);
+    await cardOnFileHelpers.expectInputEditable(page, cardOnFileHelpers.selectors.editSupplier.cardLimitAmountInput);
   });
 
   await test.step('Logout from the application', async () => {

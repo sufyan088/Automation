@@ -98,6 +98,10 @@ If there is a conflict, keep the target project's helper function names and merg
 
 ## Optional Module Helper Examples To Reuse As Patterns
 
+These are historical framework examples retained from earlier Mammoth automation work.
+
+Use them for structure and shared-pattern reference only, not as active project modules in this Iteration Matrix workspace.
+
 Use these as working references for how to structure module helpers:
 
 1. [helpers/digiteyescampsManagecampscluster.js](helpers/digiteyescampsManagecampscluster.js)
@@ -110,6 +114,8 @@ Use these as working references for how to structure module helpers:
 At minimum, copy the shared selector style and create new module selector files as needed.
 
 Useful references:
+
+The module-specific selector examples below are also historical framework references, kept to show naming and organization patterns.
 
 1. [selectors/common.selectors.js](selectors/common.selectors.js)
 2. [selectors/digiteyescampsManagecampscluster.selectors.js](selectors/digiteyescampsManagecampscluster.selectors.js)
@@ -136,6 +142,8 @@ These cover:
 - bulk scaffold generation from source AIQ folder structure
 - retroactive Allure suite-label normalization for full-project combined reports
 - retroactive flattening of generic wrapper steps in legacy Camp Server result files
+
+Note: some older report and scaffold scripts in this repository belong to archived Vision Spring conversion tracks. Reuse the reporting mechanism, but prefer Iteration Matrix runners and currently maintained scripts when copying into a new active project.
 
 ## Required Branding Assets
 
@@ -341,14 +349,14 @@ npx playwright test tests/<ModuleName>/<SpecFile>.spec.js
 node scripts/normalize-allure-suites.js
 node scripts/flatten-generic-allure-steps.js   # only when legacy Camp Server wrapper steps are present
 node scripts/strip-source-aiq-from-allure-results.js
-npx allure generate allure-results --clean --single-file -o allure-report-combined-shareable
-node scripts/customize-allure-report.js allure-report-combined-shareable
+npx allure generate allure-results --clean --single-file -o Result/allure-report-iteration-matrix-shareable
+node scripts/customize-allure-report.js Result/allure-report-iteration-matrix-shareable
 ```
 
 ### Team standard client-share command
 
 ```bash
-npm run report:camp-cluster:client
+npm run report:iteration-matrix:client
 ```
 
 This:
@@ -368,18 +376,18 @@ This:
 ### Preferred client-share commands by track
 
 ```bash
-npm run report:camp-cluster:client
-npm run report:camp-cluster-participants:client
-npm run report:camp-server:client
-npm run report:camp-server-registration:client
+npm run report:iteration-matrix:client
+npm run report:iteration-matrix:last-failed:client
+npm run legacy:report:camp-cluster:client
+npm run legacy:report:camp-server:client
 ```
 
 ## What To Share With Clients
 
 Share only the portable report or zip:
 
-1. `allure-report-combined-shareable/index.html`
-2. `allure-report-combined-shareable.zip`
+1. `Result/allure-report-iteration-matrix-shareable/index.html`
+2. `Result/iteration-matrix-full-project.zip`
 
 Do not share the standard multi-file Allure folder for direct file opening.
 

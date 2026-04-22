@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, criteriaSettingsHelpers } = require('./_shared');
 
 test("TS_03_To_verify_that_Search_character_field_is_functional", async ({ page }) => {
   const data = loadRuntimeData();
@@ -11,7 +11,15 @@ test("TS_03_To_verify_that_Search_character_field_is_functional", async ({ page 
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
+  await test.step('Open Criteria Settings page', async () => {
+    await criteriaSettingsHelpers.openModule(page);
+    await criteriaSettingsHelpers.selectCustomer(page, 'Stanford U');
+  });
+
+  await test.step('Search by character value', async () => {
+    await criteriaSettingsHelpers.searchCharacter(page, '45');
+    await criteriaSettingsHelpers.expectSearchFieldValue(page, 'character', '45');
+    await criteriaSettingsHelpers.expectTableContainsText(page, '45');
   });
 
   await test.step('Logout from the application', async () => {

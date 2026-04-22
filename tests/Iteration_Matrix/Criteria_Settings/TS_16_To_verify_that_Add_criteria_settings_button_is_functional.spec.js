@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, criteriaSettingsHelpers } = require('./_shared');
 
 test("TS_16_To_verify_that_Add_criteria_settings_button_is_functional", async ({ page }) => {
   const data = loadRuntimeData();
@@ -11,7 +11,14 @@ test("TS_16_To_verify_that_Add_criteria_settings_button_is_functional", async ({
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
+  await test.step('Open Criteria Settings page', async () => {
+    await criteriaSettingsHelpers.openModule(page);
+    await criteriaSettingsHelpers.selectCustomer(page, 'Stanford U');
+  });
+
+  await test.step('Show the criteria form', async () => {
+    await criteriaSettingsHelpers.showCriteriaForm(page);
+    await criteriaSettingsHelpers.expectCriteriaFormButtonText(page, /hide criteria form/i);
   });
 
   await test.step('Logout from the application', async () => {

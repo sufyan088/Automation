@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsRole, closeSession, cardOnFileHelpers } = require('./_shared');
 
 test("TS_11_To_verify_that_the_Card_on_File_radio_button_is_greyed_out_for_ePay_Admin_role", async ({ page }) => {
   const data = loadRuntimeData();
@@ -8,10 +8,14 @@ test("TS_11_To_verify_that_the_Card_on_File_radio_button_is_greyed_out_for_ePay_
   });
 
   await test.step('Login into Application', async () => {
-    await loginAsAdmin(page, data);
+    await loginAsRole(page, data, 'ePayAdmin');
   });
 
   await test.step('Run converted flow', async () => {
+    await cardOnFileHelpers.openSupplierManagementForCustomer(page, 'Cadent');
+    await cardOnFileHelpers.openEditSupplierDetails(page, 'CardOnFile');
+    await cardOnFileHelpers.ensureSupplierEnrollmentYes(page);
+    await cardOnFileHelpers.expectRadioDisabled(page, cardOnFileHelpers.selectors.editSupplier.cardOnFile);
   });
 
   await test.step('Logout from the application', async () => {

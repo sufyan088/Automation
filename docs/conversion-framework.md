@@ -30,6 +30,28 @@ selectors/
   <module>.selectors.js
 ```
 
+When multiple application tracks share the same repository, namespace the structure by project track instead of mixing modules at the root. Iteration Matrix in this repo uses:
+
+```text
+tests/
+  Iteration_Matrix/
+    <ModuleName>/
+      _shared.js
+      TS_XX_<business_name>.spec.js
+
+helpers/
+  iteration-matrix/
+    <module>.js
+
+selectors/
+  iteration-matrix/
+    <module>.selectors.js
+
+data/
+  iteration-matrix/
+    <runtime files>
+```
+
 ## Conversion Rules
 
 ### 0. Respect existing project architecture
@@ -59,7 +81,12 @@ Project-specific helpers usually stay local to the target repo.
 
 Each module gets its own folder under `tests/`.
 
-Examples:
+Current Iteration Matrix examples:
+
+- `tests/Iteration_Matrix/Card_On_File`
+- `tests/Iteration_Matrix/Criteria_Settings`
+
+Historical examples retained in this repo as framework references:
 
 - `tests/DigitEYESCamps_ManageCampsCluster`
 - `tests/DigitEYESDataLoader_SFDataLoaderQueue`
@@ -136,7 +163,7 @@ When multiple workers share a single application account:
 
 When an AIQ script verifies that a column *contains* a matching value (not that every row equals it), use a minimum-occurrence assertion instead of a full-column equality check.
 
-- `expectColumnValueOccurrenceAtLeast` is the reference implementation in `helpers/digiteyesdataloaderCommon.js`.
+- `expectColumnValueOccurrenceAtLeast` is preserved as a historical reference implementation in `helpers/digiteyesdataloaderCommon.js`.
 - Over-constraining with equality on filtered columns causes false failures when live data contains mixed rows.
 
 ### 11. Register allureHierarchy in every _shared.js
@@ -256,19 +283,24 @@ This unwraps the generic parent step in `allure-results/*-result.json` so the Al
 - Strip any stale `Source AIQ:` lines from result descriptions before report generation.
 - For Cluster, prioritize helper-layer readable nested steps.
 - For Camp Server, use result flattening as a report-time compatibility layer until all legacy wrapper steps are removed from specs.
+- For any dedicated module client report, the preferred failure-follow-up mechanism is now: rerun only the failed specs with `--last-failed`, merge those rerun results back into the existing module Allure baseline by test identity, replace only the affected test entries, and rebuild the shareable artifact without duplicating unchanged tests.
+- Treat this merge-and-rebuild mechanism as the standard for all future module-specific client report runners across project tracks.
+- Prefer implementing those dedicated module report commands as thin config wrappers over a shared runner, not as copied standalone scripts. In this repo that shared implementation now lives in `scripts/module-client-report-runner.js`.
 
 ### Client share workflow
 
 Preferred command:
 
 ```bash
-npm run report:combined:client
+npm run report:iteration-matrix:client
 ```
 
 This produces:
 
-- `allure-report-combined-shareable/index.html`
-- `allure-report-combined-shareable.zip`
+- `Result/allure-report-iteration-matrix-shareable/index.html`
+- `Result/iteration-matrix-full-project.zip`
+
+Historical combined-report examples from earlier Vision Spring work are still available behind the `legacy:*` npm namespace, for example `npm run legacy:report:combined:client`.
 
 ## Parallel Execution Guidance
 
@@ -292,11 +324,11 @@ For team members starting a new module:
 
 ## Repository-Specific Handoff
 
-For the current Vision Spring repository, use the dedicated handoff docs by track:
+For this workspace, the primary project handoff is:
 
-- `docs/vision-spring-camp-cluster-handoff.md` for the main `DigitEYESCamp_Cluster` track and its module-by-module mapping, inventory, and reusable rules.
-- `docs/vision-spring-camp-server-handoff.md` for the main `DigitEYESCamp_Server` track and its module-by-module mapping, inventory, and reusable rules.
-- `docs/vision-spring-conversion-handoff.md` for older general cross-family lessons, validated shared fixes, and durable conversion guidance that still applies beyond one track.
+- `docs/iteration-matrix-handoff.md` for the active Iteration Matrix track, its runtime data, reporting workflow, conversion rules, and continuation guidance.
+
+If you need historical examples of patterns that were later reused here, the older Vision Spring handoff docs remain in `docs/archive/` as archival reference only.
 
 ## Scaffold Command
 
