@@ -166,6 +166,19 @@ function loadRuntimeData() {
   );
 
   const roleCredentials = {
+    Username_Management: firstNonEmpty(
+      process.env.ITERATION_MATRIX_USERNAME_MANAGEMENT,
+      process.env.USERNAME_MANAGEMENT,
+      csvRecord.Username_Management,
+      csvRecord.UserName_Management,
+      csvRecord.ManagementUsername
+    ),
+    Password_Management: firstNonEmpty(
+      process.env.ITERATION_MATRIX_PASSWORD_MANAGEMENT,
+      process.env.PASSWORD_MANAGEMENT,
+      csvRecord.Password_Management,
+      csvRecord.ManagementPassword
+    ),
     Username_ProgramManager: firstNonEmpty(
       process.env.ITERATION_MATRIX_USERNAME_PROGRAM_MANAGER,
       process.env.USERNAME_PROGRAM_MANAGER,
@@ -177,6 +190,18 @@ function loadRuntimeData() {
       process.env.PASSWORD_PROGRAM_MANAGER,
       csvRecord.Password_ProgramManager,
       csvRecord.ProgramManagerPassword
+    ),
+    Username_ProjectManager: firstNonEmpty(
+      process.env.ITERATION_MATRIX_USERNAME_PROJECT_MANAGER,
+      process.env.USERNAME_PROJECT_MANAGER,
+      csvRecord.Username_ProjectManager,
+      csvRecord.ProjectManagerUsername
+    ),
+    Password_ProjectManager: firstNonEmpty(
+      process.env.ITERATION_MATRIX_PASSWORD_PROJECT_MANAGER,
+      process.env.PASSWORD_PROJECT_MANAGER,
+      csvRecord.Password_ProjectManager,
+      csvRecord.ProjectManagerPassword
     ),
     Username_imREmit_Admin: firstNonEmpty(
       process.env.ITERATION_MATRIX_USERNAME_IMREMIT_ADMIN,

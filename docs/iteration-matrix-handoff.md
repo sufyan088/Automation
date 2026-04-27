@@ -49,6 +49,9 @@ Use it as the project-specific companion to [docs/conversion-framework.md](./con
 - Use the packaged client-report commands for shareable output:
   - `npm run report:iteration-matrix:client`
   - `npm run report:iteration-matrix:last-failed:client`
+  - `npm run report:iteration-matrix:card-on-file:client`
+  - `npm run report:iteration-matrix:customer-management-admin-new:client`
+  - `npm run report:iteration-matrix:customer-management-admin-new:last-failed:client`
   - `npm run report:iteration-matrix:criteria-settings:client`
   - `npm run report:iteration-matrix:criteria-settings:last-failed:client`
 - These flows follow the current Iteration Matrix reporting standard:
@@ -65,12 +68,27 @@ Use it as the project-specific companion to [docs/conversion-framework.md](./con
 - Dedicated module last-failed report flows should reuse the previous module baseline in `allure-results`, rerun only the failed specs with `--last-failed`, replace those prior test entries by Allure test identity, and then regenerate the shareable report. Do not append duplicate result entries for unchanged tests.
 - Treat that last-failed merge flow as the default reporting rule for every future Iteration Matrix module-specific client report runner.
 - New Iteration Matrix module report scripts should be added as thin wrappers over `scripts/module-client-report-runner.js` so both full and last-failed flows inherit the same merge, metadata, normalization, branding, and packaging behavior.
+- `scripts/flatten-generic-allure-steps.js` only improves module readability when the generic wrapper already contains nested helper-created child steps. The durable fix is readable helper export steps, not report-time flattening alone.
+- Apply that readable-step shaping module-wise during conversion completion. Do not treat a repo-wide wrapper cleanup as a prerequisite unless a cross-module reporting deadline requires it.
 
 ## Criteria Settings Status
 
 - `tests/Iteration_Matrix/Criteria_Settings/` is now fully helper-backed and validated clean at 66 passing specs.
 - The module has dedicated client-report commands for both full reruns and last-failed merge reruns.
 - Its readable report structure is driven from helper-layer wrapped steps in `helpers/iteration-matrix/criteriaSettings.js`, not from report-time flattening alone.
+
+## Customer Management Admin New Status
+
+- `tests/Iteration_Matrix/Customer_Management_Admin_New/` is fully converted, live-aligned, and validated clean at 17 passing specs.
+- The shared helper/selectors were stabilized for USA -> Alaska onboarding, optional transmission controls, Duplicate Payments and Statement Recon behavior, and resilient submit success handling.
+- The module has dedicated client-report commands for both full reruns and last-failed merge reruns.
+- Its readable report structure is driven from helper-layer business steps in `helpers/iteration-matrix/customerManagementAdminNew.js`, with report flattening used only to remove the top-level generic wrapper.
+
+## Card On File Reporting Status
+
+- `tests/Iteration_Matrix/Card_On_File/` has a validated dedicated module client-report flow.
+- Report readability was restored without rewriting every spec by shaping the shared helper export layer in `helpers/iteration-matrix/cardOnFile.js`.
+- Treat this as the retrofit pattern for previously converted modules that still expose only a generic `Run converted flow` wrapper in raw spec code.
 
 ## Conversion Rules To Reuse
 
@@ -105,5 +123,6 @@ Use it as the project-specific companion to [docs/conversion-framework.md](./con
 2. Extend the module helper and selectors first, and keep readable helper-step exports when the module is intended for client-facing report consumption.
 3. Keep the spec pattern consistent: load runtime data, login, one helper-backed business flow, no-op close session.
 4. Validate the touched module or focused rerun before widening to a broader track run.
-5. For module-level failure follow-up, prefer the module-specific last-failed client-report command so only the failed test entries are replaced inside the existing report baseline.
-6. Regenerate the shareable report from the latest `allure-results` when client output is needed.
+5. Shape report readability during the same module conversion slice. Do not defer helper-layer readable steps to a later repo-wide cleanup unless a reporting deadline forces it.
+6. For module-level failure follow-up, prefer the module-specific last-failed client-report command so only the failed test entries are replaced inside the existing report baseline.
+7. Regenerate the shareable report from the latest `allure-results` when client output is needed.

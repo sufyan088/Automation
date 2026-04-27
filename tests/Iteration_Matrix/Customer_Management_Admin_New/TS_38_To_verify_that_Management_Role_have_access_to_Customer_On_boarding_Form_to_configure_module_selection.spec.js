@@ -1,4 +1,11 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const {
+  test,
+  loadRuntimeData,
+  loginAsAdmin,
+  closeSession,
+  customerManagementAdminNewHelpers,
+  customerManagementAdminNewSelectors
+} = require('./_shared');
 
 test("TS_38_To_verify_that_Management_Role_have_access_to_Customer_On_boarding_Form_to_configure_module_selection", async ({ page }) => {
   const data = loadRuntimeData();
@@ -12,6 +19,14 @@ test("TS_38_To_verify_that_Management_Role_have_access_to_Customer_On_boarding_F
   });
 
   await test.step('Run converted flow', async () => {
+    await customerManagementAdminNewHelpers.openCreateCustomerForm(page, data);
+    await customerManagementAdminNewHelpers.selectModules(page, [
+      customerManagementAdminNewSelectors.modules.duplicatePayments
+    ]);
+    await customerManagementAdminNewHelpers.expectModuleSelected(
+      page,
+      customerManagementAdminNewSelectors.modules.duplicatePayments
+    );
   });
 
   await test.step('Logout from the application', async () => {

@@ -283,6 +283,8 @@ This unwraps the generic parent step in `allure-results/*-result.json` so the Al
 - Strip any stale `Source AIQ:` lines from result descriptions before report generation.
 - For Cluster, prioritize helper-layer readable nested steps.
 - For Camp Server, use result flattening as a report-time compatibility layer until all legacy wrapper steps are removed from specs.
+- For Iteration Matrix, treat Criteria Settings, Customer Management Admin New, and Card On File as the current reference pattern: readable report output must be created at the helper export layer, while result flattening only removes the generic top-level wrapper when nested child steps already exist.
+- For Iteration Matrix conversion workflow, apply that report-step shaping module-wise during conversion completion instead of waiting for a repo-wide cleanup pass.
 - For any dedicated module client report, the preferred failure-follow-up mechanism is now: rerun only the failed specs with `--last-failed`, merge those rerun results back into the existing module Allure baseline by test identity, replace only the affected test entries, and rebuild the shareable artifact without duplicating unchanged tests.
 - Treat this merge-and-rebuild mechanism as the standard for all future module-specific client report runners across project tracks.
 - Prefer implementing those dedicated module report commands as thin config wrappers over a shared runner, not as copied standalone scripts. In this repo that shared implementation now lives in `scripts/module-client-report-runner.js`.

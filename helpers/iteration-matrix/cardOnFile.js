@@ -1,3 +1,4 @@
+const { test } = require('@playwright/test');
 const { cardOnFileSelectors } = require('../../selectors/iteration-matrix/cardOnFile.selectors.js');
 
 const errorPageSelectors = [
@@ -431,31 +432,58 @@ async function createSupplier(page, overrides = {}) {
 
 module.exports = {
   cardOnFileHelpers: {
-    openModule,
-    openSupplierManagementForCustomer,
-    searchSuppliers,
-    expectTableContainsText,
-    openEditSupplierDetails,
-    ensureSupplierEnrollmentYes,
-    selectCardOnFile,
-    selectSingleUseCard,
-    chooseRemittanceMethod,
-    populateRequiredSupplierProfile,
-    expectVisible,
-    expectNotVisible,
-    expectInputEditable,
-    expectInputDisabled,
-    expectInputInvalid,
-    expectRadioEnabled,
-    expectRadioDisabled,
-    expectFlagResetVisible,
-    expectFlagResetNotVisible,
-    clickFlagReset,
-    setCardLimitBuffer,
-    setCardLimitAmount,
-    clickSaveAndSubmit,
-    expectValidationMessage,
-    createSupplier,
+    openModule: async (page) => test.step('Open imREmit module', async () => openModule(page)),
+    openSupplierManagementForCustomer: async (page, customerName) => test.step(
+      `Open Supplier Management page for ${customerName || 'Cadent'}`,
+      async () => openSupplierManagementForCustomer(page, customerName)
+    ),
+    searchSuppliers: async (page, value) => test.step(
+      `Search suppliers for ${value}`,
+      async () => searchSuppliers(page, value)
+    ),
+    expectTableContainsText: async (page, text) => test.step(
+      `Verify supplier table contains ${text}`,
+      async () => expectTableContainsText(page, text)
+    ),
+    openEditSupplierDetails: async (page, supplierName) => test.step(
+      `Open Edit Supplier Details for ${supplierName || 'selected supplier'}`,
+      async () => openEditSupplierDetails(page, supplierName)
+    ),
+    ensureSupplierEnrollmentYes: async (page) => test.step('Select Supplier Enrollment Yes', async () => ensureSupplierEnrollmentYes(page)),
+    selectCardOnFile: async (page) => test.step('Select Card On File', async () => selectCardOnFile(page)),
+    selectSingleUseCard: async (page) => test.step('Select Single Use Card', async () => selectSingleUseCard(page)),
+    chooseRemittanceMethod: async (page, methodName) => test.step(
+      `Select remittance method ${methodName}`,
+      async () => chooseRemittanceMethod(page, methodName)
+    ),
+    populateRequiredSupplierProfile: async (page, overrides) => test.step(
+      'Populate required supplier profile',
+      async () => populateRequiredSupplierProfile(page, overrides)
+    ),
+    expectVisible: async (page, selectors) => test.step('Verify field is visible', async () => expectVisible(page, selectors)),
+    expectNotVisible: async (page, selectors) => test.step('Verify field is not visible', async () => expectNotVisible(page, selectors)),
+    expectInputEditable: async (page, selectors) => test.step('Verify input is editable', async () => expectInputEditable(page, selectors)),
+    expectInputDisabled: async (page, selectors) => test.step('Verify input is disabled', async () => expectInputDisabled(page, selectors)),
+    expectInputInvalid: async (page, selectors) => test.step('Verify input is invalid', async () => expectInputInvalid(page, selectors)),
+    expectRadioEnabled: async (page, selectors) => test.step('Verify option is enabled', async () => expectRadioEnabled(page, selectors)),
+    expectRadioDisabled: async (page, selectors) => test.step('Verify option is disabled', async () => expectRadioDisabled(page, selectors)),
+    expectFlagResetVisible: async (page) => test.step('Verify Flag Reset button is visible', async () => expectFlagResetVisible(page)),
+    expectFlagResetNotVisible: async (page) => test.step('Verify Flag Reset button is not visible', async () => expectFlagResetNotVisible(page)),
+    clickFlagReset: async (page) => test.step('Click Flag Reset button', async () => clickFlagReset(page)),
+    setCardLimitBuffer: async (page, value) => test.step(
+      `Enter Card Limit Buffer ${value}`,
+      async () => setCardLimitBuffer(page, value)
+    ),
+    setCardLimitAmount: async (page, value) => test.step(
+      `Enter Card Limit Amount ${value}`,
+      async () => setCardLimitAmount(page, value)
+    ),
+    clickSaveAndSubmit: async (page) => test.step('Click Save And Submit', async () => clickSaveAndSubmit(page)),
+    expectValidationMessage: async (page, text) => test.step(
+      `Verify validation message ${text}`,
+      async () => expectValidationMessage(page, text)
+    ),
+    createSupplier: async (page, overrides) => test.step('Create supplier', async () => createSupplier(page, overrides)),
     selectors: cardOnFileSelectors
   }
 };
