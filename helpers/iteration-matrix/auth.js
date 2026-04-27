@@ -77,6 +77,16 @@ function resolveRoleCredentials(data, roleKey) {
       password: data.Password_Admin,
       label: 'Iteration Matrix admin'
     },
+    management: {
+      username: data.Username_Management,
+      password: data.Password_Management,
+      label: 'Iteration Matrix management'
+    },
+    projectManager: {
+      username: data.Username_ProjectManager,
+      password: data.Password_ProjectManager,
+      label: 'Iteration Matrix project manager'
+    },
     programManager: {
       username: data.Username_ProgramManager,
       password: data.Password_ProgramManager,

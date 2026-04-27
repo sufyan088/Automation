@@ -372,12 +372,16 @@ This:
 
 - Cluster client-report flows rely on helper-layer readable nested steps and sanitize descriptions to `Scenario:` plus `Spec File:`.
 - Camp Server client-report flows sanitize descriptions the same way and additionally flatten the generic `Run converted flow` wrapper step from legacy result JSON before report generation.
+- Iteration Matrix module client-report flows (Criteria Settings, Customer Management Admin New, Card On File) require readable business steps at the helper export layer. The generic `Run converted flow` wrapper is only flattened if nested steps already exist. Do report-step shaping module-wise during conversion, not as a repo-wide sweep.
 
 ### Preferred client-share commands by track
 
 ```bash
 npm run report:iteration-matrix:client
 npm run report:iteration-matrix:last-failed:client
+npm run report:iteration-matrix:card-on-file:client
+npm run report:iteration-matrix:customer-management-admin-new:client
+npm run report:iteration-matrix:customer-management-admin-new:last-failed:client
 npm run legacy:report:camp-cluster:client
 npm run legacy:report:camp-server:client
 ```

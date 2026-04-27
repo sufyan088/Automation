@@ -105,7 +105,10 @@ Additional module folders already exist under `tests/Iteration_Matrix/`; treat t
 - Iteration Matrix is the only active top-level test track in this workspace.
 - Runtime data for this track is loaded from `data/iteration-matrix/IM_DPL1.csv` unless overridden by environment variables.
 - Criteria Settings is fully helper-backed and validated clean at 66 passing specs.
+- Customer Management Admin New is fully converted, validated clean at 17 passing specs, and has dedicated full and last-failed module report flows.
+- Card On File has client-readable report output restored through helper-layer readable steps and a validated dedicated module report flow.
 - Module-level client reporting now supports rerun-only-failed merge flows through shared runner logic in `scripts/module-client-report-runner.js`.
+- Report-step shaping is part of module conversion done-ness: keep specs thin, expose business-readable nested helper steps, and let report flattening remove only the generic wrapper when needed.
 - Durable project-specific continuation guidance lives in `docs/iteration-matrix-handoff.md`.
 
 ## Install
@@ -157,6 +160,8 @@ Use the packaged Iteration Matrix report flows whenever output is meant to be sh
 ### Module reports
 
 - `npm run report:iteration-matrix:card-on-file:client`
+- `npm run report:iteration-matrix:customer-management-admin-new:client`
+- `npm run report:iteration-matrix:customer-management-admin-new:last-failed:client`
 - `npm run report:iteration-matrix:criteria-settings:client`
 - `npm run report:iteration-matrix:criteria-settings:last-failed:client`
 
@@ -168,6 +173,7 @@ Use the packaged Iteration Matrix report flows whenever output is meant to be sh
 - module suites are preserved from their folder names
 - dedicated module last-failed flows rerun only failed specs, replace only those result entries, and keep unchanged baseline results intact
 - dedicated module report scripts should be thin wrappers over `scripts/module-client-report-runner.js`
+- readable module Execution steps should be created at the helper export layer; `scripts/flatten-generic-allure-steps.js` is only a wrapper-removal step, not a substitute for business-readable nested actions
 
 If you generate a report manually from existing `allure-results`, run the same result processing first:
 
