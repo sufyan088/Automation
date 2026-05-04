@@ -1,4 +1,10 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const {
+  test,
+  loadRuntimeData,
+  loginAsAdmin,
+  closeSession,
+  customerManagementAdminNmHelpers
+} = require('./_shared');
 
 test("TS_102_To_verify_Parent_Customer_is_shown_on_View_Customer_Details_page", async ({ page }) => {
   const data = loadRuntimeData();
@@ -12,6 +18,16 @@ test("TS_102_To_verify_Parent_Customer_is_shown_on_View_Customer_Details_page", 
   });
 
   await test.step('Run converted flow', async () => {
+    const { customerName } = await customerManagementAdminNmHelpers.createLiteCustomerWithAssociations(page, data, {
+      bankName: 'Union Trust Bank',
+      fallbackBanks: ['Unidentified'],
+      parentCustomerName: 'A New Mobile Co'
+    });
+
+    await customerManagementAdminNmHelpers.expectCustomerRowContains(page, customerName, 'Union Trust Bank');
+    await customerManagementAdminNmHelpers.viewCustomerProfile(page, customerName);
+    await customerManagementAdminNmHelpers.expectViewProfileBank(page, 'Union Trust Bank');
+    await customerManagementAdminNmHelpers.expectViewProfileParentCustomer(page, 'A New Mobile Co');
   });
 
   await test.step('Logout from the application', async () => {

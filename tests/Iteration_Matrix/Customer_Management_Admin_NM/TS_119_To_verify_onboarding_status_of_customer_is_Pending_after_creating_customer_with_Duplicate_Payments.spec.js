@@ -1,4 +1,11 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const {
+  test,
+  loadRuntimeData,
+  loginAsAdmin,
+  closeSession,
+  customerManagementAdminNmHelpers,
+  customerManagementAdminNmSelectors
+} = require('./_shared');
 
 test("TS_119_To_verify_onboarding_status_of_customer_is_Pending_after_creating_customer_with_Duplicate_Payments", async ({ page }) => {
   const data = loadRuntimeData();
@@ -12,8 +19,15 @@ test("TS_119_To_verify_onboarding_status_of_customer_is_Pending_after_creating_c
   });
 
   await test.step('Run converted flow', async () => {
+    await customerManagementAdminNmHelpers.openCreateCustomerForm(page, data);
+    await customerManagementAdminNmHelpers.selectModules(page, [
+      customerManagementAdminNmSelectors.modules.duplicatePayments
+    ]);
+    await customerManagementAdminNmHelpers.expectModuleSelected(
+      page,
+      customerManagementAdminNmSelectors.modules.duplicatePayments
+    );
   });
-
   await test.step('Logout from the application', async () => {
     await closeSession(page);
   });

@@ -5,10 +5,17 @@ const GENERIC_STEP_NAMES = new Set([
   'run converted flow',
 ]);
 
+const GENERIC_STEP_PATTERNS = [
+  /^run ts\b/i,
+];
+
 function isGenericWrapperStep(step) {
   return Boolean(step)
     && typeof step.name === 'string'
-    && GENERIC_STEP_NAMES.has(step.name.trim().toLowerCase())
+    && (
+      GENERIC_STEP_NAMES.has(step.name.trim().toLowerCase())
+      || GENERIC_STEP_PATTERNS.some((pattern) => pattern.test(step.name.trim()))
+    )
     && Array.isArray(step.steps)
     && step.steps.length > 0
     && (!Array.isArray(step.attachments) || step.attachments.length === 0)

@@ -9,7 +9,7 @@ function humanizeSuiteName(moduleFolderName) {
     .trim();
 }
 
-const containerFolderNames = new Set(['DigitEYESCamp_Cluster', 'DigitEYESCamp_Server', 'Iteration_Matrix']);
+const containerFolderNames = new Set(['Iteration_Matrix']);
 
 function isModuleFolderName(entry) {
   return Boolean(entry)
@@ -20,11 +20,6 @@ function isModuleFolderName(entry) {
 function resolveModuleFolderName(titlePath) {
   if (!Array.isArray(titlePath)) {
     return '';
-  }
-
-  const moduleEntry = titlePath.find((entry) => /^(DigitEYESCamps_|DigitEYESDataLoader_|DigitEYESReporting_|DigitEYESSettings_|Camp_Server_)/.test(entry));
-  if (moduleEntry) {
-    return moduleEntry;
   }
 
   const iterationMatrixEntry = titlePath.find((entry) => entry !== 'Iteration_Matrix' && titlePath.includes('Iteration_Matrix'));

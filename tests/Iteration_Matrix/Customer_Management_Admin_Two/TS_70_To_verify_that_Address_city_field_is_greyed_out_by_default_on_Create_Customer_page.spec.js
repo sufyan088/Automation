@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, customerManagementAdminTwoHelpers } = require('./_shared');
 
 test("TS_70_To_verify_that_Address_city_field_is_greyed_out_by_default_on_Create_Customer_page", async ({ page }) => {
   const data = loadRuntimeData();
@@ -12,6 +12,7 @@ test("TS_70_To_verify_that_Address_city_field_is_greyed_out_by_default_on_Create
   });
 
   await test.step('Run converted flow', async () => {
+    await customerManagementAdminTwoHelpers.runScenario(page, data, test.info().title);
   });
 
   await test.step('Logout from the application', async () => {

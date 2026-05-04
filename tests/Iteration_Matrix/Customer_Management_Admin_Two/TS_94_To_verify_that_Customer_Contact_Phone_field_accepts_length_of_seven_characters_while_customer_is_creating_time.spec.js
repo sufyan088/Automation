@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, customerManagementAdminTwoHelpers } = require('./_shared');
 
 test("TS_94_To_verify_that_Customer_Contact_Phone_field_accepts_length_of_seven_characters_while_customer_is_creating_time", async ({ page }) => {
   const data = loadRuntimeData();
@@ -12,6 +12,7 @@ test("TS_94_To_verify_that_Customer_Contact_Phone_field_accepts_length_of_seven_
   });
 
   await test.step('Run converted flow', async () => {
+    await customerManagementAdminTwoHelpers.runScenario(page, data, test.info().title);
   });
 
   await test.step('Logout from the application', async () => {

@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, customerManagementAdminTwoHelpers } = require('./_shared');
 
 test("TS_77_To_verify_that_Customer_Name_field_accepts_special_characters_and_create_customer", async ({ page }) => {
   const data = loadRuntimeData();
@@ -12,6 +12,7 @@ test("TS_77_To_verify_that_Customer_Name_field_accepts_special_characters_and_cr
   });
 
   await test.step('Run converted flow', async () => {
+    await customerManagementAdminTwoHelpers.runScenario(page, data, test.info().title);
   });
 
   await test.step('Logout from the application', async () => {

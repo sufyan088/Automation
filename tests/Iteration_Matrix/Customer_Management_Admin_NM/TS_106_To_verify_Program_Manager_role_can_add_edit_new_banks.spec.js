@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsRole, closeSession, customerManagementAdminNmHelpers } = require('./_shared');
 
 test("TS_106_To_verify_Program_Manager_role_can_add_edit_new_banks", async ({ page }) => {
   const data = loadRuntimeData();
@@ -8,10 +8,11 @@ test("TS_106_To_verify_Program_Manager_role_can_add_edit_new_banks", async ({ pa
   });
 
   await test.step('Login into Application', async () => {
-    await loginAsAdmin(page, data);
+    await loginAsRole(page, data, 'programManager');
   });
 
   await test.step('Run converted flow', async () => {
+    await customerManagementAdminNmHelpers.verifyRoleCanAddEditBanks(page, data);
   });
 
   await test.step('Logout from the application', async () => {

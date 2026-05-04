@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, customerManagementAdminTwoHelpers } = require('./_shared');
 
 test("TS_67_To_verify_Enable_Account_Number_Mapping_Checkbox_remains_checked_after_checking_and_saving", async ({ page }) => {
   const data = loadRuntimeData();
@@ -12,6 +12,7 @@ test("TS_67_To_verify_Enable_Account_Number_Mapping_Checkbox_remains_checked_aft
   });
 
   await test.step('Run converted flow', async () => {
+    await customerManagementAdminTwoHelpers.runScenario(page, data, test.info().title);
   });
 
   await test.step('Logout from the application', async () => {

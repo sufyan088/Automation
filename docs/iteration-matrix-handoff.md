@@ -52,13 +52,17 @@ Use it as the project-specific companion to [docs/conversion-framework.md](./con
   - `npm run report:iteration-matrix:card-on-file:client`
   - `npm run report:iteration-matrix:customer-management-admin-new:client`
   - `npm run report:iteration-matrix:customer-management-admin-new:last-failed:client`
+  - `npm run report:iteration-matrix:customer-management-admin-nm:client`
+  - `npm run report:iteration-matrix:customer-management-admin-nm:last-failed:client`
+  - `npm run report:iteration-matrix:customer-management-admin-two:client`
+  - `npm run report:iteration-matrix:customer-management-admin-two:last-failed:client`
   - `npm run report:iteration-matrix:criteria-settings:client`
   - `npm run report:iteration-matrix:criteria-settings:last-failed:client`
 - These flows follow the current Iteration Matrix reporting standard:
   - clean or merge `allure-results`
   - write `environment.properties`, `executor.json`, and `categories.json`
   - normalize suite labels with `scripts/normalize-allure-suites.js`
-  - flatten legacy generic `Run converted flow` wrapper steps when present
+  - flatten legacy generic wrapper steps such as `Run converted flow` and helper-level `Run TS ...` shells when present
   - strip `Source AIQ:` lines from descriptions
   - generate a single-file Allure report
   - apply Mammoth branding with `scripts/customize-allure-report.js`
@@ -68,7 +72,7 @@ Use it as the project-specific companion to [docs/conversion-framework.md](./con
 - Dedicated module last-failed report flows should reuse the previous module baseline in `allure-results`, rerun only the failed specs with `--last-failed`, replace those prior test entries by Allure test identity, and then regenerate the shareable report. Do not append duplicate result entries for unchanged tests.
 - Treat that last-failed merge flow as the default reporting rule for every future Iteration Matrix module-specific client report runner.
 - New Iteration Matrix module report scripts should be added as thin wrappers over `scripts/module-client-report-runner.js` so both full and last-failed flows inherit the same merge, metadata, normalization, branding, and packaging behavior.
-- `scripts/flatten-generic-allure-steps.js` only improves module readability when the generic wrapper already contains nested helper-created child steps. The durable fix is readable helper export steps, not report-time flattening alone.
+- `scripts/flatten-generic-allure-steps.js` only improves module readability when the wrapper already contains nested helper-created child steps. The durable fix is readable helper-layer `test.step()` actions, not report-time flattening alone.
 - Apply that readable-step shaping module-wise during conversion completion. Do not treat a repo-wide wrapper cleanup as a prerequisite unless a cross-module reporting deadline requires it.
 
 ## Criteria Settings Status
@@ -83,6 +87,23 @@ Use it as the project-specific companion to [docs/conversion-framework.md](./con
 - The shared helper/selectors were stabilized for USA -> Alaska onboarding, optional transmission controls, Duplicate Payments and Statement Recon behavior, and resilient submit success handling.
 - The module has dedicated client-report commands for both full reruns and last-failed merge reruns.
 - Its readable report structure is driven from helper-layer business steps in `helpers/iteration-matrix/customerManagementAdminNew.js`, with report flattening used only to remove the top-level generic wrapper.
+
+## Customer Management Admin NM Status
+
+- `tests/Iteration_Matrix/Customer_Management_Admin_NM/` is fully converted, live-aligned, and validated clean at 40 passing specs.
+- The module now has the same dedicated client-report wrapper pattern as the New module, including full-run and last-failed rerun scripts under `scripts/` with artifacts written to `Result/`.
+- The finalized module artifact paths are `Result/allure-report-iteration-matrix-customer-management-admin-nm-shareable/` and `Result/iteration-matrix-customer-management-admin-nm.zip`.
+- The shared helper/selectors were stabilized for imREmit Lite bank and parent associations, profile editing, bank-management modal add/edit flows, runner-configuration save flows, and resilient payment-method setup for customers that already carry a locked `J.P. Morgan` provider.
+- The durable runner-config lesson is to follow the live app path exactly: open `Open Recon Runner Config`, set the target checkbox, click `Add Recon Config Runner`, then click the final summary-step `Complete` button before treating the configuration as saved.
+- The validated fixed-customer path for the recon checkbox slice uses `Customertest0100`, and the module report now carries normalized suite labels plus client-facing descriptions limited to `Scenario:` and `Spec File:` with no `Source AIQ:` line.
+
+## Customer Management Admin Two Status
+
+- `tests/Iteration_Matrix/Customer_Management_Admin_Two/` is fully converted, live-aligned, and validated clean at 41 passing specs.
+- The module now has dedicated full-module and last-failed client-report wrappers at `npm run report:iteration-matrix:customer-management-admin-two:client` and `npm run report:iteration-matrix:customer-management-admin-two:last-failed:client`.
+- The finalized module artifact paths are `Result/allure-report-iteration-matrix-customer-management-admin-two-shareable/` and `Result/iteration-matrix-customer-management-admin-two.zip`.
+- The shared helper/selectors were stabilized for Participant Register save/search behavior, Payment Group reflection, Payment Runner navigation, disabled location-field visibility, and live-validator-aligned field-creation scenarios.
+- The finalized report format for this module keeps client-facing descriptions limited to `Scenario:` and `Spec File:`, while helper-layer business steps feed the Execution panel and report flattening removes only the leftover wrapper shells above them.
 
 ## Card On File Reporting Status
 
@@ -116,6 +137,7 @@ Use it as the project-specific companion to [docs/conversion-framework.md](./con
 
 - Current admin route coverage is aligned to the live app, not stale AIQ submenu names.
 - Pagination parsing must wait for a real `Page: <n> of <m>` summary instead of reading the intermediate `Page: loading..` state.
+- For Customer_Management_Admin_NM runner-configuration flows, treat the shared helper as the source of truth for payment-method recovery and post-save completion; do not patch TS_108/TS_109 directly when the live wizard path shifts.
 
 ## Recommended Continuation Workflow
 
