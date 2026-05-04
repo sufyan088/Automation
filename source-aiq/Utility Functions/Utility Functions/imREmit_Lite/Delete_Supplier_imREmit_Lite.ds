@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testcase   name= 'Delete_Supplier_imREmit_Lite.ds' description= '' author= 'null' version= ''>
+<dpl filename='' exectype='runstepbystep' errorhandling='' type='JsDPL' locale='null'/>
+<fallback useFallback='true'/>
+<shadowDOM useShadowDOM='true'/>
+<step action='wait' value='2000' type='web' desc='Add wait.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='setValue' value='$SupplierNameLite' type='web' desc='Enter value in search entries field.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='textbox(&quot;placeholder==Search all entries...&quot;)' fallback='true' selected='true'/>
+   <accessor type='Parent' value='textbox(0, _in(div({&apos;id&apos;:&apos;root&apos;})))' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='textbox(&quot;bg-root border border-input disabled:cursor-not-allowed disabled:placeholder:text-accent-foreground/50 disabled:text-accent-foreground/50 file:bg-transparent file:border-0 file:font-medium file:text-sm flex focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring h-10 lg:w-[256px] placeholder:text-accent-foreground px-3 py-2 ring-offset-background rounded-md text-sm w-[150px]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;root&apos;]/article/main/article/section[3]/div[2]/div[1]/input&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;flex rounded-md border border-input bg-root px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:text-accent-foreground/50 disabled:placeholder:text-accent-foreground/50 h-10 w-[150px] lg:w-[256px]&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/section[3]/div[2]/div/input&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;root&apos;)/article[@class=&apos;flex min-h-screen flex-col&apos;]/main[@class=&apos;break-word flex-1 overflow-auto bg-background px-6 py-4 md:ml-16&apos;]/article[@class=&apos;w-full flex-1 bg-background&apos;]/section[@class=&apos;space-y-2&apos;]/div[@class=&apos;flex items-center justify-between gap-2&apos;]/div[@class=&apos;flex flex-1 flex-wrap items-center gap-y-2 space-x-2&apos;]/input[@class=&apos;flex rounded-md border border-input bg-root px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:text-accent-foreground/50 disabled:placeholder:text-accent-foreground/50 h-10 w-[150px] lg:w-[256px]&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='textbox({&apos;placeholder&apos;:&apos;Search all entries...&apos;})' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;article[class=&quot;w-full flex-1 bg-background&quot;] &gt; section[class=&quot;space-y-2&quot;] &gt; div[class=&quot;flex items-center justify-between gap-2&quot;] &gt; div[class=&quot;flex flex-1 flex-wrap items-center gap-y-2 space-x-2&quot;] &gt; input[class=&quot;flex rounded-md border border-input bg-root px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:text-accent-foreground/50 disabled:placeholder:text-accent-foreground/50 h-10 w-[150px] lg:w-[256px]&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;input[value=&quot;&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='Parent' value='textbox(0, _in(div(&quot;root&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='wait' value='2000' type='web' desc='Add wait.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='focus' value='' type='web' desc='Click on action icon.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='svg(&quot;class==lucide lucide-grip-vertical size-6 bg-inherit&quot;,below(paragraph(&quot;Actions&quot;)))' fallback='true' selected='true'/>
+   <accessor type='Parent' value='div(28, _in(div(&quot;root&quot;)))' fallback='true' selected='false'/>
+   <accessor type='Parent' value='div(28, _in(div({&apos;id&apos;:&apos;root&apos;})))' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;w-full overflow-auto rounded-lg bg-root&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/section[3]/div[3]/div&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;root&apos;]/article/main/article/section[3]/div[3]/div&quot;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;root&apos;)/article[@class=&apos;flex min-h-screen flex-col&apos;]/main[@class=&apos;break-word flex-1 overflow-auto bg-background px-6 py-4 md:ml-16&apos;]/article[@class=&apos;w-full flex-1 bg-background&apos;]/section[@class=&apos;space-y-2&apos;]/div[@class=&apos;rounded-md border&apos;]/div[@class=&apos;w-full overflow-auto rounded-lg bg-root&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;main[class=&quot;break-word flex-1 overflow-auto bg-background px-6 py-4 md:ml-16&quot;] &gt; article[class=&quot;w-full flex-1 bg-background&quot;] &gt; section[class=&quot;space-y-2&quot;] &gt; div[class=&quot;rounded-md border&quot;] &gt; div[class=&quot;w-full overflow-auto rounded-lg bg-root&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='div(&quot;bg-root overflow-auto rounded-lg w-full&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='svg(&quot;class==lucide lucide-grip-vertical size-6 bg-inherit&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='svg(&quot;class==lucide lucide-grip-vertical size-6 bg-inherit&quot;,rightOf(div(&quot;KSBRANCH9202021&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='' type='web' desc='Click on action icon.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='svg(&quot;class==lucide lucide-grip-vertical size-6 bg-inherit&quot;,below(paragraph(&quot;Actions&quot;)))' fallback='true' selected='true'/>
+   <accessor type='Parent' value='div(28, _in(div(&quot;root&quot;)))' fallback='true' selected='false'/>
+   <accessor type='Parent' value='div(28, _in(div({&apos;id&apos;:&apos;root&apos;})))' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;w-full overflow-auto rounded-lg bg-root&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div/article/main/article/section[3]/div[3]/div&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;root&apos;]/article/main/article/section[3]/div[3]/div&quot;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;root&apos;)/article[@class=&apos;flex min-h-screen flex-col&apos;]/main[@class=&apos;break-word flex-1 overflow-auto bg-background px-6 py-4 md:ml-16&apos;]/article[@class=&apos;w-full flex-1 bg-background&apos;]/section[@class=&apos;space-y-2&apos;]/div[@class=&apos;rounded-md border&apos;]/div[@class=&apos;w-full overflow-auto rounded-lg bg-root&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;main[class=&quot;break-word flex-1 overflow-auto bg-background px-6 py-4 md:ml-16&quot;] &gt; article[class=&quot;w-full flex-1 bg-background&quot;] &gt; section[class=&quot;space-y-2&quot;] &gt; div[class=&quot;rounded-md border&quot;] &gt; div[class=&quot;w-full overflow-auto rounded-lg bg-root&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='div(&quot;bg-root overflow-auto rounded-lg w-full&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='svg(&quot;class==lucide lucide-grip-vertical size-6 bg-inherit&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='svg(&quot;class==lucide lucide-grip-vertical size-6 bg-inherit&quot;,rightOf(div(&quot;KSBRANCH9202021&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='focus' value='' type='web' desc='Click on delete button.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='button(&quot;Delete Supplier&quot;)' fallback='true' selected='true'/>
+   <accessor type='unknown' value='span(&quot;class==ml-auto text-xs tracking-widest opacity-60&quot;,below(span(&quot;View Supplier Details&quot;)))' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;class==ml-auto text-xs tracking-widest opacity-60&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span([&quot;ml-auto&quot;],below(svg(&quot;lucide lucide-file-text size-4&quot;)))' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span([&quot;ml-auto&quot;],below(svg(&quot;lucide lucide-file-text size-4&quot;)))' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;⌘⌫&quot;,below(svg(&quot;lucide lucide-file-text size-4&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='' type='web' desc='Click on delete button.' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='button(&quot;Delete Supplier&quot;)' fallback='true' selected='true'/>
+   <accessor type='unknown' value='span(&quot;class==ml-auto text-xs tracking-widest opacity-60&quot;,below(span(&quot;View Supplier Details&quot;)))' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;class==ml-auto text-xs tracking-widest opacity-60&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span([&quot;ml-auto&quot;],below(svg(&quot;lucide lucide-file-text size-4&quot;)))' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span([&quot;ml-auto&quot;],below(svg(&quot;lucide lucide-file-text size-4&quot;)))' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;⌘⌫&quot;,below(svg(&quot;lucide lucide-file-text size-4&quot;)))' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='span(&quot;Delete&quot;)' fallback='true' selected='true'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;radix-:rja:&apos;]/div[2]/button[2]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px bg-destructive-foreground text-foreground hover:bg-destructive-foreground/80 hover:text-foreground/80 active:bg-destructive/90 active:text-foreground/90 h-10 py-2 px-4 flex items-center gap-2&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Delete&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div[5]/div[2]/button[2]&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;radix-:rja:&apos;)/div[@class=&apos;flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2&apos;]/button[@class=&apos;justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px bg-destructive-foreground text-foreground hover:bg-destructive-foreground/80 hover:text-foreground/80 active:bg-destructive/90 active:text-foreground/90 h-10 py-2 px-4 flex items-center gap-2&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='Attribute' value='submit({&apos;aria-disabled&apos;:&apos;false&apos;})' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:rounded-lg&quot;] &gt; div[class=&quot;flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2&quot;] &gt; button[class=&quot;justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px bg-destructive-foreground text-foreground hover:bg-destructive-foreground/80 hover:text-foreground/80 active:bg-destructive/90 active:text-foreground/90 h-10 py-2 px-4 flex items-center gap-2&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='submit(&quot;active:bg-destructive/90 active:text-foreground/90 active:translate-y-px bg-destructive-foreground disabled:cursor-not-allowed disabled:opacity-50 flex focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring font-medium gap-2 h-10 hover:bg-destructive-foreground/80 hover:text-foreground/80 items-center justify-center px-4 py-2 ring-offset-background rounded-md text-foreground text-sm transition-colors&quot;)' fallback='true' selected='false'/>
+   <accessor type='Text' value='submit(&quot;Delete&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+</testcase>

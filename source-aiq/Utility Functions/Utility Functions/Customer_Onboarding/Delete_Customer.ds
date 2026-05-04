@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testcase   name= 'Delete_Customer.ds' description= '' author= 'null' version= ''>
+<dpl filename='REPOSITORY/IM/Resources/IM_DPL1.csv' exectype='runstepbystep' errorhandling='' type='HashDPL' locale='null'/>
+<fallback useFallback='true'/>
+<shadowDOM useShadowDOM='true'/>
+<step action='store' value='$CustomerName' type='web' desc='Store customer name' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='Customer_Name' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='log' value='Customer_Name' type='web' desc='Log customer name' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='setValue' value='$CustomerName' type='web' desc='Enter value in &quot;Search all entries&quot; field' isThinkTime='false' isCommented='false' isMasked='true' isHidden='true' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='textbox(&quot;placeholder==Search all customers...&quot;)' fallback='true' selected='true'/>
+   <accessor type='unknown' value='textbox(&quot;placeholder==Search all entries...&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='wait' value='2000' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='' fallback='false' selected='true'/>
+</dialect>
+</step>
+<step action='assertExists' value='' type='web' desc='Verify &quot;Customer name&quot; is visible ' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='div($CustomerName)' fallback='true' selected='true'/>
+   <accessor type='unknown' value='$CustomerName' fallback='true' selected='false'/>
+   <accessor type='unknown' value='div(&quot;&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='' type='web' desc='Click on &quot;Actions&quot; icon button' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='span(&quot;Open actions menu&quot;)' fallback='true' selected='true'/>
+   <accessor type='unknown' value='span(&quot;Open menu&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='assertExists' value='' type='web' desc='Validate &quot;Delete Customer&quot; button is visible' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='span(&quot;Delete Customer&quot;)' fallback='true' selected='true'/>
+</dialect>
+</step>
+<step action='click' value='' type='web' desc='Click on &quot;Delete Customer&quot; button ' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='svg(&quot;class==lucide lucide-trash size-4&quot;)' fallback='true' selected='true'/>
+   <accessor type='unknown' value='span(&quot;Delete Customer&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='assertExists' value='""' type='web' desc='Validate &quot;Cancel&quot; button is visible ' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='Text' value='button(&quot;Cancel&quot;)' fallback='true' selected='true'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;radix-:rc4:&apos;]/div[2]/button[1]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px border border-input bg-root hover:bg-accent/70 hover:text-accent-foreground hover:border-muted-foreground h-10 py-2 px-4 mt-2 sm:mt-0&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Cancel&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div[5]/div[2]/button&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;radix-:rc4:&apos;)/div[@class=&apos;flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2&apos;]/button[@class=&apos;inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px border border-input bg-root hover:bg-accent/70 hover:text-accent-foreground hover:border-muted-foreground h-10 py-2 px-4 mt-2 sm:mt-0&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:rounded-lg&quot;] &gt; div[class=&quot;flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2&quot;] &gt; button[class=&quot;inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px border border-input bg-root hover:bg-accent/70 hover:text-accent-foreground hover:border-muted-foreground h-10 py-2 px-4 mt-2 sm:mt-0&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='button(&quot;active:translate-y-px bg-root border border-input disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring font-medium h-10 hover:bg-accent/70 hover:border-muted-foreground hover:text-accent-foreground inline-flex items-center justify-center mt-2 px-4 py-2 ring-offset-background rounded-md sm:mt-0 text-sm transition-colors&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='focus' value='""' type='web' desc='Click on &quot;Delete Customer&quot; button' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='svg(&quot;class==lucide lucide-trash size-4&quot;,rightOf(button(&quot;Cancel&quot;)))' fallback='true' selected='true'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;radix-:rc4:&apos;]/div[2]/button[2]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px bg-destructive-foreground text-foreground hover:bg-destructive-foreground/80 hover:text-foreground/80 active:bg-destructive/90 active:text-foreground/90 h-10 py-2 px-4&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div[5]/div[2]/button[2]&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;radix-:rc4:&apos;)/div[@class=&apos;flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2&apos;]/button[@class=&apos;inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px bg-destructive-foreground text-foreground hover:bg-destructive-foreground/80 hover:text-foreground/80 active:bg-destructive/90 active:text-foreground/90 h-10 py-2 px-4&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:rounded-lg&quot;] &gt; div[class=&quot;flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2&quot;] &gt; button[class=&quot;inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px bg-destructive-foreground text-foreground hover:bg-destructive-foreground/80 hover:text-foreground/80 active:bg-destructive/90 active:text-foreground/90 h-10 py-2 px-4&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='button(&quot;active:bg-destructive/90 active:text-foreground/90 active:translate-y-px bg-destructive-foreground disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring font-medium h-10 hover:bg-destructive-foreground/80 hover:text-foreground/80 inline-flex items-center justify-center px-4 py-2 ring-offset-background rounded-md text-foreground text-sm transition-colors&quot;)' fallback='true' selected='false'/>
+   <accessor type='Text' value='button(&quot;Delete QA Test 6941&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button($CustomerName)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='svg(&quot;class==lucide lucide-trash size-4&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='""' type='web' desc='Click on &quot;Delete Customer&quot; button' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='svg(&quot;class==lucide lucide-trash size-4&quot;,rightOf(button(&quot;Cancel&quot;)))' fallback='true' selected='true'/>
+   <accessor type='XPath' value='byXPath(&quot;//div[@id=&apos;radix-:rc4:&apos;]/div[2]/button[2]&quot;)' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px bg-destructive-foreground text-foreground hover:bg-destructive-foreground/80 hover:text-foreground/80 active:bg-destructive/90 active:text-foreground/90 h-10 py-2 px-4&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/div[5]/div[2]/button[2]&apos;)' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;radix-:rc4:&apos;)/div[@class=&apos;flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2&apos;]/button[@class=&apos;inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px bg-destructive-foreground text-foreground hover:bg-destructive-foreground/80 hover:text-foreground/80 active:bg-destructive/90 active:text-foreground/90 h-10 py-2 px-4&apos;]&quot;)' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;div[class=&quot;fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:rounded-lg&quot;] &gt; div[class=&quot;flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2&quot;] &gt; button[class=&quot;inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ring-offset-background active:translate-y-px bg-destructive-foreground text-foreground hover:bg-destructive-foreground/80 hover:text-foreground/80 active:bg-destructive/90 active:text-foreground/90 h-10 py-2 px-4&quot;]&apos;)' fallback='true' selected='false'/>
+   <accessor type='AttrClass' value='button(&quot;active:bg-destructive/90 active:text-foreground/90 active:translate-y-px bg-destructive-foreground disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring font-medium h-10 hover:bg-destructive-foreground/80 hover:text-foreground/80 inline-flex items-center justify-center px-4 py-2 ring-offset-background rounded-md text-foreground text-sm transition-colors&quot;)' fallback='true' selected='false'/>
+   <accessor type='Text' value='button(&quot;Delete QA Test 6941&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='button($CustomerName)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='svg(&quot;class==lucide lucide-trash size-4&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='assertExists' value='' type='web' desc='' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='div(&quot;Customer deleted successfully&quot;)' fallback='true' selected='true'/>
+   <accessor type='AttrClass' value='div(&quot;font-semibold text-base&quot;).xy(0.16, 0.46 )' fallback='true' selected='false'/>
+   <accessor type='XPath' value='byXPath(&quot;//main[@id=&apos;root&apos;]/article/div/ol/li/div/div[2]&quot;).xy(0.16, 0.46 )' fallback='true' selected='false'/>
+   <accessor type='XPathClass' value='byXPath(&apos;//*[@class=&quot;text-base font-semibold&quot;]&apos;).xy(0.16, 0.46 )' fallback='true' selected='false'/>
+   <accessor type='XPathText' value='byXPath(&apos;//*[text()=&quot;Customer deleted successfully&quot;]&apos;).xy(0.16, 0.46 )' fallback='true' selected='false'/>
+   <accessor type='AbsoluteXPath' value='byXPath(&apos;/html/body/main/article/div/ol/li/div/div[2]&apos;).xy(0.16, 0.46 )' fallback='true' selected='false'/>
+   <accessor type='RelativeXPath' value='byXPath(&quot;id(&apos;root&apos;)/article[@class=&apos;flex min-h-screen flex-col&apos;]/div[1]/ol[@class=&apos;fixed top-0 z-[100] flex max-h-screen min-w-[420px] max-w-screen-lg flex-col-reverse p-4 sm:bottom-0 sm:right-0 sm:top-auto sm:flex-col&apos;]/li[@class=&apos;data-[swipe=move]:transition-none group relative pointer-events-auto flex w-full items-center justify-between space-x-4 overflow-hidden rounded-md border p-6 pr-8 shadow-lg transition-all data-[swipe=move]:translate-x-[var(--radix-toast-swipe-move-x)] data-[swipe=cancel]:translate-x-0 data-[swipe=end]:translate-x-[var(--radix-toast-swipe-end-x)] data-[state=open]:animate-in data-[state=closed]:animate-out data-[swipe=end]:animate-out data-[state=closed]:fade-out-80 data-[state=open]:slide-in-from-top-full data-[state=open]:sm:slide-in-from-bottom-full data-[state=closed]:slide-out-to-right-full cursor-pointer active:cursor-grabbing active:outline-none active:ring-2 active:ring-ring active:ring-offset-2 active:ring-offset-background group success border-foreground bg-neutral-foreground text-foreground&apos;]/div[@class=&apos;grid gap-1&apos;]/div[@class=&apos;text-base font-semibold&apos;]&quot;).xy(0.16, 0.46 )' fallback='true' selected='false'/>
+   <accessor type='JQuery' value='byJQuery(&apos;ol[class=&quot;fixed top-0 z-[100] flex max-h-screen min-w-[420px] max-w-screen-lg flex-col-reverse p-4 sm:bottom-0 sm:right-0 sm:top-auto sm:flex-col&quot;] &gt; li[class=&quot;data-[swipe=move]:transition-none group relative pointer-events-auto flex w-full items-center justify-between space-x-4 overflow-hidden rounded-md border p-6 pr-8 shadow-lg transition-all data-[swipe=move]:translate-x-[var(--radix-toast-swipe-move-x)] data-[swipe=cancel]:translate-x-0 data-[swipe=end]:translate-x-[var(--radix-toast-swipe-end-x)] data-[state=open]:animate-in data-[state=closed]:animate-out data-[swipe=end]:animate-out data-[state=closed]:fade-out-80 data-[state=open]:slide-in-from-top-full data-[state=open]:sm:slide-in-from-bottom-full data-[state=closed]:slide-out-to-right-full cursor-pointer active:cursor-grabbing active:outline-none active:ring-2 active:ring-ring active:ring-offset-2 active:ring-offset-background group success border-foreground bg-neutral-foreground text-foreground&quot;] &gt; div[class=&quot;grid gap-1&quot;] &gt; div[class=&quot;text-base font-semibold&quot;]&apos;).xy(0.16, 0.46 )' fallback='true' selected='false'/>
+   <accessor type='Parent' value='div(2, _in(div({&apos;aria-label&apos;:&apos;Notifications (F8)&apos;}))).xy(0.16, 0.46 )' fallback='true' selected='false'/>
+   <accessor type='Text' value='div(&quot;Customer deleted successfully&quot;).xy(0.16, 0.46 )' fallback='true' selected='false'/>
+</dialect>
+</step>
+</testcase>
