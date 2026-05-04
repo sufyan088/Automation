@@ -23,11 +23,11 @@ function writeIfMissing(filePath, content) {
 }
 
 function buildSharedTemplate() {
-  return `const { loadRuntimeData } = require('../../helpers/dataLoader');
-const { loginAsAdmin, logout } = require('../../helpers/auth');
+  return `const { loadRuntimeData } = require('../../../helpers/iteration-matrix/dataLoader');
+const { loginAsAdmin } = require('../../../helpers/iteration-matrix/auth');
 
 async function closeSession(page) {
-  await logout(page);
+  return page;
 }
 
 module.exports = {
@@ -72,7 +72,7 @@ function main() {
     process.exit(1);
   }
 
-  const testsDir = path.resolve(__dirname, '..', 'tests', moduleName);
+  const testsDir = path.resolve(__dirname, '..', 'tests', 'Iteration_Matrix', moduleName);
   ensureDir(testsDir);
 
   writeIfMissing(path.join(testsDir, '_shared.js'), buildSharedTemplate());

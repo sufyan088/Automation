@@ -1,0 +1,46 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Debug TS_56 Admin_Two",
+			"type": "shell",
+			"command": "npx",
+			"args": [
+				"playwright",
+				"test",
+				"tests/Iteration_Matrix/Customer_Management_Admin_Two/TS_56_verify_Single_SignOn_SSO_checkbox_on_Add_Customer_page_remains_checked_after_checking_and_saving.spec.js",
+				"--project=chromium",
+				"--debug"
+			],
+			"isBackground": true
+		},
+		{
+			"label": "Debug TS_60 Admin_Two",
+			"type": "shell",
+			"command": "npx",
+			"args": [
+				"playwright",
+				"test",
+				"tests/Iteration_Matrix/Customer_Management_Admin_Two/TS_60_To_verify_that_Payment_Groups_field_shows_all_Facility_Name_for_relevant_customer.spec.js",
+				"--project=chromium",
+				"--debug",
+				"--headed"
+			],
+			"isBackground": true
+		},
+		{
+			"label": "Debug TS_60 Admin_Two Guided",
+			"type": "shell",
+			"command": "npx",
+			"args": [
+				"playwright",
+				"test",
+				"tests/Iteration_Matrix/Customer_Management_Admin_Two/TS_60_To_verify_that_Payment_Groups_field_shows_all_Facility_Name_for_relevant_customer.spec.js",
+				"--project=chromium",
+				"--debug",
+				"--headed"
+			],
+			"isBackground": true
+		}
+	]
+}

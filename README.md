@@ -2,9 +2,9 @@
 
 This repository is the current Iteration Matrix AIQ-to-Playwright conversion project.
 
-The active executable automation in this workspace lives under `tests/Iteration_Matrix/`. Some older helpers, selectors, scripts, and documents from earlier Mammoth automation work are still present in the repo as reference material, but they do not define the identity or active scope of this project.
+The active executable automation in this workspace lives under `tests/Iteration_Matrix/`.
 
-What this project reuses from that earlier work is strategy, not project ownership:
+What this project reuses from earlier Mammoth automation work is strategy, not project ownership:
 
 - helper-backed module architecture
 - centralized selectors
@@ -49,7 +49,6 @@ helpers/
   iteration-matrix/
 
 selectors/
-  common.selectors.js
   iteration-matrix/
 
 scripts/
@@ -106,6 +105,7 @@ Additional module folders already exist under `tests/Iteration_Matrix/`; treat t
 - Runtime data for this track is loaded from `data/iteration-matrix/IM_DPL1.csv` unless overridden by environment variables.
 - Criteria Settings is fully helper-backed and validated clean at 66 passing specs.
 - Customer Management Admin New is fully converted, validated clean at 17 passing specs, and has dedicated full and last-failed module report flows.
+- Customer Management Admin NM is fully converted, validated clean at 40 passing specs, and has dedicated full and last-failed module report flows with shareable artifacts under `Result/`.
 - Card On File has client-readable report output restored through helper-layer readable steps and a validated dedicated module report flow.
 - Module-level client reporting now supports rerun-only-failed merge flows through shared runner logic in `scripts/module-client-report-runner.js`.
 - Report-step shaping is part of module conversion done-ness: keep specs thin, expose business-readable nested helper steps, and let report flattening remove only the generic wrapper when needed.
@@ -162,6 +162,10 @@ Use the packaged Iteration Matrix report flows whenever output is meant to be sh
 - `npm run report:iteration-matrix:card-on-file:client`
 - `npm run report:iteration-matrix:customer-management-admin-new:client`
 - `npm run report:iteration-matrix:customer-management-admin-new:last-failed:client`
+- `npm run report:iteration-matrix:customer-management-admin-nm:client`
+- `npm run report:iteration-matrix:customer-management-admin-nm:last-failed:client`
+- `npm run report:iteration-matrix:customer-management-admin-two:client`
+- `npm run report:iteration-matrix:customer-management-admin-two:last-failed:client`
 - `npm run report:iteration-matrix:criteria-settings:client`
 - `npm run report:iteration-matrix:criteria-settings:last-failed:client`
 
@@ -170,10 +174,13 @@ Use the packaged Iteration Matrix report flows whenever output is meant to be sh
 - shareable artifacts are written under `Result/`
 - suite labels are normalized before report generation
 - `Source AIQ:` lines are stripped from client-facing descriptions
+- client-facing descriptions should stay limited to `Scenario:` and `Spec File:`
 - module suites are preserved from their folder names
 - dedicated module last-failed flows rerun only failed specs, replace only those result entries, and keep unchanged baseline results intact
 - dedicated module report scripts should be thin wrappers over `scripts/module-client-report-runner.js`
-- readable module Execution steps should be created at the helper export layer; `scripts/flatten-generic-allure-steps.js` is only a wrapper-removal step, not a substitute for business-readable nested actions
+- readable module Execution steps should be created at the helper layer with business-named `test.step()` actions
+- `scripts/flatten-generic-allure-steps.js` removes generic wrapper layers such as `Run converted flow` and helper-level `Run TS ...` wrappers only when those wrappers already contain nested business-readable child steps
+- do not rely on report-time flattening as a substitute for helper-layer business steps; flattening only exposes the steps you already created
 
 If you generate a report manually from existing `allure-results`, run the same result processing first:
 
@@ -244,8 +251,6 @@ npm run scaffold:module -- <ModuleName>
   Reusable conversion strategy and framework rules that still apply here.
 - [docs/team-project-setup-guide.md](docs/team-project-setup-guide.md)
   Framework reuse guidance when setting up another project.
-
-Older Vision Spring documents remain in `docs/archive/` only as archival examples of patterns that were later reused here. They are not the project handoff for Iteration Matrix.
 
 ## Notes For Future Work
 

@@ -86,11 +86,6 @@ Current Iteration Matrix examples:
 - `tests/Iteration_Matrix/Card_On_File`
 - `tests/Iteration_Matrix/Criteria_Settings`
 
-Historical examples retained in this repo as framework references:
-
-- `tests/DigitEYESCamps_ManageCampsCluster`
-- `tests/DigitEYESDataLoader_SFDataLoaderQueue`
-
 ### 2. Add one `_shared.js` per module
 
 Use `_shared.js` to expose:
@@ -147,7 +142,7 @@ When runtime failures appear:
 
 ### 8. Use runtime data and unique entities
 
-Keep environment data in `helpers/dataLoader.js`.
+Keep environment data in a track-specific runtime loader such as `helpers/iteration-matrix/dataLoader.js`.
 
 For tests that create data, generate unique entity names to reduce collisions across reruns and future parallel execution.
 
@@ -157,13 +152,12 @@ When multiple workers share a single application account:
 
 - `closeSession(page)` must be a no-op in every `_shared.js`.
 - Real UI logout during teardown invalidates sibling workers' active sessions.
-- Fix auth-state issues in `helpers/auth.js`; do not compensate by reducing workers.
+- Fix auth-state issues in the active track auth helper; do not compensate by reducing workers.
 
 ### 10. Use AIQ-semantic assertions
 
 When an AIQ script verifies that a column *contains* a matching value (not that every row equals it), use a minimum-occurrence assertion instead of a full-column equality check.
 
-- `expectColumnValueOccurrenceAtLeast` is preserved as a historical reference implementation in `helpers/digiteyesdataloaderCommon.js`.
 - Over-constraining with equality on filtered columns causes false failures when live data contains mixed rows.
 
 ### 11. Register allureHierarchy in every _shared.js

@@ -26,6 +26,33 @@ async function waitForVisible(page, selectors, timeout = 15000) {
   throw new Error(`None of the selectors became visible within ${timeout}ms: ${selectors.join(', ')}`);
 }
 
+async function waitForLoginSurface(page, timeout = 30000) {
+  const startedAt = Date.now();
+  let reloadedStalledShell = false;
+
+  while ((Date.now() - startedAt) < timeout) {
+    if (await isVisible(page, iterationMatrixCommonSelectors.login.username)) {
+      return;
+    }
+
+    const authShellVisible = await isVisible(page, iterationMatrixCommonSelectors.login.pageShell);
+    if (authShellVisible && !reloadedStalledShell && (Date.now() - startedAt) > 8000) {
+      reloadedStalledShell = true;
+      await page.reload({ waitUntil: 'domcontentloaded' }).catch(() => null);
+      continue;
+    }
+
+    if (await isVisible(page, iterationMatrixCommonSelectors.app.errorPage)) {
+      await clickIfVisible(page, iterationMatrixCommonSelectors.app.errorPageRecovery);
+      await page.waitForLoadState('domcontentloaded').catch(() => null);
+    }
+
+    await page.waitForTimeout(250);
+  }
+
+  throw new Error('Iteration Matrix login form did not render from the authentication shell.');
+}
+
 async function clickIfVisible(page, selectors) {
   for (const selector of selectors) {
     const locator = page.locator(selector).first();
@@ -121,11 +148,13 @@ async function loginAsRole(page, data, roleKey = 'admin') {
 
   await page.goto(baseUrl, { waitUntil: 'domcontentloaded' });
 
-  const usernameField = await waitForVisible(page, iterationMatrixCommonSelectors.login.username);
+  await waitForLoginSurface(page, 30000);
+
+  const usernameField = await waitForVisible(page, iterationMatrixCommonSelectors.login.username, 10000);
   await usernameField.fill('');
   await usernameField.fill(credentials.username);
 
-  const passwordField = await waitForVisible(page, iterationMatrixCommonSelectors.login.password);
+  const passwordField = await waitForVisible(page, iterationMatrixCommonSelectors.login.password, 10000);
   await passwordField.fill('');
   await passwordField.fill(credentials.password);
 

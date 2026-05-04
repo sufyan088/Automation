@@ -1,19 +1,30 @@
 const iterationMatrixCommonSelectors = {
   login: {
+    pageShell: [
+      'main[aria-label="Iteration Matrix Authentication"]',
+      'text=Skip to sign-in',
+      'img[alt="Iteration Matrix Banner"]'
+    ],
     username: [
       '#username',
+      '#username',
       'input[name="username"]',
+      'input[placeholder*="username or email" i]',
       'input[type="text"]'
     ],
     password: [
+      '#password',
       'input[name="password"]',
+      'input[placeholder*="password" i]',
       'input[type="password"]'
     ],
     rememberMe: [
       '#rememberMe',
+      'input[name="rememberMe"]',
       'button#rememberMe'
     ],
     signIn: [
+      'button[type="submit"]',
       'button[name="login"]',
       'button[value="Sign In"]',
       'button:has-text("Sign In")'
