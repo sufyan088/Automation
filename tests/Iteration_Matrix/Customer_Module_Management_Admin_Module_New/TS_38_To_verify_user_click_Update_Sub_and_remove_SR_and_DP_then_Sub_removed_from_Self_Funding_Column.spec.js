@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, customerModuleManagementAdminModuleNewHelpers } = require('./_shared');
 
 test("TS_38_To_verify_user_click_Update_Sub_and_remove_SR_and_DP_then_Sub_removed_from_Self_Funding_Column", async ({ page }) => {
   const data = loadRuntimeData();
@@ -12,6 +12,7 @@ test("TS_38_To_verify_user_click_Update_Sub_and_remove_SR_and_DP_then_Sub_remove
   });
 
   await test.step('Run converted flow', async () => {
+    await customerModuleManagementAdminModuleNewHelpers.runScenario(page, data, 'TS_38_To_verify_user_click_Update_Sub_and_remove_SR_and_DP_then_Sub_removed_from_Self_Funding_Column');
   });
 
   await test.step('Logout from the application', async () => {

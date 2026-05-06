@@ -8,7 +8,7 @@ const { customerModuleManagementAdminModuleSelectors } = require('../../../selec
 registerModuleSuite(test, __dirname);
 
 async function closeSession(page) {
-  await logout(page);
+  return;
 }
 
 module.exports = {

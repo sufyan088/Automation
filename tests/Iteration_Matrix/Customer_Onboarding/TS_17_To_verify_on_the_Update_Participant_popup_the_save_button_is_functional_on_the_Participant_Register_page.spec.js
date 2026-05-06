@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, customerOnboardingHelpers } = require('./_shared');
 
 test("TS_17_To_verify_on_the_Update_Participant_popup_the_save_button_is_functional_on_the_Participant_Register_page", async ({ page }) => {
   const data = loadRuntimeData();
@@ -12,6 +12,7 @@ test("TS_17_To_verify_on_the_Update_Participant_popup_the_save_button_is_functio
   });
 
   await test.step('Run converted flow', async () => {
+    await customerOnboardingHelpers.runScenario(page, data, test.info().title);
   });
 
   await test.step('Logout from the application', async () => {

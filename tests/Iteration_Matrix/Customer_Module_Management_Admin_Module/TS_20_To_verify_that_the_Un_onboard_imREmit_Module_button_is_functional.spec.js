@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, customerModuleManagementAdminModuleHelpers } = require('./_shared');
 
 test("TS_20_To_verify_that_the_Un_onboard_imREmit_Module_button_is_functional", async ({ page }) => {
   const data = loadRuntimeData();
@@ -12,6 +12,7 @@ test("TS_20_To_verify_that_the_Un_onboard_imREmit_Module_button_is_functional", 
   });
 
   await test.step('Run converted flow', async () => {
+    await customerModuleManagementAdminModuleHelpers.runScenario(page, data, 'TS_20_To_verify_that_the_Un_onboard_imREmit_Module_button_is_functional');
   });
 
   await test.step('Logout from the application', async () => {

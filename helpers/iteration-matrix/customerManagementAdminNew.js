@@ -123,6 +123,70 @@ async function selectDropdownValue(page, dropdownCandidates, preferredOption, fa
 async function clickDropdown(page, candidates) {
   const result = await resolveFirst(page, candidates, { mustBeVisible: true, timeoutPerCandidate: 2500 });
   await result.locator.click();
+  return result.locator;
+}
+
+async function waitForStateControlReady(page) {
+  await expect(async () => {
+    const stateControl = await resolveFirst(page, customerManagementAdminNewSelectors.dropdowns.state, {
+      mustBeVisible: true,
+      timeoutPerCandidate: 1500
+    });
+    const disabled = await stateControl.locator.isDisabled().catch(() => false);
+    const text = ((await stateControl.locator.textContent().catch(() => '')) || '').trim();
+
+    expect(disabled).toBe(false);
+    expect(text).not.toMatch(/please select country first/i);
+  }).toPass({ timeout: 10000 });
+}
+
+async function ensureDropdownValueSelected(page, dropdownCandidates, expectedValue, fallbackOptions = []) {
+  await waitForAppToSettle(page, 500);
+
+  for (let attempt = 0; attempt < 2; attempt += 1) {
+    const control = await clickDropdown(page, dropdownCandidates);
+    await clickOptionWithFallback(page, [expectedValue, ...fallbackOptions]);
+    await waitForAppToSettle(page, 500);
+
+    const text = ((await control.textContent().catch(() => '')) || '').trim();
+    if (new RegExp(escapeRegExp(expectedValue), 'i').test(text)) {
+      return;
+    }
+  }
+
+  const control = await resolveFirst(page, dropdownCandidates, { mustBeVisible: true, timeoutPerCandidate: 1500 });
+  const text = ((await control.locator.textContent().catch(() => '')) || '').trim();
+  throw new Error(`Expected dropdown to select ${expectedValue}, but current text is: ${text || '[empty]'}`);
+}
+
+async function moduleDropdownIsReady(page) {
+  const matched = await resolveFirst(page, customerManagementAdminNewSelectors.dropdowns.moduleSubscription, {
+    mustBeVisible: true,
+    timeoutPerCandidate: 1500
+  }).catch(() => null);
+
+  return Boolean(matched);
+}
+
+async function ensureModulesLoaded(page) {
+  for (let attempt = 0; attempt < 8; attempt += 1) {
+    if (await moduleDropdownIsReady(page)) {
+      return;
+    }
+
+    const loadErrorVisible = await page.getByText(/Error loading modules/i).first().isVisible().catch(() => false);
+    if (loadErrorVisible) {
+      throw new Error('Create Customer page showed Error loading modules.');
+    }
+
+    await waitForAppToSettle(page, 750);
+  }
+
+  const headingVisible = await page.getByRole('heading', { name: 'Create Customer', exact: true }).first().isVisible().catch(() => false);
+  const statePrompt = await page.getByRole('button', { name: /please select country first|select address state/i }).first().textContent().catch(() => '');
+  throw new Error(
+    `Create Customer page never exposed the module selector on the filled form. Create heading visible: ${headingVisible}. State control: ${String(statePrompt || '').trim() || 'n/a'}. URL: ${page.url()}`
+  );
 }
 
 async function ensureCreateCustomerPage(page) {
@@ -171,7 +235,9 @@ async function fillBaseCustomerDetails(page, data, options = {}) {
     [data.Country, data.CustomerCountry, 'USA']
   );
 
-  await selectDropdownValue(
+  await waitForStateControlReady(page);
+
+  await ensureDropdownValueSelected(
     page,
     customerManagementAdminNewSelectors.dropdowns.state,
     customerManagementAdminNewSelectors.stateOption,
@@ -204,6 +270,7 @@ async function fillBaseCustomerDetails(page, data, options = {}) {
 }
 
 async function openModuleDropdown(page) {
+  await ensureModulesLoaded(page);
   await clickDropdown(page, customerManagementAdminNewSelectors.dropdowns.moduleSubscription);
 
   await expect(async () => {
