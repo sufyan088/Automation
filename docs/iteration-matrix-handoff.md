@@ -54,6 +54,8 @@ Use it as the project-specific companion to [docs/conversion-framework.md](./con
   - `npm run report:iteration-matrix:customer-management-admin-new:last-failed:client`
   - `npm run report:iteration-matrix:customer-management-admin-nm:client`
   - `npm run report:iteration-matrix:customer-management-admin-nm:last-failed:client`
+  - `npm run report:iteration-matrix:customer-management-payment-method:client`
+  - `npm run report:iteration-matrix:customer-management-payment-method:last-failed:client`
   - `npm run report:iteration-matrix:customer-management-admin-two:client`
   - `npm run report:iteration-matrix:customer-management-admin-two:last-failed:client`
   - `npm run report:iteration-matrix:criteria-settings:client`
@@ -104,6 +106,32 @@ Use it as the project-specific companion to [docs/conversion-framework.md](./con
 - The finalized module artifact paths are `Result/allure-report-iteration-matrix-customer-management-admin-two-shareable/` and `Result/iteration-matrix-customer-management-admin-two.zip`.
 - The shared helper/selectors were stabilized for Participant Register save/search behavior, Payment Group reflection, Payment Runner navigation, disabled location-field visibility, and live-validator-aligned field-creation scenarios.
 - The finalized report format for this module keeps client-facing descriptions limited to `Scenario:` and `Spec File:`, while helper-layer business steps feed the Execution panel and report flattening removes only the leftover wrapper shells above them.
+
+## Customer Management Payment Method Status
+
+- `tests/Iteration_Matrix/Customer_Management_Payment_Method/` is helper-backed and validated for its current single AIQ case.
+- The module has dedicated full-module and last-failed client-report wrappers at `npm run report:iteration-matrix:customer-management-payment-method:client` and `npm run report:iteration-matrix:customer-management-payment-method:last-failed:client`.
+- The shared helper/selectors cover create-customer onboarding, imREmit action-menu drift, payment-provider/payment-method save flow, and created-customer cleanup.
+
+## Customer Module Management Admin Module Status
+
+- `tests/Iteration_Matrix/Customer_Module_Management_Admin_Module/` is helper-backed through `helpers/iteration-matrix/customerModuleManagementAdminModule.js`.
+- The current implemented scenario slice spans TS_01 through TS_28, covering the table/navigation/search slice plus modal update-subscription actions currently wired in that helper.
+- The module follows the standard `_shared.js` pattern with direct login, shared helper-backed scenario execution, and no-op close session.
+- No dedicated client-report wrapper is registered for this module yet; add one only after the module reaches a reusable validation/reporting baseline.
+
+## Customer Module Management Admin Module New Status
+
+- `tests/Iteration_Matrix/Customer_Module_Management_Admin_Module_New/` is helper-backed through `helpers/iteration-matrix/customerModuleManagementAdminModuleNew.js`.
+- The current implemented scenario slice spans TS_29 through TS_41, covering management-role access and the self-funding/update-subscription behavior currently wired in that helper.
+- This slice reuses the Customer Management Admin New create-customer flow for seeded setup work, so create-form and module-loading behavior should be fixed at the shared helper layer first if those scenarios drift.
+- No dedicated client-report wrapper is registered for this module yet; add one only after the module reaches a reusable validation/reporting baseline.
+
+## Customer Onboarding Status
+
+- `tests/Iteration_Matrix/Customer_Onboarding/` and `tests/Iteration_Matrix/Customer_Onboarding_imREmit_Lite/` are scaffolded into shared helper-backed module surfaces.
+- The primary shared implementation surface is `helpers/iteration-matrix/customerOnboarding.js`, which is the correct root-fix layer for create-flow, wizard, and payment/participant behavior.
+- Current stabilization work is still concentrated in the create-customer path; treat onboarding as an active module slice rather than a finished green baseline.
 
 ## Card On File Reporting Status
 
