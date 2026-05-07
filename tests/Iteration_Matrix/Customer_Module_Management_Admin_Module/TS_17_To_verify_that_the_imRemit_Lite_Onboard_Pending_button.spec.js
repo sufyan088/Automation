@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, customerModuleManagementAdminModuleHelpers } = require('./_shared');
 
 test("TS_17_To_verify_that_the_imRemit_Lite_Onboard_Pending_button", async ({ page }) => {
   const data = loadRuntimeData();
@@ -12,6 +12,7 @@ test("TS_17_To_verify_that_the_imRemit_Lite_Onboard_Pending_button", async ({ pa
   });
 
   await test.step('Run converted flow', async () => {
+    await customerModuleManagementAdminModuleHelpers.runScenario(page, data, 'TS_17_To_verify_that_the_imRemit_Lite_Onboard_Pending_button');
   });
 
   await test.step('Logout from the application', async () => {

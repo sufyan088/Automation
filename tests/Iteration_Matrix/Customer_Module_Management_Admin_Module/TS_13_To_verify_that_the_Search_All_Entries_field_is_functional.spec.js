@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, customerModuleManagementAdminModuleHelpers } = require('./_shared');
 
 test("TS_13_To_verify_that_the_Search_All_Entries_field_is_functional", async ({ page }) => {
   const data = loadRuntimeData();
@@ -12,6 +12,7 @@ test("TS_13_To_verify_that_the_Search_All_Entries_field_is_functional", async ({
   });
 
   await test.step('Run converted flow', async () => {
+    await customerModuleManagementAdminModuleHelpers.runScenario(page, data, 'TS_13_To_verify_that_the_Search_All_Entries_field_is_functional');
   });
 
   await test.step('Logout from the application', async () => {

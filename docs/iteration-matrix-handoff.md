@@ -54,6 +54,8 @@ Use it as the project-specific companion to [docs/conversion-framework.md](./con
   - `npm run report:iteration-matrix:customer-management-admin-new:last-failed:client`
   - `npm run report:iteration-matrix:customer-management-admin-nm:client`
   - `npm run report:iteration-matrix:customer-management-admin-nm:last-failed:client`
+  - `npm run report:iteration-matrix:customer-management-payment-method:client`
+  - `npm run report:iteration-matrix:customer-management-payment-method:last-failed:client`
   - `npm run report:iteration-matrix:customer-management-admin-two:client`
   - `npm run report:iteration-matrix:customer-management-admin-two:last-failed:client`
   - `npm run report:iteration-matrix:criteria-settings:client`
@@ -105,6 +107,37 @@ Use it as the project-specific companion to [docs/conversion-framework.md](./con
 - The shared helper/selectors were stabilized for Participant Register save/search behavior, Payment Group reflection, Payment Runner navigation, disabled location-field visibility, and live-validator-aligned field-creation scenarios.
 - The finalized report format for this module keeps client-facing descriptions limited to `Scenario:` and `Spec File:`, while helper-layer business steps feed the Execution panel and report flattening removes only the leftover wrapper shells above them.
 
+## Customer Management Payment Method Status
+
+- `tests/Iteration_Matrix/Customer_Management_Payment_Method/` is helper-backed and validated for its current single AIQ case.
+- The module has dedicated full-module and last-failed client-report wrappers at `npm run report:iteration-matrix:customer-management-payment-method:client` and `npm run report:iteration-matrix:customer-management-payment-method:last-failed:client`.
+- The shared helper/selectors cover create-customer onboarding, imREmit action-menu drift, payment-provider/payment-method save flow, and created-customer cleanup.
+
+## Customer Module Management Admin Module Status
+
+- `tests/Iteration_Matrix/Customer_Module_Management_Admin_Module/` is helper-backed through `helpers/iteration-matrix/customerModuleManagementAdminModule.js`.
+- The module is now live-aligned and validated clean at 28/28 passing with `--workers=3`.
+- The finalized scenario slice spans TS_01 through TS_28, covering table/navigation/search behavior plus update-subscription modal actions.
+- The module follows the standard `_shared.js` pattern with direct login, shared helper-backed scenario execution, and no-op close session.
+- The module now has dedicated full-run and last-failed client-report wrappers at `npm run report:iteration-matrix:customer-module-management-admin-module:client` and `npm run report:iteration-matrix:customer-module-management-admin-module:last-failed:client`.
+- The finalized module artifact paths are `Result/allure-report-iteration-matrix-customer-module-management-admin-module-shareable/` and `Result/iteration-matrix-customer-module-management-admin-module.zip`.
+- Shared helper/selectors were stabilized for exact Program Manager selection, USA -> Alaska onboarding, file transmission fields (`sFTP`, `Payment File`), popup-aware Update Subscription selection, optional update-success toast handling, and cleanup of created customers.
+- Report readability for this module now matches the approved Iteration Matrix style: keep `Before Hooks`, `Login into Application`, business steps, `Logout from the application`, and `After Hooks`, while stripping only generic wrapper shells such as `Run converted flow` and helper-level `Run To verify ...` wrappers.
+- When a module folder has a nearby sibling folder with a prefix overlap, scope module client-report runs by exact discovered spec files inside the target folder instead of a loose Playwright path regex; this is now the safe pattern implemented through `scripts/module-client-report-runner.js`.
+
+## Customer Module Management Admin Module New Status
+
+- `tests/Iteration_Matrix/Customer_Module_Management_Admin_Module_New/` is helper-backed through `helpers/iteration-matrix/customerModuleManagementAdminModuleNew.js`.
+- The current implemented scenario slice spans TS_29 through TS_41, covering management-role access and the self-funding/update-subscription behavior currently wired in that helper.
+- This slice reuses the Customer Management Admin New create-customer flow for seeded setup work, so create-form and module-loading behavior should be fixed at the shared helper layer first if those scenarios drift.
+- No dedicated client-report wrapper is registered for this module yet; add one only after the module reaches a reusable validation/reporting baseline.
+
+## Customer Onboarding Status
+
+- `tests/Iteration_Matrix/Customer_Onboarding/` and `tests/Iteration_Matrix/Customer_Onboarding_imREmit_Lite/` are scaffolded into shared helper-backed module surfaces.
+- The primary shared implementation surface is `helpers/iteration-matrix/customerOnboarding.js`, which is the correct root-fix layer for create-flow, wizard, and payment/participant behavior.
+- Current stabilization work is still concentrated in the create-customer path; treat onboarding as an active module slice rather than a finished green baseline.
+
 ## Card On File Reporting Status
 
 - `tests/Iteration_Matrix/Card_On_File/` has a validated dedicated module client-report flow.
@@ -119,6 +152,8 @@ Use it as the project-specific companion to [docs/conversion-framework.md](./con
   - `Scenario:`
   - `Spec File:`
 - Keep report folders and zip artifacts under `Result/`; do not leave them at the repository root.
+- For Iteration Matrix module reports, shape readable business execution in the shared helper layer with named `test.step()` actions, then let `scripts/flatten-generic-allure-steps.js` remove only the generic wrapper shells above them.
+- Do not hide `Before Hooks`, `Login into Application`, `Logout from the application`, or `After Hooks` in final Iteration Matrix client reports; the desired client format keeps those sections visible above and below the business flow.
 
 ## Current Durable Lessons
 

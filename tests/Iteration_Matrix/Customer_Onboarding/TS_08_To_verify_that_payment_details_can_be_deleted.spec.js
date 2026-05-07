@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, customerOnboardingHelpers } = require('./_shared');
 
 test("TS_08_To_verify_that_payment_details_can_be_deleted", async ({ page }) => {
   const data = loadRuntimeData();
@@ -12,6 +12,7 @@ test("TS_08_To_verify_that_payment_details_can_be_deleted", async ({ page }) => 
   });
 
   await test.step('Run converted flow', async () => {
+    await customerOnboardingHelpers.runScenario(page, data, test.info().title);
   });
 
   await test.step('Logout from the application', async () => {

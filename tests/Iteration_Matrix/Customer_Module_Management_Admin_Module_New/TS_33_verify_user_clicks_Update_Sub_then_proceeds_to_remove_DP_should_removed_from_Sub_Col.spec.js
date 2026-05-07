@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, customerModuleManagementAdminModuleNewHelpers } = require('./_shared');
 
 test("TS_33_verify_user_clicks_Update_Sub_then_proceeds_to_remove_DP_should_removed_from_Sub_Col", async ({ page }) => {
   const data = loadRuntimeData();
@@ -12,6 +12,7 @@ test("TS_33_verify_user_clicks_Update_Sub_then_proceeds_to_remove_DP_should_remo
   });
 
   await test.step('Run converted flow', async () => {
+    await customerModuleManagementAdminModuleNewHelpers.runScenario(page, data, 'TS_33_verify_user_clicks_Update_Sub_then_proceeds_to_remove_DP_should_removed_from_Sub_Col');
   });
 
   await test.step('Logout from the application', async () => {

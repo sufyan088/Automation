@@ -81,7 +81,14 @@ Current module folders include areas such as:
 - `Card_On_File`
 - `Criteria_Settings`
 - `Customer_Management_Admin`
+- `Customer_Management_Admin_New`
+- `Customer_Management_Admin_NM`
+- `Customer_Management_Admin_Two`
+- `Customer_Management_Payment_Method`
+- `Customer_Module_Management_Admin_Module`
+- `Customer_Module_Management_Admin_Module_New`
 - `Customer_Onboarding`
+- `Customer_Onboarding_imREmit_Lite`
 - `Duplicates_Dashboard`
 - `FileProcessing`
 - `Invoice_Tracker`
@@ -106,6 +113,11 @@ Additional module folders already exist under `tests/Iteration_Matrix/`; treat t
 - Criteria Settings is fully helper-backed and validated clean at 66 passing specs.
 - Customer Management Admin New is fully converted, validated clean at 17 passing specs, and has dedicated full and last-failed module report flows.
 - Customer Management Admin NM is fully converted, validated clean at 40 passing specs, and has dedicated full and last-failed module report flows with shareable artifacts under `Result/`.
+- Customer Management Admin Two is fully converted, validated clean at 41 passing specs, and has dedicated full and last-failed module report flows with shareable artifacts under `Result/`.
+- Customer Management Payment Method is helper-backed, validated for its current single AIQ case, and has dedicated full and last-failed module report flows.
+- Customer Module Management Admin Module is helper-backed for the current TS_01 to TS_28 slice through `helpers/iteration-matrix/customerModuleManagementAdminModule.js`.
+- Customer Module Management Admin Module New is helper-backed for the current TS_29 to TS_41 slice through `helpers/iteration-matrix/customerModuleManagementAdminModuleNew.js`.
+- Customer Onboarding and Customer Onboarding imREmit Lite are scaffolded into shared helper-backed module surfaces, but onboarding create-flow stabilization is still active work.
 - Card On File has client-readable report output restored through helper-layer readable steps and a validated dedicated module report flow.
 - Module-level client reporting now supports rerun-only-failed merge flows through shared runner logic in `scripts/module-client-report-runner.js`.
 - Report-step shaping is part of module conversion done-ness: keep specs thin, expose business-readable nested helper steps, and let report flattening remove only the generic wrapper when needed.
@@ -166,6 +178,10 @@ Use the packaged Iteration Matrix report flows whenever output is meant to be sh
 - `npm run report:iteration-matrix:customer-management-admin-nm:last-failed:client`
 - `npm run report:iteration-matrix:customer-management-admin-two:client`
 - `npm run report:iteration-matrix:customer-management-admin-two:last-failed:client`
+- `npm run report:iteration-matrix:customer-module-management-admin-module:client`
+- `npm run report:iteration-matrix:customer-module-management-admin-module:last-failed:client`
+- `npm run report:iteration-matrix:customer-management-payment-method:client`
+- `npm run report:iteration-matrix:customer-management-payment-method:last-failed:client`
 - `npm run report:iteration-matrix:criteria-settings:client`
 - `npm run report:iteration-matrix:criteria-settings:last-failed:client`
 

@@ -80,6 +80,11 @@ const customerManagementAdminNewSelectors = {
     ],
     state: [
       {
+        type: 'xpath',
+        name: 'state-control-by-label',
+        value: "//*[self::div or self::label][normalize-space()='Address state:' or normalize-space()='Address state/province:']/following::*[@role='combobox' or self::button][1]"
+      },
+      {
         type: 'custom',
         name: 'state-control',
         factory: (page) => page.locator('div').filter({ hasText: /Address state/i }).locator('[role="combobox"], button').first()
