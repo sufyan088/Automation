@@ -64,8 +64,11 @@ const customerManagementPaymentMethodSelectors = {
       { type: 'css', value: 'input[name="customerProfile.buyerProfileEmail"]', name: 'customer-email-field' }
     ],
     phone: [
+      { type: 'label', value: 'Customer Phone:', name: 'customer-phone-label' },
+      { type: 'placeholder', value: 'Enter phone number...', name: 'customer-phone-number-placeholder' },
       { type: 'placeholder', value: 'Enter the customer phone...', name: 'customer-phone-placeholder' },
       { type: 'css', value: 'input[name="customerProfile.buyerProfilePhone"]', name: 'customer-phone-field' },
+      { type: 'css', value: 'input[type="tel"]', name: 'customer-phone-tel-input' },
       { type: 'css', value: '[role="spinbutton"]', name: 'customer-phone-spinbutton' }
     ],
     erpSystem: [
@@ -85,7 +88,7 @@ const customerManagementPaymentMethodSelectors = {
       {
         type: 'custom',
         name: 'program-manager-combobox',
-        factory: (page) => page.locator('div').filter({ hasText: /Program Manager Assigned:/ }).locator('[role="combobox"], button').first()
+        factory: (page) => page.locator('xpath=//*[contains(normalize-space(), "Program Manager Assigned:")]/following::*[@role="combobox" or self::button][1]').first()
       }
     ],
     country: [
@@ -99,7 +102,7 @@ const customerManagementPaymentMethodSelectors = {
       {
         type: 'custom',
         name: 'state-control',
-        factory: (page) => page.locator('div').filter({ hasText: /Address state/i }).locator('[role="combobox"], button').first()
+        factory: (page) => page.locator('xpath=//*[normalize-space()="Address state:" or normalize-space()="Address state/province:"]/following::*[@role="combobox" or self::button][1]').first()
       },
       { type: 'role', role: 'button', options: { name: /select address state/i }, name: 'state-select-placeholder' }
     ],
@@ -107,14 +110,14 @@ const customerManagementPaymentMethodSelectors = {
       {
         type: 'custom',
         name: 'file-transmission-method-combobox',
-        factory: (page) => page.locator('div').filter({ hasText: /File Transmission Method:/ }).locator('[role="combobox"], button').first()
+        factory: (page) => page.locator('xpath=//*[normalize-space()="File Transmission Method:"]/following::*[@role="combobox" or self::button][1]').first()
       }
     ],
     fileTransmissionType: [
       {
         type: 'custom',
         name: 'file-transmission-type-combobox',
-        factory: (page) => page.locator('div').filter({ hasText: /File transmissions:/ }).locator('[role="combobox"], button').first()
+        factory: (page) => page.locator('xpath=//*[normalize-space()="File transmissions:"]/following::*[@role="combobox" or self::button][1]').first()
       }
     ],
     moduleSubscription: [

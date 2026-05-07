@@ -116,9 +116,14 @@ Use it as the project-specific companion to [docs/conversion-framework.md](./con
 ## Customer Module Management Admin Module Status
 
 - `tests/Iteration_Matrix/Customer_Module_Management_Admin_Module/` is helper-backed through `helpers/iteration-matrix/customerModuleManagementAdminModule.js`.
-- The current implemented scenario slice spans TS_01 through TS_28, covering the table/navigation/search slice plus modal update-subscription actions currently wired in that helper.
+- The module is now live-aligned and validated clean at 28/28 passing with `--workers=3`.
+- The finalized scenario slice spans TS_01 through TS_28, covering table/navigation/search behavior plus update-subscription modal actions.
 - The module follows the standard `_shared.js` pattern with direct login, shared helper-backed scenario execution, and no-op close session.
-- No dedicated client-report wrapper is registered for this module yet; add one only after the module reaches a reusable validation/reporting baseline.
+- The module now has dedicated full-run and last-failed client-report wrappers at `npm run report:iteration-matrix:customer-module-management-admin-module:client` and `npm run report:iteration-matrix:customer-module-management-admin-module:last-failed:client`.
+- The finalized module artifact paths are `Result/allure-report-iteration-matrix-customer-module-management-admin-module-shareable/` and `Result/iteration-matrix-customer-module-management-admin-module.zip`.
+- Shared helper/selectors were stabilized for exact Program Manager selection, USA -> Alaska onboarding, file transmission fields (`sFTP`, `Payment File`), popup-aware Update Subscription selection, optional update-success toast handling, and cleanup of created customers.
+- Report readability for this module now matches the approved Iteration Matrix style: keep `Before Hooks`, `Login into Application`, business steps, `Logout from the application`, and `After Hooks`, while stripping only generic wrapper shells such as `Run converted flow` and helper-level `Run To verify ...` wrappers.
+- When a module folder has a nearby sibling folder with a prefix overlap, scope module client-report runs by exact discovered spec files inside the target folder instead of a loose Playwright path regex; this is now the safe pattern implemented through `scripts/module-client-report-runner.js`.
 
 ## Customer Module Management Admin Module New Status
 
@@ -147,6 +152,8 @@ Use it as the project-specific companion to [docs/conversion-framework.md](./con
   - `Scenario:`
   - `Spec File:`
 - Keep report folders and zip artifacts under `Result/`; do not leave them at the repository root.
+- For Iteration Matrix module reports, shape readable business execution in the shared helper layer with named `test.step()` actions, then let `scripts/flatten-generic-allure-steps.js` remove only the generic wrapper shells above them.
+- Do not hide `Before Hooks`, `Login into Application`, `Logout from the application`, or `After Hooks` in final Iteration Matrix client reports; the desired client format keeps those sections visible above and below the business flow.
 
 ## Current Durable Lessons
 

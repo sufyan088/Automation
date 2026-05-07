@@ -178,6 +178,8 @@ Use the packaged Iteration Matrix report flows whenever output is meant to be sh
 - `npm run report:iteration-matrix:customer-management-admin-nm:last-failed:client`
 - `npm run report:iteration-matrix:customer-management-admin-two:client`
 - `npm run report:iteration-matrix:customer-management-admin-two:last-failed:client`
+- `npm run report:iteration-matrix:customer-module-management-admin-module:client`
+- `npm run report:iteration-matrix:customer-module-management-admin-module:last-failed:client`
 - `npm run report:iteration-matrix:customer-management-payment-method:client`
 - `npm run report:iteration-matrix:customer-management-payment-method:last-failed:client`
 - `npm run report:iteration-matrix:criteria-settings:client`

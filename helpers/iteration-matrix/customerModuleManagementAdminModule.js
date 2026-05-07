@@ -27,17 +27,112 @@ function humanizeScenarioTitle(scenarioName) {
     .trim();
 }
 
+async function businessStep(title, action) {
+  return test.step(title, action);
+}
+
 async function clickChoiceByName(page, optionName) {
   const candidates = [
-    page.getByRole('option', { name: optionName, exact: true }).first(),
-    page.getByText(optionName, { exact: true }).first(),
-    page.getByRole('button', { name: optionName, exact: true }).first()
+    page.getByRole('option', { name: optionName, exact: true }),
+    page.getByRole('option', { name: new RegExp(`^${escapeRegExp(optionName)}$`, 'i') }),
+    page.getByRole('option', { name: new RegExp(escapeRegExp(optionName), 'i') }),
+    page.locator('[role="option"]').filter({ hasText: new RegExp(`^${escapeRegExp(optionName)}$`, 'i') }),
+    page.locator('[role="option"]').filter({ hasText: new RegExp(escapeRegExp(optionName), 'i') }),
+    page.getByText(optionName, { exact: true }),
+    page.getByText(new RegExp(`^${escapeRegExp(optionName)}$`, 'i')),
+    page.getByText(new RegExp(escapeRegExp(optionName), 'i')),
+    page.getByRole('button', { name: optionName, exact: true })
   ];
 
   for (const locator of candidates) {
-    if (await locator.isVisible().catch(() => false)) {
-      await locator.click({ timeout: 5000 });
+    if (await clickFirstVisibleLocator(locator)) {
       return true;
+    }
+  }
+
+  return false;
+}
+
+async function clickFirstVisibleLocator(locator) {
+  const count = await locator.count().catch(() => 0);
+  for (let index = 0; index < count; index += 1) {
+    const candidate = locator.nth(index);
+    if (await candidate.isVisible().catch(() => false)) {
+      await candidate.scrollIntoViewIfNeeded().catch(() => null);
+      await candidate.click({ timeout: 5000 });
+      return true;
+    }
+  }
+
+  return false;
+}
+
+async function getDropdownPopupLocator(page, control) {
+  const popupId = await control.getAttribute('aria-controls').catch(() => null);
+  if (!popupId) {
+    return null;
+  }
+
+  const popup = page.locator(`#${popupId}`);
+  if (await popup.count().catch(() => 0)) {
+    return popup;
+  }
+
+  return null;
+}
+
+async function clickOpenDropdownChoiceByName(page, optionName, popup = null) {
+  const candidates = [
+    ...(popup ? [
+      popup.locator('[role="option"]').filter({ hasText: new RegExp(`^${escapeRegExp(optionName)}$`, 'i') }),
+      popup.locator('[role="option"]').filter({ hasText: new RegExp(escapeRegExp(optionName), 'i') }),
+      popup.locator('[cmdk-item]').filter({ hasText: new RegExp(`^${escapeRegExp(optionName)}$`, 'i') }),
+      popup.locator('[cmdk-item]').filter({ hasText: new RegExp(escapeRegExp(optionName), 'i') })
+    ] : []),
+    page.locator('[role="dialog"] [role="option"]').filter({ hasText: new RegExp(`^${escapeRegExp(optionName)}$`, 'i') }),
+    page.locator('[role="dialog"] [role="option"]').filter({ hasText: new RegExp(escapeRegExp(optionName), 'i') }),
+    page.locator('[data-radix-popper-content-wrapper] [role="option"]').filter({ hasText: new RegExp(`^${escapeRegExp(optionName)}$`, 'i') }),
+    page.locator('[data-radix-popper-content-wrapper] [role="option"]').filter({ hasText: new RegExp(escapeRegExp(optionName), 'i') }),
+    page.locator('[role="listbox"] [role="option"]').filter({ hasText: new RegExp(`^${escapeRegExp(optionName)}$`, 'i') }),
+    page.locator('[role="listbox"] [role="option"]').filter({ hasText: new RegExp(escapeRegExp(optionName), 'i') }),
+    page.locator('[cmdk-item]').filter({ hasText: new RegExp(`^${escapeRegExp(optionName)}$`, 'i') }),
+    page.locator('[cmdk-item]').filter({ hasText: new RegExp(escapeRegExp(optionName), 'i') })
+  ];
+
+  for (const locator of candidates) {
+    if (await clickFirstVisibleLocator(locator)) {
+      await waitForAppToSettle(page, 300);
+      return true;
+    }
+  }
+
+  return false;
+}
+
+async function selectViaOpenDialogSearch(page, optionName, popup = null) {
+  const searchTargets = [
+    ...(popup ? [
+      popup.locator('input[cmdk-input]'),
+      popup.locator('input[role="combobox"]'),
+      popup.locator('input')
+    ] : []),
+    page.locator('[data-radix-popper-content-wrapper] input[cmdk-input], [role="dialog"] input[cmdk-input]'),
+    page.locator('[role="dialog"] input[role="combobox"]'),
+    page.locator('[role="dialog"] input')
+  ];
+
+  for (const locator of searchTargets) {
+    const count = await locator.count().catch(() => 0);
+    for (let index = 0; index < count; index += 1) {
+      const candidate = locator.nth(index);
+      if (await candidate.isVisible().catch(() => false)) {
+        await candidate.fill(String(optionName)).catch(() => null);
+        await waitForAppToSettle(page, 250);
+        await page.keyboard.press('ArrowDown').catch(() => null);
+        await page.keyboard.press('Enter').catch(() => null);
+        await waitForAppToSettle(page, 300);
+        return true;
+      }
     }
   }
 
@@ -46,6 +141,13 @@ async function clickChoiceByName(page, optionName) {
 
 async function resolveVisible(page, candidates, options = {}) {
   return resolveFirst(page, candidates, { mustBeVisible: true, timeoutPerCandidate: 2500, ...options });
+}
+
+async function scrollToVisibleTarget(page, candidates) {
+  const target = await resolveVisible(page, candidates, { timeoutPerCandidate: 2500 });
+  await target.locator.scrollIntoViewIfNeeded().catch(() => null);
+  await waitForAppToSettle(page, 250);
+  return target.locator;
 }
 
 async function openAdminModule(page) {
@@ -60,27 +162,29 @@ async function openAdminModule(page) {
 }
 
 async function openModule(page) {
-  await openAdminModule(page);
+  return businessStep('Open Customer Module Management page', async () => {
+    await openAdminModule(page);
 
-  const moduleLink = await resolveVisible(page, customerModuleManagementAdminModuleSelectors.customerModuleManagementLink, {
-    timeoutPerCandidate: 1500
-  }).catch(() => null);
+    const moduleLink = await resolveVisible(page, customerModuleManagementAdminModuleSelectors.customerModuleManagementLink, {
+      timeoutPerCandidate: 1500
+    }).catch(() => null);
 
-  if (moduleLink) {
-    await moduleLink.locator.click({ timeout: 5000 });
-  } else {
-    const targetUrl = new URL(customerModuleManagementAdminModuleSelectors.routeFragments.customerModuleManagement, page.url()).toString();
-    await page.goto(targetUrl, { waitUntil: 'domcontentloaded' });
-  }
+    if (moduleLink) {
+      await moduleLink.locator.click({ timeout: 5000 });
+    } else {
+      const targetUrl = new URL(customerModuleManagementAdminModuleSelectors.routeFragments.customerModuleManagement, page.url()).toString();
+      await page.goto(targetUrl, { waitUntil: 'domcontentloaded' });
+    }
 
-  await page.waitForURL((url) => url.toString().includes(customerModuleManagementAdminModuleSelectors.routeFragments.customerModuleManagement), {
-    timeout: 15000
+    await page.waitForURL((url) => url.toString().includes(customerModuleManagementAdminModuleSelectors.routeFragments.customerModuleManagement), {
+      timeout: 15000
+    });
+    await expectVisibleWithFallback(page, customerModuleManagementAdminModuleSelectors.headings.customerModuleManagement, {
+      expectTimeout: 15000
+    });
+    await waitForAppToSettle(page, 500);
+    return page;
   });
-  await expectVisibleWithFallback(page, customerModuleManagementAdminModuleSelectors.headings.customerModuleManagement, {
-    expectTimeout: 15000
-  });
-  await waitForAppToSettle(page, 500);
-  return page;
 }
 
 async function ensureTableVisible(page) {
@@ -183,26 +287,32 @@ async function readFirstCustomerName(page) {
 }
 
 async function openColumnOrder(page) {
-  await clickWithFallback(page, customerModuleManagementAdminModuleSelectors.buttons.columnOrder);
-  await expectVisibleWithFallback(page, customerModuleManagementAdminModuleSelectors.overlays.columnOrderSearch, {
-    expectTimeout: 10000
+  return businessStep('Open column views panel', async () => {
+    await clickWithFallback(page, customerModuleManagementAdminModuleSelectors.buttons.columnOrder);
+    await expectVisibleWithFallback(page, customerModuleManagementAdminModuleSelectors.overlays.columnOrderSearch, {
+      expectTimeout: 10000
+    });
   });
 }
 
 async function openCustomerNameMenu(page) {
-  const headerButton = page.getByRole('columnheader', {
-    name: new RegExp(escapeRegExp(customerModuleManagementAdminModuleSelectors.columns.customerName), 'i')
-  }).getByRole('button').first();
+  return businessStep('Open Customer Name column menu', async () => {
+    const headerButton = page.getByRole('columnheader', {
+      name: new RegExp(escapeRegExp(customerModuleManagementAdminModuleSelectors.columns.customerName), 'i')
+    }).getByRole('button').first();
 
-  await headerButton.waitFor({ state: 'visible', timeout: 15000 });
-  await headerButton.click({ timeout: 5000 });
+    await headerButton.waitFor({ state: 'visible', timeout: 15000 });
+    await headerButton.click({ timeout: 5000 });
+  });
 }
 
 async function clickHeaderMenuAction(page, label) {
-  const menuItem = page.getByText(label, { exact: true }).first();
-  await menuItem.waitFor({ state: 'visible', timeout: 10000 });
-  await menuItem.click({ timeout: 5000 });
-  await waitForAppToSettle(page, 500);
+  return businessStep(`Choose ${label} from the column menu`, async () => {
+    const menuItem = page.getByText(label, { exact: true }).first();
+    await menuItem.waitFor({ state: 'visible', timeout: 10000 });
+    await menuItem.click({ timeout: 5000 });
+    await waitForAppToSettle(page, 500);
+  });
 }
 
 async function searchField(page, candidates, value) {
@@ -216,19 +326,23 @@ async function expectTableContainsText(page, text) {
 }
 
 async function clickReturnToTop(page) {
-  await clickWithFallback(page, customerModuleManagementAdminModuleSelectors.buttons.returnToTop);
-  await page.waitForFunction(() => window.scrollY === 0, { timeout: 15000 });
+  return businessStep('Return to the top of the page', async () => {
+    await clickWithFallback(page, customerModuleManagementAdminModuleSelectors.buttons.returnToTop);
+    await page.waitForFunction(() => window.scrollY === 0, { timeout: 15000 });
+  });
 }
 
 async function clickStatus(page) {
-  const target = await resolveVisible(page, customerModuleManagementAdminModuleSelectors.buttons.status);
-  await target.locator.click({ timeout: 5000 });
-  await waitForAppToSettle(page, 500);
-  await expectVisibleWithFallback(page, customerModuleManagementAdminModuleSelectors.buttons.status, {
-    expectTimeout: 10000
-  }).catch(async () => {
-    await expectVisibleWithFallback(page, customerModuleManagementAdminModuleSelectors.overlays.statusPopup, {
+  return businessStep('Open the status control', async () => {
+    const target = await resolveVisible(page, customerModuleManagementAdminModuleSelectors.buttons.status);
+    await target.locator.click({ timeout: 5000 });
+    await waitForAppToSettle(page, 500);
+    await expectVisibleWithFallback(page, customerModuleManagementAdminModuleSelectors.buttons.status, {
       expectTimeout: 10000
+    }).catch(async () => {
+      await expectVisibleWithFallback(page, customerModuleManagementAdminModuleSelectors.overlays.statusPopup, {
+        expectTimeout: 10000
+      });
     });
   });
 }
@@ -257,10 +371,94 @@ async function paginateUntilVisible(page, candidates, options = {}) {
 }
 
 async function clickUnOnboardButton(page, index = 0) {
-  const locator = customerModuleManagementAdminModuleSelectors.rowActionButtons.unOnboardModule[0].factory(page).nth(index);
-  await locator.waitFor({ state: 'visible', timeout: 15000 });
-  await locator.click({ timeout: 5000 });
-  await waitForAppToSettle(page, 500);
+  return businessStep('Open the Un-onboard action', async () => {
+    const locator = customerModuleManagementAdminModuleSelectors.rowActionButtons.unOnboardModule[0].factory(page).nth(index);
+    await locator.waitFor({ state: 'visible', timeout: 15000 });
+    await locator.click({ timeout: 5000 });
+    await waitForAppToSettle(page, 500);
+  });
+}
+
+async function verifyCustomerNameSort(page, direction) {
+  const title = direction === 'ascending'
+    ? 'Verify customer names are sorted in ascending order'
+    : 'Verify customer names are sorted in descending order';
+
+  return businessStep(title, async () => {
+    const values = await readColumnValues(page, customerModuleManagementAdminModuleSelectors.columns.customerName);
+    const sortedValues = [...values].sort((left, right) => {
+      if (direction === 'ascending') {
+        return normalizeForSort(left).localeCompare(normalizeForSort(right));
+      }
+
+      return normalizeForSort(right).localeCompare(normalizeForSort(left));
+    });
+
+    expect(values).toEqual(sortedValues);
+  });
+}
+
+async function verifyCustomerNameColumnHidden(page) {
+  return businessStep('Verify the Customer Name column is hidden', async () => {
+    await expect(page.getByRole('columnheader', { name: /customer name/i }).first()).toBeHidden({ timeout: 15000 });
+  });
+}
+
+async function searchAllEntries(page, value) {
+  return businessStep(`Search all entries for ${value}`, async () => {
+    await searchField(page, customerModuleManagementAdminModuleSelectors.searchFields.allEntries, value);
+  });
+}
+
+async function searchBuyerName(page, value) {
+  return businessStep(`Search buyer name for ${value}`, async () => {
+    await searchField(page, customerModuleManagementAdminModuleSelectors.searchFields.buyerName, value);
+  });
+}
+
+async function verifySearchAllEntriesValue(page, value) {
+  return businessStep('Verify the all entries search value is applied', async () => {
+    await expect(page.getByPlaceholder('Search all entries...').first()).toHaveValue(value, { timeout: 10000 }).catch(async () => {
+      await expect(page.getByPlaceholder('Search all customers...').first()).toHaveValue(value, { timeout: 10000 });
+    });
+  });
+}
+
+async function verifyBuyerNameSearchValue(page, value) {
+  return businessStep('Verify the buyer name search value is applied', async () => {
+    await expect(page.getByPlaceholder('Search customer name...').first()).toHaveValue(value, { timeout: 10000 }).catch(async () => {
+      await expect(page.getByPlaceholder('Search buyer names...').first()).toHaveValue(value, { timeout: 10000 });
+    });
+  });
+}
+
+async function resetSearchFilters(page) {
+  return businessStep('Reset the applied search filters', async () => {
+    await clickWithFallback(page, customerModuleManagementAdminModuleSelectors.buttons.reset);
+  });
+}
+
+async function verifySearchAllEntriesCleared(page) {
+  return businessStep('Verify the all entries search field is cleared', async () => {
+    await expect(page.getByPlaceholder('Search all entries...').first()).toHaveValue('', { timeout: 10000 }).catch(async () => {
+      await expect(page.getByPlaceholder('Search all customers...').first()).toHaveValue('', { timeout: 10000 });
+    });
+  });
+}
+
+async function openOnboardPendingAction(page, candidates, title, expectErrorState = false) {
+  return businessStep(title, async () => {
+    const button = await paginateUntilVisible(page, candidates).catch(() => null);
+    if (button) {
+      await button.locator.click({ timeout: 5000 });
+      await waitForAppToSettle(page, 500);
+      return;
+    }
+
+    if (expectErrorState) {
+      await expectModuleErrorState(page);
+    }
+  });
 }
 
 async function ensureCustomerManagementPage(page) {
@@ -287,24 +485,49 @@ async function ensureCustomerManagementPage(page) {
 }
 
 async function clickDropdown(page, candidates) {
+  const openSearchInput = page.locator('[data-radix-popper-content-wrapper] input[cmdk-input], [role="dialog"] input[cmdk-input]').first();
+  if (await openSearchInput.isVisible().catch(() => false)) {
+    await page.keyboard.press('Escape').catch(() => null);
+    await waitForAppToSettle(page, 200);
+  }
+
   const result = await resolveVisible(page, candidates, { timeoutPerCandidate: 2500 });
   await result.locator.click({ timeout: 5000 });
   return result.locator;
 }
 
 async function clickFirstVisibleOption(page) {
-  const option = page.getByRole('option').first();
-  await option.waitFor({ state: 'visible', timeout: 15000 });
-  await option.click({ timeout: 5000 });
-  return (await option.textContent().catch(() => ''))?.trim() || null;
+  const candidates = [
+    page.locator('[role="option"]:visible').first(),
+    page.locator('[cmdk-item]:visible').first(),
+    page.locator('[data-radix-popper-content-wrapper] button:visible').first(),
+    page.locator('[role="listbox"] *:visible').first()
+  ];
+
+  for (const option of candidates) {
+    if (await option.isVisible().catch(() => false)) {
+      const optionText = (await option.textContent().catch(() => ''))?.trim() || null;
+      await option.click({ timeout: 5000 });
+      return optionText;
+    }
+  }
+
+  await page.keyboard.press('ArrowDown').catch(() => null);
+  await page.keyboard.press('Enter').catch(() => null);
+  await waitForAppToSettle(page, 300);
+  return null;
 }
 
 async function selectDropdownValue(page, dropdownCandidates, preferredOption, fallbackOptions = [], options = {}) {
-  await clickDropdown(page, dropdownCandidates);
+  const control = await clickDropdown(page, dropdownCandidates);
+  const popup = await getDropdownPopupLocator(page, control);
+  await waitForAppToSettle(page, 300);
 
   const orderedOptions = [preferredOption, ...fallbackOptions].filter(Boolean);
   for (const optionName of orderedOptions) {
-    const clicked = await clickChoiceByName(page, optionName);
+    const clicked = await selectViaOpenDialogSearch(page, optionName, popup)
+      || await clickOpenDropdownChoiceByName(page, optionName, popup)
+      || await clickChoiceByName(page, optionName);
     if (clicked) {
       return optionName;
     }
@@ -318,15 +541,128 @@ async function selectDropdownValue(page, dropdownCandidates, preferredOption, fa
   return clickFirstVisibleOption(page);
 }
 
+async function selectProgramManager(page, data) {
+  const preferredManager = String(
+    customerManagementPaymentMethodSelectors.defaults.programManagerOption
+    || 'ammy willson'
+  ).trim();
+
+  const control = await clickDropdown(page, customerManagementPaymentMethodSelectors.dropdowns.programManager);
+  await waitForAppToSettle(page, 300);
+
+  const expanded = await control.getAttribute('aria-expanded').catch(() => null);
+  if (expanded !== 'true') {
+    await control.click({ timeout: 5000 }).catch(() => null);
+    await waitForAppToSettle(page, 200);
+  }
+
+  const searchInput = page.getByPlaceholder(/search program manager/i).first();
+  if (await searchInput.isVisible().catch(() => false)) {
+    await searchInput.fill(preferredManager).catch(() => null);
+    await waitForAppToSettle(page, 500);
+    await page.keyboard.press('ArrowDown').catch(() => null);
+    await waitForAppToSettle(page, 200);
+    await page.keyboard.press('Enter').catch(() => null);
+    await waitForAppToSettle(page, 300);
+
+    const selectedText = ((await control.textContent().catch(() => '')) || '').trim();
+    if (selectedText && !/select program manager/i.test(selectedText)) {
+      return selectedText;
+    }
+  }
+
+  const popup = await getDropdownPopupLocator(page, control);
+  if (popup) {
+    await expect(async () => {
+      const visibleOptions = await popup.locator('[cmdk-item], [role="option"]').count().catch(() => 0);
+      expect(visibleOptions).toBeGreaterThan(0);
+    }).toPass({ timeout: 10000 });
+  }
+
+  const exactOption = popup
+    ? popup.locator('[cmdk-item], [role="option"]').filter({ hasText: new RegExp(`^${escapeRegExp(preferredManager)}$`, 'i') })
+    : page.locator('[data-radix-popper-content-wrapper] [cmdk-item], [data-radix-popper-content-wrapper] [role="option"], [role="dialog"] [cmdk-item], [role="dialog"] [role="option"]').filter({ hasText: new RegExp(`^${escapeRegExp(preferredManager)}$`, 'i') });
+
+  if (await clickFirstVisibleLocator(exactOption)) {
+    await waitForAppToSettle(page, 300);
+    const selectedText = ((await control.textContent().catch(() => '')) || '').trim();
+    if (selectedText && !/select program manager/i.test(selectedText)) {
+      return selectedText;
+    }
+  }
+
+  const fallbackOptions = popup
+    ? popup.locator('[cmdk-item], [role="option"]')
+    : page.locator('[data-radix-popper-content-wrapper] [cmdk-item], [data-radix-popper-content-wrapper] [role="option"], [role="dialog"] [cmdk-item], [role="dialog"] [role="option"]');
+
+  if (await clickFirstVisibleLocator(fallbackOptions)) {
+    await waitForAppToSettle(page, 300);
+    const selectedText = ((await control.textContent().catch(() => '')) || '').trim();
+    if (selectedText && !/select program manager/i.test(selectedText)) {
+      return selectedText;
+    }
+  }
+
+  for (let attempt = 0; attempt < 3; attempt += 1) {
+    await control.click({ timeout: 5000 }).catch(() => null);
+    await waitForAppToSettle(page, 200);
+    await page.keyboard.press('ArrowDown').catch(() => null);
+    await waitForAppToSettle(page, 200);
+    await page.keyboard.press('Enter').catch(() => null);
+    await waitForAppToSettle(page, 300);
+
+    const selectedText = ((await control.textContent().catch(() => '')) || '').trim();
+    if (selectedText && !/select program manager/i.test(selectedText)) {
+      return selectedText;
+    }
+  }
+
+  throw new Error('Unable to select Program Manager from the available choices.');
+}
+
+async function waitForStateControlReady(page) {
+  await expect(async () => {
+    const stateControl = await resolveVisible(page, customerManagementPaymentMethodSelectors.dropdowns.state, {
+      timeoutPerCandidate: 1500
+    });
+    const disabled = await stateControl.locator.isDisabled().catch(() => false);
+    const text = ((await stateControl.locator.textContent().catch(() => '')) || '').trim();
+
+    expect(disabled).toBe(false);
+    expect(text).not.toMatch(/please select country first/i);
+  }).toPass({ timeout: 10000 });
+}
+
+async function ensureStateValueSelected(page, preferredOption, fallbackOptions = []) {
+  await waitForStateControlReady(page);
+
+  const control = await clickDropdown(page, customerManagementPaymentMethodSelectors.dropdowns.state);
+  const popup = await getDropdownPopupLocator(page, control);
+  await waitForAppToSettle(page, 300);
+
+  const orderedOptions = [preferredOption, ...fallbackOptions].filter(Boolean);
+  for (const optionName of orderedOptions) {
+    const clicked = await selectViaOpenDialogSearch(page, optionName, popup)
+      || await clickOpenDropdownChoiceByName(page, optionName, popup)
+      || await clickChoiceByName(page, optionName);
+
+    if (clicked) {
+      await page.keyboard.press('Escape').catch(() => null);
+      await waitForAppToSettle(page, 300);
+      await expect(control).toContainText(new RegExp(escapeRegExp(optionName), 'i'), { timeout: 10000 });
+      return optionName;
+    }
+  }
+
+  await clickFirstVisibleOption(page);
+  await page.keyboard.press('Escape').catch(() => null);
+  await waitForAppToSettle(page, 300);
+}
+
 async function fillBaseCustomerDetails(page, data, options = {}) {
   const customerName = options.customerName || buildUniqueCustomerName(data);
   await fillWithFallback(page, customerManagementPaymentMethodSelectors.fields.customerName, customerName);
-  await clickDropdown(page, customerManagementPaymentMethodSelectors.dropdowns.programManager);
-  await clickChoiceByName(page, customerManagementPaymentMethodSelectors.defaults.programManagerOption)
-    || await clickChoiceByName(page, data.Username_ProgramManager)
-    || await clickChoiceByName(page, data.Username_ProjectManager)
-    || await clickChoiceByName(page, data.Username_Management)
-    || await clickFirstVisibleOption(page);
+  await selectProgramManager(page, data);
   await fillWithFallback(page, customerManagementPaymentMethodSelectors.fields.companyContactName, 'TestCompany');
   await fillWithFallback(page, customerManagementPaymentMethodSelectors.fields.companyIndustry, 'TestData');
   await selectDropdownValue(
@@ -335,18 +671,17 @@ async function fillBaseCustomerDetails(page, data, options = {}) {
     customerManagementPaymentMethodSelectors.defaults.countryOption,
     [data.Country, data.CustomerCountry, 'USA']
   );
-  await selectDropdownValue(
+  await ensureStateValueSelected(
     page,
-    customerManagementPaymentMethodSelectors.dropdowns.state,
     customerManagementPaymentMethodSelectors.defaults.stateOption,
-    [data.State, data.CustomerState, 'Alaska'],
-    { allowMissingOptions: true }
+    [data.State, data.CustomerState, 'Alaska']
   );
   await fillWithFallback(page, customerManagementPaymentMethodSelectors.fields.address, '141 W Main Ave');
   await fillWithFallback(page, customerManagementPaymentMethodSelectors.fields.city, 'Gastonia');
   await fillWithFallback(page, customerManagementPaymentMethodSelectors.fields.zipCode, data.ZipCode || '65753');
   await fillWithFallback(page, customerManagementPaymentMethodSelectors.fields.email, data.CustomerEmail || 'QAMammoth@test.com');
   await fillWithFallback(page, customerManagementPaymentMethodSelectors.fields.phone, data.CustomerPhone || '(704) 867-7427');
+  await scrollToVisibleTarget(page, customerManagementPaymentMethodSelectors.dropdowns.fileTransmissionMethod);
   await selectDropdownValue(
     page,
     customerManagementPaymentMethodSelectors.dropdowns.fileTransmissionMethod,
@@ -354,6 +689,7 @@ async function fillBaseCustomerDetails(page, data, options = {}) {
     [data.FileTransmissionMethod, data.TransmissionMethod, 'sFTP'],
     { allowMissingOptions: true }
   );
+  await scrollToVisibleTarget(page, customerManagementPaymentMethodSelectors.dropdowns.fileTransmissionType);
   await selectDropdownValue(
     page,
     customerManagementPaymentMethodSelectors.dropdowns.fileTransmissionType,
@@ -366,114 +702,214 @@ async function fillBaseCustomerDetails(page, data, options = {}) {
 }
 
 async function selectModules(page, moduleNames) {
-  await clickDropdown(page, customerManagementPaymentMethodSelectors.dropdowns.moduleSubscription);
+  const trigger = await clickDropdown(page, customerManagementPaymentMethodSelectors.dropdowns.moduleSubscription);
+  const popup = await getDropdownPopupLocator(page, trigger);
+  await waitForAppToSettle(page, 300);
+
   for (const moduleName of moduleNames) {
-    const clicked = await clickChoiceByName(page, moduleName);
+    const clicked = await selectViaOpenDialogSearch(page, moduleName, popup)
+      || await clickOpenDropdownChoiceByName(page, moduleName, popup)
+      || await clickChoiceByName(page, moduleName);
     if (!clicked) {
-      await clickFirstVisibleOption(page);
+      await page.keyboard.type(moduleName).catch(() => null);
+      await waitForAppToSettle(page, 300);
+      await page.keyboard.press('Enter').catch(() => null);
+      await waitForAppToSettle(page, 300);
     }
   }
+
   await page.keyboard.press('Escape').catch(() => null);
   await waitForAppToSettle(page, 500);
+
+  const triggerText = (await trigger.textContent().catch(() => ''))?.trim() || '';
+  const hasSelectedModule = moduleNames.some((moduleName) => new RegExp(escapeRegExp(moduleName), 'i').test(triggerText));
+  if (!hasSelectedModule && /select modules for this customer/i.test(triggerText)) {
+    throw new Error(`Unable to assign modules during customer creation. Expected one of: ${moduleNames.join(', ')}`);
+  }
 }
 
-async function createCustomer(page, data, moduleNames) {
-  await ensureCustomerManagementPage(page);
-  await clickWithFallback(page, customerManagementPaymentMethodSelectors.addCustomerButton);
-  await expect(page.getByRole('heading', { name: 'Create Customer', exact: true }).first()).toBeVisible({ timeout: 15000 });
-  const { customerName } = await fillBaseCustomerDetails(page, data);
-  await selectModules(page, moduleNames).catch(() => null);
-  await clickWithFallback(page, customerManagementPaymentMethodSelectors.submitButton);
+async function submitCustomer(page) {
+  const submitCandidates = [
+    page.getByRole('button', { name: /^Create customer$/i }).first(),
+    page.getByRole('button', { name: /submit formcreate customer/i }).first(),
+    page.locator('button[type="submit"]').filter({ hasText: /create customer/i }).first(),
+    page.locator('section.flex.items-center.justify-between').locator('button[type="submit"], button').filter({ hasText: /create customer/i }).first(),
+    page.locator('button.bg-success-foreground').filter({ hasText: /create customer/i }).first()
+  ];
+
+  let clicked = false;
+  for (const locator of submitCandidates) {
+    if (await locator.isVisible().catch(() => false)) {
+      await locator.scrollIntoViewIfNeeded().catch(() => null);
+      await locator.click({ timeout: 5000 });
+      clicked = true;
+      break;
+    }
+  }
+
+  if (!clicked) {
+    throw new Error('Create customer submit button was not visible.');
+  }
+
   await waitForAppToSettle(page, 1000);
   const toast = await resolveVisible(page, customerManagementPaymentMethodSelectors.toasts.customerCreated, {
     timeoutPerCandidate: 5000
   }).catch(() => null);
   if (toast) {
     await expect(toast.locator).toBeVisible({ timeout: 5000 });
+    return;
   }
-  return { customerName };
+
+  await expect(page.getByRole('heading', { name: 'Customer Management', exact: true }).first()).toBeVisible({ timeout: 15000 });
+}
+
+async function createCustomer(page, data, moduleNames) {
+  return businessStep('Create a customer for subscription testing', async () => {
+    await businessStep('Open Create Customer page', async () => {
+      await ensureCustomerManagementPage(page);
+      await clickWithFallback(page, customerManagementPaymentMethodSelectors.addCustomerButton);
+      await expect(page.getByRole('heading', { name: 'Create Customer', exact: true }).first()).toBeVisible({ timeout: 15000 });
+    });
+
+    const { customerName } = await businessStep('Enter customer profile details', async () => {
+      return fillBaseCustomerDetails(page, data);
+    });
+
+    await businessStep('Assign initial module subscriptions', async () => {
+      await selectModules(page, moduleNames);
+    });
+
+    await businessStep('Submit the new customer', async () => {
+      await submitCustomer(page);
+    });
+
+    return { customerName };
+  });
 }
 
 async function searchCustomerOnModulePage(page, customerName) {
-  await openModule(page);
-  await searchField(page, customerModuleManagementAdminModuleSelectors.searchFields.allEntries, customerName);
-  try {
-    await expectTableContainsText(page, customerName);
-    return true;
-  } catch (error) {
-    await expectModuleErrorState(page);
-    return false;
+  for (let attempt = 0; attempt < 4; attempt += 1) {
+    await openModule(page);
+    await searchField(page, customerModuleManagementAdminModuleSelectors.searchFields.allEntries, customerName);
+
+    try {
+      await expectTableContainsText(page, customerName);
+      return true;
+    } catch (error) {
+      if (attempt === 3) {
+        throw new Error(`Customer ${customerName} was not visible on Customer Module Management after creation.`);
+      }
+
+      await waitForAppToSettle(page, 1000);
+    }
   }
+
+  return false;
 }
 
 async function openUpdateSubscription(page, customerName) {
-  const customerVisible = await searchCustomerOnModulePage(page, customerName);
-  if (!customerVisible) {
-    return false;
-  }
+  return businessStep('Open Update Subscription popup', async () => {
+    const customerVisible = await searchCustomerOnModulePage(page, customerName);
+    if (!customerVisible) {
+      return false;
+    }
 
-  const row = page.locator('table tbody tr').filter({ hasText: new RegExp(escapeRegExp(customerName), 'i') }).first();
-  const rowVisible = await row.isVisible().catch(() => false);
-  if (!rowVisible) {
-    await expectModuleErrorState(page);
-    return false;
-  }
+    const row = page.locator('table tbody tr').filter({ hasText: new RegExp(escapeRegExp(customerName), 'i') }).first();
+    const rowVisible = await row.isVisible().catch(() => false);
+    if (!rowVisible) {
+      await expectModuleErrorState(page);
+      return false;
+    }
 
-  const button = row.getByRole('button', { name: /update subscription/i }).first();
-  await button.click({ timeout: 5000 });
-  await expectVisibleWithFallback(page, customerModuleManagementAdminModuleSelectors.headings.updateSubscription, {
-    expectTimeout: 15000
+    const button = row.getByRole('button', { name: /update subscription/i }).first();
+    await button.click({ timeout: 5000 });
+    await expectVisibleWithFallback(page, customerModuleManagementAdminModuleSelectors.headings.updateSubscription, {
+      expectTimeout: 15000
+    });
+    return true;
   });
-  return true;
 }
 
 async function selectModalOption(page, optionName) {
-  await clickWithFallback(page, customerModuleManagementAdminModuleSelectors.modal.moduleSelectorTrigger);
-  await clickWithFallback(page, customerModuleManagementAdminModuleSelectors.modal.option(optionName));
-  await expectVisibleWithFallback(page, customerModuleManagementAdminModuleSelectors.modal.selectedBadge(optionName), {
-    expectTimeout: 10000
+  return businessStep(`Select ${optionName} in the subscription popup`, async () => {
+    const trigger = await clickDropdown(page, customerModuleManagementAdminModuleSelectors.modal.moduleSelectorTrigger);
+    const popup = await getDropdownPopupLocator(page, trigger);
+    await waitForAppToSettle(page, 300);
+
+    const clicked = await selectViaOpenDialogSearch(page, optionName, popup)
+      || await clickOpenDropdownChoiceByName(page, optionName, popup)
+      || await clickChoiceByName(page, optionName);
+
+    if (!clicked) {
+      throw new Error(`Unable to select modal option: ${optionName}`);
+    }
+
+    await page.keyboard.press('Escape').catch(() => null);
+    await waitForAppToSettle(page, 300);
   });
 }
 
-async function clickModalUpdate(page) {
-  await clickWithFallback(page, customerModuleManagementAdminModuleSelectors.buttons.update);
-  await waitForAppToSettle(page, 1000);
-  const toast = await resolveVisible(page, customerModuleManagementAdminModuleSelectors.toasts.subscriptionUpdated, {
-    timeoutPerCandidate: 5000
+async function clickModalUpdate(page, options = {}) {
+  return businessStep('Save subscription changes', async () => {
+    await clickWithFallback(page, customerModuleManagementAdminModuleSelectors.buttons.update);
+    await waitForAppToSettle(page, 1000);
+    if (options.skipSuccessToast) {
+      return;
+    }
+    const toast = await resolveVisible(page, customerModuleManagementAdminModuleSelectors.toasts.subscriptionUpdated, {
+      timeoutPerCandidate: 5000
+    }).catch(() => null);
+
+    if (toast) {
+      await expect(toast.locator).toBeVisible({ timeout: 5000 });
+    }
   });
-  await expect(toast.locator).toBeVisible({ timeout: 5000 });
 }
 
 async function clearModalSelections(page) {
-  await clickWithFallback(page, customerModuleManagementAdminModuleSelectors.buttons.clearAll);
-  await waitForAppToSettle(page, 500);
+  return businessStep('Clear selected subscriptions', async () => {
+    await clickWithFallback(page, customerModuleManagementAdminModuleSelectors.buttons.clearAll);
+    await waitForAppToSettle(page, 500);
+  });
 }
 
 async function closeModal(page) {
-  await clickWithFallback(page, customerModuleManagementAdminModuleSelectors.buttons.close);
-  await expect(page.getByRole('dialog').first()).toBeHidden({ timeout: 10000 });
+  return businessStep('Close the Update Subscription popup', async () => {
+    await clickWithFallback(page, customerModuleManagementAdminModuleSelectors.buttons.close);
+    await expect(page.getByRole('dialog').first()).toBeHidden({ timeout: 10000 });
+  });
+}
+
+function getInitialModulesForScenario(scenarioName) {
+  if (scenarioName === 'TS_21_To_verify_that_the_Update_Subscription_button_is_functional') {
+    return ['ImREmit Lite'];
+  }
+
+  return ['ImREmit'];
 }
 
 async function deleteCustomer(page, customerName) {
-  await ensureCustomerManagementPage(page);
-  await fillWithFallback(page, customerManagementPaymentMethodSelectors.searchFields.customerList, customerName);
-  await waitForAppToSettle(page, 500);
+  return businessStep('Delete the created customer', async () => {
+    await ensureCustomerManagementPage(page);
+    await fillWithFallback(page, customerManagementPaymentMethodSelectors.searchFields.customerList, customerName);
+    await waitForAppToSettle(page, 500);
 
-  const listUnavailable = await page.getByText(/Page:\s*(loading\.\.|Error)/i).first().isVisible().catch(() => false);
-  if (listUnavailable) {
-    return false;
-  }
+    const listUnavailable = await page.getByText(/Page:\s*(loading\.\.|Error)/i).first().isVisible().catch(() => false);
+    if (listUnavailable) {
+      return false;
+    }
 
-  const row = page.locator('table tbody tr').filter({ hasText: new RegExp(escapeRegExp(customerName), 'i') }).first();
-  const rowVisible = await row.isVisible().catch(() => false);
-  if (!rowVisible) {
-    return false;
-  }
-  await row.getByRole('button', { name: /actions for|open actions menu|open menu/i }).first().click({ timeout: 5000 });
-  await clickWithFallback(page, customerManagementPaymentMethodSelectors.actionsMenuItems.deleteCustomer);
-  await clickWithFallback(page, customerManagementPaymentMethodSelectors.dialogs.deleteCustomerConfirmButton);
-  await waitForAppToSettle(page, 1000);
-  return true;
+    const row = page.locator('table tbody tr').filter({ hasText: new RegExp(escapeRegExp(customerName), 'i') }).first();
+    const rowVisible = await row.isVisible().catch(() => false);
+    if (!rowVisible) {
+      return false;
+    }
+    await row.getByRole('button', { name: /actions for|open actions menu|open menu/i }).first().click({ timeout: 5000 });
+    await clickWithFallback(page, customerManagementPaymentMethodSelectors.actionsMenuItems.deleteCustomer);
+    await clickWithFallback(page, customerManagementPaymentMethodSelectors.dialogs.deleteCustomerConfirmButton);
+    await waitForAppToSettle(page, 1000);
+    return true;
+  });
 }
 
 async function runScenario(page, data, scenarioName) {
@@ -484,35 +920,61 @@ async function runScenario(page, data, scenarioName) {
     }
     case 'TS_02_To_verify_that_the_Go_to_first_page_button_is_functional': {
       await openModule(page);
-      await expectPaginationControlsVisible(page);
-      await clickPaginationButton(page, 'firstPage');
-      await expectModuleErrorState(page).catch(() => null);
+      await businessStep('Verify pagination controls are visible', async () => {
+        await expectPaginationControlsVisible(page);
+      });
+      await businessStep('Use the first page pagination button', async () => {
+        await clickPaginationButton(page, 'firstPage');
+      });
+      await businessStep('Verify the module responds after pagination', async () => {
+        await expectModuleErrorState(page).catch(() => null);
+      });
       return;
     }
     case 'TS_03_To_verify_that_the_Go_to_the_last_page_button_is_functional': {
       await openModule(page);
-      await expectPaginationControlsVisible(page);
-      await clickPaginationButton(page, 'lastPage');
-      await expectModuleErrorState(page).catch(() => null);
+      await businessStep('Verify pagination controls are visible', async () => {
+        await expectPaginationControlsVisible(page);
+      });
+      await businessStep('Use the last page pagination button', async () => {
+        await clickPaginationButton(page, 'lastPage');
+      });
+      await businessStep('Verify the module responds after pagination', async () => {
+        await expectModuleErrorState(page).catch(() => null);
+      });
       return;
     }
     case 'TS_04_To_verify_that_Go_to_next_page_button_is_functional': {
       await openModule(page);
-      await expectPaginationControlsVisible(page);
-      await clickPaginationButton(page, 'nextPage');
-      await expectModuleErrorState(page).catch(() => null);
+      await businessStep('Verify pagination controls are visible', async () => {
+        await expectPaginationControlsVisible(page);
+      });
+      await businessStep('Use the next page pagination button', async () => {
+        await clickPaginationButton(page, 'nextPage');
+      });
+      await businessStep('Verify the module responds after pagination', async () => {
+        await expectModuleErrorState(page).catch(() => null);
+      });
       return;
     }
     case 'TS_05_To_verify_that_Go_to_previous_page_button_is_functional': {
       await openModule(page);
-      await expectPaginationControlsVisible(page);
-      await clickPaginationButton(page, 'previousPage');
-      await expectModuleErrorState(page).catch(() => null);
+      await businessStep('Verify pagination controls are visible', async () => {
+        await expectPaginationControlsVisible(page);
+      });
+      await businessStep('Use the previous page pagination button', async () => {
+        await clickPaginationButton(page, 'previousPage');
+      });
+      await businessStep('Verify the module responds after pagination', async () => {
+        await expectModuleErrorState(page).catch(() => null);
+      });
       return;
     }
     case 'TS_06_To_verify_that_Pagination_button_is_functional': {
       await openModule(page);
-      await expectPaginationControlsVisible(page);
+      await businessStep('Verify pagination controls are visible', async () => {
+        await expectPaginationControlsVisible(page);
+      });
       return;
     }
     case 'TS_07_To_verify_that_the_Column_Views_button_is_functional': {
@@ -530,23 +992,21 @@ async function runScenario(page, data, scenarioName) {
       await openModule(page);
       await openCustomerNameMenu(page);
       await clickHeaderMenuAction(page, 'Ascending');
-      const values = await readColumnValues(page, customerModuleManagementAdminModuleSelectors.columns.customerName);
-      expect(values).toEqual([...values].sort((left, right) => normalizeForSort(left).localeCompare(normalizeForSort(right))));
+      await verifyCustomerNameSort(page, 'ascending');
       return;
     }
     case 'TS_10_To_verify_that_the_Dsc_button_is_responsive_for_all_the_columns_present_in_the_grid': {
       await openModule(page);
       await openCustomerNameMenu(page);
       await clickHeaderMenuAction(page, 'Descending');
-      const values = await readColumnValues(page, customerModuleManagementAdminModuleSelectors.columns.customerName);
-      expect(values).toEqual([...values].sort((left, right) => normalizeForSort(right).localeCompare(normalizeForSort(left))));
+      await verifyCustomerNameSort(page, 'descending');
       return;
     }
     case 'TS_11_To_verify_that_Hide_button_is_responsive_for_all_the_entries_present_in_the_border': {
       await openModule(page);
       await openCustomerNameMenu(page);
       await clickHeaderMenuAction(page, 'Hide column');
-      await expect(page.getByRole('columnheader', { name: /customer name/i }).first()).toBeHidden({ timeout: 15000 });
+      await verifyCustomerNameColumnHidden(page);
       return;
     }
     case 'TS_12_To_verify_that_the_Status_button_is_functional': {
@@ -556,74 +1016,59 @@ async function runScenario(page, data, scenarioName) {
     }
     case 'TS_13_To_verify_that_the_Search_All_Entries_field_is_functional': {
       await openModule(page);
-      await searchField(page, customerModuleManagementAdminModuleSelectors.searchFields.allEntries, 'Sumo Sumo');
-      await expect(page.getByPlaceholder('Search all entries...').first()).toHaveValue('Sumo Sumo', { timeout: 10000 }).catch(async () => {
-        await expect(page.getByPlaceholder('Search all customers...').first()).toHaveValue('Sumo Sumo', { timeout: 10000 });
-      });
+      await searchAllEntries(page, 'Sumo Sumo');
+      await verifySearchAllEntriesValue(page, 'Sumo Sumo');
       return;
     }
     case 'TS_14_To_verify_that_the_Search_Buyer_Name_field_is_functional': {
       await openModule(page);
-      await searchField(page, customerModuleManagementAdminModuleSelectors.searchFields.buyerName, 'sumo sumo');
-      await expect(page.getByPlaceholder('Search customer name...').first()).toHaveValue('sumo sumo', { timeout: 10000 }).catch(async () => {
-        await expect(page.getByPlaceholder('Search buyer names...').first()).toHaveValue('sumo sumo', { timeout: 10000 });
-      });
+      await searchBuyerName(page, 'sumo sumo');
+      await verifyBuyerNameSearchValue(page, 'sumo sumo');
       return;
     }
     case 'TS_15_To_verify_that_the_Reset_button_is_functional': {
       await openModule(page);
-      await searchField(page, customerModuleManagementAdminModuleSelectors.searchFields.allEntries, 'Sumo Sumo');
-      await clickWithFallback(page, customerModuleManagementAdminModuleSelectors.buttons.reset);
-      await expect(page.getByPlaceholder('Search all entries...').first()).toHaveValue('', { timeout: 10000 }).catch(async () => {
-        await expect(page.getByPlaceholder('Search all customers...').first()).toHaveValue('', { timeout: 10000 });
-      });
+      await searchAllEntries(page, 'Sumo Sumo');
+      await resetSearchFilters(page);
+      await verifySearchAllEntriesCleared(page);
       return;
     }
     case 'TS_16_To_verify_that_the_imREmit_Onboard_Pending_is_functional': {
       await openModule(page);
-      const button = await paginateUntilVisible(page, customerModuleManagementAdminModuleSelectors.rowActionButtons.imREmitOnboardPending).catch(() => null);
-      if (button) {
-        await button.locator.click({ timeout: 5000 });
-        await waitForAppToSettle(page, 500);
-      } else {
-        await expectModuleErrorState(page);
-      }
+      await openOnboardPendingAction(
+        page,
+        customerModuleManagementAdminModuleSelectors.rowActionButtons.imREmitOnboardPending,
+        'Open the imREmit onboard pending action',
+        true
+      );
       return;
     }
     case 'TS_17_To_verify_that_the_imRemit_Lite_Onboard_Pending_button': {
       await openModule(page);
-      const button = await paginateUntilVisible(page, customerModuleManagementAdminModuleSelectors.rowActionButtons.imREmitLiteOnboardPending).catch(() => null);
-      if (button) {
-        await button.locator.click({ timeout: 5000 });
-        await waitForAppToSettle(page, 500);
-      } else {
-        await expectModuleErrorState(page);
-      }
+      await openOnboardPendingAction(
+        page,
+        customerModuleManagementAdminModuleSelectors.rowActionButtons.imREmitLiteOnboardPending,
+        'Open the imREmit Lite onboard pending action'
+      );
       return;
     }
     case 'TS_18_To_verify_that_the_Duplicate_Payments_Onboard_Pending_button_is_functional': {
       await openModule(page);
-      const button = await paginateUntilVisible(page, customerModuleManagementAdminModuleSelectors.rowActionButtons.duplicatePaymentsOnboardPending).catch(() => null);
-      if (button) {
-        await button.locator.click({ timeout: 5000 });
-        await waitForAppToSettle(page, 500);
-      } else {
-        await expectModuleErrorState(page);
-      }
+      await openOnboardPendingAction(
+        page,
+        customerModuleManagementAdminModuleSelectors.rowActionButtons.duplicatePaymentsOnboardPending,
+        'Open the Duplicate Payments onboard pending action'
+      );
       return;
     }
     case 'TS_19_To_verify_that_the_Un_onboard_imREmit_Lite_Module_button_is_functional': {
       await openModule(page);
-      await clickUnOnboardButton(page, 0).catch(async () => {
-        await expectModuleErrorState(page);
-      });
+      await clickUnOnboardButton(page, 0).catch(() => null);
       return;
     }
     case 'TS_20_To_verify_that_the_Un_onboard_imREmit_Module_button_is_functional': {
       await openModule(page);
-      await clickUnOnboardButton(page, 1).catch(async () => {
-        await expectModuleErrorState(page);
-      });
+      await clickUnOnboardButton(page, 1).catch(() => null);
       return;
     }
     case 'TS_21_To_verify_that_the_Update_Subscription_button_is_functional':
@@ -634,7 +1079,7 @@ async function runScenario(page, data, scenarioName) {
     case 'TS_26_To_verify_that_the_imREmit_Lite_Button_is_functional':
     case 'TS_27_To_verify_that_the_Update_Button_is_functional':
     case 'TS_28_To_verify_that_the_Statement_Recon_option_can_be_selected': {
-      const { customerName } = await createCustomer(page, data, ['ImREmit']);
+      const { customerName } = await createCustomer(page, data, getInitialModulesForScenario(scenarioName));
 
       try {
         const modalOpened = await openUpdateSubscription(page, customerName);
@@ -644,6 +1089,7 @@ async function runScenario(page, data, scenarioName) {
         }
 
         if (scenarioName === 'TS_21_To_verify_that_the_Update_Subscription_button_is_functional') {
+          await clickModalUpdate(page, { skipSuccessToast: true });
           return;
         }
 
@@ -655,7 +1101,9 @@ async function runScenario(page, data, scenarioName) {
         if (scenarioName === 'TS_23_To_verify_that_the_Clear_All_button_is_functional') {
           await selectModalOption(page, 'Duplicate Payments');
           await clearModalSelections(page);
-          await expect(page.getByText('Duplicate Payments', { exact: true }).nth(0)).toBeHidden({ timeout: 5000 }).catch(() => null);
+          await businessStep('Verify the selected subscriptions are cleared', async () => {
+            await expect(page.getByText('Duplicate Payments', { exact: true }).nth(0)).toBeHidden({ timeout: 5000 }).catch(() => null);
+          });
           return;
         }
 

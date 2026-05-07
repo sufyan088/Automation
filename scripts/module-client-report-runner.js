@@ -204,6 +204,8 @@ function enrichAllureResults(moduleDir) {
 function createModuleClientReportRunner(config) {
   const {
     modulePath,
+    testPath = modulePath,
+    useExactSpecFiles = false,
     shareableDirRelative,
     zipPathRelative,
     environmentLines,
@@ -215,6 +217,9 @@ function createModuleClientReportRunner(config) {
 
   const moduleDir = path.join(rootDir, modulePath);
   const shareableDir = path.join(rootDir, shareableDirRelative);
+  const exactSpecFiles = useExactSpecFiles
+    ? collectSpecFiles(moduleDir).map((filePath) => path.relative(rootDir, filePath).split(path.sep).join('/'))
+    : null;
 
   return function runModuleClientReport() {
     let baselineBackupDir = null;
@@ -228,11 +233,13 @@ function createModuleClientReportRunner(config) {
       fs.mkdirSync(path.join(rootDir, 'Result'), { recursive: true });
     }
 
-    const testArgs = [
-      'playwright',
-      'test',
-      modulePath,
-    ];
+    const testArgs = ['playwright', 'test'];
+
+    if (useExactSpecFiles) {
+      testArgs.push(...exactSpecFiles);
+    } else {
+      testArgs.push(testPath);
+    }
 
     if (mode === 'last-failed') {
       testArgs.push('--last-failed');
