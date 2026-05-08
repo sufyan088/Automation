@@ -21,6 +21,10 @@ function humanizeScenarioTitle(scenarioName) {
     .trim();
 }
 
+async function reportStep(title, action) {
+  return test.step(title, action);
+}
+
 function getRenderedModuleName(moduleName) {
   if (moduleName === customerModuleManagementAdminModuleNewSelectors.modules.statementRecon) {
     return customerModuleManagementAdminModuleNewSelectors.labels.statementReconRendered;
@@ -218,6 +222,8 @@ async function selectModalOption(page, moduleName) {
   for (const optionName of getModuleAliases(moduleName)) {
     if (await clickChoiceByName(page, optionName)) {
       await waitForAppToSettle(page, 500);
+      await page.keyboard.press('Escape').catch(() => null);
+      await waitForAppToSettle(page, 300);
       return;
     }
   }
@@ -256,13 +262,20 @@ async function expectModalSelfFundingLabel(page, moduleName) {
 
 async function toggleModalSelfFunding(page, moduleName) {
   const label = await expectModalSelfFundingLabel(page, moduleName);
-  await label.click({ timeout: 5000 });
+  const card = label.locator('xpath=ancestor::div[.//label[contains(normalize-space(), "Self Fund")]][1]').first();
+  const switchControl = card.getByRole('switch').first();
+  if (await switchControl.isVisible().catch(() => false)) {
+    await switchControl.click({ timeout: 5000 });
+  } else {
+    await label.click({ timeout: 5000 });
+  }
   await waitForAppToSettle(page, 500);
 }
 
 async function clickModalUpdate(page) {
   await clickWithFallback(page, customerModuleManagementAdminModuleNewSelectors.modulePage.buttons.update);
   await waitForAppToSettle(page, 1000);
+  await expect(page.getByRole('dialog').first()).toBeHidden({ timeout: 10000 }).catch(() => null);
 }
 
 async function closeModal(page) {
@@ -294,26 +307,28 @@ async function ensureCustomerManagementPage(page) {
 }
 
 async function deleteCustomer(page, customerName) {
-  await ensureCustomerManagementPage(page);
-  await fillWithFallback(page, customerManagementPaymentMethodSelectors.searchFields.customerList, customerName);
-  await waitForAppToSettle(page, 500);
+  return reportStep('Delete created customer', async () => {
+    await ensureCustomerManagementPage(page);
+    await fillWithFallback(page, customerManagementPaymentMethodSelectors.searchFields.customerList, customerName);
+    await waitForAppToSettle(page, 500);
 
-  const listUnavailable = await page.getByText(/Page:\s*(loading\.\.|Error)/i).first().isVisible().catch(() => false);
-  if (listUnavailable) {
-    return false;
-  }
+    const listUnavailable = await page.getByText(/Page:\s*(loading\.\.|Error)/i).first().isVisible().catch(() => false);
+    if (listUnavailable) {
+      return false;
+    }
 
-  const row = page.locator('table tbody tr').filter({ hasText: new RegExp(escapeRegExp(customerName), 'i') }).first();
-  const rowVisible = await row.isVisible().catch(() => false);
-  if (!rowVisible) {
-    return false;
-  }
+    const row = page.locator('table tbody tr').filter({ hasText: new RegExp(escapeRegExp(customerName), 'i') }).first();
+    const rowVisible = await row.isVisible().catch(() => false);
+    if (!rowVisible) {
+      return false;
+    }
 
-  await row.getByRole('button', { name: /actions for|open actions menu|open menu/i }).first().click({ timeout: 5000 });
-  await clickWithFallback(page, customerManagementPaymentMethodSelectors.actionsMenuItems.deleteCustomer);
-  await clickWithFallback(page, customerManagementPaymentMethodSelectors.dialogs.deleteCustomerConfirmButton);
-  await waitForAppToSettle(page, 1000);
-  return true;
+    await row.getByRole('button', { name: /actions for|open actions menu|open menu/i }).first().click({ timeout: 5000 });
+    await clickWithFallback(page, customerManagementPaymentMethodSelectors.actionsMenuItems.deleteCustomer);
+    await clickWithFallback(page, customerManagementPaymentMethodSelectors.dialogs.deleteCustomerConfirmButton);
+    await waitForAppToSettle(page, 1000);
+    return true;
+  });
 }
 
 async function runScenario(page, data, scenarioName) {
@@ -322,34 +337,58 @@ async function runScenario(page, data, scenarioName) {
 
   switch (scenarioName) {
     case 'TS_29_To_verify_that_Management_Role_has_access_to_Customer_Module_Management': {
-      await openModule(page);
+      await reportStep('Open Customer Module Management page', async () => {
+        await openModule(page);
+      });
       return;
     }
     case 'TS_30_To_verify_a_new_column_called_Self_Funding_in_Customer_Module_Table':
     case 'TS_31_To_verify_new_column_called_Self_Funding_in_Customer_Module_Table': {
-      await openModule(page);
-      await expectTableHeaderVisible(page, columns.selfFunding);
+      await reportStep('Open Customer Module Management page', async () => {
+        await openModule(page);
+      });
+      await reportStep('Verify Self Funding column is visible', async () => {
+        await expectTableHeaderVisible(page, columns.selfFunding);
+      });
       return;
     }
     case 'TS_32_verify_Self_Funding_column_only_populate_if_customer_Subscriptions_for_below_where_Self_Funding_enabled': {
-      const { customerName } = await createCustomerWithModules(page, data, [modules.statementRecon], [modules.statementRecon]);
+      const { customerName } = await reportStep('Create customer with Statement Recon self-funding enabled', async () => {
+        return createCustomerWithModules(page, data, [modules.statementRecon], [modules.statementRecon]);
+      });
       try {
-        await expectCustomerRow(page, customerName);
-        await expectTableHeaderVisible(page, columns.selfFunding);
-        await expectCustomerRowColumnContains(page, customerName, columns.selfFunding, getModuleAliases(modules.statementRecon));
+        await reportStep('Open created customer row in Customer Module Management', async () => {
+          await expectCustomerRow(page, customerName);
+        });
+        await reportStep('Verify Self Funding column is visible', async () => {
+          await expectTableHeaderVisible(page, columns.selfFunding);
+        });
+        await reportStep('Verify Self Funding column shows Statement Recon', async () => {
+          await expectCustomerRowColumnContains(page, customerName, columns.selfFunding, getModuleAliases(modules.statementRecon));
+        });
         return;
       } finally {
         await deleteCustomer(page, customerName).catch(() => null);
       }
     }
     case 'TS_33_verify_user_clicks_Update_Sub_then_proceeds_to_remove_DP_should_removed_from_Sub_Col': {
-      const { customerName } = await createCustomerWithModules(page, data, [modules.duplicatePayments]);
+      const { customerName } = await reportStep('Create customer with Duplicate Payments module', async () => {
+        return createCustomerWithModules(page, data, [modules.duplicatePayments]);
+      });
       try {
-        await openUpdateSubscription(page, customerName);
-        await removeModalSelection(page, modules.duplicatePayments);
-        await clickModalUpdate(page);
-        await expectCustomerRow(page, customerName);
-        await expectCustomerRowColumnNotContains(page, customerName, columns.subscriptions, getModuleAliases(modules.duplicatePayments));
+        await reportStep('Open Update Subscription for created customer', async () => {
+          await openUpdateSubscription(page, customerName);
+        });
+        await reportStep('Remove Duplicate Payments subscription', async () => {
+          await removeModalSelection(page, modules.duplicatePayments);
+        });
+        await reportStep('Save updated subscriptions', async () => {
+          await clickModalUpdate(page);
+        });
+        await reportStep('Verify Subscriptions column no longer shows Duplicate Payments', async () => {
+          await expectCustomerRow(page, customerName);
+          await expectCustomerRowColumnNotContains(page, customerName, columns.subscriptions, getModuleAliases(modules.duplicatePayments));
+        });
         return;
       } finally {
         await closeModal(page).catch(() => null);
@@ -357,13 +396,23 @@ async function runScenario(page, data, scenarioName) {
       }
     }
     case 'TS_34_verify_user_clicks_on_Update_Sub_then_proceeds_to_remove_SR_then_Sub_removed_from_Sub_col': {
-      const { customerName } = await createCustomerWithModules(page, data, [modules.statementRecon]);
+      const { customerName } = await reportStep('Create customer with Statement Recon module', async () => {
+        return createCustomerWithModules(page, data, [modules.statementRecon]);
+      });
       try {
-        await openUpdateSubscription(page, customerName);
-        await removeModalSelection(page, modules.statementRecon);
-        await clickModalUpdate(page);
-        await expectCustomerRow(page, customerName);
-        await expectCustomerRowColumnNotContains(page, customerName, columns.subscriptions, getModuleAliases(modules.statementRecon));
+        await reportStep('Open Update Subscription for created customer', async () => {
+          await openUpdateSubscription(page, customerName);
+        });
+        await reportStep('Remove Statement Recon subscription', async () => {
+          await removeModalSelection(page, modules.statementRecon);
+        });
+        await reportStep('Save updated subscriptions', async () => {
+          await clickModalUpdate(page);
+        });
+        await reportStep('Verify Subscriptions column no longer shows Statement Recon', async () => {
+          await expectCustomerRow(page, customerName);
+          await expectCustomerRowColumnNotContains(page, customerName, columns.subscriptions, getModuleAliases(modules.statementRecon));
+        });
         return;
       } finally {
         await closeModal(page).catch(() => null);
@@ -371,15 +420,25 @@ async function runScenario(page, data, scenarioName) {
       }
     }
     case 'TS_35_To_verify_that_If_user_clicks_on_Update_Sub_then_proceeds_to_remove_DP_and_SR': {
-      const { customerName } = await createCustomerWithModules(page, data, [modules.duplicatePayments, modules.statementRecon]);
+      const { customerName } = await reportStep('Create customer with Duplicate Payments and Statement Recon modules', async () => {
+        return createCustomerWithModules(page, data, [modules.duplicatePayments, modules.statementRecon]);
+      });
       try {
-        await openUpdateSubscription(page, customerName);
-        await removeModalSelection(page, modules.duplicatePayments);
-        await removeModalSelection(page, modules.statementRecon);
-        await clickModalUpdate(page);
-        await expectCustomerRow(page, customerName);
-        await expectCustomerRowColumnNotContains(page, customerName, columns.subscriptions, getModuleAliases(modules.duplicatePayments));
-        await expectCustomerRowColumnNotContains(page, customerName, columns.subscriptions, getModuleAliases(modules.statementRecon));
+        await reportStep('Open Update Subscription for created customer', async () => {
+          await openUpdateSubscription(page, customerName);
+        });
+        await reportStep('Remove Duplicate Payments and Statement Recon subscriptions', async () => {
+          await removeModalSelection(page, modules.duplicatePayments);
+          await removeModalSelection(page, modules.statementRecon);
+        });
+        await reportStep('Save updated subscriptions', async () => {
+          await clickModalUpdate(page);
+        });
+        await reportStep('Verify Subscriptions column no longer shows Duplicate Payments or Statement Recon', async () => {
+          await expectCustomerRow(page, customerName);
+          await expectCustomerRowColumnNotContains(page, customerName, columns.subscriptions, getModuleAliases(modules.duplicatePayments));
+          await expectCustomerRowColumnNotContains(page, customerName, columns.subscriptions, getModuleAliases(modules.statementRecon));
+        });
         return;
       } finally {
         await closeModal(page).catch(() => null);
@@ -387,14 +446,24 @@ async function runScenario(page, data, scenarioName) {
       }
     }
     case 'TS_36_To_verify_user_click_Update_Sub_and_remove_DP_then_Sub_removed_from_Self_Funding_Column': {
-      const { customerName } = await createCustomerWithModules(page, data, [modules.duplicatePayments], [modules.duplicatePayments]);
+      const { customerName } = await reportStep('Create customer with Duplicate Payments self-funding enabled', async () => {
+        return createCustomerWithModules(page, data, [modules.duplicatePayments], [modules.duplicatePayments]);
+      });
       try {
-        await openUpdateSubscription(page, customerName);
-        await expectModalSelfFundingLabel(page, modules.duplicatePayments);
-        await toggleModalSelfFunding(page, modules.duplicatePayments);
-        await clickModalUpdate(page);
-        await expectCustomerRow(page, customerName);
-        await expectCustomerRowColumnNotContains(page, customerName, columns.selfFunding, getModuleAliases(modules.duplicatePayments));
+        await reportStep('Open Update Subscription for created customer', async () => {
+          await openUpdateSubscription(page, customerName);
+        });
+        await reportStep('Disable Duplicate Payments self-funding', async () => {
+          await expectModalSelfFundingLabel(page, modules.duplicatePayments);
+          await toggleModalSelfFunding(page, modules.duplicatePayments);
+        });
+        await reportStep('Save updated subscriptions', async () => {
+          await clickModalUpdate(page);
+        });
+        await reportStep('Verify Self Funding column no longer shows Duplicate Payments', async () => {
+          await expectCustomerRow(page, customerName);
+          await expectCustomerRowColumnNotContains(page, customerName, columns.selfFunding, getModuleAliases(modules.duplicatePayments));
+        });
         return;
       } finally {
         await closeModal(page).catch(() => null);
@@ -402,14 +471,24 @@ async function runScenario(page, data, scenarioName) {
       }
     }
     case 'TS_37_To_verify_user_click_Update_Sub_and_remove_SR_then_Sub_removed_from_Self_Funding_Column': {
-      const { customerName } = await createCustomerWithModules(page, data, [modules.statementRecon], [modules.statementRecon]);
+      const { customerName } = await reportStep('Create customer with Statement Recon self-funding enabled', async () => {
+        return createCustomerWithModules(page, data, [modules.statementRecon], [modules.statementRecon]);
+      });
       try {
-        await openUpdateSubscription(page, customerName);
-        await expectModalSelfFundingLabel(page, modules.statementRecon);
-        await toggleModalSelfFunding(page, modules.statementRecon);
-        await clickModalUpdate(page);
-        await expectCustomerRow(page, customerName);
-        await expectCustomerRowColumnNotContains(page, customerName, columns.selfFunding, getModuleAliases(modules.statementRecon));
+        await reportStep('Open Update Subscription for created customer', async () => {
+          await openUpdateSubscription(page, customerName);
+        });
+        await reportStep('Disable Statement Recon self-funding', async () => {
+          await expectModalSelfFundingLabel(page, modules.statementRecon);
+          await toggleModalSelfFunding(page, modules.statementRecon);
+        });
+        await reportStep('Save updated subscriptions', async () => {
+          await clickModalUpdate(page);
+        });
+        await reportStep('Verify Self Funding column no longer shows Statement Recon', async () => {
+          await expectCustomerRow(page, customerName);
+          await expectCustomerRowColumnNotContains(page, customerName, columns.selfFunding, getModuleAliases(modules.statementRecon));
+        });
         return;
       } finally {
         await closeModal(page).catch(() => null);
@@ -417,17 +496,27 @@ async function runScenario(page, data, scenarioName) {
       }
     }
     case 'TS_38_To_verify_user_click_Update_Sub_and_remove_SR_and_DP_then_Sub_removed_from_Self_Funding_Column': {
-      const { customerName } = await createCustomerWithModules(page, data, [modules.duplicatePayments, modules.statementRecon], [modules.duplicatePayments, modules.statementRecon]);
+      const { customerName } = await reportStep('Create customer with Duplicate Payments and Statement Recon self-funding enabled', async () => {
+        return createCustomerWithModules(page, data, [modules.duplicatePayments, modules.statementRecon], [modules.duplicatePayments, modules.statementRecon]);
+      });
       try {
-        await openUpdateSubscription(page, customerName);
-        await expectModalSelfFundingLabel(page, modules.statementRecon);
-        await toggleModalSelfFunding(page, modules.statementRecon);
-        await expectModalSelfFundingLabel(page, modules.duplicatePayments);
-        await toggleModalSelfFunding(page, modules.duplicatePayments);
-        await clickModalUpdate(page);
-        await expectCustomerRow(page, customerName);
-        await expectCustomerRowColumnNotContains(page, customerName, columns.selfFunding, getModuleAliases(modules.statementRecon));
-        await expectCustomerRowColumnNotContains(page, customerName, columns.selfFunding, getModuleAliases(modules.duplicatePayments));
+        await reportStep('Open Update Subscription for created customer', async () => {
+          await openUpdateSubscription(page, customerName);
+        });
+        await reportStep('Disable Statement Recon and Duplicate Payments self-funding', async () => {
+          await expectModalSelfFundingLabel(page, modules.statementRecon);
+          await toggleModalSelfFunding(page, modules.statementRecon);
+          await expectModalSelfFundingLabel(page, modules.duplicatePayments);
+          await toggleModalSelfFunding(page, modules.duplicatePayments);
+        });
+        await reportStep('Save updated subscriptions', async () => {
+          await clickModalUpdate(page);
+        });
+        await reportStep('Verify Self Funding column no longer shows Statement Recon or Duplicate Payments', async () => {
+          await expectCustomerRow(page, customerName);
+          await expectCustomerRowColumnNotContains(page, customerName, columns.selfFunding, getModuleAliases(modules.statementRecon));
+          await expectCustomerRowColumnNotContains(page, customerName, columns.selfFunding, getModuleAliases(modules.duplicatePayments));
+        });
         return;
       } finally {
         await closeModal(page).catch(() => null);
@@ -435,12 +524,20 @@ async function runScenario(page, data, scenarioName) {
       }
     }
     case 'TS_39_To_verify_that_if_user_clicks_on_Update_Sub_and_then_proceeds_to_add_DP_same_toggle_for_Self_Funding_appear': {
-      const { customerName } = await createCustomerWithModules(page, data, [modules.imREmit]);
+      const { customerName } = await reportStep('Create customer with imREmit module', async () => {
+        return createCustomerWithModules(page, data, [modules.imREmit]);
+      });
       try {
-        await openUpdateSubscription(page, customerName);
-        await selectModalOption(page, modules.duplicatePayments);
-        await expectModalSelfFundingLabel(page, modules.duplicatePayments);
-        await toggleModalSelfFunding(page, modules.duplicatePayments);
+        await reportStep('Open Update Subscription for created customer', async () => {
+          await openUpdateSubscription(page, customerName);
+        });
+        await reportStep('Add Duplicate Payments subscription', async () => {
+          await selectModalOption(page, modules.duplicatePayments);
+        });
+        await reportStep('Verify and enable Duplicate Payments self-funding toggle', async () => {
+          await expectModalSelfFundingLabel(page, modules.duplicatePayments);
+          await toggleModalSelfFunding(page, modules.duplicatePayments);
+        });
         return;
       } finally {
         await closeModal(page).catch(() => null);
@@ -448,12 +545,20 @@ async function runScenario(page, data, scenarioName) {
       }
     }
     case 'TS_40_To_verify_that_if_user_clicks_on_Update_Sub_and_then_proceeds_to_add_SR_same_toggle_for_Self_Funding_appear': {
-      const { customerName } = await createCustomerWithModules(page, data, [modules.imREmit]);
+      const { customerName } = await reportStep('Create customer with imREmit module', async () => {
+        return createCustomerWithModules(page, data, [modules.imREmit]);
+      });
       try {
-        await openUpdateSubscription(page, customerName);
-        await selectModalOption(page, modules.statementRecon);
-        await expectModalSelfFundingLabel(page, modules.statementRecon);
-        await toggleModalSelfFunding(page, modules.statementRecon);
+        await reportStep('Open Update Subscription for created customer', async () => {
+          await openUpdateSubscription(page, customerName);
+        });
+        await reportStep('Add Statement Recon subscription', async () => {
+          await selectModalOption(page, modules.statementRecon);
+        });
+        await reportStep('Verify and enable Statement Recon self-funding toggle', async () => {
+          await expectModalSelfFundingLabel(page, modules.statementRecon);
+          await toggleModalSelfFunding(page, modules.statementRecon);
+        });
         return;
       } finally {
         await closeModal(page).catch(() => null);
@@ -461,15 +566,23 @@ async function runScenario(page, data, scenarioName) {
       }
     }
     case 'TS_41_To_verify_if_user_clicks_on_Update_Sub_and_then_proceeds_to_add_SRand_DP_same_toggle_for_Self_Funding_appear': {
-      const { customerName } = await createCustomerWithModules(page, data, [modules.imREmit]);
+      const { customerName } = await reportStep('Create customer with imREmit module', async () => {
+        return createCustomerWithModules(page, data, [modules.imREmit]);
+      });
       try {
-        await openUpdateSubscription(page, customerName);
-        await selectModalOption(page, modules.statementRecon);
-        await expectModalSelfFundingLabel(page, modules.statementRecon);
-        await toggleModalSelfFunding(page, modules.statementRecon);
-        await selectModalOption(page, modules.duplicatePayments);
-        await expectModalSelfFundingLabel(page, modules.duplicatePayments);
-        await toggleModalSelfFunding(page, modules.duplicatePayments);
+        await reportStep('Open Update Subscription for created customer', async () => {
+          await openUpdateSubscription(page, customerName);
+        });
+        await reportStep('Add Statement Recon and Duplicate Payments subscriptions', async () => {
+          await selectModalOption(page, modules.statementRecon);
+          await selectModalOption(page, modules.duplicatePayments);
+        });
+        await reportStep('Verify and enable self-funding toggles for Statement Recon and Duplicate Payments', async () => {
+          await expectModalSelfFundingLabel(page, modules.statementRecon);
+          await toggleModalSelfFunding(page, modules.statementRecon);
+          await expectModalSelfFundingLabel(page, modules.duplicatePayments);
+          await toggleModalSelfFunding(page, modules.duplicatePayments);
+        });
         return;
       } finally {
         await closeModal(page).catch(() => null);

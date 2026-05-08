@@ -43,6 +43,11 @@ const iterationMatrixCommonSelectors = {
       'h1:has-text("We encountered an issue")',
       'main:has-text("Error details")'
     ],
+    loadingWorkspace: [
+      'text=Loading your workspace...',
+      'status:has-text("Loading Iteration Matrix")',
+      'img[alt*="Loading application" i]'
+    ],
     errorPageRecovery: [
       'button:has-text("Go home")',
       'button:has-text("Refresh page")'

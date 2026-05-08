@@ -58,6 +58,8 @@ Use it as the project-specific companion to [docs/conversion-framework.md](./con
   - `npm run report:iteration-matrix:customer-management-payment-method:last-failed:client`
   - `npm run report:iteration-matrix:customer-management-admin-two:client`
   - `npm run report:iteration-matrix:customer-management-admin-two:last-failed:client`
+  - `npm run report:iteration-matrix:customer-onboarding:client`
+  - `npm run report:iteration-matrix:customer-onboarding:last-failed:client`
   - `npm run report:iteration-matrix:criteria-settings:client`
   - `npm run report:iteration-matrix:criteria-settings:last-failed:client`
 - These flows follow the current Iteration Matrix reporting standard:
@@ -130,13 +132,18 @@ Use it as the project-specific companion to [docs/conversion-framework.md](./con
 - `tests/Iteration_Matrix/Customer_Module_Management_Admin_Module_New/` is helper-backed through `helpers/iteration-matrix/customerModuleManagementAdminModuleNew.js`.
 - The current implemented scenario slice spans TS_29 through TS_41, covering management-role access and the self-funding/update-subscription behavior currently wired in that helper.
 - This slice reuses the Customer Management Admin New create-customer flow for seeded setup work, so create-form and module-loading behavior should be fixed at the shared helper layer first if those scenarios drift.
-- No dedicated client-report wrapper is registered for this module yet; add one only after the module reaches a reusable validation/reporting baseline.
+- The module now has dedicated full-run and last-failed client-report wrappers at `npm run report:iteration-matrix:customer-module-management-admin-module-new:client` and `npm run report:iteration-matrix:customer-module-management-admin-module-new:last-failed:client`.
+- The current module artifact paths are `Result/allure-report-iteration-matrix-customer-module-management-admin-module-new-shareable/` and `Result/iteration-matrix-customer-module-management-admin-module-new.zip`.
 
 ## Customer Onboarding Status
 
-- `tests/Iteration_Matrix/Customer_Onboarding/` and `tests/Iteration_Matrix/Customer_Onboarding_imREmit_Lite/` are scaffolded into shared helper-backed module surfaces.
-- The primary shared implementation surface is `helpers/iteration-matrix/customerOnboarding.js`, which is the correct root-fix layer for create-flow, wizard, and payment/participant behavior.
-- Current stabilization work is still concentrated in the create-customer path; treat onboarding as an active module slice rather than a finished green baseline.
+- `tests/Iteration_Matrix/Customer_Onboarding/` is now helper-backed and validated clean at 21/21 passing specs with `--workers=3`.
+- The primary shared implementation surface is `helpers/iteration-matrix/customerOnboarding.js`, with selectors rooted in `selectors/iteration-matrix/customerOnboarding.selectors.js`.
+- Shared helper/selectors were stabilized for exact wizard `Next page` / `Previous page` navigation, Payment Method and Participant Register save-before-advance behavior, `Return to top` verification, customer-list search semantics for TS_21, and resilient Program Manager selection under module load.
+- Shared auth readiness for this module also depends on the `Loading your workspace...` handling in `helpers/iteration-matrix/auth.js` and `selectors/iteration-matrix/common.selectors.js`.
+- The module now has dedicated full-run and last-failed client-report wrappers at `npm run report:iteration-matrix:customer-onboarding:client` and `npm run report:iteration-matrix:customer-onboarding:last-failed:client`.
+- The finalized module artifact paths are `Result/allure-report-iteration-matrix-customer-onboarding-shareable/` and `Result/iteration-matrix-customer-onboarding.zip`.
+- `tests/Iteration_Matrix/Customer_Onboarding_imREmit_Lite/` remains a separate sibling module surface and should not be conflated with the completed base Customer_Onboarding report scope.
 
 ## Card On File Reporting Status
 

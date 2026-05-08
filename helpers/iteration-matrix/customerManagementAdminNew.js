@@ -44,10 +44,34 @@ function getRenderedModuleName(moduleName) {
   return moduleName;
 }
 
+async function clickFirstVisibleLocator(locator) {
+  const count = await locator.count().catch(() => 0);
+  for (let index = 0; index < count; index += 1) {
+    const candidate = locator.nth(index);
+    if (await candidate.isVisible().catch(() => false)) {
+      await candidate.scrollIntoViewIfNeeded().catch(() => null);
+      await candidate.click({ timeout: 5000 });
+      return true;
+    }
+  }
+
+  return false;
+}
+
 async function clickOptionByName(page, optionName) {
-  const option = page.getByRole('option', { name: optionName, exact: true }).first();
-  await option.waitFor({ state: 'visible', timeout: 15000 });
-  await option.click();
+  const candidates = [
+    page.getByRole('option', { name: optionName, exact: true }),
+    page.getByRole('button', { name: optionName, exact: true }),
+    page.getByText(optionName, { exact: true })
+  ];
+
+  for (const locator of candidates) {
+    if (await clickFirstVisibleLocator(locator)) {
+      return;
+    }
+  }
+
+  throw new Error(`Unable to click option: ${optionName}`);
 }
 
 async function optionOrButtonIsVisible(page, optionName) {
@@ -67,9 +91,15 @@ async function optionOrButtonIsVisible(page, optionName) {
 }
 
 async function clickFirstVisibleOption(page) {
-  const option = page.getByRole('option').first();
-  await option.waitFor({ state: 'visible', timeout: 15000 });
-  await option.click();
+  const option = page.getByRole('option');
+  if (await clickFirstVisibleLocator(option)) {
+    return;
+  }
+
+  await page.keyboard.press('ArrowDown').catch(() => null);
+  await waitForAppToSettle(page, 200);
+  await page.keyboard.press('Enter').catch(() => null);
+  await waitForAppToSettle(page, 300);
 }
 
 async function clickOptionWithFallback(page, optionNames) {
@@ -78,9 +108,20 @@ async function clickOptionWithFallback(page, optionNames) {
       continue;
     }
 
-    const option = page.getByRole('option', { name: String(optionName), exact: true }).first();
-    if (await option.isVisible().catch(() => false)) {
-      await option.click();
+    const candidates = [
+      page.getByRole('option', { name: String(optionName), exact: true }),
+      page.getByRole('button', { name: String(optionName), exact: true }),
+      page.getByText(String(optionName), { exact: true })
+    ];
+
+    for (const locator of candidates) {
+      if (await clickFirstVisibleLocator(locator)) {
+        return;
+      }
+    }
+
+    if (await optionOrButtonIsVisible(page, optionName)) {
+      await clickOptionByName(page, String(optionName));
       return;
     }
   }

@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, customerModuleManagementAdminTwoHelpers } = require('./_shared');
 
 test("TS_30_To_verify_a_new_column_called_Self_Funding_in_Customer_Module_Table", async ({ page }) => {
   const data = loadRuntimeData();
@@ -12,6 +12,7 @@ test("TS_30_To_verify_a_new_column_called_Self_Funding_in_Customer_Module_Table"
   });
 
   await test.step('Run converted flow', async () => {
+    await customerModuleManagementAdminTwoHelpers.runScenario(page, data, 'TS_30_To_verify_a_new_column_called_Self_Funding_in_Customer_Module_Table');
   });
 
   await test.step('Logout from the application', async () => {

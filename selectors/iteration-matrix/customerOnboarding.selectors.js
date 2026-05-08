@@ -18,14 +18,31 @@ const customerOnboardingSelectors = {
     addReconRunnerConfigButton: customerManagementAdminTwoSelectors.wizard.addReconRunnerConfigButton,
     addPaymentRunnerConfigButton: customerManagementAdminTwoSelectors.wizard.addPaymentRunnerConfigButton,
     completeRunnerConfigButton: customerManagementAdminTwoSelectors.wizard.completeRunnerConfigButton,
-    previousButton: [
-      { type: 'role', role: 'button', options: { name: /^Previous\b/i }, name: 'wizard-previous-button' },
+    nextButton: [
       {
         type: 'custom',
-        name: 'wizard-previous-footer-button',
-        factory: (page) => page.locator('button').filter({ hasText: /^Previous$/ }).last()
+        name: 'wizard-next-footer-button-enabled',
+        factory: (page) => page.locator('section.flex.items-center.justify-between button:not([disabled])').filter({ hasText: /^Next$/ }).last()
       },
-      { type: 'text', value: 'Previous page', options: { exact: true }, name: 'wizard-previous-page-text' }
+      {
+        type: 'custom',
+        name: 'wizard-next-button-enabled',
+        factory: (page) => page.locator('button:not([disabled])').filter({ hasText: /^Next$/ }).last()
+      },
+      { type: 'role', role: 'button', options: { name: /^Next$/i }, name: 'wizard-next-button-exact' }
+    ],
+    previousButton: [
+      {
+        type: 'custom',
+        name: 'wizard-previous-footer-button-enabled',
+        factory: (page) => page.locator('section.flex.items-center.justify-between button:not([disabled])').filter({ hasText: /^Previous$/ }).last()
+      },
+      {
+        type: 'custom',
+        name: 'wizard-previous-button-enabled',
+        factory: (page) => page.locator('button:not([disabled])').filter({ hasText: /^Previous$/ }).last()
+      },
+      { type: 'role', role: 'button', options: { name: /^Previous$/i }, name: 'wizard-previous-button-exact' }
     ],
     backToListButton: [
       ...customerManagementPaymentMethodSelectors.wizard.backToListButton,
