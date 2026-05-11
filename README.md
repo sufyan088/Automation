@@ -200,8 +200,10 @@ Use the packaged Iteration Matrix report flows whenever output is meant to be sh
 - dedicated module last-failed flows rerun only failed specs, replace only those result entries, and keep unchanged baseline results intact
 - dedicated module report scripts should be thin wrappers over `scripts/module-client-report-runner.js`
 - readable module Execution steps should be created at the helper layer with business-named `test.step()` actions
+- future module conversions should follow the approved client-report shape by default: keep `Description` limited to `Scenario:` and `Spec File:`, and show the business flow in `Test body` through direct helper-layer steps such as `Create customer with imREmit module` instead of generic wrapper containers
 - `scripts/flatten-generic-allure-steps.js` removes generic wrapper layers such as `Run converted flow` and helper-level `Run TS ...` wrappers only when those wrappers already contain nested business-readable child steps
 - do not rely on report-time flattening as a substitute for helper-layer business steps; flattening only exposes the steps you already created
+- for newly converted modules, avoid introducing spec-level `Run converted flow` wrappers or helper-level `Run <scenario>` shells around the real business steps unless a legacy compatibility reason requires them
 
 If you generate a report manually from existing `allure-results`, run the same result processing first:
 

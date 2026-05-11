@@ -11,9 +11,7 @@ test("TS_12_To_verify_that_Back_to_list_button is_functional_on_the_Participant_
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
-    await customerOnboardingHelpers.runScenario(page, data, test.info().title);
-  });
+  await customerOnboardingHelpers.runScenario(page, data, test.info().title);
 
   await test.step('Logout from the application', async () => {
     await closeSession(page);

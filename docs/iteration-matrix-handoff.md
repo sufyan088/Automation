@@ -60,6 +60,10 @@ Use it as the project-specific companion to [docs/conversion-framework.md](./con
   - `npm run report:iteration-matrix:customer-management-admin-two:last-failed:client`
   - `npm run report:iteration-matrix:customer-onboarding:client`
   - `npm run report:iteration-matrix:customer-onboarding:last-failed:client`
+  - `npm run report:iteration-matrix:customer-onboarding-imremit-lite:client`
+  - `npm run report:iteration-matrix:customer-onboarding-imremit-lite:last-failed:client`
+  - `npm run report:iteration-matrix:duplicate-dashboard-new:client`
+  - `npm run report:iteration-matrix:duplicate-dashboard-new:last-failed:client`
   - `npm run report:iteration-matrix:criteria-settings:client`
   - `npm run report:iteration-matrix:criteria-settings:last-failed:client`
 - These flows follow the current Iteration Matrix reporting standard:
@@ -91,6 +95,12 @@ Use it as the project-specific companion to [docs/conversion-framework.md](./con
 - The shared helper/selectors were stabilized for USA -> Alaska onboarding, optional transmission controls, Duplicate Payments and Statement Recon behavior, and resilient submit success handling.
 - The module has dedicated client-report commands for both full reruns and last-failed merge reruns.
 - Its readable report structure is driven from helper-layer business steps in `helpers/iteration-matrix/customerManagementAdminNew.js`, with report flattening used only to remove the top-level generic wrapper.
+
+## Customer Onboarding imREmit Lite Status
+
+- `tests/Iteration_Matrix/Customer_Onboarding_imREmit_Lite/` is fully converted and validated clean at 5 passing specs.
+- The module has dedicated client-report commands for both full reruns and last-failed merge reruns.
+- Its readable report structure is driven from helper-layer business steps in `helpers/iteration-matrix/customerOnboardingImremitLite.js`.
 
 ## Customer Management Admin NM Status
 
@@ -151,6 +161,30 @@ Use it as the project-specific companion to [docs/conversion-framework.md](./con
 - Report readability was restored without rewriting every spec by shaping the shared helper export layer in `helpers/iteration-matrix/cardOnFile.js`.
 - Treat this as the retrofit pattern for previously converted modules that still expose only a generic `Run converted flow` wrapper in raw spec code.
 
+## Duplicate Dashboard New Status
+
+- `tests/Iteration_Matrix/Duplicate_Dashboard_New/` is helper-backed through `helpers/iteration-matrix/duplicateDashboardNew.js`.
+- The current scenario slice contains TS_31 and is validated clean after moving business execution into helper-owned readable steps.
+- The module now has dedicated full-run and last-failed client-report wrappers at `npm run report:iteration-matrix:duplicate-dashboard-new:client` and `npm run report:iteration-matrix:duplicate-dashboard-new:last-failed:client`.
+- The finalized module artifact paths are `Result/allure-report-iteration-matrix-duplicate-dashboard-new-shareable/` and `Result/iteration-matrix-duplicate-dashboard-new.zip`.
+- Keep this single-spec module distinct from the larger sibling folder `tests/Iteration_Matrix/Duplicate_Dashboard_New_Module/`; exact discovered spec-file scoping is required to avoid cross-folder report contamination.
+
+## Duplicate Dashboard New Module Status
+
+- `tests/Iteration_Matrix/Duplicate_Dashboard_New_Module/` now routes spec execution through `helpers/iteration-matrix/duplicateDashboardNewModule.js` instead of per-spec empty `Run converted flow` wrappers.
+- The initial validated slice is TS_32, using helper-owned steps that create a fresh Duplicate Payments customer, open the dashboard, select the seeded customer, and open the run-type control.
+- Additional validated helper-backed slices now include:
+  - TS_41 and TS_64 for settings-form visibility.
+  - TS_50, TS_51, TS_53, TS_54, TS_55, TS_56, and TS_57 for One Time Run existing-settings date/calendar and mandatory-label checks.
+  - TS_52, TS_58, TS_59, TS_60, TS_61, and TS_62 for One Time Run button-visibility and notes-entry variants.
+  - TS_63, TS_68, TS_69, TS_70, TS_72, TS_74, TS_75, TS_77, TS_78, and TS_79 for Initial Run configure/default/mandatory/button-visibility variants.
+- The current unresolved blocker is the Submit Settings branch, and it is application-side. TS_65 fails before the settings form can be used because a `getCustomerSettingsByExternalId` backend error notification/toast intercepts the `Configure` click after customer selection. TS_42/TS_65 should be treated as blocked until the application/backend is healthy again or the live flow is re-aligned to the actual app behavior.
+- The remaining clearly unmapped scenarios after this slice are the title bands around TS_43-49, TS_66-67, TS_71, and TS_73.
+- The module helper is now the only intended place to continue this conversion; do not reopen per-spec business logic unless the shared router abstraction proves incorrect.
+- The module now has dedicated full-run and last-failed client-report wrappers at `npm run report:iteration-matrix:duplicate-dashboard-new-module:client` and `npm run report:iteration-matrix:duplicate-dashboard-new-module:last-failed:client`.
+- The finalized module artifact paths are `Result/allure-report-iteration-matrix-duplicate-dashboard-new-module-shareable/` and `Result/iteration-matrix-duplicate-dashboard-new-module.zip`.
+- Because `Duplicate_Dashboard_New` and `Duplicate_Dashboard_New_Module` overlap by prefix, keep exact discovered spec-file scoping enabled for this module's report scripts.
+
 ## Conversion Rules To Reuse
 
 - Treat shared helpers and selectors as the primary fix layer. Avoid patching many specs with the same workaround.
@@ -161,6 +195,20 @@ Use it as the project-specific companion to [docs/conversion-framework.md](./con
 - Keep report folders and zip artifacts under `Result/`; do not leave them at the repository root.
 - For Iteration Matrix module reports, shape readable business execution in the shared helper layer with named `test.step()` actions, then let `scripts/flatten-generic-allure-steps.js` remove only the generic wrapper shells above them.
 - Do not hide `Before Hooks`, `Login into Application`, `Logout from the application`, or `After Hooks` in final Iteration Matrix client reports; the desired client format keeps those sections visible above and below the business flow.
+- Treat the Customer Onboarding report fix as the approved default for future module conversions: keep `Description` limited to `Scenario:` and `Spec File:`, and place the business flow directly in `Test body` through helper-owned steps rather than spec-level `Run converted flow` wrappers or helper-level `Run <scenario>` shells.
+
+### Approved client-report shape for future conversions
+
+- `Description`:
+  - `Scenario:`
+  - `Spec File:`
+- `Test body`:
+  - `Before Hooks`
+  - `Login into Application`
+  - top-level business-readable helper steps
+  - `Logout from the application`
+  - `After Hooks`
+- Avoid generic wrapper containers in newly converted modules when the helper can emit the real business steps directly.
 
 ## Current Durable Lessons
 

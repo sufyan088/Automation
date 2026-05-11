@@ -11,9 +11,7 @@ test("TS_20_To_verify_that_Recon_File_selected_from_Runner_type_drop_down", asyn
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
-    await customerOnboardingHelpers.runScenario(page, data, test.info().title);
-  });
+  await customerOnboardingHelpers.runScenario(page, data, test.info().title);
 
   await test.step('Logout from the application', async () => {
     await closeSession(page);

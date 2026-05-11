@@ -11,9 +11,7 @@ test("TS_16_To_verify_that_the_Delete_Participant_button_is_functional_on_the_Pa
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
-    await customerOnboardingHelpers.runScenario(page, data, test.info().title);
-  });
+  await customerOnboardingHelpers.runScenario(page, data, test.info().title);
 
   await test.step('Logout from the application', async () => {
     await closeSession(page);

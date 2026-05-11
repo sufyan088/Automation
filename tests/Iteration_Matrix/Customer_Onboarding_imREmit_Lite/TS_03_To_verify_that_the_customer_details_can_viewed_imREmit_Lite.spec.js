@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, customerOnboardingImremitLiteHelpers } = require('./_shared');
 
 test("TS_03_To_verify_that_the_customer_details_can_viewed_imREmit_Lite", async ({ page }) => {
   const data = loadRuntimeData();
@@ -11,8 +11,7 @@ test("TS_03_To_verify_that_the_customer_details_can_viewed_imREmit_Lite", async 
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
-  });
+  await customerOnboardingImremitLiteHelpers.runScenario(page, data, test.info().title);
 
   await test.step('Logout from the application', async () => {
     await closeSession(page);

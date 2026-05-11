@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, duplicateDashboardNewModuleHelpers } = require('./_shared');
 
 test("TS_73_To_Verify_that_user_can_Hover_over_on_i_icon_for_Initial_Run_Months_field", async ({ page }) => {
   const data = loadRuntimeData();
@@ -11,10 +11,10 @@ test("TS_73_To_Verify_that_user_can_Hover_over_on_i_icon_for_Initial_Run_Months_
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
-  });
+  await duplicateDashboardNewModuleHelpers.runScenario(page, data, test.info().title);
 
   await test.step('Logout from the application', async () => {
     await closeSession(page);
   });
 });
+

@@ -11,9 +11,7 @@ test("TS_17_To_verify_on_the_Update_Participant_popup_the_save_button_is_functio
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
-    await customerOnboardingHelpers.runScenario(page, data, test.info().title);
-  });
+  await customerOnboardingHelpers.runScenario(page, data, test.info().title);
 
   await test.step('Logout from the application', async () => {
     await closeSession(page);

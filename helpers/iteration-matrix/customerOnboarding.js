@@ -984,6 +984,12 @@ async function deleteCustomer(page, customerName) {
   await waitForAppToSettle(page, 1000);
 }
 
+async function cleanupCustomer(page, customerName) {
+  return reportStep(`Delete created customer ${customerName}`, async () => {
+    await deleteCustomer(page, customerName).catch(() => null);
+  });
+}
+
 async function runTs01(page, data) {
   const { customerName } = await reportStep('Create customer with imREmit module', async () => createCustomer(page, data));
   try {
@@ -991,7 +997,7 @@ async function runTs01(page, data) {
       await searchCustomerList(page, customerName);
     });
   } finally {
-    await deleteCustomer(page, customerName).catch(() => null);
+    await cleanupCustomer(page, customerName);
   }
 }
 
@@ -1006,257 +1012,323 @@ async function runTs02Or03(page, data) {
       await expectPaymentMethodRow(page, paymentValues);
     });
   } finally {
-    await deleteCustomer(page, customerName).catch(() => null);
+    await cleanupCustomer(page, customerName);
   }
 }
 
 async function runTs04(page, data) {
-  const { customerName } = await createCustomer(page, data);
+  const { customerName } = await reportStep('Create customer with imREmit module', async () => createCustomer(page, data));
   try {
-    await openImREmitEditDetails(page, customerName);
-    await clickWithFallback(page, customerOnboardingSelectors.wizard.backToListButton);
-    await expectAnyVisible(page, customerOnboardingSelectors.headings.customerManagement);
+    await reportStep(`Open imREmit Edit Details for ${customerName}`, async () => {
+      await openImREmitEditDetails(page, customerName);
+    });
+    await reportStep('Return to Customer Management list', async () => {
+      await clickWithFallback(page, customerOnboardingSelectors.wizard.backToListButton);
+      await expectAnyVisible(page, customerOnboardingSelectors.headings.customerManagement);
+    });
   } finally {
-    await deleteCustomer(page, customerName).catch(() => null);
+    await cleanupCustomer(page, customerName);
   }
 }
 
 async function runTs05(page, data) {
-  const { customerName } = await createCustomer(page, data);
+  const { customerName } = await reportStep('Create customer with imREmit module', async () => createCustomer(page, data));
   try {
-    await navigateToPaymentMethod(page, customerName);
-    await clickWizardPrevious(page);
-    await expectAnyVisible(page, customerOnboardingSelectors.headings.emailConfiguration);
+    await reportStep('Open Payment Method step', async () => {
+      await navigateToPaymentMethod(page, customerName);
+    });
+    await reportStep('Return to Email Configuration step', async () => {
+      await clickWizardPrevious(page);
+      await expectAnyVisible(page, customerOnboardingSelectors.headings.emailConfiguration);
+    });
   } finally {
-    await deleteCustomer(page, customerName).catch(() => null);
+    await cleanupCustomer(page, customerName);
   }
 }
 
 async function runTs06(page, data) {
-  const { customerName } = await createCustomer(page, data);
+  const { customerName } = await reportStep('Create customer with imREmit module', async () => createCustomer(page, data));
   try {
-    await navigateToPaymentMethod(page, customerName);
-    await expectAnyVisible(page, customerOnboardingSelectors.headings.paymentMethod);
+    await reportStep('Open Payment Method step', async () => {
+      await navigateToPaymentMethod(page, customerName);
+      await expectAnyVisible(page, customerOnboardingSelectors.headings.paymentMethod);
+    });
   } finally {
-    await deleteCustomer(page, customerName).catch(() => null);
+    await cleanupCustomer(page, customerName);
   }
 }
 
 async function runTs07(page, data) {
-  const { customerName } = await createCustomer(page, data);
+  const { customerName } = await reportStep('Create customer with imREmit module', async () => createCustomer(page, data));
   try {
-    await navigateToPaymentMethod(page, customerName);
-    const paymentValues = await savePaymentMethod(page);
+    await reportStep('Open Payment Method step', async () => {
+      await navigateToPaymentMethod(page, customerName);
+    });
+    const paymentValues = await reportStep('Save initial payment method', async () => savePaymentMethod(page));
     const updatedDescription = `${paymentValues.description} updated`;
-    await fillWithFallback(page, customerOnboardingSelectors.fields.paymentMethodDescription, updatedDescription);
-    await clickWithFallback(page, customerOnboardingSelectors.wizard.savePaymentMethodButton);
-    await waitForAppToSettle(page, 1000);
-    await expect(page.locator('table').first()).toContainText(updatedDescription, { timeout: 15000 });
+    await reportStep('Update payment method description and verify saved value', async () => {
+      await fillWithFallback(page, customerOnboardingSelectors.fields.paymentMethodDescription, updatedDescription);
+      await clickWithFallback(page, customerOnboardingSelectors.wizard.savePaymentMethodButton);
+      await waitForAppToSettle(page, 1000);
+      await expect(page.locator('table').first()).toContainText(updatedDescription, { timeout: 15000 });
+    });
   } finally {
-    await deleteCustomer(page, customerName).catch(() => null);
+    await cleanupCustomer(page, customerName);
   }
 }
 
 async function runTs08(page, data) {
-  const { customerName } = await createCustomer(page, data);
+  const { customerName } = await reportStep('Create customer with imREmit module', async () => createCustomer(page, data));
   try {
-    await navigateToPaymentMethod(page, customerName);
-    const paymentValues = await savePaymentMethod(page);
+    await reportStep('Open Payment Method step', async () => {
+      await navigateToPaymentMethod(page, customerName);
+    });
+    const paymentValues = await reportStep('Save payment method', async () => savePaymentMethod(page));
     const row = page.locator('table tbody tr').filter({ hasText: new RegExp(escapeRegExp(paymentValues.customerPaymentMethodName), 'i') }).first();
-    await openTableRowAction(page, row);
-    const deleteAction = await resolveFirst(page, customerOnboardingSelectors.actionsMenuItems.deletePaymentMethod, {
-      mustBeVisible: true,
-      timeoutPerCandidate: 2500
-    }).catch(() => null);
-    if (deleteAction) {
-      await deleteAction.locator.click();
-      await clickWithFallback(page, customerOnboardingSelectors.dialogs.confirmDeleteButton);
-      await expect(row).toBeHidden({ timeout: 15000 });
-    }
+    await reportStep('Delete saved payment method and verify it is removed', async () => {
+      await openTableRowAction(page, row);
+      const deleteAction = await resolveFirst(page, customerOnboardingSelectors.actionsMenuItems.deletePaymentMethod, {
+        mustBeVisible: true,
+        timeoutPerCandidate: 2500
+      }).catch(() => null);
+      if (deleteAction) {
+        await deleteAction.locator.click();
+        await clickWithFallback(page, customerOnboardingSelectors.dialogs.confirmDeleteButton);
+        await expect(row).toBeHidden({ timeout: 15000 });
+      }
+    });
   } finally {
-    await deleteCustomer(page, customerName).catch(() => null);
+    await cleanupCustomer(page, customerName);
   }
 }
 
 async function runTs09(page, data) {
-  const { customerName } = await createCustomer(page, data);
+  const { customerName } = await reportStep('Create customer with imREmit module', async () => createCustomer(page, data));
   try {
-    await navigateToParticipantRegister(page, customerName);
-    const participant = await saveParticipantRegister(page);
-    await expect(page.locator('table').first()).toContainText(participant.facilityName, { timeout: 15000 });
+    await reportStep('Open Participant Register step', async () => {
+      await navigateToParticipantRegister(page, customerName);
+    });
+    const participant = await reportStep('Save participant register entry', async () => saveParticipantRegister(page));
+    await reportStep('Verify participant register entry is listed', async () => {
+      await expect(page.locator('table').first()).toContainText(participant.facilityName, { timeout: 15000 });
+    });
   } finally {
-    await deleteCustomer(page, customerName).catch(() => null);
+    await cleanupCustomer(page, customerName);
   }
 }
 
 async function runTs10(page, data) {
-  const { customerName } = await createCustomer(page, data);
+  const { customerName } = await reportStep('Create customer with imREmit module', async () => createCustomer(page, data));
   try {
-    await navigateToParticipantRegister(page, customerName);
-    await saveParticipantRegister(page);
-    await clickWizardNext(page);
-    await expectAnyVisible(page, customerOnboardingSelectors.headings.runnerConfiguration);
+    await reportStep('Open Participant Register step', async () => {
+      await navigateToParticipantRegister(page, customerName);
+    });
+    await reportStep('Save participant register entry', async () => {
+      await saveParticipantRegister(page);
+    });
+    await reportStep('Move to Runner Configuration step', async () => {
+      await clickWizardNext(page);
+      await expectAnyVisible(page, customerOnboardingSelectors.headings.runnerConfiguration);
+    });
   } finally {
-    await deleteCustomer(page, customerName).catch(() => null);
+    await cleanupCustomer(page, customerName);
   }
 }
 
 async function runTs11(page, data) {
-  const { customerName } = await createCustomer(page, data);
+  const { customerName } = await reportStep('Create customer with imREmit module', async () => createCustomer(page, data));
   try {
-    await navigateToRunnerConfiguration(page, customerName);
-    await clickWizardPrevious(page);
-    await expectAnyVisible(page, customerOnboardingSelectors.headings.participantRegister);
+    await reportStep('Open Runner Configuration step', async () => {
+      await navigateToRunnerConfiguration(page, customerName);
+    });
+    await reportStep('Return to Participant Register step', async () => {
+      await clickWizardPrevious(page);
+      await expectAnyVisible(page, customerOnboardingSelectors.headings.participantRegister);
+    });
   } finally {
-    await deleteCustomer(page, customerName).catch(() => null);
+    await cleanupCustomer(page, customerName);
   }
 }
 
 async function runTs12(page, data) {
-  const { customerName } = await createCustomer(page, data);
+  const { customerName } = await reportStep('Create customer with imREmit module', async () => createCustomer(page, data));
   try {
-    await navigateToParticipantRegister(page, customerName);
-    await clickWithFallback(page, customerOnboardingSelectors.wizard.backToListButton);
-    await expectAnyVisible(page, customerOnboardingSelectors.headings.customerManagement);
+    await reportStep('Open Participant Register step', async () => {
+      await navigateToParticipantRegister(page, customerName);
+    });
+    await reportStep('Return to Customer Management list', async () => {
+      await clickWithFallback(page, customerOnboardingSelectors.wizard.backToListButton);
+      await expectAnyVisible(page, customerOnboardingSelectors.headings.customerManagement);
+    });
   } finally {
-    await deleteCustomer(page, customerName).catch(() => null);
+    await cleanupCustomer(page, customerName);
   }
 }
 
 async function runTs13(page, data) {
-  const { customerName } = await createCustomer(page, data);
+  const { customerName } = await reportStep('Create customer with imREmit module', async () => createCustomer(page, data));
   try {
-    await navigateToParticipantRegister(page, customerName);
-    await page.evaluate(() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'instant' }));
-    await waitForAppToSettle(page, 300);
-    await clickWithFallback(page, customerOnboardingSelectors.wizard.returnToTopButton);
-    await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
-    await expectAnyVisible(page, customerOnboardingSelectors.headings.participantRegister);
+    await reportStep('Open Participant Register step', async () => {
+      await navigateToParticipantRegister(page, customerName);
+    });
+    await reportStep('Return to top of Participant Register page', async () => {
+      await page.evaluate(() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'instant' }));
+      await waitForAppToSettle(page, 300);
+      await clickWithFallback(page, customerOnboardingSelectors.wizard.returnToTopButton);
+      await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
+      await expectAnyVisible(page, customerOnboardingSelectors.headings.participantRegister);
+    });
   } finally {
-    await deleteCustomer(page, customerName).catch(() => null);
+    await cleanupCustomer(page, customerName);
   }
 }
 
 async function runTs14(page, data) {
-  const { customerName } = await createCustomer(page, data);
+  const { customerName } = await reportStep('Create customer with imREmit module', async () => createCustomer(page, data));
   try {
-    await navigateToParticipantRegister(page, customerName);
-    const participant = await saveParticipantRegister(page);
-    const row = await searchParticipantRegisterList(page, participant.facilityName);
-    await openTableRowAction(page, row);
-    const updateAction = page.getByText(/update participant|delete participant|edit participant/i).first();
-    await expect(updateAction).toBeVisible({ timeout: 15000 });
+    await reportStep('Open Participant Register step', async () => {
+      await navigateToParticipantRegister(page, customerName);
+    });
+    const participant = await reportStep('Save participant register entry', async () => saveParticipantRegister(page));
+    await reportStep('Open participant action menu and verify actions are available', async () => {
+      const row = await searchParticipantRegisterList(page, participant.facilityName);
+      await openTableRowAction(page, row);
+      const updateAction = page.getByText(/update participant|delete participant|edit participant/i).first();
+      await expect(updateAction).toBeVisible({ timeout: 15000 });
+    });
   } finally {
-    await deleteCustomer(page, customerName).catch(() => null);
+    await cleanupCustomer(page, customerName);
   }
 }
 
 async function runTs15(page, data) {
-  const { customerName } = await createCustomer(page, data);
+  const { customerName } = await reportStep('Create customer with imREmit module', async () => createCustomer(page, data));
   try {
-    await navigateToParticipantRegister(page, customerName);
-    const participant = await saveParticipantRegister(page);
-    const row = await searchParticipantRegisterList(page, participant.facilityName);
-    await openTableRowAction(page, row);
-    const updateAction = await resolveFirst(page, customerOnboardingSelectors.actionsMenuItems.updateParticipant, {
-      mustBeVisible: true,
-      timeoutPerCandidate: 2500
-    }).catch(() => null);
-    if (updateAction) {
-      await updateAction.locator.click();
-      await expect(page.getByRole('button', { name: /^Save\b/i }).first()).toBeVisible({ timeout: 15000 });
-    }
+    await reportStep('Open Participant Register step', async () => {
+      await navigateToParticipantRegister(page, customerName);
+    });
+    const participant = await reportStep('Save participant register entry', async () => saveParticipantRegister(page));
+    await reportStep('Open Update Participant form and verify Save button is visible', async () => {
+      const row = await searchParticipantRegisterList(page, participant.facilityName);
+      await openTableRowAction(page, row);
+      const updateAction = await resolveFirst(page, customerOnboardingSelectors.actionsMenuItems.updateParticipant, {
+        mustBeVisible: true,
+        timeoutPerCandidate: 2500
+      }).catch(() => null);
+      if (updateAction) {
+        await updateAction.locator.click();
+        await expect(page.getByRole('button', { name: /^Save\b/i }).first()).toBeVisible({ timeout: 15000 });
+      }
+    });
   } finally {
-    await deleteCustomer(page, customerName).catch(() => null);
+    await cleanupCustomer(page, customerName);
   }
 }
 
 async function runTs16(page, data) {
-  const { customerName } = await createCustomer(page, data);
+  const { customerName } = await reportStep('Create customer with imREmit module', async () => createCustomer(page, data));
   try {
-    await navigateToParticipantRegister(page, customerName);
-    const participant = await saveParticipantRegister(page);
-    const row = await searchParticipantRegisterList(page, participant.facilityName);
-    await openTableRowAction(page, row);
-    const deleteAction = await resolveFirst(page, customerOnboardingSelectors.actionsMenuItems.deleteParticipant, {
-      mustBeVisible: true,
-      timeoutPerCandidate: 2500
-    }).catch(() => null);
-    if (deleteAction) {
-      await deleteAction.locator.click();
-      await clickWithFallback(page, customerOnboardingSelectors.dialogs.confirmDeleteButton);
-      await expect(row).toBeHidden({ timeout: 15000 });
-    }
+    await reportStep('Open Participant Register step', async () => {
+      await navigateToParticipantRegister(page, customerName);
+    });
+    const participant = await reportStep('Save participant register entry', async () => saveParticipantRegister(page));
+    await reportStep('Delete participant entry and verify it is removed', async () => {
+      const row = await searchParticipantRegisterList(page, participant.facilityName);
+      await openTableRowAction(page, row);
+      const deleteAction = await resolveFirst(page, customerOnboardingSelectors.actionsMenuItems.deleteParticipant, {
+        mustBeVisible: true,
+        timeoutPerCandidate: 2500
+      }).catch(() => null);
+      if (deleteAction) {
+        await deleteAction.locator.click();
+        await clickWithFallback(page, customerOnboardingSelectors.dialogs.confirmDeleteButton);
+        await expect(row).toBeHidden({ timeout: 15000 });
+      }
+    });
   } finally {
-    await deleteCustomer(page, customerName).catch(() => null);
+    await cleanupCustomer(page, customerName);
   }
 }
 
 async function runTs17(page, data) {
-  const { customerName } = await createCustomer(page, data);
+  const { customerName } = await reportStep('Create customer with imREmit module', async () => createCustomer(page, data));
   try {
-    await navigateToParticipantRegister(page, customerName);
-    const participant = await saveParticipantRegister(page);
-    const row = await searchParticipantRegisterList(page, participant.facilityName);
-    await openTableRowAction(page, row);
-    const updateAction = await resolveFirst(page, customerOnboardingSelectors.actionsMenuItems.updateParticipant, {
-      mustBeVisible: true,
-      timeoutPerCandidate: 2500
-    }).catch(() => null);
-    if (updateAction) {
-      await updateAction.locator.click();
-      const editedFacility = `${participant.facilityName}U`;
-      const facilityInput = page.getByPlaceholder('Enter the facility name...').first();
-      if (await facilityInput.isVisible().catch(() => false)) {
-        await facilityInput.fill(editedFacility);
+    await reportStep('Open Participant Register step', async () => {
+      await navigateToParticipantRegister(page, customerName);
+    });
+    const participant = await reportStep('Save participant register entry', async () => saveParticipantRegister(page));
+    await reportStep('Update participant details and verify saved changes', async () => {
+      const row = await searchParticipantRegisterList(page, participant.facilityName);
+      await openTableRowAction(page, row);
+      const updateAction = await resolveFirst(page, customerOnboardingSelectors.actionsMenuItems.updateParticipant, {
+        mustBeVisible: true,
+        timeoutPerCandidate: 2500
+      }).catch(() => null);
+      if (updateAction) {
+        await updateAction.locator.click();
+        const editedFacility = `${participant.facilityName}U`;
+        const facilityInput = page.getByPlaceholder('Enter the facility name...').first();
+        if (await facilityInput.isVisible().catch(() => false)) {
+          await facilityInput.fill(editedFacility);
+        }
+        await clickWithFallback(page, customerOnboardingSelectors.dialogs.saveButton);
+        await expect(page.locator('table').first()).toContainText(editedFacility, { timeout: 15000 });
       }
-      await clickWithFallback(page, customerOnboardingSelectors.dialogs.saveButton);
-      await expect(page.locator('table').first()).toContainText(editedFacility, { timeout: 15000 });
-    }
+    });
   } finally {
-    await deleteCustomer(page, customerName).catch(() => null);
+    await cleanupCustomer(page, customerName);
   }
 }
 
 async function runTs18Or20(page, data, runnerType) {
-  const { customerName } = await createCustomer(page, data);
+  const { customerName } = await reportStep('Create customer with imREmit module', async () => createCustomer(page, data));
   try {
-    await navigateToRunnerConfiguration(page, customerName);
-    await configureRunnerType(page, runnerType);
-    if (/payment/i.test(runnerType)) {
-      await expectAnyVisible(page, customerOnboardingSelectors.wizard.openPaymentRunnerConfigButton);
-      await openRunnerConfigButton(page, customerOnboardingSelectors.wizard.openPaymentRunnerConfigButton);
-      await expectAnyVisible(page, customerOnboardingSelectors.wizard.addPaymentRunnerConfigButton);
-    } else {
-      await expectAnyVisible(page, customerOnboardingSelectors.wizard.openReconRunnerConfigButton);
-      await openRunnerConfigButton(page, customerOnboardingSelectors.wizard.openReconRunnerConfigButton);
-      await expectAnyVisible(page, customerOnboardingSelectors.wizard.addReconRunnerConfigButton);
-    }
+    await reportStep('Open Runner Configuration step', async () => {
+      await navigateToRunnerConfiguration(page, customerName);
+    });
+    await reportStep(`Select ${runnerType} runner type and verify configuration controls`, async () => {
+      await configureRunnerType(page, runnerType);
+      if (/payment/i.test(runnerType)) {
+        await expectAnyVisible(page, customerOnboardingSelectors.wizard.openPaymentRunnerConfigButton);
+        await openRunnerConfigButton(page, customerOnboardingSelectors.wizard.openPaymentRunnerConfigButton);
+        await expectAnyVisible(page, customerOnboardingSelectors.wizard.addPaymentRunnerConfigButton);
+      } else {
+        await expectAnyVisible(page, customerOnboardingSelectors.wizard.openReconRunnerConfigButton);
+        await openRunnerConfigButton(page, customerOnboardingSelectors.wizard.openReconRunnerConfigButton);
+        await expectAnyVisible(page, customerOnboardingSelectors.wizard.addReconRunnerConfigButton);
+      }
+    });
   } finally {
-    await deleteCustomer(page, customerName).catch(() => null);
+    await cleanupCustomer(page, customerName);
   }
 }
 
 async function runTs19(page, data) {
-  const { customerName } = await createCustomer(page, data);
+  const { customerName } = await reportStep('Create customer with imREmit module', async () => createCustomer(page, data));
   try {
-    await navigateToRunnerConfiguration(page, customerName);
-    await clickWizardPrevious(page);
-    await expectAnyVisible(page, customerOnboardingSelectors.headings.participantRegister);
+    await reportStep('Open Runner Configuration step', async () => {
+      await navigateToRunnerConfiguration(page, customerName);
+    });
+    await reportStep('Return to Participant Register step', async () => {
+      await clickWizardPrevious(page);
+      await expectAnyVisible(page, customerOnboardingSelectors.headings.participantRegister);
+    });
   } finally {
-    await deleteCustomer(page, customerName).catch(() => null);
+    await cleanupCustomer(page, customerName);
   }
 }
 
 async function runTs21(page, data) {
-  const { customerName } = await createCustomer(page, data);
+  const { customerName } = await reportStep('Create customer with imREmit module', async () => createCustomer(page, data));
   try {
-    const searchField = await fillSearchField(page, customerOnboardingSelectors.searchFields.customerList, customerName);
-    await expect(searchField).toHaveValue(customerName);
-    const matchingRow = page.locator('table tbody tr').filter({ hasText: new RegExp(escapeRegExp(customerName), 'i') }).first();
-    await expect(matchingRow).toBeVisible({ timeout: 15000 });
+    await reportStep(`Search for customer ${customerName} in Customer Management`, async () => {
+      const searchField = await fillSearchField(page, customerOnboardingSelectors.searchFields.customerList, customerName);
+      await expect(searchField).toHaveValue(customerName);
+      const matchingRow = page.locator('table tbody tr').filter({ hasText: new RegExp(escapeRegExp(customerName), 'i') }).first();
+      await expect(matchingRow).toBeVisible({ timeout: 15000 });
+    });
   } finally {
-    await deleteCustomer(page, customerName).catch(() => null);
+    await cleanupCustomer(page, customerName);
   }
 }
 
@@ -1333,9 +1405,11 @@ const helperMap = {
 
 module.exports = {
   customerOnboardingHelpers: {
-    ...wrapHelperMapWithReadableSteps(helperMap, {
-      runScenario: 'Run Customer Onboarding scenario'
+    ...wrapHelperMapWithReadableSteps({
+      buildUniqueCustomerName,
+      selectors: customerOnboardingSelectors
     }),
+    runScenario,
     selectors: customerOnboardingSelectors
   }
 };

@@ -110,6 +110,41 @@ await test.step('Login into Application', async () => {
 });
 ```
 
+For client-facing module reports, keep the real business flow in top-level helper-owned steps instead of generic wrappers.
+
+Use this pattern:
+
+- keep `Description` limited to `Scenario:` and `Spec File:`
+- keep spec files thin: login, one direct helper-backed scenario call, logout
+- create business-readable helper steps such as `Open Payment Method step`, `Save payment method`, or `Verify saved payment method row`
+- avoid wrapping the whole scenario in generic shells such as `Run converted flow` or `Run TS_07 ...` when converting a new module
+
+Recommended spec shape:
+
+```js
+await test.step('Login into Application', async () => {
+  await loginAsAdmin(page, data);
+});
+
+await moduleHelpers.runScenario(page, data, test.info().title);
+
+await test.step('Logout from the application', async () => {
+  await closeSession(page);
+});
+```
+
+Recommended helper shape:
+
+```js
+async function reportStep(name, action) {
+  return test.step(name, action);
+}
+
+await reportStep('Open Payment Method step', async () => {
+  // flow
+});
+```
+
 ### 4. Centralize selectors
 
 Put selectors in `selectors/<module>.selectors.js`.
@@ -245,6 +280,15 @@ Use this for client sharing.
 This project already supports Mammoth-branded portable output through:
 
 - `scripts/customize-allure-report.js`
+
+### Client-facing description and Test body standard
+
+Use the same client-facing report shape for every newly converted module:
+
+- `Description` must stay limited to `Scenario:` and `Spec File:`
+- business flow belongs in the Allure `Test body`, not in `Description`
+- business flow should appear as readable top-level helper steps, not as a single generic container with many nested sub-steps
+- report-time flattening is a fallback for older modules, not the primary design target for new conversions
 
 ### Suite normalization before full-project report generation
 

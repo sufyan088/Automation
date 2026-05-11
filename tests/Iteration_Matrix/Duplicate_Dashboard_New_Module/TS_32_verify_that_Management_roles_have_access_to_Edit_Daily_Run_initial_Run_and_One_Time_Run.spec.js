@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, duplicateDashboardNewModuleHelpers } = require('./_shared');
 
 test("TS_32_verify_that_Management_roles_have_access_to_Edit_Daily_Run_initial_Run_and_One_Time_Run", async ({ page }) => {
   const data = loadRuntimeData();
@@ -11,10 +11,10 @@ test("TS_32_verify_that_Management_roles_have_access_to_Edit_Daily_Run_initial_R
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
-  });
+  await duplicateDashboardNewModuleHelpers.runScenario(page, data, test.info().title);
 
   await test.step('Logout from the application', async () => {
     await closeSession(page);
   });
 });
+
