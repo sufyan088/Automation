@@ -104,6 +104,7 @@ Use these active Iteration Matrix helpers as structure references for new module
 2. [helpers/iteration-matrix/criteriaSettings.js](helpers/iteration-matrix/criteriaSettings.js)
 3. [helpers/iteration-matrix/customerManagementAdminNew.js](helpers/iteration-matrix/customerManagementAdminNew.js)
 4. [helpers/iteration-matrix/customerManagementAdminNm.js](helpers/iteration-matrix/customerManagementAdminNm.js)
+5. [helpers/iteration-matrix/customerOnboarding.js](helpers/iteration-matrix/customerOnboarding.js)
 
 ## Required Selector Pattern Files
 

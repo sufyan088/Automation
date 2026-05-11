@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, customerModuleManagementAdminTwoHelpers } = require('./_shared');
 
 test("TS_32_verify_Self_Funding_column_only_populate_if_customer_Subscriptions_for_below_where_Self_Funding_enabled", async ({ page }) => {
   const data = loadRuntimeData();
@@ -12,6 +12,7 @@ test("TS_32_verify_Self_Funding_column_only_populate_if_customer_Subscriptions_f
   });
 
   await test.step('Run converted flow', async () => {
+    await customerModuleManagementAdminTwoHelpers.runScenario(page, data, 'TS_32_verify_Self_Funding_column_only_populate_if_customer_Subscriptions_for_below_where_Self_Funding_enabled');
   });
 
   await test.step('Logout from the application', async () => {

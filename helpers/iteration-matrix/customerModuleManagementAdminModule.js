@@ -248,6 +248,12 @@ async function expectModuleErrorState(page) {
   await expect(page.getByText(/Page:\s*(loading\.\.|Error)/i).first()).toBeVisible({ timeout: 15000 });
 }
 
+async function verifyModuleTableVisible(page) {
+  return businessStep('Verify Customer Module Management table is visible', async () => {
+    await ensureTableVisible(page);
+  });
+}
+
 async function extractTableSnapshot(page) {
   await ensureTableVisible(page);
   return page.locator('table').first().evaluate((table) => {
@@ -916,6 +922,7 @@ async function runScenario(page, data, scenarioName) {
   switch (scenarioName) {
     case 'TS_01_To_verify_the_Customer_Management_Module': {
       await openModule(page);
+      await verifyModuleTableVisible(page);
       return;
     }
     case 'TS_02_To_verify_that_the_Go_to_first_page_button_is_functional': {
@@ -984,7 +991,9 @@ async function runScenario(page, data, scenarioName) {
     }
     case 'TS_08_To_verify_that_the_Return_to_top_button_is_functional': {
       await openModule(page);
-      await page.evaluate(() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'instant' }));
+      await businessStep('Scroll to the bottom of the page', async () => {
+        await page.evaluate(() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'instant' }));
+      });
       await clickReturnToTop(page);
       return;
     }
@@ -1079,28 +1088,41 @@ async function runScenario(page, data, scenarioName) {
     case 'TS_26_To_verify_that_the_imREmit_Lite_Button_is_functional':
     case 'TS_27_To_verify_that_the_Update_Button_is_functional':
     case 'TS_28_To_verify_that_the_Statement_Recon_option_can_be_selected': {
-      const { customerName } = await createCustomer(page, data, getInitialModulesForScenario(scenarioName));
+      const initialModules = getInitialModulesForScenario(scenarioName);
+      const { customerName } = await businessStep(`Create customer with initial subscriptions: ${initialModules.join(', ')}`, async () => {
+        return createCustomer(page, data, initialModules);
+      });
 
       try {
-        const modalOpened = await openUpdateSubscription(page, customerName);
+        const modalOpened = await businessStep('Open Update Subscription for the created customer', async () => {
+          return openUpdateSubscription(page, customerName);
+        });
 
         if (!modalOpened) {
           return;
         }
 
         if (scenarioName === 'TS_21_To_verify_that_the_Update_Subscription_button_is_functional') {
-          await clickModalUpdate(page, { skipSuccessToast: true });
+          await businessStep('Click Update Subscription button', async () => {
+            await clickModalUpdate(page, { skipSuccessToast: true });
+          });
           return;
         }
 
         if (scenarioName === 'TS_22_To_verify_that_the_Close_button_is_functional') {
-          await closeModal(page);
+          await businessStep('Close the Update Subscription popup', async () => {
+            await closeModal(page);
+          });
           return;
         }
 
         if (scenarioName === 'TS_23_To_verify_that_the_Clear_All_button_is_functional') {
-          await selectModalOption(page, 'Duplicate Payments');
-          await clearModalSelections(page);
+          await businessStep('Add Duplicate Payments to the subscription selection', async () => {
+            await selectModalOption(page, 'Duplicate Payments');
+          });
+          await businessStep('Clear all selected subscriptions', async () => {
+            await clearModalSelections(page);
+          });
           await businessStep('Verify the selected subscriptions are cleared', async () => {
             await expect(page.getByText('Duplicate Payments', { exact: true }).nth(0)).toBeHidden({ timeout: 5000 }).catch(() => null);
           });
@@ -1108,28 +1130,42 @@ async function runScenario(page, data, scenarioName) {
         }
 
         if (scenarioName === 'TS_24_To_verify_that_the_Duplicates_Payments_Button_is_functional') {
-          await selectModalOption(page, 'Duplicate Payments');
+          await businessStep('Select Duplicate Payments in the subscription popup', async () => {
+            await selectModalOption(page, 'Duplicate Payments');
+          });
           return;
         }
 
         if (scenarioName === 'TS_25_To_verify_that_the_imREmit_Button_is_functional') {
-          await selectModalOption(page, 'ImREmit');
+          await businessStep('Select imREmit in the subscription popup', async () => {
+            await selectModalOption(page, 'ImREmit');
+          });
           return;
         }
 
         if (scenarioName === 'TS_26_To_verify_that_the_imREmit_Lite_Button_is_functional') {
-          await selectModalOption(page, 'ImREmit Lite');
+          await businessStep('Select imREmit Lite in the subscription popup', async () => {
+            await selectModalOption(page, 'ImREmit Lite');
+          });
           return;
         }
 
         if (scenarioName === 'TS_27_To_verify_that_the_Update_Button_is_functional') {
-          await selectModalOption(page, 'Duplicate Payments');
-          await clickModalUpdate(page);
+          await businessStep('Add Duplicate Payments subscription', async () => {
+            await selectModalOption(page, 'Duplicate Payments');
+          });
+          await businessStep('Save the updated subscriptions', async () => {
+            await clickModalUpdate(page);
+          });
           return;
         }
 
-        await selectModalOption(page, 'Statement Recon');
-        await clickModalUpdate(page);
+        await businessStep('Add Statement Recon subscription', async () => {
+          await selectModalOption(page, 'Statement Recon');
+        });
+        await businessStep('Save the updated subscriptions', async () => {
+          await clickModalUpdate(page);
+        });
         return;
       } finally {
         await deleteCustomer(page, customerName).catch(() => null);

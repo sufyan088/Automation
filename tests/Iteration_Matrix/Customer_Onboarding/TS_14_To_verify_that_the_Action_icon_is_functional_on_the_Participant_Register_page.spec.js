@@ -11,9 +11,7 @@ test("TS_14_To_verify_that_the_Action_icon_is_functional_on_the_Participant_Regi
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
-    await customerOnboardingHelpers.runScenario(page, data, test.info().title);
-  });
+  await customerOnboardingHelpers.runScenario(page, data, test.info().title);
 
   await test.step('Logout from the application', async () => {
     await closeSession(page);

@@ -81,8 +81,11 @@ const customerManagementAdminNmSelectors = {
       { type: 'css', value: 'input[name="customerProfile.buyerProfileEmail"]', name: 'customer-email-field' }
     ],
     phone: [
+      { type: 'label', value: 'Customer Phone:', name: 'customer-phone-label' },
+      { type: 'placeholder', value: 'Enter phone number...', name: 'customer-phone-number-placeholder' },
       { type: 'placeholder', value: 'Enter the customer phone...', name: 'customer-phone-placeholder' },
       { type: 'css', value: 'input[name="customerProfile.buyerProfilePhone"]', name: 'customer-phone-input' },
+      { type: 'css', value: 'input[type="tel"]', name: 'customer-phone-tel-input' },
       { type: 'css', value: '[role="spinbutton"]', name: 'customer-phone-spinbutton' },
       { type: 'css', value: 'input[name="customerProfile.buyerProfilePhone"]', name: 'customer-phone-field' }
     ],

@@ -41,6 +41,50 @@
 				"--headed"
 			],
 			"isBackground": true
+		},
+		{
+			"label": "Run Customer_Onboarding_imREmit_Lite",
+			"type": "shell",
+			"command": "C:\\Program Files\\nodejs\\npx.cmd",
+			"args": [
+				"playwright",
+				"test",
+				"tests/Iteration_Matrix/Customer_Onboarding_imREmit_Lite",
+				"--project=chromium",
+				"--reporter=line",
+				"--output",
+				"test-results/imremit-lite-task-run"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "Run Customer_Onboarding_imREmit_Lite Rerun",
+			"type": "shell",
+			"command": "C:\\Program Files\\nodejs\\npx.cmd",
+			"args": [
+				"playwright",
+				"test",
+				"tests/Iteration_Matrix/Customer_Onboarding_imREmit_Lite",
+				"--project=chromium",
+				"--reporter=line",
+				"--output",
+				"test-results/imremit-lite-task-rerun"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "Debug imREmit Lite TS_03 Guided",
+			"type": "shell",
+			"command": "C:\\Program Files\\nodejs\\npx.cmd",
+			"args": [
+				"playwright",
+				"test",
+				"tests/Iteration_Matrix/Customer_Onboarding_imREmit_Lite/TS_03_To_verify_that_the_customer_details_can_viewed_imREmit_Lite.spec.js",
+				"--project=chromium",
+				"--debug",
+				"--headed"
+			],
+			"isBackground": true
 		}
 	]
 }

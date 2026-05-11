@@ -1,4 +1,10 @@
+const { test } = require('@playwright/test');
+const { wrapHelperMapWithReadableSteps } = require('../clientReadableSteps');
 const { duplicateDashboardNewSelectors } = require('../../selectors/iteration-matrix/duplicateDashboardNew.selectors.js');
+
+async function reportStep(name, action) {
+  return test.step(name, action);
+}
 
 async function waitForFirstVisible(page, selectors, timeout = 15000) {
   const startedAt = Date.now();
@@ -126,12 +132,48 @@ async function openRunTypeDropdown(page, selectedCustomer) {
   throw new Error('No visible run type dropdown was found on the Duplicate Payments dashboard.');
 }
 
+async function runTs31(page) {
+  await reportStep('Open Duplicate Payments dashboard', async () => {
+    await openModule(page);
+    await openDashboard(page);
+  });
+
+  await reportStep('Select dashboard customer', async () => {
+    await selectCustomer(page, 'Stanford U');
+  });
+
+  await reportStep('Open run type dropdown', async () => {
+    await openRunTypeDropdown(page, 'Stanford U');
+  });
+}
+
+async function runScenario(page, data, scenarioName) {
+  if (/^TS_31_/i.test(scenarioName)) {
+    return runTs31(page, data);
+  }
+
+  throw new Error(`Duplicate_Dashboard_New scenario not implemented yet: ${scenarioName}`);
+}
+
+const helperMap = {
+  openModule,
+  openDashboard,
+  selectCustomer,
+  openRunTypeDropdown,
+  runScenario,
+  selectors: duplicateDashboardNewSelectors
+};
+
 module.exports = {
   duplicateDashboardNewHelpers: {
-    openModule,
-    openDashboard,
-    selectCustomer,
-    openRunTypeDropdown,
+    ...wrapHelperMapWithReadableSteps(helperMap, {
+      openModule: 'Open Duplicate Payments module',
+      openDashboard: 'Open Duplicate Payments dashboard',
+      selectCustomer: 'Select dashboard customer',
+      openRunTypeDropdown: 'Open run type dropdown',
+      runScenario: 'Run Duplicate Dashboard New scenario'
+    }),
+    runScenario,
     selectors: duplicateDashboardNewSelectors
   }
 };
