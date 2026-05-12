@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, imremitDashboardFailedPaymentsOnImImErrorHelpers } = require('./_shared');
 
 test("TS_17_To_verify_that_the_Delete_Comment_button_is_functional", async ({ page }) => {
   const data = loadRuntimeData();
@@ -11,8 +11,7 @@ test("TS_17_To_verify_that_the_Delete_Comment_button_is_functional", async ({ pa
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
-  });
+  await imremitDashboardFailedPaymentsOnImImErrorHelpers.runScenario(page, data, test.info().title);
 
   await test.step('Logout from the application', async () => {
     await closeSession(page);
