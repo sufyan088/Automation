@@ -62,6 +62,10 @@ Use it as the project-specific companion to [docs/conversion-framework.md](./con
   - `npm run report:iteration-matrix:customer-onboarding:last-failed:client`
   - `npm run report:iteration-matrix:customer-onboarding-imremit-lite:client`
   - `npm run report:iteration-matrix:customer-onboarding-imremit-lite:last-failed:client`
+  - `npm run report:iteration-matrix:imremit-dashboard-failed-payments-on-im-im-error:client`
+  - `npm run report:iteration-matrix:imremit-dashboard-failed-payments-on-im-im-error:last-failed:client`
+  - `npm run report:iteration-matrix:imremit-dashboard-failed-payments-on-provider-payment-provider-error:client`
+  - `npm run report:iteration-matrix:imremit-dashboard-failed-payments-on-provider-payment-provider-error:last-failed:client`
   - `npm run report:iteration-matrix:duplicate-dashboard-new:client`
   - `npm run report:iteration-matrix:duplicate-dashboard-new:last-failed:client`
   - `npm run report:iteration-matrix:criteria-settings:client`
@@ -78,6 +82,7 @@ Use it as the project-specific companion to [docs/conversion-framework.md](./con
 - The current Iteration Matrix shareable artifact path is `Result/iteration-matrix-full-project.zip`.
 - Dedicated module report flows should preserve the module name as the Allure suite. The suite normalizer now treats `Iteration_Matrix` as a container and keeps the actual module folder name, such as `Criteria Settings`, as the suite label.
 - Dedicated module last-failed report flows should reuse the previous module baseline in `allure-results`, rerun only the failed specs with `--last-failed`, replace those prior test entries by Allure test identity, and then regenerate the shareable report. Do not append duplicate result entries for unchanged tests.
+- If a dedicated module last-failed rerun has no failed specs available, treat Playwright's `No tests found.` output as a no-op rerun and regenerate the branded shareable report from the preserved module baseline instead of failing the command.
 - Treat that last-failed merge flow as the default reporting rule for every future Iteration Matrix module-specific client report runner.
 - New Iteration Matrix module report scripts should be added as thin wrappers over `scripts/module-client-report-runner.js` so both full and last-failed flows inherit the same merge, metadata, normalization, branding, and packaging behavior.
 - `scripts/flatten-generic-allure-steps.js` only improves module readability when the wrapper already contains nested helper-created child steps. The durable fix is readable helper-layer `test.step()` actions, not report-time flattening alone.
@@ -154,6 +159,25 @@ Use it as the project-specific companion to [docs/conversion-framework.md](./con
 - The module now has dedicated full-run and last-failed client-report wrappers at `npm run report:iteration-matrix:customer-onboarding:client` and `npm run report:iteration-matrix:customer-onboarding:last-failed:client`.
 - The finalized module artifact paths are `Result/allure-report-iteration-matrix-customer-onboarding-shareable/` and `Result/iteration-matrix-customer-onboarding.zip`.
 - `tests/Iteration_Matrix/Customer_Onboarding_imREmit_Lite/` remains a separate sibling module surface and should not be conflated with the completed base Customer_Onboarding report scope.
+
+## imREmit Dashboard Failed Payments On IM IM Error Status
+
+- `tests/Iteration_Matrix/imREmit_Dashboard_Failed_payments_on_IM_IM_ERROR/` is helper-backed through `helpers/iteration-matrix/imremitDashboardFailedPaymentsOnImImError.js` and selectors rooted in `selectors/iteration-matrix/imremitDashboardFailedPaymentsOnImImError.selectors.js`.
+- The module is validated clean at 29/29 passing with `--workers=3`.
+- The module now has dedicated full-run and last-failed client-report wrappers at `npm run report:iteration-matrix:imremit-dashboard-failed-payments-on-im-im-error:client` and `npm run report:iteration-matrix:imremit-dashboard-failed-payments-on-im-im-error:last-failed:client`.
+- The finalized module artifact paths are `Result/allure-report-iteration-matrix-imremit-dashboard-failed-payments-on-im-im-error-shareable/` and `Result/iteration-matrix-imremit-dashboard-failed-payments-on-im-im-error.zip`.
+- Report readability for this module follows the approved Iteration Matrix pattern: keep `Description` limited to `Scenario:` and `Spec File:`, keep `Login into Application` and `Logout from the application` visible, and expose the business flow from helper-owned steps instead of a wrapped `runScenario` shell.
+- When generating a dedicated report for this module, keep exact discovered spec-file scoping enabled so the long folder name is treated as the report scope and no sibling dashboard folders bleed into the artifact.
+
+## imREmit Dashboard Failed Payments On Provider Payment Provider Error Status
+
+- `tests/Iteration_Matrix/imREmit_Dashboard_Failed_payments_on_provider_PAYMENT_PROVIDER_ERROR/` is helper-backed through `helpers/iteration-matrix/imremitDashboardFailedPaymentsOnProviderPaymentProviderError.js` and selectors rooted in `selectors/iteration-matrix/imremitDashboardFailedPaymentsOnProviderPaymentProviderError.selectors.js`.
+- The module is validated clean at 29/29 passing through direct per-spec relative-path Playwright runs.
+- The module now has dedicated full-run and last-failed client-report wrappers at `npm run report:iteration-matrix:imremit-dashboard-failed-payments-on-provider-payment-provider-error:client` and `npm run report:iteration-matrix:imremit-dashboard-failed-payments-on-provider-payment-provider-error:last-failed:client`.
+- The finalized module artifact paths are `Result/allure-report-iteration-matrix-imremit-dashboard-failed-payments-on-provider-payment-provider-error-shareable/` and `Result/iteration-matrix-imremit-dashboard-failed-payments-on-provider-payment-provider-error.zip`.
+- Report readability for this module follows the approved Iteration Matrix pattern: keep `Description` limited to `Scenario:` and `Spec File:`, keep `Login into Application` and `Logout from the application` visible, and expose the business flow from helper-owned steps instead of a wrapped `runScenario` shell.
+- For validation in this environment, prefer direct relative-path `playwright test <relative-spec>` invocations; bulk harnesses that detach child processes or pass absolute file paths can produce false `No tests found` failures.
+- Both provider report wrappers are validated. The full client report reruns the module clean at 29/29 passing, and the last-failed wrapper now succeeds by rebuilding from preserved baseline results when no failed specs are available for rerun.
 
 ## Card On File Reporting Status
 
