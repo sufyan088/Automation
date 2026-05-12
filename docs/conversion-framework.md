@@ -110,6 +110,41 @@ await test.step('Login into Application', async () => {
 });
 ```
 
+For client-facing module reports, keep the real business flow in top-level helper-owned steps instead of generic wrappers.
+
+Use this pattern:
+
+- keep `Description` limited to `Scenario:` and `Spec File:`
+- keep spec files thin: login, one direct helper-backed scenario call, logout
+- create business-readable helper steps such as `Open Payment Method step`, `Save payment method`, or `Verify saved payment method row`
+- avoid wrapping the whole scenario in generic shells such as `Run converted flow` or `Run TS_07 ...` when converting a new module
+
+Recommended spec shape:
+
+```js
+await test.step('Login into Application', async () => {
+  await loginAsAdmin(page, data);
+});
+
+await moduleHelpers.runScenario(page, data, test.info().title);
+
+await test.step('Logout from the application', async () => {
+  await closeSession(page);
+});
+```
+
+Recommended helper shape:
+
+```js
+async function reportStep(name, action) {
+  return test.step(name, action);
+}
+
+await reportStep('Open Payment Method step', async () => {
+  // flow
+});
+```
+
 ### 4. Centralize selectors
 
 Put selectors in `selectors/<module>.selectors.js`.
@@ -246,6 +281,15 @@ This project already supports Mammoth-branded portable output through:
 
 - `scripts/customize-allure-report.js`
 
+### Client-facing description and Test body standard
+
+Use the same client-facing report shape for every newly converted module:
+
+- `Description` must stay limited to `Scenario:` and `Spec File:`
+- business flow belongs in the Allure `Test body`, not in `Description`
+- business flow should appear as readable top-level helper steps, not as a single generic container with many nested sub-steps
+- report-time flattening is a fallback for older modules, not the primary design target for new conversions
+
 ### Suite normalization before full-project report generation
 
 If existing `allure-results` carry Playwright's default `chromium` parentSuite label, the Suites card in the combined report collapses to a single entry.
@@ -277,7 +321,7 @@ This unwraps the generic parent step in `allure-results/*-result.json` so the Al
 - Strip any stale `Source AIQ:` lines from result descriptions before report generation.
 - For Cluster, prioritize helper-layer readable nested steps.
 - For Camp Server, use result flattening as a report-time compatibility layer until all legacy wrapper steps are removed from specs.
-- For Iteration Matrix, treat Criteria Settings, Customer Management Admin New, and Card On File as the current reference pattern: readable report output must be created at the helper export layer, while result flattening only removes the generic top-level wrapper when nested child steps already exist.
+- For Iteration Matrix, treat Criteria Settings, Customer Management Admin New, Customer Onboarding, and Card On File as the current reference pattern: readable report output must be created at the helper export layer, while result flattening only removes the generic top-level wrapper when nested child steps already exist.
 - For Iteration Matrix conversion workflow, apply that report-step shaping module-wise during conversion completion instead of waiting for a repo-wide cleanup pass.
 - For any dedicated module client report, the preferred failure-follow-up mechanism is now: rerun only the failed specs with `--last-failed`, merge those rerun results back into the existing module Allure baseline by test identity, replace only the affected test entries, and rebuild the shareable artifact without duplicating unchanged tests.
 - Treat this merge-and-rebuild mechanism as the standard for all future module-specific client report runners across project tracks.

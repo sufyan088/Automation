@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, customerModuleManagementAdminModuleHelpers } = require('./_shared');
 
 test("TS_28_To_verify_that_the_Statement_Recon_option_can_be_selected", async ({ page }) => {
   const data = loadRuntimeData();
@@ -12,6 +12,7 @@ test("TS_28_To_verify_that_the_Statement_Recon_option_can_be_selected", async ({
   });
 
   await test.step('Run converted flow', async () => {
+    await customerModuleManagementAdminModuleHelpers.runScenario(page, data, 'TS_28_To_verify_that_the_Statement_Recon_option_can_be_selected');
   });
 
   await test.step('Logout from the application', async () => {

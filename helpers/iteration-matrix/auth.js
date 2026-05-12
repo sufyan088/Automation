@@ -76,7 +76,7 @@ async function isVisible(page, selectors) {
   return false;
 }
 
-async function waitForAppReady(page, timeout = 20000) {
+async function waitForAppReady(page, timeout = 30000) {
   const startedAt = Date.now();
 
   while ((Date.now() - startedAt) < timeout) {
@@ -84,6 +84,11 @@ async function waitForAppReady(page, timeout = 20000) {
       await clickIfVisible(page, iterationMatrixCommonSelectors.app.errorPageRecovery);
       await page.waitForLoadState('domcontentloaded').catch(() => null);
       await page.waitForTimeout(1000);
+      continue;
+    }
+
+    if (await isVisible(page, iterationMatrixCommonSelectors.app.loadingWorkspace)) {
+      await page.waitForTimeout(500);
       continue;
     }
 
@@ -164,8 +169,8 @@ async function loginAsRole(page, data, roleKey = 'admin') {
   await signInButton.click({ timeout: 10000 });
 
   await expect(async () => {
-    await waitForAppReady(page, 15000);
-  }).toPass({ timeout: 20000 });
+    await waitForAppReady(page, 30000);
+  }).toPass({ timeout: 45000 });
 }
 
 async function loginAsAdmin(page, data) {

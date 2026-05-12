@@ -11,18 +11,7 @@ test("TS_31_To_verify_that_Under_Review_card_View_Details_button_is_functional_f
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Open Duplicate Payments dashboard', async () => {
-    await duplicateDashboardNewHelpers.openModule(page);
-    await duplicateDashboardNewHelpers.openDashboard(page);
-  });
-
-  await test.step('Select dashboard customer', async () => {
-    await duplicateDashboardNewHelpers.selectCustomer(page, 'Stanford U');
-  });
-
-  await test.step('Open run type dropdown', async () => {
-    await duplicateDashboardNewHelpers.openRunTypeDropdown(page, 'Stanford U');
-  });
+  await duplicateDashboardNewHelpers.runScenario(page, data, test.info().title);
 
   await test.step('Logout from the application', async () => {
     await closeSession(page);

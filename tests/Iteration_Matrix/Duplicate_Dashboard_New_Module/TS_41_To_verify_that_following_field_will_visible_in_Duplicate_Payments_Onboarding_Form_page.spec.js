@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, duplicateDashboardNewModuleHelpers } = require('./_shared');
 
 test("TS_41_To_verify_that_following_field_will_visible_in_Duplicate_Payments_Onboarding_Form_page", async ({ page }) => {
   const data = loadRuntimeData();
@@ -11,10 +11,10 @@ test("TS_41_To_verify_that_following_field_will_visible_in_Duplicate_Payments_On
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
-  });
+  await duplicateDashboardNewModuleHelpers.runScenario(page, data, test.info().title);
 
   await test.step('Logout from the application', async () => {
     await closeSession(page);
   });
 });
+

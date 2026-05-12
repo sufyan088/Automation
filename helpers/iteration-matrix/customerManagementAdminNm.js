@@ -49,6 +49,13 @@ async function clickOptionByName(page, optionName) {
 }
 
 async function clickChoiceByName(page, optionName) {
+  try {
+    await clickOpenDropdownChoiceByName(page, optionName);
+    return;
+  } catch (error) {
+    // Fall back to broader page candidates when no visible open-dropdown match exists.
+  }
+
   const candidates = [
     page.getByRole('option', { name: optionName, exact: true }).first(),
     page.getByRole('button', { name: optionName, exact: true }).first(),
@@ -66,10 +73,12 @@ async function clickChoiceByName(page, optionName) {
 }
 
 async function clickOpenDropdownChoiceByName(page, optionName) {
+  const optionPattern = new RegExp(`(^|\\b)${escapeRegExp(optionName)}(\\b|$)`, 'i');
   const candidates = [
-    page.locator('[role="listbox"] [role="option"]').filter({ hasText: new RegExp(`^${escapeRegExp(optionName)}$`, 'i') }).first(),
-    page.locator('[data-radix-popper-content-wrapper] [role="option"]').filter({ hasText: new RegExp(`^${escapeRegExp(optionName)}$`, 'i') }).first(),
-    page.locator('[data-radix-popper-content-wrapper] [data-radix-collection-item]').filter({ hasText: new RegExp(`^${escapeRegExp(optionName)}$`, 'i') }).first(),
+    page.locator('[role="listbox"] [role="option"]').filter({ hasText: optionPattern }).first(),
+    page.locator('[data-radix-popper-content-wrapper] [role="option"]').filter({ hasText: optionPattern }).first(),
+    page.locator('[data-radix-popper-content-wrapper] [data-radix-collection-item]').filter({ hasText: optionPattern }).first(),
+    page.locator('[data-radix-popper-content-wrapper] > div > div').filter({ hasText: optionPattern }).first(),
     page.getByRole('option', { name: optionName, exact: true }).first()
   ];
 
@@ -84,10 +93,13 @@ async function clickOpenDropdownChoiceByName(page, optionName) {
 }
 
 async function optionOrButtonIsVisible(page, optionName) {
+  const optionPattern = new RegExp(`(^|\\b)${escapeRegExp(optionName)}(\\b|$)`, 'i');
   const candidates = [
     page.getByRole('option', { name: optionName, exact: true }).first(),
     page.getByRole('button', { name: optionName, exact: true }).first(),
-    page.getByText(optionName, { exact: true }).first()
+    page.getByText(optionName, { exact: true }).first(),
+    page.locator('[data-radix-popper-content-wrapper]').getByText(optionPattern).first(),
+    page.locator('[role="listbox"]').getByText(optionPattern).first()
   ];
   for (const locator of candidates) {
     if (await locator.isVisible().catch(() => false)) {
@@ -98,7 +110,22 @@ async function optionOrButtonIsVisible(page, optionName) {
 }
 
 async function clickFirstVisibleOption(page) {
-  const option = page.getByRole('option').first();
+  const visibleOpenDropdownOption = page.locator(
+    '[role="listbox"] [role="option"], [data-radix-popper-content-wrapper] [role="option"], [data-radix-popper-content-wrapper] [data-radix-collection-item]'
+  ).filter({ hasNot: page.locator('[aria-hidden="true"]') }).first();
+
+  if (await visibleOpenDropdownOption.isVisible().catch(() => false)) {
+    await visibleOpenDropdownOption.click();
+    return;
+  }
+
+  const visibleOpenDropdownTextOption = page.locator('[data-radix-popper-content-wrapper] > div > div').first();
+  if (await visibleOpenDropdownTextOption.isVisible().catch(() => false)) {
+    await visibleOpenDropdownTextOption.click();
+    return;
+  }
+
+  const option = page.getByRole('option').locator(':visible').first();
   await option.waitFor({ state: 'visible', timeout: 15000 });
   await option.click();
 }
@@ -268,13 +295,20 @@ async function ensureCreateCustomerPage(page) {
 async function fillBaseCustomerDetails(page, data, options = {}) {
   const customerName = options.customerName || buildUniqueCustomerName(data);
   await fillWithFallback(page, customerManagementAdminNmSelectors.fields.customerName, customerName);
-  await clickDropdown(page, customerManagementAdminNmSelectors.dropdowns.programManager);
-  await clickOptionWithFallback(page, [
-    customerManagementAdminNmSelectors.programManagerOption,
-    data.Username_ProgramManager,
-    data.Username_ProjectManager,
-    data.Username_Management
-  ]);
+  const programManagerControl = await resolveFirst(page, customerManagementAdminNmSelectors.dropdowns.programManager, {
+    mustBeVisible: true,
+    timeoutPerCandidate: 2500
+  });
+  const currentProgramManager = (await programManagerControl.locator.textContent().catch(() => '') || '').trim();
+  if (!currentProgramManager || /select program manager/i.test(currentProgramManager)) {
+    await programManagerControl.locator.click();
+    await clickOptionWithFallback(page, [
+      customerManagementAdminNmSelectors.programManagerOption,
+      data.Username_ProgramManager,
+      data.Username_ProjectManager,
+      data.Username_Management
+    ]);
+  }
   await fillWithFallback(page, customerManagementAdminNmSelectors.fields.companyContactName, 'TestCompany');
   await fillWithFallback(page, customerManagementAdminNmSelectors.fields.companyIndustry, 'TestData');
   await selectDropdownValue(

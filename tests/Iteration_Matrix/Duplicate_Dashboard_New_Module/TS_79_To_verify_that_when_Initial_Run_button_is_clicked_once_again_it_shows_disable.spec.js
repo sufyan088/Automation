@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, duplicateDashboardNewModuleHelpers } = require('./_shared');
 
 test("TS_79_To_verify_that_when_Initial_Run_button_is_clicked_once_again_it_shows_disable", async ({ page }) => {
   const data = loadRuntimeData();
@@ -11,10 +11,10 @@ test("TS_79_To_verify_that_when_Initial_Run_button_is_clicked_once_again_it_show
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
-  });
+  await duplicateDashboardNewModuleHelpers.runScenario(page, data, test.info().title);
 
   await test.step('Logout from the application', async () => {
     await closeSession(page);
   });
 });
+

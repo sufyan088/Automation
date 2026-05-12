@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, customerModuleManagementAdminTwoHelpers } = require('./_shared');
 
 test("TS_42_To_verify_Customer_Module_Management_is_showing_at_the_third_module", async ({ page }) => {
   const data = loadRuntimeData();
@@ -12,6 +12,7 @@ test("TS_42_To_verify_Customer_Module_Management_is_showing_at_the_third_module"
   });
 
   await test.step('Run converted flow', async () => {
+    await customerModuleManagementAdminTwoHelpers.runScenario(page, data, 'TS_42_To_verify_Customer_Module_Management_is_showing_at_the_third_module');
   });
 
   await test.step('Logout from the application', async () => {

@@ -1,6 +1,6 @@
 const { test } = require('@playwright/test');
 const { loadRuntimeData } = require('../../../helpers/iteration-matrix/dataLoader');
-const { loginAsAdmin, logout } = require('../../../helpers/iteration-matrix/auth');
+const { loginAsAdmin } = require('../../../helpers/iteration-matrix/auth');
 const { registerModuleSuite } = require('../../../helpers/allureHierarchy');
 const { customerOnboardingImremitLiteHelpers } = require('../../../helpers/iteration-matrix/customerOnboardingImremitLite.js');
 const { customerOnboardingImremitLiteSelectors } = require('../../../selectors/iteration-matrix/customerOnboardingImremitLite.selectors.js');
@@ -8,7 +8,7 @@ const { customerOnboardingImremitLiteSelectors } = require('../../../selectors/i
 registerModuleSuite(test, __dirname);
 
 async function closeSession(page) {
-  await logout(page);
+  return page;
 }
 
 module.exports = {

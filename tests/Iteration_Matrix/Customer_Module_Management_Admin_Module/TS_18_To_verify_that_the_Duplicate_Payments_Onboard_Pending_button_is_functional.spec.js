@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, customerModuleManagementAdminModuleHelpers } = require('./_shared');
 
 test("TS_18_To_verify_that_the_Duplicate_Payments_Onboard_Pending_button_is_functional", async ({ page }) => {
   const data = loadRuntimeData();
@@ -12,6 +12,7 @@ test("TS_18_To_verify_that_the_Duplicate_Payments_Onboard_Pending_button_is_func
   });
 
   await test.step('Run converted flow', async () => {
+    await customerModuleManagementAdminModuleHelpers.runScenario(page, data, 'TS_18_To_verify_that_the_Duplicate_Payments_Onboard_Pending_button_is_functional');
   });
 
   await test.step('Logout from the application', async () => {

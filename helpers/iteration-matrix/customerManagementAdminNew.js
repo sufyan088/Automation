@@ -44,10 +44,34 @@ function getRenderedModuleName(moduleName) {
   return moduleName;
 }
 
+async function clickFirstVisibleLocator(locator) {
+  const count = await locator.count().catch(() => 0);
+  for (let index = 0; index < count; index += 1) {
+    const candidate = locator.nth(index);
+    if (await candidate.isVisible().catch(() => false)) {
+      await candidate.scrollIntoViewIfNeeded().catch(() => null);
+      await candidate.click({ timeout: 5000 });
+      return true;
+    }
+  }
+
+  return false;
+}
+
 async function clickOptionByName(page, optionName) {
-  const option = page.getByRole('option', { name: optionName, exact: true }).first();
-  await option.waitFor({ state: 'visible', timeout: 15000 });
-  await option.click();
+  const candidates = [
+    page.getByRole('option', { name: optionName, exact: true }),
+    page.getByRole('button', { name: optionName, exact: true }),
+    page.getByText(optionName, { exact: true })
+  ];
+
+  for (const locator of candidates) {
+    if (await clickFirstVisibleLocator(locator)) {
+      return;
+    }
+  }
+
+  throw new Error(`Unable to click option: ${optionName}`);
 }
 
 async function optionOrButtonIsVisible(page, optionName) {
@@ -67,9 +91,15 @@ async function optionOrButtonIsVisible(page, optionName) {
 }
 
 async function clickFirstVisibleOption(page) {
-  const option = page.getByRole('option').first();
-  await option.waitFor({ state: 'visible', timeout: 15000 });
-  await option.click();
+  const option = page.getByRole('option');
+  if (await clickFirstVisibleLocator(option)) {
+    return;
+  }
+
+  await page.keyboard.press('ArrowDown').catch(() => null);
+  await waitForAppToSettle(page, 200);
+  await page.keyboard.press('Enter').catch(() => null);
+  await waitForAppToSettle(page, 300);
 }
 
 async function clickOptionWithFallback(page, optionNames) {
@@ -78,9 +108,20 @@ async function clickOptionWithFallback(page, optionNames) {
       continue;
     }
 
-    const option = page.getByRole('option', { name: String(optionName), exact: true }).first();
-    if (await option.isVisible().catch(() => false)) {
-      await option.click();
+    const candidates = [
+      page.getByRole('option', { name: String(optionName), exact: true }),
+      page.getByRole('button', { name: String(optionName), exact: true }),
+      page.getByText(String(optionName), { exact: true })
+    ];
+
+    for (const locator of candidates) {
+      if (await clickFirstVisibleLocator(locator)) {
+        return;
+      }
+    }
+
+    if (await optionOrButtonIsVisible(page, optionName)) {
+      await clickOptionByName(page, String(optionName));
       return;
     }
   }
@@ -123,6 +164,70 @@ async function selectDropdownValue(page, dropdownCandidates, preferredOption, fa
 async function clickDropdown(page, candidates) {
   const result = await resolveFirst(page, candidates, { mustBeVisible: true, timeoutPerCandidate: 2500 });
   await result.locator.click();
+  return result.locator;
+}
+
+async function waitForStateControlReady(page) {
+  await expect(async () => {
+    const stateControl = await resolveFirst(page, customerManagementAdminNewSelectors.dropdowns.state, {
+      mustBeVisible: true,
+      timeoutPerCandidate: 1500
+    });
+    const disabled = await stateControl.locator.isDisabled().catch(() => false);
+    const text = ((await stateControl.locator.textContent().catch(() => '')) || '').trim();
+
+    expect(disabled).toBe(false);
+    expect(text).not.toMatch(/please select country first/i);
+  }).toPass({ timeout: 10000 });
+}
+
+async function ensureDropdownValueSelected(page, dropdownCandidates, expectedValue, fallbackOptions = []) {
+  await waitForAppToSettle(page, 500);
+
+  for (let attempt = 0; attempt < 2; attempt += 1) {
+    const control = await clickDropdown(page, dropdownCandidates);
+    await clickOptionWithFallback(page, [expectedValue, ...fallbackOptions]);
+    await waitForAppToSettle(page, 500);
+
+    const text = ((await control.textContent().catch(() => '')) || '').trim();
+    if (new RegExp(escapeRegExp(expectedValue), 'i').test(text)) {
+      return;
+    }
+  }
+
+  const control = await resolveFirst(page, dropdownCandidates, { mustBeVisible: true, timeoutPerCandidate: 1500 });
+  const text = ((await control.locator.textContent().catch(() => '')) || '').trim();
+  throw new Error(`Expected dropdown to select ${expectedValue}, but current text is: ${text || '[empty]'}`);
+}
+
+async function moduleDropdownIsReady(page) {
+  const matched = await resolveFirst(page, customerManagementAdminNewSelectors.dropdowns.moduleSubscription, {
+    mustBeVisible: true,
+    timeoutPerCandidate: 1500
+  }).catch(() => null);
+
+  return Boolean(matched);
+}
+
+async function ensureModulesLoaded(page) {
+  for (let attempt = 0; attempt < 8; attempt += 1) {
+    if (await moduleDropdownIsReady(page)) {
+      return;
+    }
+
+    const loadErrorVisible = await page.getByText(/Error loading modules/i).first().isVisible().catch(() => false);
+    if (loadErrorVisible) {
+      throw new Error('Create Customer page showed Error loading modules.');
+    }
+
+    await waitForAppToSettle(page, 750);
+  }
+
+  const headingVisible = await page.getByRole('heading', { name: 'Create Customer', exact: true }).first().isVisible().catch(() => false);
+  const statePrompt = await page.getByRole('button', { name: /please select country first|select address state/i }).first().textContent().catch(() => '');
+  throw new Error(
+    `Create Customer page never exposed the module selector on the filled form. Create heading visible: ${headingVisible}. State control: ${String(statePrompt || '').trim() || 'n/a'}. URL: ${page.url()}`
+  );
 }
 
 async function ensureCreateCustomerPage(page) {
@@ -171,7 +276,9 @@ async function fillBaseCustomerDetails(page, data, options = {}) {
     [data.Country, data.CustomerCountry, 'USA']
   );
 
-  await selectDropdownValue(
+  await waitForStateControlReady(page);
+
+  await ensureDropdownValueSelected(
     page,
     customerManagementAdminNewSelectors.dropdowns.state,
     customerManagementAdminNewSelectors.stateOption,
@@ -204,6 +311,7 @@ async function fillBaseCustomerDetails(page, data, options = {}) {
 }
 
 async function openModuleDropdown(page) {
+  await ensureModulesLoaded(page);
   await clickDropdown(page, customerManagementAdminNewSelectors.dropdowns.moduleSubscription);
 
   await expect(async () => {
