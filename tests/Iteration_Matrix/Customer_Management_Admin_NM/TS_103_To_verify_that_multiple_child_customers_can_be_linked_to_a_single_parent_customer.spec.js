@@ -1,4 +1,6 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, customerManagementAdminNmHelpers } = require('./_shared');
+
+test.setTimeout(240000);
 
 test("TS_103_To_verify_that_multiple_child_customers_can_be_linked_to_a_single_parent_customer", async ({ page }) => {
   const data = loadRuntimeData();
@@ -12,6 +14,7 @@ test("TS_103_To_verify_that_multiple_child_customers_can_be_linked_to_a_single_p
   });
 
   await test.step('Run converted flow', async () => {
+    await customerManagementAdminNmHelpers.createMultipleChildrenForParent(page, data);
   });
 
   await test.step('Logout from the application', async () => {

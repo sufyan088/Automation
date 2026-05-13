@@ -67,6 +67,29 @@ function run(command, args, options = {}) {
   return 1;
 }
 
+function runWithResult(command, args, options = {}) {
+  const resolvedCommand = resolveCommand(command);
+  const spawnArgs = args || [];
+  const spawnCommand = isWindows && resolvedCommand.toLowerCase().endsWith('.cmd')
+    ? 'cmd.exe'
+    : resolvedCommand;
+  const finalArgs = isWindows && resolvedCommand.toLowerCase().endsWith('.cmd')
+    ? ['/d', '/s', '/c', buildCmdCommandLine(resolvedCommand, spawnArgs)]
+    : spawnArgs;
+  const result = spawnSync(spawnCommand, finalArgs, {
+    cwd: rootDir,
+    encoding: 'utf8',
+    shell: false,
+    ...options,
+  });
+
+  return {
+    status: typeof result.status === 'number' ? result.status : 1,
+    stdout: result.stdout || '',
+    stderr: result.stderr || '',
+  };
+}
+
 function hasAllureResults() {
   if (!fs.existsSync(resultsDir)) {
     return false;
@@ -96,9 +119,35 @@ function extractBetween(text, pattern) {
   return match ? (match[1] || match[2] || null) : null;
 }
 
+const displayTitleOverrides = {
+  TS_78_To_verify_that_Company_Industry_field_accepts_special_characters_and_create_customer:
+    'TS 78 - To verify that Company Industry field accepts supported special characters and creates customer',
+  TS_79_To_verify_that_Customer_ERP_System_field_accepts_special_characters_and_create_customer:
+    'TS 79 - To verify that Customer ERP System field accepts hyphenated values and creates customer',
+  TS_80_To_verify_that_Contact_Name_field_accepts_special_characters_and_create_customer:
+    'TS 80 - To verify that Contact Name field accepts supported punctuation and creates customer',
+  TS_86_To_verify_that_Company_Industry_field_accepts_length_of_one_character_while_customer_is_creating_their_time:
+    'TS 86 - To verify that Company Industry field accepts the minimum valid length during customer creation',
+  TS_88_To_verify_that_Customer_ERP_System_field_accepts_length_of_one_character_while_customer_is_creating_their_time:
+    'TS 88 - To verify that Customer ERP System field accepts the minimum valid length during customer creation',
+  TS_90_To_verify_that_Customer_Contact_Name_field_accepts_length_of_one_character_while_customer_is_creating_their_time:
+    'TS 90 - To verify that Customer Contact Name field accepts the minimum valid length during customer creation'
+};
+
 function humanizeTitle(title) {
-  return title
-    .replace(/\.spec\.js$/i, '')
+  const cleaned = title.replace(/\.spec\.js$/i, '').trim();
+
+  if (displayTitleOverrides[cleaned]) {
+    return displayTitleOverrides[cleaned];
+  }
+
+  const tsMatch = cleaned.match(/^TS_(\d+)_(.+)$/i);
+
+  if (tsMatch) {
+    return `TS ${tsMatch[1]} - ${tsMatch[2].replace(/_/g, ' ').replace(/\s+/g, ' ').trim()}`;
+  }
+
+  return cleaned
     .replace(/_/g, ' ')
     .replace(/\s+/g, ' ')
     .trim();
@@ -178,6 +227,8 @@ function enrichAllureResults(moduleDir) {
 function createModuleClientReportRunner(config) {
   const {
     modulePath,
+    testPath = modulePath,
+    useExactSpecFiles = false,
     shareableDirRelative,
     zipPathRelative,
     environmentLines,
@@ -189,9 +240,13 @@ function createModuleClientReportRunner(config) {
 
   const moduleDir = path.join(rootDir, modulePath);
   const shareableDir = path.join(rootDir, shareableDirRelative);
+  const exactSpecFiles = useExactSpecFiles
+    ? collectSpecFiles(moduleDir).map((filePath) => path.relative(rootDir, filePath).split(path.sep).join('/'))
+    : null;
 
   return function runModuleClientReport() {
     let baselineBackupDir = null;
+    let reusedBaselineWithoutRerun = false;
 
     if (mode === 'last-failed') {
       baselineBackupDir = createBackup(resultsDir, backupPrefix);
@@ -202,11 +257,13 @@ function createModuleClientReportRunner(config) {
       fs.mkdirSync(path.join(rootDir, 'Result'), { recursive: true });
     }
 
-    const testArgs = [
-      'playwright',
-      'test',
-      modulePath,
-    ];
+    const testArgs = ['playwright', 'test'];
+
+    if (useExactSpecFiles) {
+      testArgs.push(...exactSpecFiles);
+    } else {
+      testArgs.push(testPath);
+    }
 
     if (mode === 'last-failed') {
       testArgs.push('--last-failed');
@@ -214,28 +271,54 @@ function createModuleClientReportRunner(config) {
 
     testArgs.push(`--workers=${workers}`, '--reporter=allure-playwright');
 
-    const testExitCode = run('npx', testArgs);
+    const testRun = mode === 'last-failed'
+      ? runWithResult('npx', testArgs)
+      : { status: run('npx', testArgs), stdout: '', stderr: '' };
+    const testExitCode = testRun.status;
+
+    if (mode === 'last-failed' && testRun.stdout) {
+      process.stdout.write(testRun.stdout);
+    }
+
+    if (mode === 'last-failed' && testRun.stderr) {
+      process.stderr.write(testRun.stderr);
+    }
 
     if (!hasAllureResults()) {
       if (mode === 'last-failed') {
-        restoreBackup(baselineBackupDir, resultsDir);
-        cleanupBackup(baselineBackupDir);
+        const noFailedSpecsToRerun = /No tests found\./i.test(`${testRun.stdout}\n${testRun.stderr}`);
+
+        if (noFailedSpecsToRerun && baselineBackupDir) {
+          restoreBackup(baselineBackupDir, resultsDir);
+          reusedBaselineWithoutRerun = true;
+          console.log('No failed specs were available for rerun; regenerated the module report from the existing baseline results.');
+        } else {
+          restoreBackup(baselineBackupDir, resultsDir);
+          cleanupBackup(baselineBackupDir);
+          process.exit(testExitCode || 1);
+        }
       }
 
-      process.exit(testExitCode || 1);
+      if (!mode || mode !== 'last-failed') {
+        process.exit(testExitCode || 1);
+      }
     }
 
     if (mode === 'last-failed') {
-      const mergeSummary = mergeBaselineIntoRerunResults({
-        baselineDir: baselineBackupDir,
-        resultsDir,
-      });
-      cleanupBackup(baselineBackupDir);
+      if (reusedBaselineWithoutRerun) {
+        cleanupBackup(baselineBackupDir);
+      } else {
+        const mergeSummary = mergeBaselineIntoRerunResults({
+          baselineDir: baselineBackupDir,
+          resultsDir,
+        });
+        cleanupBackup(baselineBackupDir);
 
-      if (mergeSummary.replacedBaselineResults > 0 || mergeSummary.mergedBaselineResults > 0) {
-        console.log(
-          `Merged last-failed rerun into baseline Allure results: replaced ${mergeSummary.replacedBaselineResults} previous test entries and kept ${mergeSummary.mergedBaselineResults} unchanged baseline entries.`
-        );
+        if (mergeSummary.replacedBaselineResults > 0 || mergeSummary.mergedBaselineResults > 0) {
+          console.log(
+            `Merged last-failed rerun into baseline Allure results: replaced ${mergeSummary.replacedBaselineResults} previous test entries and kept ${mergeSummary.mergedBaselineResults} unchanged baseline entries.`
+          );
+        }
       }
     }
 
@@ -285,7 +368,7 @@ function createModuleClientReportRunner(config) {
       process.exit(zipExitCode);
     }
 
-    process.exit(testExitCode);
+    process.exit(reusedBaselineWithoutRerun ? 0 : testExitCode);
   };
 }
 

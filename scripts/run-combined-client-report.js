@@ -1,58 +1,17 @@
 const fs = require('fs');
 const path = require('path');
 const { spawnSync } = require('child_process');
-const { stripSourceAiqDescriptions } = require('./strip-source-aiq-from-allure-results');
 
 const rootDir = path.resolve(__dirname, '..');
-const isWindows = process.platform === 'win32';
 const resultsDir = path.join(rootDir, 'allure-results');
-const shareableDirRelative = path.join('Result', 'allure-report-combined-shareable');
-const zipPathRelative = path.join('Result', 'allure-report-combined-shareable.zip');
-const shareableDir = path.join(rootDir, shareableDirRelative);
-const zipPath = path.join(rootDir, zipPathRelative);
-const resultIndexPath = path.join(rootDir, 'Result', 'index.html');
-
-function resolveCommand(command) {
-  if (!isWindows) {
-    return command;
-  }
-
-  if (command === 'npx') {
-    return 'npx.cmd';
-  }
-
-  if (command === 'powershell') {
-    return 'powershell.exe';
-  }
-
-  return command;
-}
-
-function quoteForCmd(value) {
-  const stringValue = String(value);
-  return `"${stringValue.replace(/(\\*)"/g, '$1$1\\"').replace(/(\\+)$/g, '$1$1')}"`;
-}
-
-function buildCmdCommandLine(command, args) {
-  const formattedArgs = (args || [])
-    .map((arg) => (/^[A-Za-z0-9_./:=\\-]+$/.test(String(arg)) ? String(arg) : quoteForCmd(arg)))
-    .join(' ');
-  return formattedArgs ? `${command} ${formattedArgs}` : command;
-}
+const shareableDir = path.join(rootDir, 'allure-report-combined-shareable');
+const zipPath = path.join(rootDir, 'allure-report-combined-shareable.zip');
 
 function run(command, args, options = {}) {
-  const resolvedCommand = resolveCommand(command);
-  const spawnArgs = args || [];
-  const spawnCommand = isWindows && resolvedCommand.toLowerCase().endsWith('.cmd')
-    ? 'cmd.exe'
-    : resolvedCommand;
-  const finalArgs = isWindows && resolvedCommand.toLowerCase().endsWith('.cmd')
-    ? ['/d', '/s', '/c', buildCmdCommandLine(resolvedCommand, spawnArgs)]
-    : spawnArgs;
-  const result = spawnSync(spawnCommand, finalArgs, {
+  const result = spawnSync(command, args, {
     cwd: rootDir,
     stdio: 'inherit',
-    shell: false,
+    shell: true,
     ...options,
   });
 
@@ -61,16 +20,6 @@ function run(command, args, options = {}) {
   }
 
   return 1;
-}
-
-function syncResultIndex() {
-  const shareableIndexPath = path.join(shareableDir, 'index.html');
-
-  if (!fs.existsSync(shareableIndexPath)) {
-    throw new Error(`Shareable report index not found: ${shareableIndexPath}`);
-  }
-
-  fs.copyFileSync(shareableIndexPath, resultIndexPath);
 }
 
 function cleanResultsDir() {
@@ -88,46 +37,18 @@ function hasAllureResults() {
 
 function main() {
   cleanResultsDir();
-  fs.mkdirSync(path.join(rootDir, 'Result'), { recursive: true });
 
   const testExitCode = run('npx', [
     'playwright',
     'test',
-    'tests/DigitEYESCamp_Cluster/DigitEYESCamps_ManageCampsCluster',
-    'tests/DigitEYESCamp_Cluster/DigitEYESCamps_DataForSalesforce',
-    'tests/DigitEYESCamp_Cluster/DigitEYESCamps_Participants',
-    'tests/DigitEYESCamp_Cluster/DigitEYESDataLoader_DataForSalesForce',
-    'tests/DigitEYESCamp_Cluster/DigitEYESDataLoader_ParticipantConsents',
-    'tests/DigitEYESCamp_Cluster/DigitEYESDataLoader_SFDataLoaderChangeLog',
-    'tests/DigitEYESCamp_Cluster/DigitEYESDataLoader_SFDataLoaderErrorCases',
-    'tests/DigitEYESCamp_Cluster/DigitEYESDataLoader_SFDataLoaderQueue',
-    'tests/DigitEYESCamp_Cluster/DigitEYESReporting_CampTrends',
-    'tests/DigitEYESCamp_Cluster/DigitEYESReporting_InternetAvailability',
-    'tests/DigitEYESCamp_Cluster/DigitEYESReporting_PopinAvailability',
-    'tests/DigitEYESCamp_Cluster/DigitEYESReporting_SummarySheetData',
-    'tests/DigitEYESCamp_Cluster/DigitEYESReporting_WorkReportIPTeams',
-    'tests/DigitEYESCamp_Cluster/DigitEYESReporting_WorkReportVSTeams',
-    'tests/DigitEYESCamp_Cluster/DigitEYESSettings_CountrySettings',
-    'tests/DigitEYESCamp_Cluster/DigitEYESSettings_DESalesforceFieldMapping',
-    'tests/DigitEYESCamp_Cluster/DigitEYESSettings_Hospitals',
-    'tests/DigitEYESCamp_Cluster/DigitEYESSettings_ImplementationPartners',
-    '--workers=3',
+    'tests/FileProcessing',
+    'tests/CustomerModuleManagement',
+    '--workers=2',
     '--reporter=allure-playwright'
   ]);
 
   if (!hasAllureResults()) {
     process.exit(testExitCode || 1);
-  }
-
-  // Normalize suite labels so the Suites card groups by module folder instead of collapsing to "chromium"
-  const normalizeExitCode = run('node', ['scripts/normalize-allure-suites.js']);
-  if (normalizeExitCode !== 0) {
-    process.exit(normalizeExitCode);
-  }
-
-  const strippedCount = stripSourceAiqDescriptions(resultsDir);
-  if (strippedCount > 0) {
-    console.log(`Removed Source AIQ lines from ${strippedCount} Allure result files.`);
   }
 
   const generateExitCode = run('npx', [
@@ -137,25 +58,23 @@ function main() {
     '--clean',
     '--single-file',
     '-o',
-    shareableDirRelative
+    'allure-report-combined-shareable'
   ]);
 
   if (generateExitCode !== 0) {
     process.exit(generateExitCode);
   }
 
-  const brandExitCode = run('node', ['scripts/customize-allure-report.js', shareableDir]);
+  const brandExitCode = run('node', ['scripts/customize-allure-report.js', 'allure-report-combined-shareable']);
 
   if (brandExitCode !== 0) {
     process.exit(brandExitCode);
   }
 
-  syncResultIndex();
-
   const zipExitCode = run('powershell', [
     '-NoProfile',
     '-Command',
-    `$zip='${zipPathRelative.replace(/'/g, "''")}'; if (Test-Path $zip) { Remove-Item $zip -Force }; Compress-Archive -Path '${shareableDirRelative.replace(/'/g, "''")}\\*' -DestinationPath $zip -Force`
+    `$zip='${zipPath.replace(/'/g, "''")}'; if (Test-Path $zip) { Remove-Item $zip -Force }; Compress-Archive -Path '${shareableDir.replace(/'/g, "''")}\\*' -DestinationPath $zip -Force`
   ]);
 
   if (zipExitCode !== 0) {

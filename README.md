@@ -2,9 +2,9 @@
 
 This repository is the current Iteration Matrix AIQ-to-Playwright conversion project.
 
-The active executable automation in this workspace lives under `tests/Iteration_Matrix/`. Some older helpers, selectors, scripts, and documents from earlier Mammoth automation work are still present in the repo as reference material, but they do not define the identity or active scope of this project.
+The active executable automation in this workspace lives under `tests/Iteration_Matrix/`.
 
-What this project reuses from that earlier work is strategy, not project ownership:
+What this project reuses from earlier Mammoth automation work is strategy, not project ownership:
 
 - helper-backed module architecture
 - centralized selectors
@@ -49,7 +49,6 @@ helpers/
   iteration-matrix/
 
 selectors/
-  common.selectors.js
   iteration-matrix/
 
 scripts/
@@ -82,9 +81,17 @@ Current module folders include areas such as:
 - `Card_On_File`
 - `Criteria_Settings`
 - `Customer_Management_Admin`
+- `Customer_Management_Admin_New`
+- `Customer_Management_Admin_NM`
+- `Customer_Management_Admin_Two`
+- `Customer_Management_Payment_Method`
+- `Customer_Module_Management_Admin_Module`
+- `Customer_Module_Management_Admin_Module_New`
 - `Customer_Onboarding`
+- `Customer_Onboarding_imREmit_Lite`
 - `Duplicates_Dashboard`
 - `FileProcessing`
+ - `imREmit_Dashboard_Failed_payments_on_IM_IM_ERROR`
 - `Invoice_Tracker`
 - `Login`
 - `Payment_Management_imREmit`
@@ -105,7 +112,20 @@ Additional module folders already exist under `tests/Iteration_Matrix/`; treat t
 - Iteration Matrix is the only active top-level test track in this workspace.
 - Runtime data for this track is loaded from `data/iteration-matrix/IM_DPL1.csv` unless overridden by environment variables.
 - Criteria Settings is fully helper-backed and validated clean at 66 passing specs.
+- Customer Management Admin New is fully converted, validated clean at 17 passing specs, and has dedicated full and last-failed module report flows.
+- Customer Management Admin NM is fully converted, validated clean at 40 passing specs, and has dedicated full and last-failed module report flows with shareable artifacts under `Result/`.
+- Customer Management Admin Two is fully converted, validated clean at 41 passing specs, and has dedicated full and last-failed module report flows with shareable artifacts under `Result/`.
+- Customer Management Payment Method is helper-backed, validated for its current single AIQ case, and has dedicated full and last-failed module report flows.
+- Customer Module Management Admin Module is helper-backed for the current TS_01 to TS_28 slice through `helpers/iteration-matrix/customerModuleManagementAdminModule.js`.
+- Customer Module Management Admin Module New is helper-backed for the current TS_29 to TS_41 slice through `helpers/iteration-matrix/customerModuleManagementAdminModuleNew.js` and has dedicated full and last-failed module report flows with shareable artifacts under `Result/`.
+- Customer Onboarding is helper-backed, validated clean at 21 passing specs, and has dedicated full and last-failed module report flows with shareable artifacts under `Result/`.
+- Customer Onboarding imREmit Lite remains a separate sibling module surface from the completed base Customer Onboarding report scope.
+- imREmit Dashboard Failed payments on IM IM Error is helper-backed, validated clean at 29 passing specs with `--workers=3`, and has dedicated full and last-failed module report flows with Mammoth-branded shareable artifacts under `Result/`.
+- imREmit Dashboard Failed payments on Provider Payment Provider Error is helper-backed, validated clean at 29 passing specs, and has dedicated full and last-failed module report flows with Mammoth-branded shareable artifacts under `Result/`.
+- imREmit Dashboard Failed payments on Provider Payment Provider Error report wrappers are validated end to end; the last-failed path now regenerates from baseline when there are no failed specs to rerun.
+- Card On File has client-readable report output restored through helper-layer readable steps and a validated dedicated module report flow.
 - Module-level client reporting now supports rerun-only-failed merge flows through shared runner logic in `scripts/module-client-report-runner.js`.
+- Report-step shaping is part of module conversion done-ness: keep specs thin, expose business-readable nested helper steps, and let report flattening remove only the generic wrapper when needed.
 - Durable project-specific continuation guidance lives in `docs/iteration-matrix-handoff.md`.
 
 ## Install
@@ -157,6 +177,24 @@ Use the packaged Iteration Matrix report flows whenever output is meant to be sh
 ### Module reports
 
 - `npm run report:iteration-matrix:card-on-file:client`
+- `npm run report:iteration-matrix:customer-management-admin-new:client`
+- `npm run report:iteration-matrix:customer-management-admin-new:last-failed:client`
+- `npm run report:iteration-matrix:customer-management-admin-nm:client`
+- `npm run report:iteration-matrix:customer-management-admin-nm:last-failed:client`
+- `npm run report:iteration-matrix:customer-management-admin-two:client`
+- `npm run report:iteration-matrix:customer-management-admin-two:last-failed:client`
+- `npm run report:iteration-matrix:customer-module-management-admin-module:client`
+- `npm run report:iteration-matrix:customer-module-management-admin-module:last-failed:client`
+- `npm run report:iteration-matrix:customer-module-management-admin-module-new:client`
+- `npm run report:iteration-matrix:customer-module-management-admin-module-new:last-failed:client`
+- `npm run report:iteration-matrix:customer-management-payment-method:client`
+- `npm run report:iteration-matrix:customer-management-payment-method:last-failed:client`
+- `npm run report:iteration-matrix:customer-onboarding:client`
+- `npm run report:iteration-matrix:customer-onboarding:last-failed:client`
+- `npm run report:iteration-matrix:imremit-dashboard-failed-payments-on-im-im-error:client`
+- `npm run report:iteration-matrix:imremit-dashboard-failed-payments-on-im-im-error:last-failed:client`
+- `npm run report:iteration-matrix:imremit-dashboard-failed-payments-on-provider-payment-provider-error:client`
+- `npm run report:iteration-matrix:imremit-dashboard-failed-payments-on-provider-payment-provider-error:last-failed:client`
 - `npm run report:iteration-matrix:criteria-settings:client`
 - `npm run report:iteration-matrix:criteria-settings:last-failed:client`
 
@@ -165,9 +203,16 @@ Use the packaged Iteration Matrix report flows whenever output is meant to be sh
 - shareable artifacts are written under `Result/`
 - suite labels are normalized before report generation
 - `Source AIQ:` lines are stripped from client-facing descriptions
+- client-facing descriptions should stay limited to `Scenario:` and `Spec File:`
 - module suites are preserved from their folder names
 - dedicated module last-failed flows rerun only failed specs, replace only those result entries, and keep unchanged baseline results intact
+- if a module-specific last-failed rerun has no failed specs available, regenerate the branded report from the preserved baseline instead of treating Playwright's `No tests found.` output as a hard failure
 - dedicated module report scripts should be thin wrappers over `scripts/module-client-report-runner.js`
+- readable module Execution steps should be created at the helper layer with business-named `test.step()` actions
+- future module conversions should follow the approved client-report shape by default: keep `Description` limited to `Scenario:` and `Spec File:`, and show the business flow in `Test body` through direct helper-layer steps such as `Create customer with imREmit module` instead of generic wrapper containers
+- `scripts/flatten-generic-allure-steps.js` removes generic wrapper layers such as `Run converted flow` and helper-level `Run TS ...` wrappers only when those wrappers already contain nested business-readable child steps
+- do not rely on report-time flattening as a substitute for helper-layer business steps; flattening only exposes the steps you already created
+- for newly converted modules, avoid introducing spec-level `Run converted flow` wrappers or helper-level `Run <scenario>` shells around the real business steps unless a legacy compatibility reason requires them
 
 If you generate a report manually from existing `allure-results`, run the same result processing first:
 
@@ -238,8 +283,6 @@ npm run scaffold:module -- <ModuleName>
   Reusable conversion strategy and framework rules that still apply here.
 - [docs/team-project-setup-guide.md](docs/team-project-setup-guide.md)
   Framework reuse guidance when setting up another project.
-
-Older Vision Spring documents remain in `docs/archive/` only as archival examples of patterns that were later reused here. They are not the project handoff for Iteration Matrix.
 
 ## Notes For Future Work
 

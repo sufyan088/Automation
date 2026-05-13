@@ -50,8 +50,8 @@ These provide:
 Copy the full `helpers` pattern, at minimum:
 
 1. [helpers/actions.js](helpers/actions.js)
-2. [helpers/auth.js](helpers/auth.js)
-3. [helpers/dataLoader.js](helpers/dataLoader.js)
+2. [helpers/iteration-matrix/auth.js](helpers/iteration-matrix/auth.js)
+3. [helpers/iteration-matrix/dataLoader.js](helpers/iteration-matrix/dataLoader.js)
 4. [helpers/fallback.js](helpers/fallback.js)
 5. [helpers/allureHierarchy.js](helpers/allureHierarchy.js)
 
@@ -73,8 +73,8 @@ Cross-project safe helpers are usually:
 
 1. [helpers/actions.js](helpers/actions.js)
 2. [helpers/fallback.js](helpers/fallback.js)
-3. parts of [helpers/auth.js](helpers/auth.js) if the login flow is similar
-4. patterns from [helpers/dataLoader.js](helpers/dataLoader.js)
+3. parts of the active track auth helper if the login flow is similar
+4. patterns from the active track runtime data loader
 
 Project-specific helpers are usually:
 
@@ -96,18 +96,15 @@ If there is a conflict, keep the target project's helper function names and merg
 3. reporting workflow
 4. module scaffold pattern
 
-## Optional Module Helper Examples To Reuse As Patterns
+## Active Module Helper Examples
 
-These are historical framework examples retained from earlier Mammoth automation work.
+Use these active Iteration Matrix helpers as structure references for new module work:
 
-Use them for structure and shared-pattern reference only, not as active project modules in this Iteration Matrix workspace.
-
-Use these as working references for how to structure module helpers:
-
-1. [helpers/digiteyescampsManagecampscluster.js](helpers/digiteyescampsManagecampscluster.js)
-2. [helpers/digiteyesdataloaderCommon.js](helpers/digiteyesdataloaderCommon.js)
-3. [helpers/digiteyesreportingCommon.js](helpers/digiteyesreportingCommon.js)
-4. [helpers/digiteyessettingsCommon.js](helpers/digiteyessettingsCommon.js)
+1. [helpers/iteration-matrix/cardOnFile.js](helpers/iteration-matrix/cardOnFile.js)
+2. [helpers/iteration-matrix/criteriaSettings.js](helpers/iteration-matrix/criteriaSettings.js)
+3. [helpers/iteration-matrix/customerManagementAdminNew.js](helpers/iteration-matrix/customerManagementAdminNew.js)
+4. [helpers/iteration-matrix/customerManagementAdminNm.js](helpers/iteration-matrix/customerManagementAdminNm.js)
+5. [helpers/iteration-matrix/customerOnboarding.js](helpers/iteration-matrix/customerOnboarding.js)
 
 ## Required Selector Pattern Files
 
@@ -115,13 +112,11 @@ At minimum, copy the shared selector style and create new module selector files 
 
 Useful references:
 
-The module-specific selector examples below are also historical framework references, kept to show naming and organization patterns.
-
-1. [selectors/common.selectors.js](selectors/common.selectors.js)
-2. [selectors/digiteyescampsManagecampscluster.selectors.js](selectors/digiteyescampsManagecampscluster.selectors.js)
-3. [selectors/digiteyesdataloaderSfdataloaderqueue.selectors.js](selectors/digiteyesdataloaderSfdataloaderqueue.selectors.js)
-4. [selectors/digiteyesreportingCamptrends.selectors.js](selectors/digiteyesreportingCamptrends.selectors.js)
-5. [selectors/digiteyessettingsCountrysettings.selectors.js](selectors/digiteyessettingsCountrysettings.selectors.js)
+1. [selectors/iteration-matrix/common.selectors.js](selectors/iteration-matrix/common.selectors.js)
+2. [selectors/iteration-matrix/cardOnFile.selectors.js](selectors/iteration-matrix/cardOnFile.selectors.js)
+3. [selectors/iteration-matrix/criteriaSettings.selectors.js](selectors/iteration-matrix/criteriaSettings.selectors.js)
+4. [selectors/iteration-matrix/customerManagementAdminNew.selectors.js](selectors/iteration-matrix/customerManagementAdminNew.selectors.js)
+5. [selectors/iteration-matrix/customerManagementAdminNm.selectors.js](selectors/iteration-matrix/customerManagementAdminNm.selectors.js)
 
 ## Required Scripts Folder
 
@@ -129,8 +124,8 @@ Copy the entire `scripts` folder, especially:
 
 1. [scripts/customize-allure-report.js](scripts/customize-allure-report.js)
 2. [scripts/scaffold-module.js](scripts/scaffold-module.js)
-3. [scripts/run-combined-client-report.js](scripts/run-combined-client-report.js)
-4. [scripts/bootstrap-aiq-structure.js](scripts/bootstrap-aiq-structure.js)
+3. [scripts/module-client-report-runner.js](scripts/module-client-report-runner.js)
+4. [scripts/bootstrap-iteration-matrix-structure.js](scripts/bootstrap-iteration-matrix-structure.js)
 5. [scripts/normalize-allure-suites.js](scripts/normalize-allure-suites.js)
 6. [scripts/flatten-generic-allure-steps.js](scripts/flatten-generic-allure-steps.js)
 
@@ -138,12 +133,10 @@ These cover:
 
 - portable Allure Mammoth branding
 - module scaffolding
-- client-shareable report generation and zip packaging
-- bulk scaffold generation from source AIQ folder structure
-- retroactive Allure suite-label normalization for full-project combined reports
-- retroactive flattening of generic wrapper steps in legacy Camp Server result files
-
-Note: some older report and scaffold scripts in this repository belong to archived Vision Spring conversion tracks. Reuse the reporting mechanism, but prefer Iteration Matrix runners and currently maintained scripts when copying into a new active project.
+- client-shareable Iteration Matrix report generation and zip packaging
+- Iteration Matrix bulk scaffold generation from source AIQ folder structure
+- retroactive Allure suite-label normalization for Iteration Matrix reports
+- optional flattening of generic wrapper steps when helper-layer nested steps already exist
 
 ## Required Branding Assets
 
@@ -265,8 +258,8 @@ npm run scaffold:module -- PaymentTracking
 
 This creates:
 
-- `tests/<ModuleName>/_shared.js`
-- `tests/<ModuleName>/TS_01_<ModuleName>_smoke.spec.js`
+- `tests/Iteration_Matrix/<ModuleName>/_shared.js`
+- `tests/Iteration_Matrix/<ModuleName>/TS_01_<ModuleName>_smoke.spec.js`
 
 ## What Team Members Do After Scaffolding
 
@@ -291,7 +284,7 @@ Create module-specific files such as:
 
 Add project/module-specific runtime fields into:
 
-1. [helpers/dataLoader.js](helpers/dataLoader.js)
+1. [helpers/iteration-matrix/dataLoader.js](helpers/iteration-matrix/dataLoader.js)
 
 ### Step 4. Convert one smoke test first
 
@@ -368,18 +361,22 @@ This:
 5. applies Mammoth branding
 6. creates a zip for client sharing
 
-### Track-specific client-report behavior
+### Iteration Matrix client-report behavior
 
-- Cluster client-report flows rely on helper-layer readable nested steps and sanitize descriptions to `Scenario:` plus `Spec File:`.
-- Camp Server client-report flows sanitize descriptions the same way and additionally flatten the generic `Run converted flow` wrapper step from legacy result JSON before report generation.
+- Iteration Matrix module client-report flows require readable business steps at the helper export layer.
+- The generic `Run converted flow` wrapper is only flattened if nested steps already exist.
+- Do report-step shaping module-wise during conversion, not as a repo-wide sweep.
 
 ### Preferred client-share commands by track
 
 ```bash
 npm run report:iteration-matrix:client
 npm run report:iteration-matrix:last-failed:client
-npm run legacy:report:camp-cluster:client
-npm run legacy:report:camp-server:client
+npm run report:iteration-matrix:card-on-file:client
+npm run report:iteration-matrix:customer-management-admin-new:client
+npm run report:iteration-matrix:customer-management-admin-new:last-failed:client
+npm run report:iteration-matrix:customer-management-admin-nm:client
+npm run report:iteration-matrix:customer-management-admin-nm:last-failed:client
 ```
 
 ## What To Share With Clients

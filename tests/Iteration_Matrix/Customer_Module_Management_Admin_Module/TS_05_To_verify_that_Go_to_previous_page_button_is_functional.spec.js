@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, customerModuleManagementAdminModuleHelpers } = require('./_shared');
 
 test("TS_05_To_verify_that_Go_to_previous_page_button_is_functional", async ({ page }) => {
   const data = loadRuntimeData();
@@ -12,6 +12,7 @@ test("TS_05_To_verify_that_Go_to_previous_page_button_is_functional", async ({ p
   });
 
   await test.step('Run converted flow', async () => {
+    await customerModuleManagementAdminModuleHelpers.runScenario(page, data, 'TS_05_To_verify_that_Go_to_previous_page_button_is_functional');
   });
 
   await test.step('Logout from the application', async () => {

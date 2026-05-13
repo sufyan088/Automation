@@ -1,0 +1,5 @@
+- Duplicate_Dashboard_New_Module specs are structurally converted to helper-owned execution through helpers/iteration-matrix/duplicateDashboardNewModule.js.
+- Validated slices: TS_32; TS_41 and TS_64; TS_50, TS_51, TS_53-57; TS_52, TS_58-62; TS_63, TS_68-70, TS_72, TS_74-75, TS_77-79.
+- Submit Settings branch remains blocked on the application side: TS_65 currently fails because a getCustomerSettingsByExternalId backend error notification/toast intercepts Configure after customer selection.
+- Remaining unmapped bands after the current slice: TS_43-49, TS_66-67, TS_71, TS_73.
+- Use exact spec-file scoping for report runners because Duplicate_Dashboard_New and Duplicate_Dashboard_New_Module share a prefix.

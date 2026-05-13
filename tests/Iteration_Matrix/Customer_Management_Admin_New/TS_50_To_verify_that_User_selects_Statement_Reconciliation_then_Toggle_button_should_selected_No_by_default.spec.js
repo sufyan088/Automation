@@ -1,4 +1,11 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const {
+  test,
+  loadRuntimeData,
+  loginAsAdmin,
+  closeSession,
+  customerManagementAdminNewHelpers,
+  customerManagementAdminNewSelectors
+} = require('./_shared');
 
 test("TS_50_To_verify_that_User_selects_Statement_Reconciliation_then_Toggle_button_should_selected_No_by_default", async ({ page }) => {
   const data = loadRuntimeData();
@@ -12,6 +19,15 @@ test("TS_50_To_verify_that_User_selects_Statement_Reconciliation_then_Toggle_but
   });
 
   await test.step('Run converted flow', async () => {
+    await customerManagementAdminNewHelpers.openCreateCustomerForm(page, data);
+    await customerManagementAdminNewHelpers.selectModules(page, [
+      customerManagementAdminNewSelectors.modules.statementRecon
+    ]);
+    await customerManagementAdminNewHelpers.expectSelfFundingControls(
+      page,
+      customerManagementAdminNewSelectors.modules.statementRecon,
+      customerManagementAdminNewSelectors.labels.selfFundingDisabled
+    );
   });
 
   await test.step('Logout from the application', async () => {

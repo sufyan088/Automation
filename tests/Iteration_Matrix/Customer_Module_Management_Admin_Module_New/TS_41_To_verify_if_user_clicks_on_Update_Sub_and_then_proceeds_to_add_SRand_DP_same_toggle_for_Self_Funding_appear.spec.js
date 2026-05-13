@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, customerModuleManagementAdminModuleNewHelpers } = require('./_shared');
 
 test("TS_41_To_verify_if_user_clicks_on_Update_Sub_and_then_proceeds_to_add_SRand_DP_same_toggle_for_Self_Funding_appear", async ({ page }) => {
   const data = loadRuntimeData();
@@ -12,6 +12,7 @@ test("TS_41_To_verify_if_user_clicks_on_Update_Sub_and_then_proceeds_to_add_SRan
   });
 
   await test.step('Run converted flow', async () => {
+    await customerModuleManagementAdminModuleNewHelpers.runScenario(page, data, 'TS_41_To_verify_if_user_clicks_on_Update_Sub_and_then_proceeds_to_add_SRand_DP_same_toggle_for_Self_Funding_appear');
   });
 
   await test.step('Logout from the application', async () => {

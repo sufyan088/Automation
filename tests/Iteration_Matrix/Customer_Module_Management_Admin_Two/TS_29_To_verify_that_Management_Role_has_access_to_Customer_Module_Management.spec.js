@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, customerModuleManagementAdminTwoHelpers } = require('./_shared');
 
 test("TS_29_To_verify_that_Management_Role_has_access_to_Customer_Module_Management", async ({ page }) => {
   const data = loadRuntimeData();
@@ -12,6 +12,7 @@ test("TS_29_To_verify_that_Management_Role_has_access_to_Customer_Module_Managem
   });
 
   await test.step('Run converted flow', async () => {
+    await customerModuleManagementAdminTwoHelpers.runScenario(page, data, 'TS_29_To_verify_that_Management_Role_has_access_to_Customer_Module_Management');
   });
 
   await test.step('Logout from the application', async () => {

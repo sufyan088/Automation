@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testcase   name= 'Add_Supplier_Notification.ds' description= '' author= 'null' version= ''>
+<dpl filename='' exectype='runstepbystep' errorhandling='' type='JsDPL' locale='null'/>
+<fallback useFallback='true'/>
+<shadowDOM useShadowDOM='true'/>
+<step action='click' value='' type='web' desc='Click on Save and continue button' isThinkTime='false' isCommented='false' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='button(&quot;Save and continue&quot;)' fallback='true' selected='true'/>
+   <accessor type='unknown' value='span(&quot;Submit form&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='assertExists' value='' type='web' desc='validate that last page arrow is visible' isThinkTime='false' isCommented='true' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='svg(&quot;class==lucide lucide-arrow-right-to-line size-4 transition-transform duration-200&quot;)' fallback='true' selected='true'/>
+   <accessor type='unknown' value='svg(&quot;class==lucide lucide-arrow-right-to-line size-4&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;Go to last page&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+<step action='click' value='' type='web' desc='Click on last page arrow' isThinkTime='false' isCommented='true' isMasked='false' isHidden='false' sequence='0'>
+  <dialect type='sahi'>
+   <accessor type='unknown' value='svg(&quot;class==lucide lucide-arrow-right-to-line size-4 transition-transform duration-200&quot;)' fallback='true' selected='true'/>
+   <accessor type='unknown' value='svg(&quot;class==lucide lucide-arrow-right-to-line size-4&quot;)' fallback='true' selected='false'/>
+   <accessor type='unknown' value='span(&quot;Go to last page&quot;)' fallback='true' selected='false'/>
+</dialect>
+</step>
+</testcase>

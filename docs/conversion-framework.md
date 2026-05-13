@@ -86,11 +86,6 @@ Current Iteration Matrix examples:
 - `tests/Iteration_Matrix/Card_On_File`
 - `tests/Iteration_Matrix/Criteria_Settings`
 
-Historical examples retained in this repo as framework references:
-
-- `tests/DigitEYESCamps_ManageCampsCluster`
-- `tests/DigitEYESDataLoader_SFDataLoaderQueue`
-
 ### 2. Add one `_shared.js` per module
 
 Use `_shared.js` to expose:
@@ -111,6 +106,41 @@ Recommended step pattern:
 
 ```js
 await test.step('Login into Application', async () => {
+  // flow
+});
+```
+
+For client-facing module reports, keep the real business flow in top-level helper-owned steps instead of generic wrappers.
+
+Use this pattern:
+
+- keep `Description` limited to `Scenario:` and `Spec File:`
+- keep spec files thin: login, one direct helper-backed scenario call, logout
+- create business-readable helper steps such as `Open Payment Method step`, `Save payment method`, or `Verify saved payment method row`
+- avoid wrapping the whole scenario in generic shells such as `Run converted flow` or `Run TS_07 ...` when converting a new module
+
+Recommended spec shape:
+
+```js
+await test.step('Login into Application', async () => {
+  await loginAsAdmin(page, data);
+});
+
+await moduleHelpers.runScenario(page, data, test.info().title);
+
+await test.step('Logout from the application', async () => {
+  await closeSession(page);
+});
+```
+
+Recommended helper shape:
+
+```js
+async function reportStep(name, action) {
+  return test.step(name, action);
+}
+
+await reportStep('Open Payment Method step', async () => {
   // flow
 });
 ```
@@ -147,7 +177,7 @@ When runtime failures appear:
 
 ### 8. Use runtime data and unique entities
 
-Keep environment data in `helpers/dataLoader.js`.
+Keep environment data in a track-specific runtime loader such as `helpers/iteration-matrix/dataLoader.js`.
 
 For tests that create data, generate unique entity names to reduce collisions across reruns and future parallel execution.
 
@@ -157,13 +187,12 @@ When multiple workers share a single application account:
 
 - `closeSession(page)` must be a no-op in every `_shared.js`.
 - Real UI logout during teardown invalidates sibling workers' active sessions.
-- Fix auth-state issues in `helpers/auth.js`; do not compensate by reducing workers.
+- Fix auth-state issues in the active track auth helper; do not compensate by reducing workers.
 
 ### 10. Use AIQ-semantic assertions
 
 When an AIQ script verifies that a column *contains* a matching value (not that every row equals it), use a minimum-occurrence assertion instead of a full-column equality check.
 
-- `expectColumnValueOccurrenceAtLeast` is preserved as a historical reference implementation in `helpers/digiteyesdataloaderCommon.js`.
 - Over-constraining with equality on filtered columns causes false failures when live data contains mixed rows.
 
 ### 11. Register allureHierarchy in every _shared.js
@@ -252,6 +281,15 @@ This project already supports Mammoth-branded portable output through:
 
 - `scripts/customize-allure-report.js`
 
+### Client-facing description and Test body standard
+
+Use the same client-facing report shape for every newly converted module:
+
+- `Description` must stay limited to `Scenario:` and `Spec File:`
+- business flow belongs in the Allure `Test body`, not in `Description`
+- business flow should appear as readable top-level helper steps, not as a single generic container with many nested sub-steps
+- report-time flattening is a fallback for older modules, not the primary design target for new conversions
+
 ### Suite normalization before full-project report generation
 
 If existing `allure-results` carry Playwright's default `chromium` parentSuite label, the Suites card in the combined report collapses to a single entry.
@@ -283,6 +321,8 @@ This unwraps the generic parent step in `allure-results/*-result.json` so the Al
 - Strip any stale `Source AIQ:` lines from result descriptions before report generation.
 - For Cluster, prioritize helper-layer readable nested steps.
 - For Camp Server, use result flattening as a report-time compatibility layer until all legacy wrapper steps are removed from specs.
+- For Iteration Matrix, treat Criteria Settings, Customer Management Admin New, Customer Onboarding, and Card On File as the current reference pattern: readable report output must be created at the helper export layer, while result flattening only removes the generic top-level wrapper when nested child steps already exist.
+- For Iteration Matrix conversion workflow, apply that report-step shaping module-wise during conversion completion instead of waiting for a repo-wide cleanup pass.
 - For any dedicated module client report, the preferred failure-follow-up mechanism is now: rerun only the failed specs with `--last-failed`, merge those rerun results back into the existing module Allure baseline by test identity, replace only the affected test entries, and rebuild the shareable artifact without duplicating unchanged tests.
 - Treat this merge-and-rebuild mechanism as the standard for all future module-specific client report runners across project tracks.
 - Prefer implementing those dedicated module report commands as thin config wrappers over a shared runner, not as copied standalone scripts. In this repo that shared implementation now lives in `scripts/module-client-report-runner.js`.
