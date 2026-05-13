@@ -18,3 +18,5 @@ test("TS_02_To_verify_that_Sender_dropdown_allows_multi_selection", async ({ pag
     await closeSession(page);
   });
 });
+
+
