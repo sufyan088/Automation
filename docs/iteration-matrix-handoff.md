@@ -64,6 +64,8 @@ Use it as the project-specific companion to [docs/conversion-framework.md](./con
   - `npm run report:iteration-matrix:customer-onboarding-imremit-lite:last-failed:client`
   - `npm run report:iteration-matrix:imremit-dashboard-failed-payments-on-im-im-error:client`
   - `npm run report:iteration-matrix:imremit-dashboard-failed-payments-on-im-im-error:last-failed:client`
+  - `npm run report:iteration-matrix:imremit-dashboard-new-select-multiple-customers:client`
+  - `npm run report:iteration-matrix:imremit-dashboard-new-select-multiple-customers:last-failed:client`
   - `npm run report:iteration-matrix:imremit-dashboard-failed-payments-on-provider-payment-provider-error:client`
   - `npm run report:iteration-matrix:imremit-dashboard-failed-payments-on-provider-payment-provider-error:last-failed:client`
   - `npm run report:iteration-matrix:duplicate-dashboard-new:client`
@@ -86,6 +88,7 @@ Use it as the project-specific companion to [docs/conversion-framework.md](./con
 - Treat that last-failed merge flow as the default reporting rule for every future Iteration Matrix module-specific client report runner.
 - New Iteration Matrix module report scripts should be added as thin wrappers over `scripts/module-client-report-runner.js` so both full and last-failed flows inherit the same merge, metadata, normalization, branding, and packaging behavior.
 - `scripts/flatten-generic-allure-steps.js` only improves module readability when the wrapper already contains nested helper-created child steps. The durable fix is readable helper-layer `test.step()` actions, not report-time flattening alone.
+- If a helper-level router such as `runScenario()` already emits the business flow through nested `test.step()` calls, export it directly. Do not wrap that router again with `wrapHelperMapWithReadableSteps`, or the client report will show a stray `Run Scenario` container above the real business steps.
 - Apply that readable-step shaping module-wise during conversion completion. Do not treat a repo-wide wrapper cleanup as a prerequisite unless a cross-module reporting deadline requires it.
 
 ## Criteria Settings Status
@@ -168,6 +171,14 @@ Use it as the project-specific companion to [docs/conversion-framework.md](./con
 - The finalized module artifact paths are `Result/allure-report-iteration-matrix-imremit-dashboard-failed-payments-on-im-im-error-shareable/` and `Result/iteration-matrix-imremit-dashboard-failed-payments-on-im-im-error.zip`.
 - Report readability for this module follows the approved Iteration Matrix pattern: keep `Description` limited to `Scenario:` and `Spec File:`, keep `Login into Application` and `Logout from the application` visible, and expose the business flow from helper-owned steps instead of a wrapped `runScenario` shell.
 - When generating a dedicated report for this module, keep exact discovered spec-file scoping enabled so the long folder name is treated as the report scope and no sibling dashboard folders bleed into the artifact.
+
+## imREmit Dashboard New Select Multiple Customers Status
+
+- `tests/Iteration_Matrix/imREmit_Dashboard_New_Select_Multiple_Customers/` is helper-backed through `helpers/iteration-matrix/imremitDashboardNewSelectMultipleCustomers.js` and selectors rooted in `selectors/iteration-matrix/imremitDashboardNewSelectMultipleCustomers.selectors.js`.
+- The module is validated clean at 5/5 passing.
+- The module now has dedicated full-run and last-failed client-report wrappers at `npm run report:iteration-matrix:imremit-dashboard-new-select-multiple-customers:client` and `npm run report:iteration-matrix:imremit-dashboard-new-select-multiple-customers:last-failed:client`.
+- The finalized module artifact paths are `Result/allure-report-iteration-matrix-imremit-dashboard-new-select-multiple-customers-shareable/` and `Result/iteration-matrix-imremit-dashboard-new-select-multiple-customers.zip`.
+- Report readability for this module follows the approved Iteration Matrix pattern: keep `Description` limited to `Scenario:` and `Spec File:`, keep `Login into Application` and `Logout from the application` visible, and expose the business flow directly from helper-owned steps with no spec-level `Run converted flow` wrapper and no helper-level `Run Scenario` shell.
 
 ## imREmit Dashboard Failed Payments On Provider Payment Provider Error Status
 

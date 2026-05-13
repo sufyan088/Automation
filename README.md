@@ -91,6 +91,7 @@ Current module folders include areas such as:
 - `Customer_Onboarding_imREmit_Lite`
 - `Duplicates_Dashboard`
 - `FileProcessing`
+- `imREmit_Dashboard_New_Select_Multiple_Customers`
  - `imREmit_Dashboard_Failed_payments_on_IM_IM_ERROR`
 - `Invoice_Tracker`
 - `Login`
@@ -121,6 +122,7 @@ Additional module folders already exist under `tests/Iteration_Matrix/`; treat t
 - Customer Onboarding is helper-backed, validated clean at 21 passing specs, and has dedicated full and last-failed module report flows with shareable artifacts under `Result/`.
 - Customer Onboarding imREmit Lite remains a separate sibling module surface from the completed base Customer Onboarding report scope.
 - imREmit Dashboard Failed payments on IM IM Error is helper-backed, validated clean at 29 passing specs with `--workers=3`, and has dedicated full and last-failed module report flows with Mammoth-branded shareable artifacts under `Result/`.
+- imREmit Dashboard New Select Multiple Customers is helper-backed, validated clean at 5 passing specs, and has dedicated full and last-failed module report flows with Mammoth-branded shareable artifacts under `Result/`.
 - imREmit Dashboard Failed payments on Provider Payment Provider Error is helper-backed, validated clean at 29 passing specs, and has dedicated full and last-failed module report flows with Mammoth-branded shareable artifacts under `Result/`.
 - imREmit Dashboard Failed payments on Provider Payment Provider Error report wrappers are validated end to end; the last-failed path now regenerates from baseline when there are no failed specs to rerun.
 - Card On File has client-readable report output restored through helper-layer readable steps and a validated dedicated module report flow.
@@ -193,6 +195,8 @@ Use the packaged Iteration Matrix report flows whenever output is meant to be sh
 - `npm run report:iteration-matrix:customer-onboarding:last-failed:client`
 - `npm run report:iteration-matrix:imremit-dashboard-failed-payments-on-im-im-error:client`
 - `npm run report:iteration-matrix:imremit-dashboard-failed-payments-on-im-im-error:last-failed:client`
+- `npm run report:iteration-matrix:imremit-dashboard-new-select-multiple-customers:client`
+- `npm run report:iteration-matrix:imremit-dashboard-new-select-multiple-customers:last-failed:client`
 - `npm run report:iteration-matrix:imremit-dashboard-failed-payments-on-provider-payment-provider-error:client`
 - `npm run report:iteration-matrix:imremit-dashboard-failed-payments-on-provider-payment-provider-error:last-failed:client`
 - `npm run report:iteration-matrix:criteria-settings:client`
@@ -212,7 +216,7 @@ Use the packaged Iteration Matrix report flows whenever output is meant to be sh
 - future module conversions should follow the approved client-report shape by default: keep `Description` limited to `Scenario:` and `Spec File:`, and show the business flow in `Test body` through direct helper-layer steps such as `Create customer with imREmit module` instead of generic wrapper containers
 - `scripts/flatten-generic-allure-steps.js` removes generic wrapper layers such as `Run converted flow` and helper-level `Run TS ...` wrappers only when those wrappers already contain nested business-readable child steps
 - do not rely on report-time flattening as a substitute for helper-layer business steps; flattening only exposes the steps you already created
-- for newly converted modules, avoid introducing spec-level `Run converted flow` wrappers or helper-level `Run <scenario>` shells around the real business steps unless a legacy compatibility reason requires them
+- for newly converted modules, avoid introducing spec-level `Run converted flow` wrappers, and do not wrap exported scenario routers like `runScenario` with `wrapHelperMapWithReadableSteps` when they already orchestrate business-named child steps
 
 If you generate a report manually from existing `allure-results`, run the same result processing first:
 
