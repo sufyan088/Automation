@@ -377,6 +377,8 @@ npm run report:iteration-matrix:customer-management-admin-new:client
 npm run report:iteration-matrix:customer-management-admin-new:last-failed:client
 npm run report:iteration-matrix:customer-management-admin-nm:client
 npm run report:iteration-matrix:customer-management-admin-nm:last-failed:client
+npm run report:iteration-matrix:imremit-dashboard-new-select-multiple-customers:client
+npm run report:iteration-matrix:imremit-dashboard-new-select-multiple-customers:last-failed:client
 ```
 
 ## What To Share With Clients
