@@ -33,6 +33,8 @@
     "report:iteration-matrix:imremit-dashboard-failed-payments-on-im-im-error:last-failed:client": "node scripts/run-iteration-matrix-imremit-dashboard-failed-payments-on-im-im-error-last-failed-client-report.js",
     "report:iteration-matrix:imremit-dashboard-failed-payments-on-provider-payment-provider-error:client": "node scripts/run-iteration-matrix-imremit-dashboard-failed-payments-on-provider-payment-provider-error-client-report.js",
     "report:iteration-matrix:imremit-dashboard-failed-payments-on-provider-payment-provider-error:last-failed:client": "node scripts/run-iteration-matrix-imremit-dashboard-failed-payments-on-provider-payment-provider-error-last-failed-client-report.js",
+    "report:iteration-matrix:imremit-dashboard-new-select-multiple-customers:client": "node scripts/run-iteration-matrix-imremit-dashboard-new-select-multiple-customers-client-report.js",
+    "report:iteration-matrix:imremit-dashboard-new-select-multiple-customers:last-failed:client": "node scripts/run-iteration-matrix-imremit-dashboard-new-select-multiple-customers-last-failed-client-report.js",
     "report:iteration-matrix:duplicate-dashboard-new:client": "node scripts/run-iteration-matrix-duplicate-dashboard-new-client-report.js",
     "report:iteration-matrix:duplicate-dashboard-new:last-failed:client": "node scripts/run-iteration-matrix-duplicate-dashboard-new-last-failed-client-report.js",
     "report:iteration-matrix:duplicate-dashboard-new-module:client": "node scripts/run-iteration-matrix-duplicate-dashboard-new-module-client-report.js",
