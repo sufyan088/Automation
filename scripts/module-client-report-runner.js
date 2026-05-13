@@ -236,6 +236,7 @@ function createModuleClientReportRunner(config) {
     mode = 'full',
     workers = 3,
     backupPrefix = 'vision-spring-module-allure-',
+    postProcessResults,
   } = config;
 
   const moduleDir = path.join(rootDir, modulePath);
@@ -336,6 +337,14 @@ function createModuleClientReportRunner(config) {
 
     enrichAllureResults(moduleDir);
     stripSourceAiqDescriptions(resultsDir);
+
+    if (typeof postProcessResults === 'function') {
+      postProcessResults({
+        resultsDir,
+        moduleDir,
+        rootDir,
+      });
+    }
 
     const generateExitCode = run('npx', [
       'allure',
