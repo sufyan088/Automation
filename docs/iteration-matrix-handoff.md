@@ -180,6 +180,17 @@ Use it as the project-specific companion to [docs/conversion-framework.md](./con
 - The finalized module artifact paths are `Result/allure-report-iteration-matrix-imremit-dashboard-new-select-multiple-customers-shareable/` and `Result/iteration-matrix-imremit-dashboard-new-select-multiple-customers.zip`.
 - Report readability for this module follows the approved Iteration Matrix pattern: keep `Description` limited to `Scenario:` and `Spec File:`, keep `Login into Application` and `Logout from the application` visible, and expose the business flow directly from helper-owned steps with no spec-level `Run converted flow` wrapper and no helper-level `Run Scenario` shell.
 
+## imREmit Dashboard New Bank Reconciliation File Not Received Status
+
+- `tests/Iteration_Matrix/imREmit_Dashboard_New_Bank_reconciliation_file_not_received/` is helper-backed through `helpers/iteration-matrix/imremitDashboardNewBankReconciliationFileNotReceived.js` and selectors rooted in `selectors/iteration-matrix/imremitDashboardNewBankReconciliationFileNotReceived.selectors.js`.
+- The module is validated clean at 23/23 passing through the dedicated full client-report run.
+- The module now has dedicated full-run and last-failed client-report wrappers at `npm run report:iteration-matrix:imremit-dashboard-new-bank-reconciliation-file-not-received:client` and `npm run report:iteration-matrix:imremit-dashboard-new-bank-reconciliation-file-not-received:last-failed:client`.
+- The finalized module artifact paths are `Result/allure-report-iteration-matrix-imremit-dashboard-new-bank-reconciliation-file-not-received-shareable/` and `Result/iteration-matrix-imremit-dashboard-new-bank-reconciliation-file-not-received.zip`.
+- Report readability for this module follows the approved Iteration Matrix pattern: keep `Description` limited to `Scenario:` and `Spec File:`, keep `Login into Application` and `Logout from the application` visible, and expose the business flow directly from helper-owned steps with no spec-level `Run converted flow` wrapper and no helper-level `Run Scenario` shell.
+- The helper-owned step wording for this module was explicitly aligned to the FileProcessing reporting style so the Allure `Test body` reads as business actions such as opening Payment Management, opening payment details, and verifying pagination-size choices.
+- The module-specific last-failed wrapper is validated. When there are no failed specs available for rerun, it regenerates the branded module report from the preserved baseline results instead of treating Playwright's `No tests found.` output as a hard failure.
+- The live module differs from the older failed-payments surfaces: pagination relies on lucide icon controls and page-size menus, row actions use a grip-vertical control, and helper/selectors should be reused from this module instead of falling back to the generic failed-payments selectors.
+
 ## imREmit Dashboard Failed Payments On Provider Payment Provider Error Status
 
 - `tests/Iteration_Matrix/imREmit_Dashboard_Failed_payments_on_provider_PAYMENT_PROVIDER_ERROR/` is helper-backed through `helpers/iteration-matrix/imremitDashboardFailedPaymentsOnProviderPaymentProviderError.js` and selectors rooted in `selectors/iteration-matrix/imremitDashboardFailedPaymentsOnProviderPaymentProviderError.selectors.js`.
