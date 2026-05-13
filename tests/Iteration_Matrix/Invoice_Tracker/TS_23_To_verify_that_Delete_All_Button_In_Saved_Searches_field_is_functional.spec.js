@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, invoiceTrackerHelpers } = require('./_shared');
 
 test("TS_23_To_verify_that_Delete_All_Button_In_Saved_Searches_field_is_functional", async ({ page }) => {
   const data = loadRuntimeData();
@@ -12,6 +12,7 @@ test("TS_23_To_verify_that_Delete_All_Button_In_Saved_Searches_field_is_function
   });
 
   await test.step('Run converted flow', async () => {
+    await invoiceTrackerHelpers.runScenario(page, data, test.info().title);
   });
 
   await test.step('Logout from the application', async () => {

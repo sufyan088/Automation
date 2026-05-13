@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, invoiceTrackerHelpers } = require('./_shared');
 
 test("TS_15_To_verify_that_Asc_button_is_responsive_for_all_the_entries_present_in_the_border", async ({ page }) => {
   const data = loadRuntimeData();
@@ -12,6 +12,7 @@ test("TS_15_To_verify_that_Asc_button_is_responsive_for_all_the_entries_present_
   });
 
   await test.step('Run converted flow', async () => {
+    await invoiceTrackerHelpers.runScenario(page, data, test.info().title);
   });
 
   await test.step('Logout from the application', async () => {

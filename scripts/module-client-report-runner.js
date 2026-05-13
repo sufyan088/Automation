@@ -15,6 +15,9 @@ const rootDir = path.resolve(__dirname, '..');
 const isWindows = process.platform === 'win32';
 const resultsDir = path.join(rootDir, 'allure-results');
 const resultIndexPath = path.join(rootDir, 'Result', 'index.html');
+const windowsSystemRoot = process.env.SystemRoot || 'C:\\Windows';
+const cmdExecutable = process.env.ComSpec || path.join(windowsSystemRoot, 'System32', 'cmd.exe');
+const powershellExecutable = path.join(windowsSystemRoot, 'System32', 'WindowsPowerShell', 'v1.0', 'powershell.exe');
 
 function resolveCommand(command) {
   if (!isWindows) {
@@ -25,8 +28,18 @@ function resolveCommand(command) {
     return 'npx.cmd';
   }
 
+  if (command === 'allure') {
+    const bundledAllureBatch = path.join(rootDir, 'node_modules', 'allure-commandline', 'dist', 'bin', 'allure.bat');
+    if (fs.existsSync(bundledAllureBatch)) {
+      return bundledAllureBatch;
+    }
+
+    const localAllure = path.join(rootDir, 'node_modules', '.bin', 'allure.cmd');
+    return fs.existsSync(localAllure) ? localAllure : 'allure';
+  }
+
   if (command === 'powershell') {
-    return 'powershell.exe';
+    return fs.existsSync(powershellExecutable) ? powershellExecutable : 'powershell.exe';
   }
 
   return command;
@@ -47,10 +60,11 @@ function buildCmdCommandLine(command, args) {
 function run(command, args, options = {}) {
   const resolvedCommand = resolveCommand(command);
   const spawnArgs = args || [];
-  const spawnCommand = isWindows && resolvedCommand.toLowerCase().endsWith('.cmd')
-    ? 'cmd.exe'
+  const usesCmdShell = isWindows && /\.(cmd|bat)$/i.test(resolvedCommand);
+  const spawnCommand = usesCmdShell
+    ? cmdExecutable
     : resolvedCommand;
-  const finalArgs = isWindows && resolvedCommand.toLowerCase().endsWith('.cmd')
+  const finalArgs = usesCmdShell
     ? ['/d', '/s', '/c', buildCmdCommandLine(resolvedCommand, spawnArgs)]
     : spawnArgs;
   const result = spawnSync(spawnCommand, finalArgs, {
@@ -70,10 +84,11 @@ function run(command, args, options = {}) {
 function runWithResult(command, args, options = {}) {
   const resolvedCommand = resolveCommand(command);
   const spawnArgs = args || [];
-  const spawnCommand = isWindows && resolvedCommand.toLowerCase().endsWith('.cmd')
-    ? 'cmd.exe'
+  const usesCmdShell = isWindows && /\.(cmd|bat)$/i.test(resolvedCommand);
+  const spawnCommand = usesCmdShell
+    ? cmdExecutable
     : resolvedCommand;
-  const finalArgs = isWindows && resolvedCommand.toLowerCase().endsWith('.cmd')
+  const finalArgs = usesCmdShell
     ? ['/d', '/s', '/c', buildCmdCommandLine(resolvedCommand, spawnArgs)]
     : spawnArgs;
   const result = spawnSync(spawnCommand, finalArgs, {
@@ -346,8 +361,7 @@ function createModuleClientReportRunner(config) {
       });
     }
 
-    const generateExitCode = run('npx', [
-      'allure',
+    const generateExitCode = run('allure', [
       'generate',
       'allure-results',
       '--clean',

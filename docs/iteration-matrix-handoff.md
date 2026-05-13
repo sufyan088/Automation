@@ -160,6 +160,15 @@ Use it as the project-specific companion to [docs/conversion-framework.md](./con
 - The finalized module artifact paths are `Result/allure-report-iteration-matrix-customer-onboarding-shareable/` and `Result/iteration-matrix-customer-onboarding.zip`.
 - `tests/Iteration_Matrix/Customer_Onboarding_imREmit_Lite/` remains a separate sibling module surface and should not be conflated with the completed base Customer_Onboarding report scope.
 
+## Invoice Tracker Status
+
+- `tests/Iteration_Matrix/Invoice_Tracker/` is fully helper-backed, live-aligned, and validated clean at 23/23 passing specs with `--workers=3`.
+- The primary shared implementation surface is `helpers/iteration-matrix/invoiceTracker.js`, with selectors rooted in `selectors/iteration-matrix/invoiceTracker.selectors.js`.
+- The module now has dedicated full-run and last-failed client-report wrappers at `npm run report:iteration-matrix:invoice-tracker:client` and `npm run report:iteration-matrix:invoice-tracker:last-failed:client`.
+- The finalized module artifact paths are `Result/allure-report-iteration-matrix-invoice-tracker-shareable/` and `Result/iteration-matrix-invoice-tracker.zip`.
+- Because `Invoice_Tracker` overlaps sibling folder prefixes, the report wrappers use exact discovered spec-file scoping so only the intended module contributes results.
+- Report readability for this module follows the approved Iteration Matrix style: keep client-facing descriptions limited to `Scenario:` and `Spec File:`, keep `Login into Application` and `Logout from the application` visible, and expose the business flow from helper-owned steps instead of generic wrapper shells.
+
 ## imREmit Dashboard Failed Payments On IM IM Error Status
 
 - `tests/Iteration_Matrix/imREmit_Dashboard_Failed_payments_on_IM_IM_ERROR/` is helper-backed through `helpers/iteration-matrix/imremitDashboardFailedPaymentsOnImImError.js` and selectors rooted in `selectors/iteration-matrix/imremitDashboardFailedPaymentsOnImImError.selectors.js`.

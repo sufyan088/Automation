@@ -166,7 +166,7 @@ async function loginAsRole(page, data, roleKey = 'admin') {
   await clickIfVisible(page, iterationMatrixCommonSelectors.login.rememberMe);
 
   const signInButton = await waitForVisible(page, iterationMatrixCommonSelectors.login.signIn);
-  await signInButton.click({ timeout: 10000 });
+  await signInButton.click({ timeout: 10000, noWaitAfter: true });
 
   await expect(async () => {
     await waitForAppReady(page, 30000);
