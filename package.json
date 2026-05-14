@@ -35,8 +35,6 @@
     "report:iteration-matrix:imremit-dashboard-failed-payments-on-provider-payment-provider-error:last-failed:client": "node scripts/run-iteration-matrix-imremit-dashboard-failed-payments-on-provider-payment-provider-error-last-failed-client-report.js",
     "report:iteration-matrix:imremit-dashboard-new-select-multiple-customers:client": "node scripts/run-iteration-matrix-imremit-dashboard-new-select-multiple-customers-client-report.js",
     "report:iteration-matrix:imremit-dashboard-new-select-multiple-customers:last-failed:client": "node scripts/run-iteration-matrix-imremit-dashboard-new-select-multiple-customers-last-failed-client-report.js",
-    "report:iteration-matrix:statement-search:client": "node scripts/run-iteration-matrix-statement-search-client-report.js",
-    "report:iteration-matrix:statement-search:last-failed:client": "node scripts/run-iteration-matrix-statement-search-last-failed-client-report.js",
     "report:iteration-matrix:sr-upload-new:client": "node scripts/run-iteration-matrix-sr-upload-new-client-report.js",
     "report:iteration-matrix:sr-upload-new:last-failed:client": "node scripts/run-iteration-matrix-sr-upload-new-last-failed-client-report.js",
     "report:iteration-matrix:imremit-dashboard-new-bank-reconciliation-file-not-received:client": "node scripts/run-iteration-matrix-imremit-dashboard-new-bank-reconciliation-file-not-received-client-report.js",

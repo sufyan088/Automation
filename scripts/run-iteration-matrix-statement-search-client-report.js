@@ -1,4 +1,5 @@
 const { createModuleClientReportRunner } = require('./module-client-report-runner');
+const { enrichStatementSearchReport } = require('./statement-search-report-steps');
 
 const main = createModuleClientReportRunner({
   modulePath: 'tests/Iteration_Matrix/Statement_Search',
@@ -18,6 +19,7 @@ const main = createModuleClientReportRunner({
     buildOrder: 1,
     reportName: 'MAMMOTH-AI'
   },
+  postProcessResults: enrichStatementSearchReport,
 });
 
 main();
