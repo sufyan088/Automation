@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, imremitDashboardPayablesMissedInThePast30DaysHelpers } = require('./_shared');
 
 test("TS_25_To_verify_that_the_Print_Button_is_visible", async ({ page }) => {
   const data = loadRuntimeData();
@@ -11,7 +11,12 @@ test("TS_25_To_verify_that_the_Print_Button_is_visible", async ({ page }) => {
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
+  await test.step('Open the payables missed list', async () => {
+    await imremitDashboardPayablesMissedInThePast30DaysHelpers.openPayablesMissedList(page, data);
+  });
+
+  await test.step('Verify the print control is visible when available', async () => {
+    await imremitDashboardPayablesMissedInThePast30DaysHelpers.assertPrintButtonVisibleWhenAvailable(page);
   });
 
   await test.step('Logout from the application', async () => {
