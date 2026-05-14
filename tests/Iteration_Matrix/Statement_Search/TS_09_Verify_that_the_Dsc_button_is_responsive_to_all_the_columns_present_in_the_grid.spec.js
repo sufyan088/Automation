@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, statementSearchHelpers } = require('./_shared');
 
 test("TS_09_Verify_that_the_Dsc_button_is_responsive_to_all_the_columns_present_in_the_grid", async ({ page }) => {
   const data = loadRuntimeData();
@@ -11,8 +11,7 @@ test("TS_09_Verify_that_the_Dsc_button_is_responsive_to_all_the_columns_present_
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
-  });
+  await statementSearchHelpers.runScenario(page, data, test.info().title);
 
   await test.step('Logout from the application', async () => {
     await closeSession(page);
