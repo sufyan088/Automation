@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, mgmtPaymentsPostedHelpers } = require('./_shared');
 
 test("TS_18_To_Verify_that_the_sorting_arrows_are_functiona_Hide", async ({ page }) => {
   const data = loadRuntimeData();
@@ -12,6 +12,7 @@ test("TS_18_To_Verify_that_the_sorting_arrows_are_functiona_Hide", async ({ page
   });
 
   await test.step('Run converted flow', async () => {
+    await mgmtPaymentsPostedHelpers.runScenario(page, __filename);
   });
 
   await test.step('Logout from the application', async () => {

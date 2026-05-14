@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, mgmtPercentageGrowthHelpers } = require('./_shared');
 
 test("TS_17_To_verify_that_the_Adjust_Filters_button_is_functional", async ({ page }) => {
   const data = loadRuntimeData();
@@ -12,6 +12,7 @@ test("TS_17_To_verify_that_the_Adjust_Filters_button_is_functional", async ({ pa
   });
 
   await test.step('Run converted flow', async () => {
+    await mgmtPercentageGrowthHelpers.runScenario(page, __filename);
   });
 
   await test.step('Logout from the application', async () => {

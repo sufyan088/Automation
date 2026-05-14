@@ -151,26 +151,35 @@ async function loginAsRole(page, data, roleKey = 'admin') {
   const baseUrl = requireCredential(data.URL, 'Iteration Matrix base URL');
   const credentials = resolveRoleCredentials(data, roleKey);
 
-  await page.goto(baseUrl, { waitUntil: 'domcontentloaded' });
-
-  await waitForLoginSurface(page, 30000);
-
-  const usernameField = await waitForVisible(page, iterationMatrixCommonSelectors.login.username, 10000);
-  await usernameField.fill('');
-  await usernameField.fill(credentials.username);
-
-  const passwordField = await waitForVisible(page, iterationMatrixCommonSelectors.login.password, 10000);
-  await passwordField.fill('');
-  await passwordField.fill(credentials.password);
-
-  await clickIfVisible(page, iterationMatrixCommonSelectors.login.rememberMe);
-
-  const signInButton = await waitForVisible(page, iterationMatrixCommonSelectors.login.signIn);
-  await signInButton.click({ timeout: 10000 });
+  await expect(async () => {
+    await page.goto(baseUrl, { waitUntil: 'domcontentloaded' });
+    await waitForLoginSurface(page, 30000);
+  }).toPass({ timeout: 90000 });
 
   await expect(async () => {
+    if (await isVisible(page, iterationMatrixCommonSelectors.app.postLoginMarkers)) {
+      return;
+    }
+
+    if (!await isVisible(page, iterationMatrixCommonSelectors.login.username)) {
+      await page.goto(baseUrl, { waitUntil: 'domcontentloaded' });
+      await waitForLoginSurface(page, 30000);
+    }
+
+    const usernameField = await waitForVisible(page, iterationMatrixCommonSelectors.login.username, 10000);
+    await usernameField.fill('');
+    await usernameField.fill(credentials.username);
+
+    const passwordField = await waitForVisible(page, iterationMatrixCommonSelectors.login.password, 10000);
+    await passwordField.fill('');
+    await passwordField.fill(credentials.password);
+
+    await clickIfVisible(page, iterationMatrixCommonSelectors.login.rememberMe);
+
+    const signInButton = await waitForVisible(page, iterationMatrixCommonSelectors.login.signIn);
+    await signInButton.click({ timeout: 10000, noWaitAfter: true });
     await waitForAppReady(page, 30000);
-  }).toPass({ timeout: 45000 });
+  }).toPass({ timeout: 90000 });
 }
 
 async function loginAsAdmin(page, data) {

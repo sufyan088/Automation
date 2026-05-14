@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, mgmtSupplierTransactionLossHelpers } = require('./_shared');
 
 test("TS_01_To_verify_Supplier_Transaction_Loss_tab_showing_in_MIS_module", async ({ page }) => {
   const data = loadRuntimeData();
@@ -12,6 +12,7 @@ test("TS_01_To_verify_Supplier_Transaction_Loss_tab_showing_in_MIS_module", asyn
   });
 
   await test.step('Run converted flow', async () => {
+    await mgmtSupplierTransactionLossHelpers.runScenario(page, __filename);
   });
 
   await test.step('Logout from the application', async () => {

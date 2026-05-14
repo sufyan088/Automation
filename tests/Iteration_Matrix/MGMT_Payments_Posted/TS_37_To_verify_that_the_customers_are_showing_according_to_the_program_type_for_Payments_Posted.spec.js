@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, mgmtPaymentsPostedHelpers } = require('./_shared');
 
 test("TS_37_To_verify_that_the_customers_are_showing_according_to_the_program_type_for_Payments_Posted", async ({ page }) => {
   const data = loadRuntimeData();
@@ -12,6 +12,7 @@ test("TS_37_To_verify_that_the_customers_are_showing_according_to_the_program_ty
   });
 
   await test.step('Run converted flow', async () => {
+    await mgmtPaymentsPostedHelpers.runScenario(page, __filename);
   });
 
   await test.step('Logout from the application', async () => {
