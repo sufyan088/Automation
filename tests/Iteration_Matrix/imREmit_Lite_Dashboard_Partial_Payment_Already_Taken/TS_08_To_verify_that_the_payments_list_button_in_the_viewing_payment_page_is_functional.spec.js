@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, imremitLiteDashboardPartialPaymentAlreadyTakenHelpers, imremitLiteDashboardPartialPaymentAlreadyTakenSelectors } = require('./_shared');
 
 test("TS_08_To_verify_that_the_payments_list_button_in_the_viewing_payment_page_is_functional", async ({ page }) => {
   const data = loadRuntimeData();
@@ -11,7 +11,13 @@ test("TS_08_To_verify_that_the_payments_list_button_in_the_viewing_payment_page_
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
+  await test.step('Open payment details from the Partial Payment Already Taken list', async () => {
+    await imremitLiteDashboardPartialPaymentAlreadyTakenHelpers.openPaymentDetails(page, data);
+  });
+
+  await test.step('Return from payment details to the payments list', async () => {
+    await imremitLiteDashboardPartialPaymentAlreadyTakenHelpers.clickDetailButton(page, imremitLiteDashboardPartialPaymentAlreadyTakenSelectors.detail.paymentList);
+    await imremitLiteDashboardPartialPaymentAlreadyTakenHelpers.assertPaymentManagementVisible(page);
   });
 
   await test.step('Logout from the application', async () => {

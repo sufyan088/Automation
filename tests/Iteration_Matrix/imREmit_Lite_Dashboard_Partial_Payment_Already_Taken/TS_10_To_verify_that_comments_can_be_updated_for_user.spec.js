@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, imremitLiteDashboardPartialPaymentAlreadyTakenHelpers } = require('./_shared');
 
 test("TS_10_To_verify_that_comments_can_be_updated_for_user", async ({ page }) => {
   const data = loadRuntimeData();
@@ -11,7 +11,16 @@ test("TS_10_To_verify_that_comments_can_be_updated_for_user", async ({ page }) =
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
+  const commentText = `PartialPaymentAlreadyTaken-${Date.now()}`;
+  const updatedText = `${commentText}-edited`;
+
+  await test.step('Open payment details from the Partial Payment Already Taken list', async () => {
+    await imremitLiteDashboardPartialPaymentAlreadyTakenHelpers.openPaymentDetails(page, data);
+  });
+
+  await test.step('Add and edit a payment comment', async () => {
+    await imremitLiteDashboardPartialPaymentAlreadyTakenHelpers.addComment(page, commentText);
+    await imremitLiteDashboardPartialPaymentAlreadyTakenHelpers.editComment(page, commentText, updatedText);
   });
 
   await test.step('Logout from the application', async () => {
