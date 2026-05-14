@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, imremitDashboardPayablesEndingInTheNext7DaysHelpers } = require('./_shared');
 
 test("TS_20_To_verify_that_the_Back_to_Dashboard_Button_is_functional", async ({ page }) => {
   const data = loadRuntimeData();
@@ -11,7 +11,12 @@ test("TS_20_To_verify_that_the_Back_to_Dashboard_Button_is_functional", async ({
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
+  await test.step('Open the payables ending in next 7 days list', async () => {
+    await imremitDashboardPayablesEndingInTheNext7DaysHelpers.openPayablesEndingList(page, data);
+  });
+
+  await test.step('Validate the payment management view opened from the dashboard card', async () => {
+    await imremitDashboardPayablesEndingInTheNext7DaysHelpers.assertPaymentManagementVisible(page);
   });
 
   await test.step('Logout from the application', async () => {

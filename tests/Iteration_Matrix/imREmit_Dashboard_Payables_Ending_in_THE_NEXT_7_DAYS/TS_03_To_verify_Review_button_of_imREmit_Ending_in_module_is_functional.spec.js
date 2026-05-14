@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, imremitDashboardPayablesEndingInTheNext7DaysHelpers } = require('./_shared');
 
 test("TS_03_To_verify_Review_button_of_imREmit_Ending_in_module_is_functional", async ({ page }) => {
   const data = loadRuntimeData();
@@ -11,7 +11,8 @@ test("TS_03_To_verify_Review_button_of_imREmit_Ending_in_module_is_functional", 
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
+  await test.step('Open the payables ending in next 7 days review list', async () => {
+    await imremitDashboardPayablesEndingInTheNext7DaysHelpers.openPayablesEndingList(page, data);
   });
 
   await test.step('Logout from the application', async () => {
