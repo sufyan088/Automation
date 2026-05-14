@@ -121,6 +121,7 @@ Additional module folders already exist under `tests/Iteration_Matrix/`; treat t
 - Customer Onboarding is helper-backed, validated clean at 21 passing specs, and has dedicated full and last-failed module report flows with shareable artifacts under `Result/`.
 - Customer Onboarding imREmit Lite remains a separate sibling module surface from the completed base Customer Onboarding report scope.
 - Invoice_Tracker is fully helper-backed, validated clean at 23 passing specs with `--workers=3`, and has dedicated full and last-failed module report flows with Mammoth-branded shareable artifacts under `Result/`.
+- Invoice_Tracker_Module is helper-backed, validated clean at 19 passing specs with `--workers=3`, and has a dedicated full module report flow with Mammoth-branded shareable artifacts under `Result/`.
 - imREmit Dashboard Failed payments on IM IM Error is helper-backed, validated clean at 29 passing specs with `--workers=3`, and has dedicated full and last-failed module report flows with Mammoth-branded shareable artifacts under `Result/`.
 - imREmit Dashboard Failed payments on Provider Payment Provider Error is helper-backed, validated clean at 29 passing specs, and has dedicated full and last-failed module report flows with Mammoth-branded shareable artifacts under `Result/`.
 - imREmit Dashboard Failed payments on Provider Payment Provider Error report wrappers are validated end to end; the last-failed path now regenerates from baseline when there are no failed specs to rerun.
@@ -190,6 +191,7 @@ Use the packaged Iteration Matrix report flows whenever output is meant to be sh
 - `npm run report:iteration-matrix:customer-module-management-admin-module-new:last-failed:client`
 - `npm run report:iteration-matrix:customer-management-payment-method:client`
 - `npm run report:iteration-matrix:customer-management-payment-method:last-failed:client`
+- `npm run report:iteration-matrix:invoice-tracker-module:client`
 - `npm run report:iteration-matrix:customer-onboarding:client`
 - `npm run report:iteration-matrix:customer-onboarding:last-failed:client`
 - `npm run report:iteration-matrix:imremit-dashboard-failed-payments-on-im-im-error:client`

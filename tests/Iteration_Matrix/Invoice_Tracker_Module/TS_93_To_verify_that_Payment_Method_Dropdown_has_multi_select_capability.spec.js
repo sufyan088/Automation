@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, invoiceTrackerModuleHelpers } = require('./_shared');
 
 test("TS_93_To_verify_that_Payment_Method_Dropdown_has_multi_select_capability", async ({ page }) => {
   const data = loadRuntimeData();
@@ -12,6 +12,7 @@ test("TS_93_To_verify_that_Payment_Method_Dropdown_has_multi_select_capability",
   });
 
   await test.step('Run converted flow', async () => {
+    await invoiceTrackerModuleHelpers.runScenario(page, data, test.info().title);
   });
 
   await test.step('Logout from the application', async () => {

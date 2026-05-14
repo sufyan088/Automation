@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, mgmtPaymentsPending5daysHelpers } = require('./_shared');
 
 test("TS_29_To_verify_that_Supplier_Name_is_shown_after_selecting_the_Supplier_ID_on_the_Adjust_Filters_popup", async ({ page }) => {
   const data = loadRuntimeData();
@@ -12,6 +12,7 @@ test("TS_29_To_verify_that_Supplier_Name_is_shown_after_selecting_the_Supplier_I
   });
 
   await test.step('Run converted flow', async () => {
+    await mgmtPaymentsPending5daysHelpers.runScenario(page, data, test.info().title);
   });
 
   await test.step('Logout from the application', async () => {

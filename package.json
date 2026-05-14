@@ -25,6 +25,8 @@
     "report:iteration-matrix:fileprocessing:last-failed:client": "node scripts/run-iteration-matrix-fileprocessing-last-failed-client-report.js",
     "report:iteration-matrix:invoice-tracker:client": "node scripts/run-iteration-matrix-invoice-tracker-client-report.js",
     "report:iteration-matrix:invoice-tracker:last-failed:client": "node scripts/run-iteration-matrix-invoice-tracker-last-failed-client-report.js",
+    "report:iteration-matrix:invoice-tracker-module:client": "node scripts/run-iteration-matrix-invoice-tracker-module-client-report.js",
+    "report:iteration-matrix:invoice-tracker-new-module:client": "node scripts/run-iteration-matrix-invoice-tracker-new-module-client-report.js",
     "report:iteration-matrix:customer-onboarding:client": "node scripts/run-iteration-matrix-customer-onboarding-client-report.js",
     "report:iteration-matrix:customer-onboarding:last-failed:client": "node scripts/run-iteration-matrix-customer-onboarding-last-failed-client-report.js",
     "report:iteration-matrix:customer-onboarding-imremit-lite:client": "node scripts/run-iteration-matrix-customer-onboarding-imremit-lite-client-report.js",

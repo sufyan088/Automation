@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, mgmtPaymentsPending5daysHelpers } = require('./_shared');
 
 test("TS_24_To_Verify_that_All_Customers_are_selected_by_default_on_the_Pending_Payments_page", async ({ page }) => {
   const data = loadRuntimeData();
@@ -12,6 +12,7 @@ test("TS_24_To_Verify_that_All_Customers_are_selected_by_default_on_the_Pending_
   });
 
   await test.step('Run converted flow', async () => {
+    await mgmtPaymentsPending5daysHelpers.runScenario(page, data, test.info().title);
   });
 
   await test.step('Logout from the application', async () => {

@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, invoiceTrackerModuleHelpers } = require('./_shared');
 
 test("TS_99_To_verify_that_user_must_first_select_a_Customer", async ({ page }) => {
   const data = loadRuntimeData();
@@ -12,6 +12,7 @@ test("TS_99_To_verify_that_user_must_first_select_a_Customer", async ({ page }) 
   });
 
   await test.step('Run converted flow', async () => {
+    await invoiceTrackerModuleHelpers.runScenario(page, data, test.info().title);
   });
 
   await test.step('Logout from the application', async () => {

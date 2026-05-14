@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsRole, closeSession, invoiceTrackerNewModuleHelpers } = require('./_shared');
 
 test("TS_88_To_verify_that_support_ticket_is_created_through_invoice_level", async ({ page }) => {
   const data = loadRuntimeData();
@@ -8,13 +8,15 @@ test("TS_88_To_verify_that_support_ticket_is_created_through_invoice_level", asy
   });
 
   await test.step('Login into Application', async () => {
-    await loginAsAdmin(page, data);
+    await loginAsRole(page, data, 'supplierUser');
   });
 
   await test.step('Run converted flow', async () => {
+    await invoiceTrackerNewModuleHelpers.runScenario(page, data, test.info().title);
   });
 
   await test.step('Logout from the application', async () => {
     await closeSession(page);
   });
 });
+
