@@ -11,11 +11,7 @@ test("TS_12_To_verify_that_multiple_suppliers_can_not_selected_from_Searching_Su
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
-    await srUploadNewHelpers.openModule(page);
-    await srUploadNewHelpers.ensureCustomerSelected(page, 'Langham Logistics');
-    await srUploadNewHelpers.searchSupplier(page, 'MARION');
-  });
+  await srUploadNewHelpers.runScenario(page, data, test.info().title);
 
   await test.step('Logout from the application', async () => {
     await closeSession(page);

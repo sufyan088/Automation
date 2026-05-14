@@ -1,4 +1,14 @@
+const { test } = require('@playwright/test');
+const { wrapHelperMapWithReadableSteps } = require('../clientReadableSteps');
 const { srUploadNewSelectors } = require('../../selectors/iteration-matrix/srUploadNew.selectors.js');
+
+const DEFAULT_CUSTOMER = 'Langham Logistics';
+const SECOND_CUSTOMER = 'A New Mobile Co';
+const SUPPLIER_QUERY = 'MARION';
+
+async function reportStep(name, action) {
+  return test.step(name, action);
+}
 
 async function waitForFirstVisible(page, selectors, timeout = 15000) {
   const startedAt = Date.now();
@@ -147,13 +157,57 @@ async function searchSupplier(page, supplierQuery) {
   }
 }
 
+async function runTs11(page) {
+  await reportStep('Open the Statement Recon module', async () => {
+    await openModule(page);
+  });
+  await reportStep('Attempt to change the selected customer', async () => {
+    await selectCustomer(page, DEFAULT_CUSTOMER);
+    await selectCustomer(page, SECOND_CUSTOMER);
+  });
+  await reportStep('Verify only one customer remains selected', async () => {
+    await verifySelectedCustomer(page, SECOND_CUSTOMER, DEFAULT_CUSTOMER);
+  });
+}
+
+async function runTs12(page) {
+  await reportStep('Open the Statement Recon module', async () => {
+    await openModule(page);
+  });
+  await reportStep('Ensure a customer is selected before searching suppliers', async () => {
+    await ensureCustomerSelected(page, DEFAULT_CUSTOMER);
+  });
+  await reportStep('Search for a supplier from the dropdown', async () => {
+    await searchSupplier(page, SUPPLIER_QUERY);
+  });
+}
+
+const scenarioMap = {
+  TS_11: runTs11,
+  TS_12: runTs12
+};
+
+async function runScenario(page, data, testTitle) {
+  const scenarioKey = Object.keys(scenarioMap).find((key) => testTitle.includes(key));
+  if (!scenarioKey) {
+    throw new Error(`Unsupported scenario for SR Upload New: ${testTitle}`);
+  }
+
+  return scenarioMap[scenarioKey](page, data);
+}
+
+const helperMap = {
+  openModule,
+  selectCustomer,
+  verifySelectedCustomer,
+  ensureCustomerSelected,
+  searchSupplier
+};
+
 module.exports = {
   srUploadNewHelpers: {
-    openModule,
-    selectCustomer,
-    verifySelectedCustomer,
-    ensureCustomerSelected,
-    searchSupplier,
+    ...wrapHelperMapWithReadableSteps(helperMap),
+    runScenario,
     selectors: srUploadNewSelectors
   }
 };
