@@ -9,6 +9,28 @@ function requireCredential(value, label) {
   throw new Error(`${label} is required. Set it in the Iteration Matrix runtime data or environment variables before running tests.`);
 }
 
+function isInvalidCredentialsVisible(page) {
+  return page.getByText(/invalid username or password\.?/i).first().isVisible().catch(() => false);
+}
+
+async function gotoWithRetry(page, url, options = {}) {
+  const maxAttempts = 3;
+
+  for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
+    try {
+      await page.goto(url, options);
+      return;
+    } catch (error) {
+      const isRetriableQuicError = /ERR_QUIC_PROTOCOL_ERROR/i.test(error.message || '');
+      if (!isRetriableQuicError || attempt === maxAttempts) {
+        throw error;
+      }
+
+      await page.waitForTimeout(1000 * attempt);
+    }
+  }
+}
+
 async function waitForVisible(page, selectors, timeout = 15000) {
   const startedAt = Date.now();
 
@@ -133,6 +155,11 @@ function resolveRoleCredentials(data, roleKey) {
       username: data.Username_imREmit_User,
       password: data.Password_imREmit_User,
       label: 'Iteration Matrix ePay user'
+    },
+    supplierAdmin: {
+      username: process.env.ITERATION_MATRIX_SUPPLIER_ADMIN_USERNAME || 'supplieradmin3',
+      password: process.env.ITERATION_MATRIX_SUPPLIER_ADMIN_PASSWORD || '1234',
+      label: 'Iteration Matrix supplier admin'
     }
   };
 
@@ -149,28 +176,45 @@ function resolveRoleCredentials(data, roleKey) {
 
 async function loginAsRole(page, data, roleKey = 'admin') {
   const baseUrl = requireCredential(data.URL, 'Iteration Matrix base URL');
-  const credentials = resolveRoleCredentials(data, roleKey);
+  const primaryCredentials = resolveRoleCredentials(data, roleKey);
+  const credentialAttempts = [primaryCredentials];
 
-  await page.goto(baseUrl, { waitUntil: 'domcontentloaded' });
+  for (let attemptIndex = 0; attemptIndex < credentialAttempts.length; attemptIndex += 1) {
+    const credentials = credentialAttempts[attemptIndex];
 
-  await waitForLoginSurface(page, 30000);
+    await gotoWithRetry(page, baseUrl, { waitUntil: 'domcontentloaded' });
+    await waitForLoginSurface(page, 30000);
 
-  const usernameField = await waitForVisible(page, iterationMatrixCommonSelectors.login.username, 10000);
-  await usernameField.fill('');
-  await usernameField.fill(credentials.username);
+    const usernameField = await waitForVisible(page, iterationMatrixCommonSelectors.login.username, 10000);
+    await usernameField.fill('');
+    await usernameField.fill(credentials.username);
 
-  const passwordField = await waitForVisible(page, iterationMatrixCommonSelectors.login.password, 10000);
-  await passwordField.fill('');
-  await passwordField.fill(credentials.password);
+    const passwordField = await waitForVisible(page, iterationMatrixCommonSelectors.login.password, 10000);
+    await passwordField.fill('');
+    await passwordField.fill(credentials.password);
 
-  await clickIfVisible(page, iterationMatrixCommonSelectors.login.rememberMe);
+    await clickIfVisible(page, iterationMatrixCommonSelectors.login.rememberMe);
 
-  const signInButton = await waitForVisible(page, iterationMatrixCommonSelectors.login.signIn);
-  await signInButton.click({ timeout: 10000 });
+    const signInButton = await waitForVisible(page, iterationMatrixCommonSelectors.login.signIn);
+    await signInButton.click({ timeout: 10000 });
 
-  await expect(async () => {
-    await waitForAppReady(page, 30000);
-  }).toPass({ timeout: 45000 });
+    try {
+      await expect(async () => {
+        await waitForAppReady(page, 30000);
+      }).toPass({ timeout: 45000 });
+      return;
+    } catch (error) {
+      const canRetrySupplierAdmin = roleKey === 'supplierAdmin'
+        && attemptIndex < (credentialAttempts.length - 1)
+        && await isInvalidCredentialsVisible(page);
+
+      if (canRetrySupplierAdmin) {
+        continue;
+      }
+
+      throw error;
+    }
+  }
 }
 
 async function loginAsAdmin(page, data) {

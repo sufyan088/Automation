@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsRole, closeSession, pmNewModuleHelpers } = require('./_shared');
 
 test("TS_95_verify_Supplier_Admin_view_fully_paid_payments_status_Closed_Delivered_Delivered_Refund_received_in_Payment_Management", async ({ page }) => {
   const data = loadRuntimeData();
@@ -8,11 +8,10 @@ test("TS_95_verify_Supplier_Admin_view_fully_paid_payments_status_Closed_Deliver
   });
 
   await test.step('Login into Application', async () => {
-    await loginAsAdmin(page, data);
+    await loginAsRole(page, data, 'supplierAdmin');
   });
 
-  await test.step('Run converted flow', async () => {
-  });
+  await pmNewModuleHelpers.runScenario(page, data, test.info().title);
 
   await test.step('Logout from the application', async () => {
     await closeSession(page);
