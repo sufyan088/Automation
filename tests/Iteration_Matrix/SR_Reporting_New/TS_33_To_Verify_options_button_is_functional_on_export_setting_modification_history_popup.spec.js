@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, srReportingNewHelpers } = require('./_shared');
 
 test("TS_33_To_Verify_options_button_is_functional_on_export_setting_modification_history_popup", async ({ page }) => {
   const data = loadRuntimeData();
@@ -12,6 +12,7 @@ test("TS_33_To_Verify_options_button_is_functional_on_export_setting_modificatio
   });
 
   await test.step('Run converted flow', async () => {
+    await srReportingNewHelpers.runScenario(page, data, 'TS_33_To_Verify_options_button_is_functional_on_export_setting_modification_history_popup');
   });
 
   await test.step('Logout from the application', async () => {

@@ -32,6 +32,8 @@
     "report:iteration-matrix:customer-onboarding-imremit-lite:last-failed:client": "node scripts/run-iteration-matrix-customer-onboarding-imremit-lite-last-failed-client-report.js",
     "report:iteration-matrix:customer-management-admin-two:client": "node scripts/run-iteration-matrix-customer-management-admin-two-client-report.js",
     "report:iteration-matrix:customer-management-admin-two:last-failed:client": "node scripts/run-iteration-matrix-customer-management-admin-two-last-failed-client-report.js",
+    "report:iteration-matrix:sr-reporting-new:client": "node scripts/run-iteration-matrix-sr-reporting-new-client-report.js",
+    "report:iteration-matrix:sr-reporting:client": "node scripts/run-iteration-matrix-sr-reporting-client-report.js",
     "report:iteration-matrix:imremit-dashboard-failed-payments-on-im-im-error:client": "node scripts/run-iteration-matrix-imremit-dashboard-failed-payments-on-im-im-error-client-report.js",
     "report:iteration-matrix:imremit-dashboard-failed-payments-on-im-im-error:last-failed:client": "node scripts/run-iteration-matrix-imremit-dashboard-failed-payments-on-im-im-error-last-failed-client-report.js",
     "report:iteration-matrix:imremit-dashboard-failed-payments-on-provider-payment-provider-error:client": "node scripts/run-iteration-matrix-imremit-dashboard-failed-payments-on-provider-payment-provider-error-client-report.js",

@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, srReportingNewHelpers } = require('./_shared');
 
 test("TS_36_To_Verify_download_report_button_is_functional_on_options_button", async ({ page }) => {
   const data = loadRuntimeData();
@@ -12,6 +12,7 @@ test("TS_36_To_Verify_download_report_button_is_functional_on_options_button", a
   });
 
   await test.step('Run converted flow', async () => {
+    await srReportingNewHelpers.runScenario(page, data, 'TS_36_To_Verify_download_report_button_is_functional_on_options_button');
   });
 
   await test.step('Logout from the application', async () => {

@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, srReportingNewHelpers } = require('./_shared');
 
 test("TS_35_Verify_download_report_button_is_functional_on_export_setting_modification_history_popup", async ({ page }) => {
   const data = loadRuntimeData();
@@ -12,6 +12,7 @@ test("TS_35_Verify_download_report_button_is_functional_on_export_setting_modifi
   });
 
   await test.step('Run converted flow', async () => {
+    await srReportingNewHelpers.runScenario(page, data, 'TS_35_Verify_download_report_button_is_functional_on_export_setting_modification_history_popup');
   });
 
   await test.step('Logout from the application', async () => {

@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, srReportingNewHelpers } = require('./_shared');
 
 test("TS_42_To_verify_user_can_switch_delivery_method_to_email", async ({ page }) => {
   const data = loadRuntimeData();
@@ -12,6 +12,7 @@ test("TS_42_To_verify_user_can_switch_delivery_method_to_email", async ({ page }
   });
 
   await test.step('Run converted flow', async () => {
+    await srReportingNewHelpers.runScenario(page, data, 'TS_42_To_verify_user_can_switch_delivery_method_to_email');
   });
 
   await test.step('Logout from the application', async () => {
