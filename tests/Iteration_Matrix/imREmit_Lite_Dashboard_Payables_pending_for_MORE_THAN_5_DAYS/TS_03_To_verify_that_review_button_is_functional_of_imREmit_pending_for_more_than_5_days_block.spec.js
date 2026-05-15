@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, imremitLiteDashboardPayablesPendingForMoreThan5DaysHelpers } = require('./_shared');
 
 test("TS_03_To_verify_that_review_button_is_functional_of_imREmit_pending_for_more_than_5_days_block", async ({ page }) => {
   const data = loadRuntimeData();
@@ -11,7 +11,8 @@ test("TS_03_To_verify_that_review_button_is_functional_of_imREmit_pending_for_mo
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
+  await test.step('Open the Payables Pending for More Than 5 Days review list', async () => {
+    await imremitLiteDashboardPayablesPendingForMoreThan5DaysHelpers.openPayablesPendingForMoreThan5DaysList(page, data);
   });
 
   await test.step('Logout from the application', async () => {

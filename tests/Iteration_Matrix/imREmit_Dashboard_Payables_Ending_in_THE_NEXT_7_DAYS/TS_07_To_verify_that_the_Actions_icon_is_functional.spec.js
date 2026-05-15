@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, imremitDashboardPayablesEndingInTheNext7DaysHelpers } = require('./_shared');
 
 test("TS_07_To_verify_that_the_Actions_icon_is_functional", async ({ page }) => {
   const data = loadRuntimeData();
@@ -11,7 +11,12 @@ test("TS_07_To_verify_that_the_Actions_icon_is_functional", async ({ page }) => 
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
+  await test.step('Open the payables ending in next 7 days list', async () => {
+    await imremitDashboardPayablesEndingInTheNext7DaysHelpers.openPayablesEndingList(page, data);
+  });
+
+  await test.step('Open the actions menu for a payment row', async () => {
+    await imremitDashboardPayablesEndingInTheNext7DaysHelpers.openActionsMenu(page);
   });
 
   await test.step('Logout from the application', async () => {

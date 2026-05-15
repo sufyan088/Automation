@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, imremitDashboardPayablesMissedInThePast30DaysHelpers } = require('./_shared');
 
 test("TS_28_To_verify_that_Hide_button_is_responsive_for_all_the_entries_present_in_the_border", async ({ page }) => {
   const data = loadRuntimeData();
@@ -11,7 +11,18 @@ test("TS_28_To_verify_that_Hide_button_is_responsive_for_all_the_entries_present
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
+  await test.step('Open the payables missed list', async () => {
+    await imremitDashboardPayablesMissedInThePast30DaysHelpers.openPayablesMissedList(page, data);
+  });
+
+  await test.step('Apply hide-column from visible table headers', async () => {
+    for (const label of ['Supplier Name', 'Org Id']) {
+      await imremitDashboardPayablesMissedInThePast30DaysHelpers.clickHeaderAndChoose(
+        page,
+        label,
+        imremitDashboardPayablesMissedInThePast30DaysHelpers.selectors.menus.hideColumn
+      );
+    }
   });
 
   await test.step('Logout from the application', async () => {

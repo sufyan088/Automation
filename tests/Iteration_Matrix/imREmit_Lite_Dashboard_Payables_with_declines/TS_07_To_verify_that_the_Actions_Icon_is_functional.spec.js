@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, imremitLiteDashboardPayablesWithDeclinesHelpers } = require('./_shared');
 
 test("TS_07_To_verify_that_the_Actions_Icon_is_functional", async ({ page }) => {
   const data = loadRuntimeData();
@@ -11,7 +11,12 @@ test("TS_07_To_verify_that_the_Actions_Icon_is_functional", async ({ page }) => 
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
+  await test.step('Open the Payables with Declines review list', async () => {
+    await imremitLiteDashboardPayablesWithDeclinesHelpers.openPayablesWithDeclinesList(page, data);
+  });
+
+  await test.step('Open the payment-row actions menu', async () => {
+    await imremitLiteDashboardPayablesWithDeclinesHelpers.openActionsMenu(page);
   });
 
   await test.step('Logout from the application', async () => {

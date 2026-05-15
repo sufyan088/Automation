@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, imremitDashboardPayablesMissedInThePast30DaysHelpers } = require('./_shared');
 
 test("TS_26_To_verify_that_Asc_button_is_responsive_for_all_the_entries_present_in_the_border", async ({ page }) => {
   const data = loadRuntimeData();
@@ -11,7 +11,18 @@ test("TS_26_To_verify_that_Asc_button_is_responsive_for_all_the_entries_present_
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
+  await test.step('Open the payables missed list', async () => {
+    await imremitDashboardPayablesMissedInThePast30DaysHelpers.openPayablesMissedList(page, data);
+  });
+
+  await test.step('Apply ascending order from visible table headers', async () => {
+    for (const label of ['Supplier Name', 'Org Id', 'Facility Name', 'Payment Number']) {
+      await imremitDashboardPayablesMissedInThePast30DaysHelpers.clickHeaderAndChoose(
+        page,
+        label,
+        imremitDashboardPayablesMissedInThePast30DaysHelpers.selectors.menus.ascending
+      );
+    }
   });
 
   await test.step('Logout from the application', async () => {

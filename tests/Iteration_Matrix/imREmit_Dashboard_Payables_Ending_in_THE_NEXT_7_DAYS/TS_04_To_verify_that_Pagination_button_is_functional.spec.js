@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, imremitDashboardPayablesEndingInTheNext7DaysHelpers } = require('./_shared');
 
 test("TS_04_To_verify_that_Pagination_button_is_functional", async ({ page }) => {
   const data = loadRuntimeData();
@@ -11,7 +11,14 @@ test("TS_04_To_verify_that_Pagination_button_is_functional", async ({ page }) =>
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
+  await test.step('Open the payables ending in next 7 days list', async () => {
+    await imremitDashboardPayablesEndingInTheNext7DaysHelpers.openPayablesEndingList(page, data);
+  });
+
+  await test.step('Open the pagination dropdown and verify standard page sizes', async () => {
+    for (const size of ['50', '100', '5', '10']) {
+      await imremitDashboardPayablesEndingInTheNext7DaysHelpers.choosePaginationOption(page, size);
+    }
   });
 
   await test.step('Logout from the application', async () => {

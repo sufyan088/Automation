@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, imremitDashboardPayablesMissedInThePast30DaysHelpers } = require('./_shared');
 
 test("TS_14_To_verify_that_the_payment_list_button_In_Viewing_Payment_Page_is_functional", async ({ page }) => {
   const data = loadRuntimeData();
@@ -11,7 +11,16 @@ test("TS_14_To_verify_that_the_payment_list_button_In_Viewing_Payment_Page_is_fu
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
+  await test.step('Open payment details from the payables missed list', async () => {
+    await imremitDashboardPayablesMissedInThePast30DaysHelpers.openPaymentDetails(page, data);
+  });
+
+  await test.step('Return from payment details to the payments list', async () => {
+    await imremitDashboardPayablesMissedInThePast30DaysHelpers.clickDetailButton(
+      page,
+      imremitDashboardPayablesMissedInThePast30DaysHelpers.selectors.detail.paymentList
+    );
+    await imremitDashboardPayablesMissedInThePast30DaysHelpers.assertPaymentManagementVisible(page);
   });
 
   await test.step('Logout from the application', async () => {

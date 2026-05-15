@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, imremitLiteDashboardPayablesPendingForMoreThan5DaysHelpers } = require('./_shared');
 
 test("TS_01_To_verify_imREmit_lite_dashboard_module", async ({ page }) => {
   const data = loadRuntimeData();
@@ -11,7 +11,8 @@ test("TS_01_To_verify_imREmit_lite_dashboard_module", async ({ page }) => {
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
+  await test.step('Open the imREmit Lite dashboard workspace', async () => {
+    await imremitLiteDashboardPayablesPendingForMoreThan5DaysHelpers.openDashboardWorkspace(page, data);
   });
 
   await test.step('Logout from the application', async () => {
