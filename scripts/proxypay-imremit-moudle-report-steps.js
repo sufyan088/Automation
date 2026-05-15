@@ -3,66 +3,129 @@ const path = require('path');
 
 const scenarioDescriptionMap = [
   {
-    pattern: /^TS_62_/i,
-    objective: 'Verify each visible payment row on the Proxy Pay Dashboard displays Updated Date values using the MM/DD/YYYY format.',
+    pattern: /^TS_48_/i,
+    objective: 'Verify the Proxy Pay Dashboard includes a visible Invoice Count column for the selected customer.',
     steps: [
-      'Open the Proxy Pay Dashboard for the selected imREmit customer.',
-      'Review the visible payment rows in the dashboard grid.',
-      'Confirm each Updated Date value matches the expected MM/DD/YYYY format.'
-    ]
-  },
-  {
-    pattern: /^TS_63_/i,
-    objective: 'Verify the Proxy Pay Dashboard data table includes a visible Updated Date column for payment rows.',
-    steps: [
-      'Open the Proxy Pay Dashboard for the selected imREmit customer.',
+      'Open the Proxy Pay Dashboard for a selected imREmit customer.',
       'Display the payment results grid.',
-      'Confirm the Updated Date column header is visible in the table.'
+      'Confirm the Invoice Count column is visible.'
     ]
   },
   {
-    pattern: /^TS_64_/i,
-    objective: 'Verify the Updated Date column supports ascending sort from the column header action menu.',
+    pattern: /^TS_49_/i,
+    objective: 'Verify the Invoice Count column supports ascending sort from the column header action menu.',
     steps: [
-      'Open the Proxy Pay Dashboard for the selected imREmit customer.',
-      'Open the Updated Date column action menu and apply Ascending.',
-      'Verify the visible Updated Date values are ordered from oldest to newest.'
+      'Open the Proxy Pay Dashboard for a selected imREmit customer.',
+      'Apply Ascending on the Invoice Count column.',
+      'Verify the visible Invoice Count values are ordered from lowest to highest.'
     ]
   },
   {
-    pattern: /^TS_65_/i,
-    objective: 'Verify the Updated Date column supports descending sort from the column header action menu.',
+    pattern: /^TS_50_/i,
+    objective: 'Verify the Invoice Count column supports descending sort from the column header action menu.',
     steps: [
-      'Open the Proxy Pay Dashboard for the selected imREmit customer.',
-      'Open the Updated Date column action menu and apply Descending.',
-      'Verify the visible Updated Date values are ordered from newest to oldest.'
+      'Open the Proxy Pay Dashboard for a selected imREmit customer.',
+      'Apply Descending on the Invoice Count column.',
+      'Verify the visible Invoice Count values are ordered from highest to lowest.'
     ]
   },
   {
-    pattern: /^TS_66_/i,
-    objective: 'Verify the Updated Date column can be hidden from the Proxy Pay Dashboard grid using the column header action menu.',
+    pattern: /^TS_51_/i,
+    objective: 'Verify the Invoice Count column can be hidden from the Proxy Pay Dashboard grid.',
     steps: [
-      'Open the Proxy Pay Dashboard for the selected imREmit customer.',
-      'Open the Updated Date column action menu and choose Hide column.',
-      'Confirm the Updated Date header is no longer visible in the grid.'
+      'Open the Proxy Pay Dashboard for a selected imREmit customer.',
+      'Open the Invoice Count column menu and choose Hide column.',
+      'Confirm the Invoice Count header is no longer visible.'
     ]
   },
   {
-    pattern: /^TS_67_/i,
-    objective: 'Verify Updated Date is available as a selectable entry in the Proxy Pay Dashboard column visibility menu.',
+    pattern: /^TS_52_/i,
+    objective: 'Verify Invoice Count is available in the Proxy Pay Dashboard column visibility menu.',
     steps: [
-      'Open the Proxy Pay Dashboard for the selected imREmit customer.',
-      'Open the column visibility control for the payment grid.',
-      'Confirm Updated Date appears in the available column list.'
+      'Open the Proxy Pay Dashboard for a selected imREmit customer.',
+      'Open the column visibility menu.',
+      'Confirm Invoice Count appears in the available column list.'
     ]
   },
   {
-    pattern: /^TS_68_/i,
-    objective: 'Verify Updated Date is enabled by default in the Proxy Pay Dashboard column visibility menu.',
+    pattern: /^TS_53_/i,
+    objective: 'Verify Invoice Count is checked by default in the Proxy Pay Dashboard column visibility menu.',
     steps: [
-      'Open the Proxy Pay Dashboard for the selected imREmit customer.',
-      'Open the column visibility control for the payment grid.',
-      'Confirm Updated Date is shown as checked by default.'
+      'Open the Proxy Pay Dashboard for a selected imREmit customer.',
+      'Open the column visibility menu.',
+      'Confirm Invoice Count is enabled by default.'
+    ]
+  },
+  {
+    pattern: /^TS_54_/i,
+    objective: 'Verify the Proxy Pay Dashboard row actions expose payment details behavior consistent with Payment Management.',
+    steps: [
+      'Open the Proxy Pay Dashboard for a selected imREmit customer.',
+      'Open the row actions menu for a payment entry.',
+      'Confirm View Payment Details is available.'
+    ]
+  },
+  {
+    pattern: /^TS_55_/i,
+    objective: 'Verify the Add Invoice Numbers field is functional under Advanced Search in Proxy Pay Dashboard.',
+    steps: [
+      'Open the Proxy Pay Dashboard for a selected imREmit customer.',
+      'Open Advanced Search.',
+      'Confirm the Add Invoice Numbers field accepts input.'
+    ]
+  },
+  {
+    pattern: /^TS_56_/i,
+    objective: 'Verify the Invoice Number field accepts a single invoice number as input.',
+    steps: [
+      'Open the Proxy Pay Dashboard for a selected imREmit customer.',
+      'Search for a single invoice number from Advanced Search.',
+      'Open payment details and confirm the selected invoice number is visible.'
+    ]
+  },
+  {
+    pattern: /^TS_57_/i,
+    objective: 'Verify the Invoice Number field accepts multiple invoice numbers and returns matching payment rows.',
+    steps: [
+      'Open the Proxy Pay Dashboard for a selected imREmit customer.',
+      'Enter multiple invoice numbers in Advanced Search.',
+      'Confirm the matching invoice results are displayed.'
+    ]
+  },
+  {
+    pattern: /^TS_58_/i,
+    objective: 'Verify the Invoice Number field accepts multiple comma-separated invoice numbers and returns matching payment rows.',
+    steps: [
+      'Open the Proxy Pay Dashboard for a selected imREmit customer.',
+      'Enter comma-separated invoice numbers in Advanced Search.',
+      'Confirm the matching invoice results are displayed.'
+    ]
+  },
+  {
+    pattern: /^TS_59_/i,
+    objective: 'Verify the Add Invoice Numbers field behaves the same in Proxy Pay Dashboard and Payment Management.',
+    steps: [
+      'Search for an invoice number in Proxy Pay Dashboard Advanced Search.',
+      'Open Payment Management and search for the same invoice number.',
+      'Confirm the invoice result is returned in both modules.'
+    ]
+  },
+  {
+    pattern: /^TS_60_/i,
+    objective: 'Verify invalid or non-existent invoice numbers return no results in Proxy Pay Dashboard.',
+    steps: [
+      'Open the Proxy Pay Dashboard for a selected imREmit customer.',
+      'Search for an invalid invoice number from Advanced Search.',
+      'Confirm the results grid shows no results.'
+    ]
+  },
+  {
+    pattern: /^TS_61_/i,
+    objective: 'Verify users can select multiple customers from the Proxy Pay Dashboard customer selector.',
+    steps: [
+      'Open the Proxy Pay Dashboard.',
+      'Select multiple customers from the customer selector.',
+      'Confirm both selected customers remain visible.'
     ]
   }
 ];
@@ -120,7 +183,7 @@ function enrichProxypayImremitMoudleReport({ resultsDir }) {
   }
 
   if (updatedCount > 0) {
-    console.log(`Enriched ProxyPay_imREmit_Moudle business descriptions in ${updatedCount} Allure result files.`);
+    console.log(`Enriched Proxy_Pay_imREmit_New business descriptions in ${updatedCount} Allure result files.`);
   }
 }
 

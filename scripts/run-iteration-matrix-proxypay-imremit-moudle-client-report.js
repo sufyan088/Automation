@@ -2,20 +2,20 @@ const { createModuleClientReportRunner } = require('./module-client-report-runne
 const { enrichProxypayImremitMoudleReport } = require('./proxypay-imremit-moudle-report-steps');
 
 const main = createModuleClientReportRunner({
-  modulePath: 'tests/Iteration_Matrix/ProxyPay_imREmit_Moudle',
+  modulePath: 'tests/Iteration_Matrix/Proxy_Pay_imREmit_New',
   useExactSpecFiles: true,
-  shareableDirRelative: 'Result/allure-report-iteration-matrix-proxypay-imremit-moudle-shareable',
-  zipPathRelative: 'Result/iteration-matrix-proxypay-imremit-moudle.zip',
+  shareableDirRelative: 'Result/allure-report-iteration-matrix-proxy-pay-imremit-new-shareable',
+  zipPathRelative: 'Result/iteration-matrix-proxy-pay-imremit-new.zip',
   environmentLines: [
     'Project=Iteration Matrix',
     'Track=Iteration Matrix',
-    'Scope=ProxyPay_imREmit_Moudle module under tests/Iteration_Matrix/ProxyPay_imREmit_Moudle',
+    'Scope=Proxy_Pay_imREmit_New module under tests/Iteration_Matrix/Proxy_Pay_imREmit_New',
     `Generated=${new Date().toISOString().slice(0, 10)}`,
   ],
   executor: {
     name: 'GitHub Copilot',
     type: 'local',
-    buildName: 'Iteration Matrix ProxyPay_imREmit_Moudle client report',
+    buildName: 'Iteration Matrix Proxy_Pay_imREmit_New client report',
     buildOrder: 1,
     reportName: 'MAMMOTH-AI'
   },
