@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, imremitLiteDashboardPayablesPendingForMoreThan5DaysHelpers } = require('./_shared');
 
 test("TS_15_To_verify_that_the_history_button_in_viewing_payment_page_is_functional", async ({ page }) => {
   const data = loadRuntimeData();
@@ -11,7 +11,15 @@ test("TS_15_To_verify_that_the_history_button_in_viewing_payment_page_is_functio
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
+  await test.step('Open payment details from the Payables Pending for More Than 5 Days list', async () => {
+    await imremitLiteDashboardPayablesPendingForMoreThan5DaysHelpers.openPaymentDetails(page, data);
+  });
+
+  await test.step('Open history in payment details', async () => {
+    await imremitLiteDashboardPayablesPendingForMoreThan5DaysHelpers.clickDetailButton(
+      page,
+      imremitLiteDashboardPayablesPendingForMoreThan5DaysHelpers.selectors.detail.history
+    );
   });
 
   await test.step('Logout from the application', async () => {

@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, imremitLiteDashboardPayablesWithDeclinesHelpers } = require('./_shared');
 
 test("TS_24_To_verify_the_sorting_arrows_in_the_entries_Desc", async ({ page }) => {
   const data = loadRuntimeData();
@@ -11,7 +11,12 @@ test("TS_24_To_verify_the_sorting_arrows_in_the_entries_Desc", async ({ page }) 
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
+  await test.step('Open the Payables with Declines review list', async () => {
+    await imremitLiteDashboardPayablesWithDeclinesHelpers.openPayablesWithDeclinesList(page, data);
+  });
+
+  await test.step('Apply descending order from the visible table headers', async () => {
+    await imremitLiteDashboardPayablesWithDeclinesHelpers.applyHeaderActions(page, imremitLiteDashboardPayablesWithDeclinesHelpers.selectors.menus.descending, ['Supplier Name', 'Payment Number', 'Sent Date', 'Status Description']);
   });
 
   await test.step('Logout from the application', async () => {

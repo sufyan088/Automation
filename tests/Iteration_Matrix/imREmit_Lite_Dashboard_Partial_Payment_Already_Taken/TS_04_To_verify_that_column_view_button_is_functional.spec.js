@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, imremitLiteDashboardPartialPaymentAlreadyTakenHelpers } = require('./_shared');
 
 test("TS_04_To_verify_that_column_view_button_is_functional", async ({ page }) => {
   const data = loadRuntimeData();
@@ -11,7 +11,12 @@ test("TS_04_To_verify_that_column_view_button_is_functional", async ({ page }) =
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
+  await test.step('Open the Partial Payment Already Taken review list', async () => {
+    await imremitLiteDashboardPartialPaymentAlreadyTakenHelpers.openPartialPaymentAlreadyTakenList(page, data);
+  });
+
+  await test.step('Open the column-view control', async () => {
+    await imremitLiteDashboardPartialPaymentAlreadyTakenHelpers.openColumnView(page);
   });
 
   await test.step('Logout from the application', async () => {

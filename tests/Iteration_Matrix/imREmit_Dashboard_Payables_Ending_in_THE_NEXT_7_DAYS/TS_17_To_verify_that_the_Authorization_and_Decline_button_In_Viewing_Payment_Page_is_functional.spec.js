@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, imremitDashboardPayablesEndingInTheNext7DaysHelpers } = require('./_shared');
 
 test("TS_17_To_verify_that_the_Authorization_and_Decline_button_In_Viewing_Payment_Page_is_functional", async ({ page }) => {
   const data = loadRuntimeData();
@@ -11,7 +11,15 @@ test("TS_17_To_verify_that_the_Authorization_and_Decline_button_In_Viewing_Payme
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
+  await test.step('Open payment details from the payables ending list', async () => {
+    await imremitDashboardPayablesEndingInTheNext7DaysHelpers.openPaymentDetails(page, data);
+  });
+
+  await test.step('Open the Authorization and Decline view in payment details', async () => {
+    await imremitDashboardPayablesEndingInTheNext7DaysHelpers.clickDetailButton(
+      page,
+      imremitDashboardPayablesEndingInTheNext7DaysHelpers.selectors.detail.authorizationAndDecline
+    );
   });
 
   await test.step('Logout from the application', async () => {

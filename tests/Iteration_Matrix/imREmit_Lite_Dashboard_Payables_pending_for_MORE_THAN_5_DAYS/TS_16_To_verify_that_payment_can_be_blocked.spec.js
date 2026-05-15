@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, imremitLiteDashboardPayablesPendingForMoreThan5DaysHelpers } = require('./_shared');
 
 test("TS_16_To_verify_that_payment_can_be_blocked", async ({ page }) => {
   const data = loadRuntimeData();
@@ -11,7 +11,12 @@ test("TS_16_To_verify_that_payment_can_be_blocked", async ({ page }) => {
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
+  await test.step('Open payment details from the Payables Pending for More Than 5 Days list', async () => {
+    await imremitLiteDashboardPayablesPendingForMoreThan5DaysHelpers.openPaymentDetails(page, data);
+  });
+
+  await test.step('Verify the block-payment action is visible', async () => {
+    await imremitLiteDashboardPayablesPendingForMoreThan5DaysHelpers.assertBlockPaymentVisible(page);
   });
 
   await test.step('Logout from the application', async () => {

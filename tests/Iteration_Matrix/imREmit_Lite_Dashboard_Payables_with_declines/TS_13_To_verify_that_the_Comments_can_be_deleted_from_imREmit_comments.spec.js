@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, imremitLiteDashboardPayablesWithDeclinesHelpers } = require('./_shared');
 
 test("TS_13_To_verify_that_the_Comments_can_be_deleted_from_imREmit_comments", async ({ page }) => {
   const data = loadRuntimeData();
@@ -11,7 +11,15 @@ test("TS_13_To_verify_that_the_Comments_can_be_deleted_from_imREmit_comments", a
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
+  const commentText = `PayablesWithDeclines-${Date.now()}`;
+
+  await test.step('Open payment details from the Payables with Declines list', async () => {
+    await imremitLiteDashboardPayablesWithDeclinesHelpers.openPaymentDetails(page, data);
+  });
+
+  await test.step('Add and delete a payment comment', async () => {
+    await imremitLiteDashboardPayablesWithDeclinesHelpers.addComment(page, commentText);
+    await imremitLiteDashboardPayablesWithDeclinesHelpers.deleteComment(page, commentText);
   });
 
   await test.step('Logout from the application', async () => {

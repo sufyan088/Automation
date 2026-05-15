@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, imremitDashboardPayablesMissedInThePast30DaysHelpers } = require('./_shared');
 
 test("TS_31_verify_that_total_amount_sent_is_not_equal_to_amount_taken_on_View_Payment_page", async ({ page }) => {
   const data = loadRuntimeData();
@@ -11,7 +11,12 @@ test("TS_31_verify_that_total_amount_sent_is_not_equal_to_amount_taken_on_View_P
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
+  await test.step('Open payment details from the payables missed list', async () => {
+    await imremitDashboardPayablesMissedInThePast30DaysHelpers.openPaymentDetails(page, data);
+  });
+
+  await test.step('Compare total amount sent and amount taken when both values are visible', async () => {
+    await imremitDashboardPayablesMissedInThePast30DaysHelpers.assertAmountSummaryMismatchWhenVisible(page);
   });
 
   await test.step('Logout from the application', async () => {

@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, imremitLiteDashboardSupplierIsInactiveHelpers } = require('./_shared');
 
 test("TS_06_To_verify_that_Start_Date_and_End_Date_field_is_functional", async ({ page }) => {
   const data = loadRuntimeData();
@@ -11,7 +11,12 @@ test("TS_06_To_verify_that_Start_Date_and_End_Date_field_is_functional", async (
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
+  await test.step('Open the Supplier is inactive review list', async () => {
+    await imremitLiteDashboardSupplierIsInactiveHelpers.openSupplierIsInactiveList(page, data);
+  });
+
+  await test.step('Select a start date and end date range', async () => {
+    await imremitLiteDashboardSupplierIsInactiveHelpers.chooseDateRange(page);
   });
 
   await test.step('Logout from the application', async () => {
