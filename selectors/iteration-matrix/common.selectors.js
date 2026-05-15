@@ -32,6 +32,8 @@ const iterationMatrixCommonSelectors = {
   },
   app: {
     postLoginMarkers: [
+      'main[aria-label="Iteration Matrix Application"]',
+      'aside[aria-label="Main navigation"]',
       'text=Management',
       'text=imREmit',
       'a:has-text("Admin")',

@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, srSearchNewModuleHelpers } = require('./_shared');
 
 test("TS_58_To_verify_that_Update_button_is_functional_if_message_already_exists", async ({ page }) => {
   const data = loadRuntimeData();
@@ -12,6 +12,7 @@ test("TS_58_To_verify_that_Update_button_is_functional_if_message_already_exists
   });
 
   await test.step('Run converted flow', async () => {
+    await srSearchNewModuleHelpers.runScenario(page, data, test.info().title);
   });
 
   await test.step('Logout from the application', async () => {

@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, srSearchNewModuleHelpers } = require('./_shared');
 
 test("TS_65_To_verify_that_hover_over_tool_tip_matches_configured_canned_message_content_exactly", async ({ page }) => {
   const data = loadRuntimeData();
@@ -12,6 +12,7 @@ test("TS_65_To_verify_that_hover_over_tool_tip_matches_configured_canned_message
   });
 
   await test.step('Run converted flow', async () => {
+    await srSearchNewModuleHelpers.runScenario(page, data, test.info().title);
   });
 
   await test.step('Logout from the application', async () => {

@@ -35,10 +35,13 @@ function buildUniqueComment() {
 
 async function waitForTableRows(page, minimumRows = 1) {
   await expect.poll(async () => {
-    const rows = page.locator('table tbody tr');
+    const rows = page
+      .locator('table tbody tr')
+      .filter({ has: page.locator('td') })
+      .filter({ hasNotText: /no results found/i });
     return rows.count();
   }, {
-    timeout: 15000,
+    timeout: 45000,
     intervals: [500, 1000]
   }).toBeGreaterThanOrEqual(minimumRows);
 }

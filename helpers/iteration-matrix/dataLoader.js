@@ -232,6 +232,38 @@ function loadRuntimeData() {
       csvRecord.Password_imREmit_User,
       csvRecord.Password_imRemit_User,
       csvRecord.Password_EPay_User
+    ),
+    Username_Customer_Admin: firstNonEmpty(
+      process.env.ITERATION_MATRIX_USERNAME_CUSTOMER_ADMIN,
+      process.env.USERNAME_CUSTOMER_ADMIN,
+      csvRecord.Username_Customer_Admin,
+      csvRecord.UserName_CUSTOMER_ADMIN,
+      csvRecord.Customer_Admin_Username,
+      csvRecord.UsernameCustomerAdmin
+    ),
+    Password_Customer_Admin: firstNonEmpty(
+      process.env.ITERATION_MATRIX_PASSWORD_CUSTOMER_ADMIN,
+      process.env.PASSWORD_CUSTOMER_ADMIN,
+      csvRecord.Password_Customer_Admin,
+      csvRecord.Password_CUSTOMER_ADMIN,
+      csvRecord.Customer_Admin_Password,
+      csvRecord.PasswordCustomerAdmin
+    ),
+    Username_Customer_Super_Admin: firstNonEmpty(
+      process.env.ITERATION_MATRIX_USERNAME_CUSTOMER_SUPER_ADMIN,
+      process.env.USERNAME_CUSTOMER_SUPER_ADMIN,
+      csvRecord.Username_Customer_Super_Admin,
+      csvRecord.UserName_CUSTOMER_SUPER_ADMIN,
+      csvRecord.Customer_Super_Admin_Username,
+      csvRecord.UsernameCustomerSuperAdmin
+    ),
+    Password_Customer_Super_Admin: firstNonEmpty(
+      process.env.ITERATION_MATRIX_PASSWORD_CUSTOMER_SUPER_ADMIN,
+      process.env.PASSWORD_CUSTOMER_SUPER_ADMIN,
+      csvRecord.Password_Customer_Super_Admin,
+      csvRecord.Password_CUSTOMER_SUPER_ADMIN,
+      csvRecord.Customer_Super_Admin_Password,
+      csvRecord.PasswordCustomerSuperAdmin
     )
   };
 

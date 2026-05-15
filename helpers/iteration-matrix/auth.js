@@ -118,6 +118,13 @@ async function waitForAppReady(page, timeout = 30000) {
       return;
     }
 
+    const currentUrl = page.url();
+    const hasAppShell = await page.locator('main[aria-label="Iteration Matrix Application"], aside[aria-label="Main navigation"], header').first().isVisible().catch(() => false);
+    const loginStillVisible = await isVisible(page, iterationMatrixCommonSelectors.login.username);
+    if (/\/app\//i.test(currentUrl) && hasAppShell && !loginStillVisible) {
+      return;
+    }
+
     await page.waitForTimeout(250);
   }
 
@@ -160,6 +167,16 @@ function resolveRoleCredentials(data, roleKey) {
       username: process.env.ITERATION_MATRIX_SUPPLIER_ADMIN_USERNAME || 'supplieradmin3',
       password: process.env.ITERATION_MATRIX_SUPPLIER_ADMIN_PASSWORD || '1234',
       label: 'Iteration Matrix supplier admin'
+    },
+    customerAdmin: {
+      username: data.Username_Customer_Admin,
+      password: data.Password_Customer_Admin,
+      label: 'Iteration Matrix customer admin'
+    },
+    customerSuperAdmin: {
+      username: data.Username_Customer_Super_Admin || process.env.ITERATION_MATRIX_USERNAME_CUSTOMER_SUPER_ADMIN || 'customersuperadmin',
+      password: data.Password_Customer_Super_Admin || process.env.ITERATION_MATRIX_PASSWORD_CUSTOMER_SUPER_ADMIN || '1111',
+      label: 'Iteration Matrix customer super admin'
     }
   };
 
@@ -178,6 +195,16 @@ async function loginAsRole(page, data, roleKey = 'admin') {
   const baseUrl = requireCredential(data.URL, 'Iteration Matrix base URL');
   const primaryCredentials = resolveRoleCredentials(data, roleKey);
   const credentialAttempts = [primaryCredentials];
+  const requiresLongerReadyWindow = roleKey === 'customerAdmin' || roleKey === 'customerSuperAdmin';
+  const appReadyTimeout = requiresLongerReadyWindow ? 60000 : 30000;
+  const loginAttemptTimeout = requiresLongerReadyWindow ? 90000 : 45000;
+
+  if (roleKey === 'customerAdmin' || roleKey === 'customerSuperAdmin') {
+    credentialAttempts.push({
+      username: requireCredential(data.Username_Admin, 'Iteration Matrix admin username'),
+      password: requireCredential(data.Password_Admin, 'Iteration Matrix admin password')
+    });
+  }
 
   for (let attemptIndex = 0; attemptIndex < credentialAttempts.length; attemptIndex += 1) {
     const credentials = credentialAttempts[attemptIndex];
@@ -198,17 +225,29 @@ async function loginAsRole(page, data, roleKey = 'admin') {
     const signInButton = await waitForVisible(page, iterationMatrixCommonSelectors.login.signIn);
     await signInButton.click({ timeout: 10000 });
 
+    await page.waitForTimeout(1500);
+    if (await isInvalidCredentialsVisible(page)) {
+      if (attemptIndex < (credentialAttempts.length - 1)) {
+        continue;
+      }
+
+      throw new Error(`Invalid credentials were rejected for role ${roleKey}.`);
+    }
+
     try {
       await expect(async () => {
-        await waitForAppReady(page, 30000);
-      }).toPass({ timeout: 45000 });
+        await waitForAppReady(page, appReadyTimeout);
+      }).toPass({ timeout: loginAttemptTimeout });
       return;
     } catch (error) {
       const canRetrySupplierAdmin = roleKey === 'supplierAdmin'
         && attemptIndex < (credentialAttempts.length - 1)
         && await isInvalidCredentialsVisible(page);
+      const canRetryCustomerRoles = (roleKey === 'customerAdmin' || roleKey === 'customerSuperAdmin')
+        && attemptIndex < (credentialAttempts.length - 1)
+        && await isInvalidCredentialsVisible(page);
 
-      if (canRetrySupplierAdmin) {
+      if (canRetrySupplierAdmin || canRetryCustomerRoles) {
         continue;
       }
 

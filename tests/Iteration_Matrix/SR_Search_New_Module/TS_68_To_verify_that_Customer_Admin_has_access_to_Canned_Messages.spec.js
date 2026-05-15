@@ -1,17 +1,20 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsRole, closeSession, srSearchNewModuleHelpers } = require('./_shared');
 
 test("TS_68_To_verify_that_Customer_Admin_has_access_to_Canned_Messages", async ({ page }) => {
   const data = loadRuntimeData();
+  data.Username_Customer_Admin = 'customeradmin';
+  data.Password_Customer_Admin = '7777';
   test.info().annotations.push({
     type: 'source-aiq',
     description: "source-aiq/Test Scripts/SR_Search_New_Module/TS_68_To_verify_that_Customer_Admin_has_access_to_Canned_Messages.ds"
   });
 
   await test.step('Login into Application', async () => {
-    await loginAsAdmin(page, data);
+    await loginAsRole(page, data, 'customerAdmin');
   });
 
   await test.step('Run converted flow', async () => {
+    await srSearchNewModuleHelpers.runScenario(page, data, test.info().title);
   });
 
   await test.step('Logout from the application', async () => {

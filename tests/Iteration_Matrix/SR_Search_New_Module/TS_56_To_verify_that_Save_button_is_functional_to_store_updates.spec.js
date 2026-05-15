@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, srSearchNewModuleHelpers } = require('./_shared');
 
 test("TS_56_To_verify_that_Save_button_is_functional_to_store_updates", async ({ page }) => {
   const data = loadRuntimeData();
@@ -12,6 +12,7 @@ test("TS_56_To_verify_that_Save_button_is_functional_to_store_updates", async ({
   });
 
   await test.step('Run converted flow', async () => {
+    await srSearchNewModuleHelpers.runScenario(page, data, test.info().title);
   });
 
   await test.step('Logout from the application', async () => {

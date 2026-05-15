@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, srSearchNewModuleHelpers } = require('./_shared');
 
 test("TS_62_To_verify_that_If_a_template_exists_user_can_review_or_edit_text", async ({ page }) => {
   const data = loadRuntimeData();
@@ -12,6 +12,7 @@ test("TS_62_To_verify_that_If_a_template_exists_user_can_review_or_edit_text", a
   });
 
   await test.step('Run converted flow', async () => {
+    await srSearchNewModuleHelpers.runScenario(page, data, test.info().title);
   });
 
   await test.step('Logout from the application', async () => {

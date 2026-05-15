@@ -41,6 +41,8 @@
     "report:iteration-matrix:proxypay-imremit-moudle:last-failed:client": "node scripts/run-iteration-matrix-proxypay-imremit-moudle-last-failed-client-report.js",
     "report:iteration-matrix:sr-upload-new:client": "node scripts/run-iteration-matrix-sr-upload-new-client-report.js",
     "report:iteration-matrix:sr-upload-new:last-failed:client": "node scripts/run-iteration-matrix-sr-upload-new-last-failed-client-report.js",
+    "report:iteration-matrix:sr-search-new-module:client": "node scripts/run-iteration-matrix-sr-search-new-module-client-report.js",
+    "report:iteration-matrix:sr-search-new-module:last-failed:client": "node scripts/run-iteration-matrix-sr-search-new-module-last-failed-client-report.js",
     "report:iteration-matrix:imremit-dashboard-new-bank-reconciliation-file-not-received:client": "node scripts/run-iteration-matrix-imremit-dashboard-new-bank-reconciliation-file-not-received-client-report.js",
     "report:iteration-matrix:imremit-dashboard-new-bank-reconciliation-file-not-received:last-failed:client": "node scripts/run-iteration-matrix-imremit-dashboard-new-bank-reconciliation-file-not-received-last-failed-client-report.js",
     "report:iteration-matrix:duplicate-dashboard-new:client": "node scripts/run-iteration-matrix-duplicate-dashboard-new-client-report.js",
