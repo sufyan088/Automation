@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, imremitLiteDashboardSupplierIsInactiveHelpers } = require('./_shared');
 
 test("TS_05_To_verify_that_Pagination_button_is_functional", async ({ page }) => {
   const data = loadRuntimeData();
@@ -11,7 +11,14 @@ test("TS_05_To_verify_that_Pagination_button_is_functional", async ({ page }) =>
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
+  await test.step('Open the Supplier is inactive review list', async () => {
+    await imremitLiteDashboardSupplierIsInactiveHelpers.openSupplierIsInactiveList(page, data);
+  });
+
+  await test.step('Change the page size options', async () => {
+    await imremitLiteDashboardSupplierIsInactiveHelpers.choosePaginationOption(page, '25');
+    await imremitLiteDashboardSupplierIsInactiveHelpers.choosePaginationOption(page, '50');
+    await imremitLiteDashboardSupplierIsInactiveHelpers.choosePaginationOption(page, '100');
   });
 
   await test.step('Logout from the application', async () => {

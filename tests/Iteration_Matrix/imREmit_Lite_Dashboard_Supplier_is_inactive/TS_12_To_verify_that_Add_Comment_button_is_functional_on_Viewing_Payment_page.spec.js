@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, imremitLiteDashboardSupplierIsInactiveHelpers } = require('./_shared');
 
 test("TS_12_To_verify_that_Add_Comment_button_is_functional_on_Viewing_Payment_page", async ({ page }) => {
   const data = loadRuntimeData();
@@ -11,7 +11,12 @@ test("TS_12_To_verify_that_Add_Comment_button_is_functional_on_Viewing_Payment_p
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
+  await test.step('Open a payment details view from the Supplier is inactive list', async () => {
+    await imremitLiteDashboardSupplierIsInactiveHelpers.openPaymentDetails(page, data);
+  });
+
+  await test.step('Add a comment to the payment', async () => {
+    await imremitLiteDashboardSupplierIsInactiveHelpers.addComment(page, `SupplierInactive-${Date.now()}`);
   });
 
   await test.step('Logout from the application', async () => {

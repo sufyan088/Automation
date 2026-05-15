@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, imremitLiteDashboardSupplierIsInactiveHelpers } = require('./_shared');
 
 test("TS_09_To_verify_that_Next_button_on_Viewing_Payment_page_is_functional", async ({ page }) => {
   const data = loadRuntimeData();
@@ -11,7 +11,12 @@ test("TS_09_To_verify_that_Next_button_on_Viewing_Payment_page_is_functional", a
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
+  await test.step('Open a payment details view from the Supplier is inactive list', async () => {
+    await imremitLiteDashboardSupplierIsInactiveHelpers.openPaymentDetails(page, data);
+  });
+
+  await test.step('Open the next payment details record', async () => {
+    await imremitLiteDashboardSupplierIsInactiveHelpers.openNextPayment(page);
   });
 
   await test.step('Logout from the application', async () => {
