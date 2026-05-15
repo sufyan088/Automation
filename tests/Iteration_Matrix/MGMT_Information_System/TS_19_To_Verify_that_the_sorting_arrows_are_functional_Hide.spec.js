@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, mgmtInformationSystemHelpers } = require('./_shared');
 
 test("TS_19_To_Verify_that_the_sorting_arrows_are_functional_Hide", async ({ page }) => {
   const data = loadRuntimeData();
@@ -12,6 +12,7 @@ test("TS_19_To_Verify_that_the_sorting_arrows_are_functional_Hide", async ({ pag
   });
 
   await test.step('Run converted flow', async () => {
+    await mgmtInformationSystemHelpers.runScenario(page, data, test.info().title);
   });
 
   await test.step('Logout from the application', async () => {

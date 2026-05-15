@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, mgmtInformationSystemHelpers } = require('./_shared');
 
 test("TS_06_To_Verify_that_the_Month_filter_is_functional_on_the_Adjust_Filters_popup", async ({ page }) => {
   const data = loadRuntimeData();
@@ -12,6 +12,7 @@ test("TS_06_To_Verify_that_the_Month_filter_is_functional_on_the_Adjust_Filters_
   });
 
   await test.step('Run converted flow', async () => {
+    await mgmtInformationSystemHelpers.runScenario(page, data, test.info().title);
   });
 
   await test.step('Logout from the application', async () => {
