@@ -180,6 +180,13 @@ Use it as the project-specific companion to [docs/conversion-framework.md](./con
 - The finalized module artifact paths are `Result/allure-report-iteration-matrix-imremit-dashboard-new-select-multiple-customers-shareable/` and `Result/iteration-matrix-imremit-dashboard-new-select-multiple-customers.zip`.
 - Report readability for this module follows the approved Iteration Matrix pattern: keep `Description` limited to `Scenario:` and `Spec File:`, keep `Login into Application` and `Logout from the application` visible, and expose the business flow directly from helper-owned steps with no spec-level `Run converted flow` wrapper and no helper-level `Run Scenario` shell.
 
+## Supplier Management imREmit New Reporting Status
+
+- `tests/Iteration_Matrix/Supplier_Management_imREmit_New/` is now fully helper-backed through `helpers/iteration-matrix/supplierManagementImremitNew.js` and selectors rooted in `selectors/iteration-matrix/supplierManagementImremitNew.selectors.js`.
+- The module now has dedicated full-run and last-failed client-report wrappers at `npm run report:iteration-matrix:supplier-management-imremit-new:client` and `npm run report:iteration-matrix:supplier-management-imremit-new:last-failed:client`.
+- The finalized module artifact paths are `Result/allure-report-iteration-matrix-supplier-management-imremit-new-shareable/` and `Result/iteration-matrix-supplier-management-imremit-new.zip`.
+- Report readability for this module follows the approved Iteration Matrix pattern: keep `Description` limited to `Scenario:` and `Spec File:`, keep `Login into Application` and `Logout from the application` visible, and expose the business flow directly from helper-owned steps with no helper-level `Run Supplier Management imREmit New scenario` wrapper.
+
 ## imREmit Dashboard New Bank Reconciliation File Not Received Status
 
 - `tests/Iteration_Matrix/imREmit_Dashboard_New_Bank_reconciliation_file_not_received/` is helper-backed through `helpers/iteration-matrix/imremitDashboardNewBankReconciliationFileNotReceived.js` and selectors rooted in `selectors/iteration-matrix/imremitDashboardNewBankReconciliationFileNotReceived.selectors.js`.

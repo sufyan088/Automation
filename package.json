@@ -35,6 +35,8 @@
     "report:iteration-matrix:imremit-dashboard-failed-payments-on-provider-payment-provider-error:last-failed:client": "node scripts/run-iteration-matrix-imremit-dashboard-failed-payments-on-provider-payment-provider-error-last-failed-client-report.js",
     "report:iteration-matrix:imremit-dashboard-new-select-multiple-customers:client": "node scripts/run-iteration-matrix-imremit-dashboard-new-select-multiple-customers-client-report.js",
     "report:iteration-matrix:imremit-dashboard-new-select-multiple-customers:last-failed:client": "node scripts/run-iteration-matrix-imremit-dashboard-new-select-multiple-customers-last-failed-client-report.js",
+    "report:iteration-matrix:supplier-management-imremit-new:client": "node scripts/run-iteration-matrix-supplier-management-imremit-new-client-report.js",
+    "report:iteration-matrix:supplier-management-imremit-new:last-failed:client": "node scripts/run-iteration-matrix-supplier-management-imremit-new-last-failed-client-report.js",
     "report:iteration-matrix:pm-new-module:client": "node scripts/run-iteration-matrix-pm-new-module-client-report.js",
     "report:iteration-matrix:pm-new-module:last-failed:client": "node scripts/run-iteration-matrix-pm-new-module-last-failed-client-report.js",
     "report:iteration-matrix:proxypay-imremit-moudle:client": "node scripts/run-iteration-matrix-proxypay-imremit-moudle-client-report.js",
