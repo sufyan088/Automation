@@ -18,6 +18,29 @@ const resultIndexPath = path.join(rootDir, 'Result', 'index.html');
 const windowsSystemRoot = process.env.SystemRoot || 'C:\\Windows';
 const cmdExecutable = process.env.ComSpec || path.join(windowsSystemRoot, 'System32', 'cmd.exe');
 const powershellExecutable = path.join(windowsSystemRoot, 'System32', 'WindowsPowerShell', 'v1.0', 'powershell.exe');
+const playwrightCliPath = path.join(rootDir, 'node_modules', '@playwright', 'test', 'cli.js');
+
+function resolveSpawn(command, args) {
+  if (isWindows && command === 'npx' && Array.isArray(args) && args[0] === 'playwright' && fs.existsSync(playwrightCliPath)) {
+    return {
+      command: process.execPath,
+      args: [playwrightCliPath, ...args.slice(1)],
+      usesCmdShell: false,
+    };
+  }
+
+  const resolvedCommand = resolveCommand(command);
+  const spawnArgs = args || [];
+  const usesCmdShell = isWindows && /\.(cmd|bat)$/i.test(resolvedCommand);
+
+  return {
+    command: usesCmdShell ? cmdExecutable : resolvedCommand,
+    args: usesCmdShell
+      ? ['/d', '/s', '/c', buildCmdCommandLine(resolvedCommand, spawnArgs)]
+      : spawnArgs,
+    usesCmdShell,
+  };
+}
 
 function resolveCommand(command) {
   if (!isWindows) {
@@ -58,16 +81,8 @@ function buildCmdCommandLine(command, args) {
 }
 
 function run(command, args, options = {}) {
-  const resolvedCommand = resolveCommand(command);
-  const spawnArgs = args || [];
-  const usesCmdShell = isWindows && /\.(cmd|bat)$/i.test(resolvedCommand);
-  const spawnCommand = usesCmdShell
-    ? cmdExecutable
-    : resolvedCommand;
-  const finalArgs = usesCmdShell
-    ? ['/d', '/s', '/c', buildCmdCommandLine(resolvedCommand, spawnArgs)]
-    : spawnArgs;
-  const result = spawnSync(spawnCommand, finalArgs, {
+  const spawnConfig = resolveSpawn(command, args);
+  const result = spawnSync(spawnConfig.command, spawnConfig.args, {
     cwd: rootDir,
     stdio: 'inherit',
     shell: false,
@@ -82,16 +97,8 @@ function run(command, args, options = {}) {
 }
 
 function runWithResult(command, args, options = {}) {
-  const resolvedCommand = resolveCommand(command);
-  const spawnArgs = args || [];
-  const usesCmdShell = isWindows && /\.(cmd|bat)$/i.test(resolvedCommand);
-  const spawnCommand = usesCmdShell
-    ? cmdExecutable
-    : resolvedCommand;
-  const finalArgs = usesCmdShell
-    ? ['/d', '/s', '/c', buildCmdCommandLine(resolvedCommand, spawnArgs)]
-    : spawnArgs;
-  const result = spawnSync(spawnCommand, finalArgs, {
+  const spawnConfig = resolveSpawn(command, args);
+  const result = spawnSync(spawnConfig.command, spawnConfig.args, {
     cwd: rootDir,
     encoding: 'utf8',
     shell: false,
@@ -252,6 +259,7 @@ function createModuleClientReportRunner(config) {
     workers = 3,
     backupPrefix = 'vision-spring-module-allure-',
     postProcessResults,
+    reporters = ['allure-playwright'],
   } = config;
 
   const moduleDir = path.join(rootDir, modulePath);
@@ -285,7 +293,8 @@ function createModuleClientReportRunner(config) {
       testArgs.push('--last-failed');
     }
 
-    testArgs.push(`--workers=${workers}`, '--reporter=allure-playwright');
+    const reporterValue = Array.isArray(reporters) ? reporters.join(',') : String(reporters || 'allure-playwright');
+    testArgs.push(`--workers=${workers}`, `--reporter=${reporterValue}`);
 
     const testRun = mode === 'last-failed'
       ? runWithResult('npx', testArgs)

@@ -85,6 +85,24 @@
 				"--headed"
 			],
 			"isBackground": true
+		},
+		{
+			"label": "Run MGMT Information System Client Report",
+			"type": "shell",
+			"command": "C:\\Program Files\\nodejs\\node.exe",
+			"args": [
+				"scripts/run-iteration-matrix-mgmt-information-system-client-report.js"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"isBackground": false,
+			"presentation": {
+				"reveal": "always",
+				"panel": "dedicated",
+				"focus": true,
+				"clear": true
+			}
 		}
 	]
 }

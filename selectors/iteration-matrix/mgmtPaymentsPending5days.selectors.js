@@ -113,6 +113,10 @@ const mgmtPaymentsPending5daysSelectors = {
       { type: 'custom', name: 'pending payments table', factory: (page) => page.locator('#table-container table').first() },
       { type: 'role', role: 'table', name: 'visible table' }
     ],
+    parentCustomerHeader: [
+      { type: 'custom', name: 'parent customer header', factory: (page) => page.locator('#table-container').getByText('Parent Customer', { exact: true }).first() },
+      { type: 'text', value: 'Parent Customer', options: { exact: true }, name: 'parent customer text' }
+    ],
     graphLegendPayByWeb: [
       { type: 'role', role: 'button', options: { name: 'Pay by Web', exact: true }, name: 'pay by web button' },
       { type: 'text', value: 'Pay by Web', options: { exact: true }, name: 'pay by web legend' },
@@ -315,12 +319,28 @@ const mgmtPaymentsPending5daysSelectors = {
         factory: (page) => page.getByRole('tabpanel', { name: 'Advanced Filters' }).getByRole('combobox').nth(2)
       }
     ],
+    allSupplierIdsSelected: [
+      { type: 'text', value: 'All supplier IDs selected', options: { exact: true }, name: 'all supplier ids selected' },
+      {
+        type: 'custom',
+        name: 'supplier id combobox',
+        factory: (page) => page.getByRole('tabpanel', { name: 'Advanced Filters' }).getByRole('combobox').nth(3)
+      }
+    ],
     allStatusesSelected: [
       { type: 'text', value: 'All statuses selected', options: { exact: true }, name: 'all statuses selected' },
       {
         type: 'custom',
         name: 'payment status combobox',
         factory: (page) => page.getByRole('tabpanel', { name: 'Advanced Filters' }).getByRole('combobox').nth(4)
+      }
+    ],
+    allStatusDescriptionsSelected: [
+      { type: 'text', value: 'All status descriptions selected', options: { exact: true }, name: 'all status descriptions selected' },
+      {
+        type: 'custom',
+        name: 'status description combobox',
+        factory: (page) => page.getByRole('tabpanel', { name: 'Advanced Filters' }).getByRole('combobox').nth(5)
       }
     ],
     payByWebOption: [

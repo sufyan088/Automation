@@ -1,6 +1,6 @@
-const { expect } = require('@playwright/test');
+const { expect, test } = require('@playwright/test');
 const { clickWithFallback, clickIfFound, expectVisibleWithFallback, fillWithFallback } = require('../fallback');
-const { wrapHelperMapWithReadableSteps } = require('../clientReadableSteps');
+const { businessAssertionStepTitle, wrapHelperMapWithReadableSteps } = require('../clientReadableSteps');
 const { mgmtPaymentReceivedSelectors } = require('../../selectors/iteration-matrix/mgmtPaymentReceived.selectors.js');
 
 async function isVisible(page, candidates, timeout = 1500) {
@@ -41,6 +41,33 @@ function getFilterTriggerFallbacks(page, labelText) {
   return (triggerTextsByLabel[labelText] || []).map((pattern) => page.locator('button, [role="combobox"]').filter({ hasText: pattern }).first());
 }
 
+function escapeRegex(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+async function clickVisibleDialogOption(page, values) {
+  for (const value of values) {
+    for (const scope of [page.locator('[role="listbox"], [cmdk-list]').last(), page.locator('body > div').last(), getOpenDialog(page), page.locator('body')]) {
+      const locators = [
+        scope.locator('[role="option"], [data-value], [cmdk-item]').filter({ hasText: new RegExp(`^${escapeRegex(value)}$`, 'i') }).last(),
+        scope.getByRole('option', { name: value, exact: true }).last(),
+        scope.getByText(value, { exact: true }).last()
+      ];
+
+      for (const locator of locators) {
+        if (!(await locator.isVisible().catch(() => false))) {
+          continue;
+        }
+
+        await locator.click({ timeout: 10000, force: true });
+        return true;
+      }
+    }
+  }
+
+  return false;
+}
+
 async function clickLocatorIfEnabled(locator) {
   await locator.waitFor({ state: 'visible', timeout: 10000 });
   if (await locator.isDisabled().catch(() => false)) {
@@ -54,13 +81,20 @@ async function clickLocatorIfEnabled(locator) {
 async function clickVisibleText(page, values) {
   for (const value of values) {
     for (const scope of [getOpenDialog(page), page.locator('body')]) {
-      const locator = scope.getByText(value, { exact: true }).last();
-      if (!(await locator.isVisible().catch(() => false))) {
-        continue;
-      }
+      const locators = [
+        scope.locator('[role="option"], [data-value], [cmdk-item]').filter({ hasText: new RegExp(`^${value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`, 'i') }).last(),
+        scope.getByRole('option', { name: value, exact: true }).last(),
+        scope.getByText(value, { exact: true }).last()
+      ];
 
-      await locator.click({ timeout: 10000, force: true });
-      return true;
+      for (const locator of locators) {
+        if (!(await locator.isVisible().catch(() => false))) {
+          continue;
+        }
+
+        await locator.click({ timeout: 10000, force: true });
+        return true;
+      }
     }
   }
 
@@ -78,14 +112,14 @@ async function hoverIfVisible(page, candidates) {
 }
 
 async function waitForChartContent(page) {
-  const loadingIndicators = page.getByText(/Fetching payment data|Processing transactions/i);
+  const loadingIndicators = page.getByText(/Fetching payment data|Processing transactions|Building visualizations|Aggregating by customer|Almost there|Loading your workspace/i);
   if (await loadingIndicators.first().isVisible().catch(() => false)) {
     await loadingIndicators.first().waitFor({ state: 'hidden', timeout: 30000 }).catch(() => null);
   }
 }
 
 async function chartIsLoading(page) {
-  return page.getByText(/Fetching payment data|Processing transactions|Aggregating by customer|Almost there/i).first().isVisible().catch(() => false);
+  return page.getByText(/Fetching payment data|Processing transactions|Building visualizations|Aggregating by customer|Almost there|Loading your workspace/i).first().isVisible().catch(() => false);
 }
 
 async function openModule(page) {
@@ -222,6 +256,12 @@ function assertAlphabetical(values) {
 
   const sorted = [...comparable].sort((left, right) => left.localeCompare(right, undefined, { sensitivity: 'base' }));
   expect(comparable).toEqual(sorted);
+}
+
+async function selectFirstAvailableOption(page) {
+  const options = (await collectVisibleOptionTexts(page)).filter((text) => !/^select all/i.test(text) && !/^all .* selected$/i.test(text));
+  expect(options.length).toBeGreaterThan(0);
+  await clickVisibleText(page, [options[0]]);
 }
 
 async function openSortMenu(page) {
@@ -584,18 +624,55 @@ async function runScenario(page, data, scenarioName) {
       await expectVisibleWithFallback(page, pageSelectors.downloadChartButton, { expectTimeout: 5000, timeoutPerCandidate: 1500 });
       await clickWithFallback(page, pageSelectors.downloadChartButton, { actionTimeout: 10000, timeoutPerCandidate: 1500 });
       return;
+    case 48:
+      await openAdjustFilters(page);
+      await expectVisibleWithFallback(page, filters.moduleLabel, { expectTimeout: 5000, timeoutPerCandidate: 1500 });
+      await expectVisibleWithFallback(page, filters.allModulesSelected, { expectTimeout: 5000, timeoutPerCandidate: 1500 });
+      return;
+    case 49:
+      await openAdjustFilters(page);
+      await waitForChartContent(page);
+      await page.getByRole('tabpanel', { name: 'Basic Filters' }).getByText('All modules selected', { exact: true }).first().click({ timeout: 10000, force: true });
+      expect(await clickVisibleDialogOption(page, ['imREmit lite', 'imREmit Lite', 'imREmit'])).toBeTruthy();
+      await expect.poll(async () => (await getFilterTriggerByLabel(page, 'Module:').textContent()) || '', { timeout: 10000 }).toMatch(/imREmit lite/i);
+      await expectVisibleWithFallback(page, filters.allSendersSelected, { expectTimeout: 10000, timeoutPerCandidate: 5000 });
+      await expect(async () => {
+        await page.getByRole('tabpanel', { name: 'Basic Filters' }).getByText('All senders selected', { exact: true }).first().click({ timeout: 10000, force: true });
+        expect(await clickVisibleText(page, ['JPMChase', 'EdenredPay'])).toBeTruthy();
+      }).toPass({ timeout: 15000 });
+      await page.keyboard.press('Escape').catch(() => null);
+      await ensureTableVisible(page);
+      return;
+    case 50:
+      await ensureTableVisible(page);
+      await expectVisibleWithFallback(page, pageSelectors.parentCustomerHeader, { expectTimeout: 5000, timeoutPerCandidate: 1500 });
+      return;
     default:
       await assertBaseSurface(page);
       await closeAdjustFilters(page);
   }
 }
 
+const helperMap = {
+  openModule,
+  runScenario,
+  selectors: mgmtPaymentReceivedSelectors
+};
+
+async function runScenarioWithBusinessSteps(page, data, scenarioName, reportScenarioName) {
+  await test.step('Open the MIS Payments Received page', async () => {
+    await openModule(page);
+  });
+
+  return test.step(businessAssertionStepTitle(reportScenarioName || scenarioName), async () => {
+    return runScenario(page, data, scenarioName);
+  });
+}
+
 module.exports = {
-  mgmtPaymentReceivedHelpers: wrapHelperMapWithReadableSteps({
-    openModule,
-    runScenario,
+  mgmtPaymentReceivedHelpers: {
+    ...wrapHelperMapWithReadableSteps(helperMap),
+    runScenario: runScenarioWithBusinessSteps,
     selectors: mgmtPaymentReceivedSelectors
-  }, {
-    runScenario: 'Run the converted payments received scenario'
-  })
+  }
 };

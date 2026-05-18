@@ -1,6 +1,6 @@
-const { expect } = require('@playwright/test');
-const { clickWithFallback, expectVisibleWithFallback, fillWithFallback, resolveFirst } = require('../fallback');
-const { wrapHelperMapWithReadableSteps } = require('../clientReadableSteps');
+const { expect, test } = require('@playwright/test');
+const { clickIfFound, clickWithFallback, expectVisibleWithFallback, fillWithFallback, resolveFirst } = require('../fallback');
+const { businessAssertionStepTitle, wrapHelperMapWithReadableSteps } = require('../clientReadableSteps');
 const { mgmtPercentageGrowthSelectors } = require('../../selectors/iteration-matrix/mgmtPercentageGrowth.selectors.js');
 
 async function isVisible(page, candidates, timeout = 1500) {
@@ -27,17 +27,84 @@ function getFilterTriggerByLabel(page, labelText) {
 async function clickVisibleText(page, values) {
   for (const value of values) {
     for (const scope of [getOpenDialog(page), page.locator('body')]) {
-      const locator = scope.getByText(value, { exact: true }).first();
-      if (!(await locator.isVisible().catch(() => false))) {
-        continue;
-      }
+      const locators = [
+        scope.locator('[role="option"], [data-value], [cmdk-item]').filter({ hasText: new RegExp(`^${value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`, 'i') }).first(),
+        scope.getByRole('option', { name: value, exact: true }).first(),
+        scope.getByText(value, { exact: true }).first()
+      ];
 
-      await locator.click({ timeout: 10000, force: true });
-      return true;
+      for (const locator of locators) {
+        if (!(await locator.isVisible().catch(() => false))) {
+          continue;
+        }
+
+        await locator.click({ timeout: 10000, force: true });
+        return true;
+      }
     }
   }
 
   return false;
+}
+
+async function collectVisibleOptionTexts(page) {
+  const dialog = getOpenDialog(page);
+  const root = (await dialog.count().catch(() => 0)) > 0 ? dialog : page.locator('body');
+  const texts = await root.locator('[role="option"], [cmdk-item], [data-value]').evaluateAll((nodes) => nodes
+    .filter((node) => !node.querySelector('[role="option"], [cmdk-item], [data-value]'))
+    .map((node) => (node.textContent || '').trim())
+    .filter(Boolean));
+  return [...new Set(texts.map((text) => text.replace(/\s+/g, ' ').trim()))].filter((text) => text && !/^Clear All$/i.test(text));
+}
+
+function escapeRegex(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+async function clickVisibleDialogOption(page, values) {
+  for (const value of values) {
+    for (const scope of [page.locator('[role="listbox"], [cmdk-list]').last(), getOpenDialog(page), page.locator('body')]) {
+      const locators = [
+        scope.locator('[role="option"], [data-value], [cmdk-item]').filter({ hasText: new RegExp(`^${escapeRegex(value)}$`, 'i') }).first(),
+        scope.getByRole('option', { name: value, exact: true }).first()
+      ];
+
+      for (const locator of locators) {
+        if (!(await locator.isVisible().catch(() => false))) {
+          continue;
+        }
+
+        await locator.click({ timeout: 10000, force: true });
+        return true;
+      }
+    }
+  }
+
+  return false;
+}
+
+async function chartIsLoading(page) {
+  return page.getByText(/Fetching payment data|Processing transactions|Loading your workspace/i).first().isVisible().catch(() => false);
+}
+
+async function waitForChartContent(page) {
+  await expect.poll(async () => !(await chartIsLoading(page)), { timeout: 20000 }).toBeTruthy();
+}
+
+function assertAlphabetical(values) {
+  const comparable = values.filter((value) => !/^select all/i.test(value));
+  if (comparable.length < 2) {
+    return;
+  }
+
+  const sorted = [...comparable].sort((left, right) => left.localeCompare(right, undefined, { sensitivity: 'base' }));
+  expect(comparable).toEqual(sorted);
+}
+
+async function selectFirstAvailableOption(page) {
+  const options = (await collectVisibleOptionTexts(page)).filter((text) => !/^select all/i.test(text) && !/^all .* selected$/i.test(text));
+  expect(options.length).toBeGreaterThan(0);
+  await clickVisibleText(page, [options[0]]);
 }
 
 async function openModule(page) {
@@ -111,6 +178,17 @@ async function openCustomerOptions(page) {
     factory: (localPage) => getFilterTriggerByLabel(localPage, 'Customers:*')
   }], { actionTimeout: 10000, timeoutPerCandidate: 1500 });
   await expectVisibleWithFallback(page, filters.customerSearchInput, { expectTimeout: 10000, timeoutPerCandidate: 1500 });
+}
+
+async function openDownloadMenu(page) {
+  const { page: pageSelectors } = mgmtPercentageGrowthSelectors;
+
+  await ensureChartVisible(page);
+  if ((await isVisible(page, pageSelectors.downloadBothButton, 1200)) || (await isVisible(page, pageSelectors.downloadChartButton, 1200))) {
+    return;
+  }
+
+  await clickWithFallback(page, pageSelectors.downloadReportButton, { actionTimeout: 10000, timeoutPerCandidate: 1500 });
 }
 
 async function openSortMenu(page) {
@@ -245,17 +323,94 @@ async function runScenario(page, data, scenarioName) {
       await openAdjustFilters(page);
       await expectVisibleWithFallback(page, filters.customersLabel, { expectTimeout: 5000, timeoutPerCandidate: 1500 });
       return;
+    case 19:
+      await ensureChartVisible(page);
+      await clickWithFallback(page, pageSelectors.hideChartButton, { actionTimeout: 10000, timeoutPerCandidate: 1500 });
+      await expectVisibleWithFallback(page, pageSelectors.showChartButton, { expectTimeout: 5000, timeoutPerCandidate: 1500 });
+      await clickWithFallback(page, pageSelectors.showChartButton, { actionTimeout: 10000, timeoutPerCandidate: 1500 });
+      await expectVisibleWithFallback(page, pageSelectors.hideChartButton, { expectTimeout: 5000, timeoutPerCandidate: 1500 });
+      return;
+    case 20:
+      await ensureTableVisible(page);
+      await clickWithFallback(page, pageSelectors.hideTableButton, { actionTimeout: 10000, timeoutPerCandidate: 1500 });
+      await expectVisibleWithFallback(page, pageSelectors.showTableButton, { expectTimeout: 5000, timeoutPerCandidate: 1500 });
+      await clickWithFallback(page, pageSelectors.showTableButton, { actionTimeout: 10000, timeoutPerCandidate: 1500 });
+      await expectVisibleWithFallback(page, pageSelectors.tableElement, { expectTimeout: 15000, timeoutPerCandidate: 3000 });
+      return;
+    case 21:
+      await openDownloadMenu(page);
+      await expectVisibleWithFallback(page, pageSelectors.downloadBothButton, { expectTimeout: 5000, timeoutPerCandidate: 1500 });
+      await clickWithFallback(page, pageSelectors.downloadBothButton, { actionTimeout: 10000, timeoutPerCandidate: 1500 });
+      return;
+    case 22:
+      await openAdjustFilters(page);
+      await openCustomerOptions(page);
+      if (await isVisible(page, [...filters.customerOptionsDialog, ...filters.customerSearchInput, ...filters.customerResetButton], 1500)) {
+        await fillWithFallback(page, filters.customerSearchInput, 'Koerber Supply', { timeoutPerCandidate: 1500 });
+        await clickVisibleText(page, ['Koerber Supply']);
+      }
+      if ((await clickIfFound(page, filters.customerResetButton, { actionTimeout: 10000, timeoutPerCandidate: 1500 })).clicked === false) {
+        await fillWithFallback(page, filters.customerSearchInput, '', { timeoutPerCandidate: 1500 }).catch(() => null);
+        await page.keyboard.press('Escape').catch(() => null);
+      }
+      await expectVisibleWithFallback(page, filters.allCustomersSelected, { expectTimeout: 5000, timeoutPerCandidate: 1500 });
+      return;
+    case 23:
+      await openAdjustFilters(page);
+      await expectVisibleWithFallback(page, filters.moduleLabel, { expectTimeout: 5000, timeoutPerCandidate: 1500 });
+      await expect.poll(async () => ((await getFilterTriggerByLabel(page, 'Module:').textContent()) || '').replace(/\s+/g, ' ').trim(), { timeout: 10000 }).toMatch(/both/i);
+      return;
+    case 24:
+      await openCustomerOptions(page);
+      await expect.poll(async () => (await collectVisibleOptionTexts(page)).length, { timeout: 10000 }).toBeGreaterThan(0);
+      assertAlphabetical(await collectVisibleOptionTexts(page));
+      return;
+    case 25:
+      await openAdjustFilters(page);
+      await waitForChartContent(page);
+      await expect(async () => {
+        await page.getByRole('tabpanel', { name: 'Basic Filters' }).getByText(/^(Both|All modules selected)$/).first().click({ timeout: 10000, force: true });
+        expect(await clickVisibleText(page, ['imREmit lite', 'imREmit Lite', 'imREmit-Lite', 'imREmit'])).toBeTruthy();
+      }).toPass({ timeout: 15000 });
+      await expect.poll(async () => (await getFilterTriggerByLabel(page, 'Module:').textContent()) || '', { timeout: 10000 }).toMatch(/imremit(?: |-)?lite/i);
+      await expectVisibleWithFallback(page, filters.allSendersSelected, { expectTimeout: 10000, timeoutPerCandidate: 5000 });
+      await expect(async () => {
+        await page.getByRole('tabpanel', { name: 'Basic Filters' }).getByText('All senders selected', { exact: true }).first().click({ timeout: 10000, force: true });
+        await expect.poll(async () => (await collectVisibleOptionTexts(page)).length, { timeout: 10000 }).toBeGreaterThan(0);
+        await selectFirstAvailableOption(page);
+      }).toPass({ timeout: 15000 });
+      await page.keyboard.press('Escape').catch(() => null);
+      await ensureTableVisible(page);
+      return;
+    case 26:
+      await ensureTableVisible(page);
+      await expectVisibleWithFallback(page, pageSelectors.parentCustomerHeader, { expectTimeout: 5000, timeoutPerCandidate: 1500 });
+      return;
     default:
       await assertBaseSurface(page);
   }
 }
 
+const helperMap = {
+  openModule,
+  runScenario,
+  selectors: mgmtPercentageGrowthSelectors
+};
+
+async function runScenarioWithBusinessSteps(page, data, scenarioName, reportScenarioName) {
+  await test.step('Open the MIS Percentage Growth page', async () => {
+    await openModule(page);
+  });
+
+  return test.step(businessAssertionStepTitle(reportScenarioName || scenarioName), async () => {
+    return runScenario(page, data, scenarioName);
+  });
+}
+
 module.exports = {
-  mgmtPercentageGrowthHelpers: wrapHelperMapWithReadableSteps({
-    openModule,
-    runScenario,
+  mgmtPercentageGrowthHelpers: {
+    ...wrapHelperMapWithReadableSteps(helperMap),
+    runScenario: runScenarioWithBusinessSteps,
     selectors: mgmtPercentageGrowthSelectors
-  }, {
-    runScenario: 'Run the converted percentage growth scenario'
-  })
+  }
 };

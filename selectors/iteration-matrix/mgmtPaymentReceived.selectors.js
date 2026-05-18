@@ -147,6 +147,10 @@ const mgmtPaymentReceivedSelectors = {
     sortHideOption: [
       { type: 'text', value: 'Hide', options: { exact: true }, name: 'hide option' },
       { type: 'text', value: 'Hide column', options: { exact: true }, name: 'hide column option' }
+    ],
+    parentCustomerHeader: [
+      { type: 'custom', name: 'parent customer header', factory: (page) => page.locator('#table-container').getByText('Parent Customer', { exact: true }).first() },
+      { type: 'text', value: 'Parent Customer', options: { exact: true }, name: 'parent customer text' }
     ]
   },
   filters: {
@@ -171,6 +175,7 @@ const mgmtPaymentReceivedSelectors = {
     monthLabel: [{ type: 'text', value: 'Month:', options: { exact: true }, name: 'month label' }],
     quarterLabel: [{ type: 'text', value: 'Quarter:', options: { exact: true }, name: 'quarter label' }],
     paymentStatusLabel: [{ type: 'text', value: 'Payment Status:', options: { exact: true }, name: 'payment status label' }],
+    senderLabel: [{ type: 'text', value: 'Sender:', options: { exact: true }, name: 'sender label' }],
     allModulesSelected: [{ type: 'text', value: 'All modules selected', options: { exact: true }, name: 'all modules selected' }],
     allCustomersSelected: [
       { type: 'text', value: 'All customers selected', options: { exact: true }, name: 'all customers selected' },
@@ -180,6 +185,10 @@ const mgmtPaymentReceivedSelectors = {
     allStatusesSelected: [
       { type: 'text', value: 'All statuses selected', options: { exact: true }, name: 'all statuses selected' },
       { type: 'text', value: 'All modules statuses selected', options: { exact: true }, name: 'all modules statuses selected' }
+    ],
+    allSendersSelected: [
+      { type: 'text', value: 'All senders selected', options: { exact: true }, name: 'all senders selected' },
+      { type: 'text', value: 'All Senders', options: { exact: true }, name: 'all senders alt text' }
     ],
     selectAllMonthsOption: [{ type: 'text', value: 'Select All Months', options: { exact: true }, name: 'select all months option' }],
     selectAllQuartersOption: [{ type: 'text', value: 'Select All Quarters', options: { exact: true }, name: 'select all quarters option' }],

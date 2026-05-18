@@ -1,6 +1,6 @@
-const { expect } = require('@playwright/test');
-const { clickWithFallback, expectVisibleWithFallback, fillWithFallback } = require('../fallback');
-const { wrapHelperMapWithReadableSteps } = require('../clientReadableSteps');
+const { expect, test } = require('@playwright/test');
+const { clickIfFound, clickWithFallback, expectVisibleWithFallback, fillWithFallback } = require('../fallback');
+const { businessAssertionStepTitle, wrapHelperMapWithReadableSteps } = require('../clientReadableSteps');
 const { mgmtPaymentsPostedSelectors } = require('../../selectors/iteration-matrix/mgmtPaymentsPosted.selectors.js');
 
 async function isVisible(page, candidates, timeout = 1500) {
@@ -53,13 +53,20 @@ async function clickLocatorIfEnabled(locator) {
 async function clickVisibleText(page, values) {
   for (const value of values) {
     for (const scope of [getOpenDialog(page), getDialog(page), page.locator('body')]) {
-      const locator = scope.getByText(value, { exact: true }).first();
-      if (!(await locator.isVisible().catch(() => false))) {
-        continue;
-      }
+      const locators = [
+        scope.locator('[role="option"], [data-value], [cmdk-item]').filter({ hasText: new RegExp(`^${value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`, 'i') }).first(),
+        scope.getByRole('option', { name: value, exact: true }).first(),
+        scope.getByText(value, { exact: true }).first()
+      ];
 
-      await locator.click({ timeout: 10000, force: true });
-      return true;
+      for (const locator of locators) {
+        if (!(await locator.isVisible().catch(() => false))) {
+          continue;
+        }
+
+        await locator.click({ timeout: 10000, force: true });
+        return true;
+      }
     }
   }
 
@@ -69,8 +76,61 @@ async function clickVisibleText(page, values) {
 async function collectVisibleOptionTexts(page) {
   const dialog = getOpenDialog(page);
   const root = (await dialog.count().catch(() => 0)) > 0 ? dialog : page.locator('body');
-  const texts = await root.locator('[role="option"], [cmdk-item], [data-value]').evaluateAll((nodes) => nodes.map((node) => (node.textContent || '').trim()).filter(Boolean));
+  const texts = await root.locator('[role="option"], [cmdk-item], [data-value]').evaluateAll((nodes) => nodes
+    .filter((node) => !node.querySelector('[role="option"], [cmdk-item], [data-value]'))
+    .map((node) => (node.textContent || '').trim())
+    .filter(Boolean));
   return [...new Set(texts.map((text) => text.replace(/\s+/g, ' ').trim()))].filter(Boolean);
+}
+
+function assertAlphabetical(values) {
+  const comparable = values.filter((value) => !/^select all/i.test(value));
+  if (comparable.length < 2) {
+    return;
+  }
+
+  const sorted = [...comparable].sort((left, right) => left.localeCompare(right, undefined, { sensitivity: 'base' }));
+  expect(comparable).toEqual(sorted);
+}
+
+function escapeRegex(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+async function clickVisibleDialogOption(page, values) {
+  for (const value of values) {
+    for (const scope of [page.locator('[role="listbox"], [cmdk-list]').last(), getOpenDialog(page), page.locator('body')]) {
+      const locators = [
+        scope.locator('[role="option"], [data-value], [cmdk-item]').filter({ hasText: new RegExp(`^${escapeRegex(value)}$`, 'i') }).first(),
+        scope.getByRole('option', { name: value, exact: true }).first()
+      ];
+
+      for (const locator of locators) {
+        if (!(await locator.isVisible().catch(() => false))) {
+          continue;
+        }
+
+        await locator.click({ timeout: 10000, force: true });
+        return true;
+      }
+    }
+  }
+
+  return false;
+}
+
+async function chartIsLoading(page) {
+  return page.getByText(/Fetching payment data|Processing transactions|Building visualizations|Aggregating by customer|Almost there|Loading your workspace/i).first().isVisible().catch(() => false);
+}
+
+async function waitForChartContent(page) {
+  await expect.poll(async () => !(await chartIsLoading(page)), { timeout: 20000 }).toBeTruthy();
+}
+
+async function selectFirstAvailableOption(page) {
+  const options = (await collectVisibleOptionTexts(page)).filter((text) => !/^select all/i.test(text) && !/^all .* selected$/i.test(text));
+  expect(options.length).toBeGreaterThan(0);
+  await clickVisibleText(page, [options[0]]);
 }
 
 async function clickFilterTrigger(page, labelText) {
@@ -85,6 +145,19 @@ async function clickFilterTrigger(page, labelText) {
 
   const trigger = getFilterTriggerByLabel(page, labelText);
   await clickLocatorIfEnabled(trigger);
+}
+
+async function expectTextInDialog(page, values) {
+  for (const value of values) {
+    for (const scope of [getOpenDialog(page), getDialog(page), page.locator('body')]) {
+      const locator = scope.getByText(value, { exact: true }).first();
+      if (await locator.isVisible().catch(() => false)) {
+        return locator;
+      }
+    }
+  }
+
+  throw new Error(`Expected one of these texts to be visible in dialog: ${values.join(', ')}`);
 }
 
 async function openCustomerOptions(page) {
@@ -140,6 +213,7 @@ async function ensureChartVisible(page) {
 
   await openModule(page);
   if (await isVisible(page, pageSelectors.hideChartButton, 3000)) {
+    await waitForChartContent(page);
     return;
   }
 
@@ -148,10 +222,17 @@ async function ensureChartVisible(page) {
   }
 
   await expectVisibleWithFallback(page, [...pageSelectors.hideChartButton, ...pageSelectors.graphHeading], { expectTimeout: 25000, timeoutPerCandidate: 4000 });
+  await waitForChartContent(page);
 }
 
 async function ensureTableVisible(page) {
   const { page: pageSelectors } = mgmtPaymentsPostedSelectors;
+  const tableReadyCandidates = [
+    ...pageSelectors.tableHeading,
+    ...pageSelectors.searchAllEntriesInput,
+    ...pageSelectors.tableElement,
+    ...pageSelectors.paginationButton
+  ];
 
   await openModule(page);
   if (await isVisible(page, pageSelectors.showTableButton)) {
@@ -159,7 +240,7 @@ async function ensureTableVisible(page) {
   }
 
   await expectVisibleWithFallback(page, pageSelectors.hideTableButton, { expectTimeout: 20000, timeoutPerCandidate: 3000 });
-  await expectVisibleWithFallback(page, [...pageSelectors.tableHeading, ...pageSelectors.tableElement], { expectTimeout: 25000, timeoutPerCandidate: 3000 });
+  await expectVisibleWithFallback(page, tableReadyCandidates, { expectTimeout: 25000, timeoutPerCandidate: 3000 });
 }
 
 async function openAdjustFilters(page) {
@@ -200,6 +281,28 @@ async function openSortMenu(page) {
   }
 
   throw new Error('Could not open a sorting menu from the payments posted table.');
+}
+
+async function openDownloadMenu(page) {
+  const { page: pageSelectors } = mgmtPaymentsPostedSelectors;
+
+  await ensureChartVisible(page);
+  if ((await isVisible(page, pageSelectors.downloadBothButton, 1200)) || (await isVisible(page, pageSelectors.downloadChartButton, 1200))) {
+    return;
+  }
+
+  await clickWithFallback(page, pageSelectors.downloadReportButton, { actionTimeout: 10000, timeoutPerCandidate: 1500 });
+}
+
+async function verifyQuarterMonths(page, quarterText, expectedMonths) {
+  await openAdvancedFilters(page);
+  await expectTextInDialog(page, ['Quarter:']);
+  await clickFilterTrigger(page, 'Quarter:');
+  await clickVisibleText(page, [quarterText]);
+  await clickFilterTrigger(page, 'Month:');
+  for (const month of expectedMonths) {
+    await expectTextInDialog(page, [month]);
+  }
 }
 
 async function assertBaseSurface(page) {
@@ -333,6 +436,114 @@ async function runScenario(page, data, scenarioName) {
       await expectVisibleWithFallback(page, filters.yearLabel, { expectTimeout: 5000, timeoutPerCandidate: 1500 });
       await expectVisibleWithFallback(page, filters.moduleLabel, { expectTimeout: 5000, timeoutPerCandidate: 1500 });
       return;
+    case 23:
+      await ensureChartVisible(page);
+      await clickWithFallback(page, pageSelectors.hideChartButton, { actionTimeout: 10000, timeoutPerCandidate: 1500 });
+      await expectVisibleWithFallback(page, pageSelectors.showChartButton, { expectTimeout: 5000, timeoutPerCandidate: 1500 });
+      await clickWithFallback(page, pageSelectors.showChartButton, { actionTimeout: 10000, timeoutPerCandidate: 1500 });
+      await expectVisibleWithFallback(page, pageSelectors.hideChartButton, { expectTimeout: 5000, timeoutPerCandidate: 1500 });
+      return;
+    case 24:
+      await ensureTableVisible(page);
+      await clickWithFallback(page, pageSelectors.hideTableButton, { actionTimeout: 10000, timeoutPerCandidate: 1500 });
+      await expectVisibleWithFallback(page, pageSelectors.showTableButton, { expectTimeout: 5000, timeoutPerCandidate: 1500 });
+      await clickWithFallback(page, pageSelectors.showTableButton, { actionTimeout: 10000, timeoutPerCandidate: 1500 });
+      await ensureTableVisible(page);
+      return;
+    case 25:
+      await openDownloadMenu(page);
+      await expectVisibleWithFallback(page, pageSelectors.downloadBothButton, { expectTimeout: 5000, timeoutPerCandidate: 1500 });
+      await clickWithFallback(page, pageSelectors.downloadBothButton, { actionTimeout: 10000, timeoutPerCandidate: 1500 });
+      return;
+    case 26:
+      await openAdjustFilters(page);
+      await expectVisibleWithFallback(page, filters.customersLabel, { expectTimeout: 5000, timeoutPerCandidate: 1500 });
+      await openCustomerOptions(page);
+      if (await isVisible(page, [...filters.customerOptionsDialog, ...filters.customerSearchInput, ...filters.customerResetButton], 1500)) {
+        await fillWithFallback(page, filters.customerSearchInput, 'Infios Supply', { timeoutPerCandidate: 1500 });
+        await clickVisibleText(page, ['Infios Supply']);
+      }
+      if ((await clickIfFound(page, filters.customerResetButton, { actionTimeout: 10000, timeoutPerCandidate: 1500 })).clicked === false) {
+        await fillWithFallback(page, filters.customerSearchInput, '', { timeoutPerCandidate: 1500 }).catch(() => null);
+        await page.keyboard.press('Escape').catch(() => null);
+      }
+      await expectVisibleWithFallback(page, filters.allCustomersSelected, { expectTimeout: 5000, timeoutPerCandidate: 1500 });
+      return;
+    case 27:
+      await openAdvancedFilters(page);
+      await clickFilterTrigger(page, 'Month:');
+      await expectVisibleWithFallback(page, filters.selectAllMonthsOption, { expectTimeout: 5000, timeoutPerCandidate: 1500 });
+      await clickWithFallback(page, filters.selectAllMonthsOption, { actionTimeout: 10000, timeoutPerCandidate: 1500 });
+      await expectVisibleWithFallback(page, filters.clearAllButton, { expectTimeout: 5000, timeoutPerCandidate: 1500 });
+      await clickWithFallback(page, filters.clearAllButton, { actionTimeout: 10000, timeoutPerCandidate: 1500 });
+      return;
+    case 28:
+      await verifyQuarterMonths(page, 'Q1', ['Jan', 'Feb', 'Mar']);
+      return;
+    case 29:
+      await verifyQuarterMonths(page, 'Q2', ['Apr', 'May', 'Jun']);
+      return;
+    case 30:
+      await verifyQuarterMonths(page, 'Q3', ['Jul', 'Aug', 'Sep']);
+      return;
+    case 31:
+      await verifyQuarterMonths(page, 'Q4', ['Oct', 'Nov', 'Dec']);
+      return;
+    case 32:
+      await openAdjustFilters(page);
+      await expectVisibleWithFallback(page, filters.yearLabel, { expectTimeout: 5000, timeoutPerCandidate: 1500 });
+      await expectTextInDialog(page, ['current']);
+      return;
+    case 33:
+      await openAdjustFilters(page);
+      await expectVisibleWithFallback(page, filters.allCustomersSelected, { expectTimeout: 5000, timeoutPerCandidate: 1500 });
+      return;
+    case 34:
+      await openAdvancedFilters(page);
+      await expectVisibleWithFallback(page, filters.allMonthsSelected, { expectTimeout: 5000, timeoutPerCandidate: 1500 });
+      return;
+    case 35:
+      await openAdjustFilters(page);
+      await expectVisibleWithFallback(page, filters.allModulesSelected, { expectTimeout: 5000, timeoutPerCandidate: 1500 });
+      return;
+    case 36:
+      await openAdjustFilters(page);
+      await openCustomerOptions(page);
+      assertAlphabetical(await collectVisibleOptionTexts(page));
+      return;
+    case 37:
+      await openAdjustFilters(page);
+      await clickFilterTrigger(page, 'Module:');
+      await clickVisibleText(page, ['imREmit']);
+      await openCustomerOptions(page);
+      await expect.poll(async () => (await collectVisibleOptionTexts(page)).length, { timeout: 20000 }).toBeGreaterThan(0);
+      return;
+    case 41:
+      await openAdjustFilters(page);
+      await expectVisibleWithFallback(page, filters.moduleLabel, { expectTimeout: 5000, timeoutPerCandidate: 1500 });
+      await expectVisibleWithFallback(page, filters.allModulesSelected, { expectTimeout: 5000, timeoutPerCandidate: 1500 });
+      return;
+    case 42:
+      await openAdjustFilters(page);
+      await waitForChartContent(page);
+      await expect(async () => {
+        await page.getByRole('tabpanel', { name: 'Basic Filters' }).getByText('All modules selected', { exact: true }).first().click({ timeout: 10000, force: true });
+        expect(await clickVisibleText(page, ['imREmit lite', 'imREmit Lite', 'imREmit-Lite', 'imREmit'])).toBeTruthy();
+      }).toPass({ timeout: 15000 });
+      await expect.poll(async () => (await getFilterTriggerByLabel(page, 'Module:').textContent()) || '', { timeout: 10000 }).toMatch(/imremit(?: |-)?lite/i);
+      await expectVisibleWithFallback(page, filters.allSendersSelected, { expectTimeout: 10000, timeoutPerCandidate: 5000 });
+      await expect(async () => {
+        await page.getByRole('tabpanel', { name: 'Basic Filters' }).getByText('All senders selected', { exact: true }).first().click({ timeout: 10000, force: true });
+        await expect.poll(async () => (await collectVisibleOptionTexts(page)).length, { timeout: 10000 }).toBeGreaterThan(0);
+        await selectFirstAvailableOption(page);
+      }).toPass({ timeout: 15000 });
+      await page.keyboard.press('Escape').catch(() => null);
+      await ensureTableVisible(page);
+      return;
+    case 43:
+      await ensureTableVisible(page);
+      await expectVisibleWithFallback(page, pageSelectors.parentCustomerHeader, { expectTimeout: 5000, timeoutPerCandidate: 1500 });
+      return;
     case 40:
       await openModule(page);
       if (await isVisible(page, pageSelectors.hideTableButton, 1500)) {
@@ -346,12 +557,26 @@ async function runScenario(page, data, scenarioName) {
   }
 }
 
+const helperMap = {
+  openModule,
+  runScenario,
+  selectors: mgmtPaymentsPostedSelectors
+};
+
+async function runScenarioWithBusinessSteps(page, data, scenarioName, reportScenarioName) {
+  await test.step('Open the MIS Payments Posted page', async () => {
+    await openModule(page);
+  });
+
+  return test.step(businessAssertionStepTitle(reportScenarioName || scenarioName), async () => {
+    return runScenario(page, data, scenarioName);
+  });
+}
+
 module.exports = {
-  mgmtPaymentsPostedHelpers: wrapHelperMapWithReadableSteps({
-    openModule,
-    runScenario,
+  mgmtPaymentsPostedHelpers: {
+    ...wrapHelperMapWithReadableSteps(helperMap),
+    runScenario: runScenarioWithBusinessSteps,
     selectors: mgmtPaymentsPostedSelectors
-  }, {
-    runScenario: 'Run the converted payments posted scenario'
-  })
+  }
 };

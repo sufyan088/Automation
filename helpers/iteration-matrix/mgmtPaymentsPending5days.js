@@ -1,5 +1,6 @@
+const { expect, test } = require('@playwright/test');
 const { clickWithFallback, clickIfFound, expectVisibleWithFallback, fillWithFallback } = require('../fallback');
-const { wrapHelperMapWithReadableSteps } = require('../clientReadableSteps');
+const { businessAssertionStepTitle, wrapHelperMapWithReadableSteps } = require('../clientReadableSteps');
 const { mgmtPaymentsPending5daysSelectors } = require('../../selectors/iteration-matrix/mgmtPaymentsPending5days.selectors.js');
 
 async function isVisible(page, candidates, timeout = 1500) {
@@ -100,16 +101,44 @@ async function clickLocatorIfEnabled(locator) {
 
 async function clickFirstVisibleText(page, values) {
   for (const value of values) {
-    const locator = page.getByText(value, { exact: true }).first();
-    if (!(await locator.isVisible().catch(() => false))) {
-      continue;
-    }
+    for (const scope of [getOpenDialog(page), page.locator('body')]) {
+      const locators = [
+        scope.getByRole('option', { name: value, exact: true }).first(),
+        scope.getByText(value, { exact: true }).first()
+      ];
 
-    await locator.click({ timeout: 10000, force: true });
-    return true;
+      for (const locator of locators) {
+        if (!(await locator.isVisible().catch(() => false))) {
+          continue;
+        }
+
+        await locator.click({ timeout: 10000, force: true });
+        return true;
+      }
+    }
   }
 
   throw new Error(`Could not click any visible text option from: ${values.join(', ')}`);
+}
+
+function getOpenDialog(page) {
+  return page.locator('[role="dialog"]').filter({ has: page.locator('[role="listbox"], [role="option"], input[role="combobox"], [cmdk-list]') }).last();
+}
+
+async function collectVisibleOptionTexts(page) {
+  const dialog = getOpenDialog(page);
+  const root = (await dialog.count().catch(() => 0)) > 0 ? dialog : page.locator('body');
+  const texts = await root.locator('[role="option"], [cmdk-item], [data-value]').evaluateAll((nodes) => nodes
+    .filter((node) => !node.querySelector('[role="option"], [cmdk-item], [data-value]'))
+    .map((node) => (node.textContent || '').trim())
+    .filter(Boolean));
+  return [...new Set(texts.map((text) => text.replace(/\s+/g, ' ').trim()))].filter((text) => text && !/^Clear All$/i.test(text));
+}
+
+async function clickFirstAvailableOption(page) {
+  const options = (await collectVisibleOptionTexts(page)).filter((text) => !/^select all/i.test(text) && !/^all .* selected$/i.test(text));
+  expect(options.length).toBeGreaterThan(0);
+  await clickFirstVisibleText(page, [options[0]]);
 }
 
 async function openSortMenu(page) {
@@ -132,7 +161,7 @@ async function openSortMenu(page) {
       continue;
     }
 
-    await locator.click({ timeout: 10000, force: true });
+    await locator.click({ timeout: 10000, force: true }).catch(() => null);
     if (
       (await isVisible(page, pageSelectors.sortAscOption, 1200)) ||
       (await isVisible(page, pageSelectors.sortDescOption, 1200)) ||
@@ -325,6 +354,44 @@ async function runScenario(page, data, scenarioName) {
       await clickWithFallback(page, pageSelectors.hideTableButton, { actionTimeout: 10000, timeoutPerCandidate: 1500 });
       await expectVisibleWithFallback(page, pageSelectors.showTableButton, { expectTimeout: 10000, timeoutPerCandidate: 1500 });
       return;
+    case 32:
+      await ensureChartsVisible(page);
+      await expectVisibleWithFallback(page, pageSelectors.pendingPaymentCountsHeading, { expectTimeout: 5000, timeoutPerCandidate: 1500 });
+      return;
+    case 33:
+      await ensureChartsVisible(page);
+      {
+        const currentDayLabel = new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric' }).format(new Date());
+        await expect(page.getByText(currentDayLabel, { exact: true }).first()).toBeVisible({ timeout: 5000 });
+      }
+      return;
+    case 34:
+      await openAdvancedFilters(page);
+      await expectVisibleWithFallback(page, filters.supplierIdLabel, { expectTimeout: 5000, timeoutPerCandidate: 1500 });
+      await expectVisibleWithFallback(page, filters.allSupplierIdsSelected, { expectTimeout: 5000, timeoutPerCandidate: 1500 });
+      return;
+    case 35:
+      await openAdvancedFilters(page);
+      await expectVisibleWithFallback(page, filters.statusDescriptionLabel, { expectTimeout: 5000, timeoutPerCandidate: 1500 });
+      await expectVisibleWithFallback(page, filters.allStatusDescriptionsSelected, { expectTimeout: 5000, timeoutPerCandidate: 1500 });
+      return;
+    case 36:
+      await openAdjustFilters(page);
+      await clickWithFallback(page, filters.moduleTrigger, { actionTimeout: 10000, timeoutPerCandidate: 1500 });
+      await clickFirstVisibleText(page, ['imREmit lite', 'imREmit Lite', 'imREmit']);
+      await expect(page.getByRole('tabpanel', { name: 'Basic Filters' }).getByRole('combobox').nth(2)).toBeEnabled({ timeout: 10000 });
+      await clickWithFallback(page, filters.remittanceMethodTrigger, { actionTimeout: 10000, timeoutPerCandidate: 1500 });
+      await expect.poll(async () => (await collectVisibleOptionTexts(page)).length, { timeout: 10000 }).toBeGreaterThan(0);
+      await clickFirstAvailableOption(page);
+      if (await isVisible(page, pageSelectors.showTableButton, 1500)) {
+        await clickWithFallback(page, pageSelectors.showTableButton, { actionTimeout: 10000, timeoutPerCandidate: 2000 });
+      }
+      await expectVisibleWithFallback(page, pageSelectors.tableElement, { expectTimeout: 30000, timeoutPerCandidate: 10000 });
+      return;
+    case 37:
+      await ensureTableVisible(page);
+      await expectVisibleWithFallback(page, pageSelectors.parentCustomerHeader, { expectTimeout: 5000, timeoutPerCandidate: 1500 });
+      return;
     default:
       await assertBaseSurface(page);
       await verifyFilterDefaults(page);
@@ -332,12 +399,26 @@ async function runScenario(page, data, scenarioName) {
   }
 }
 
+const helperMap = {
+  openModule,
+  runScenario,
+  selectors: mgmtPaymentsPending5daysSelectors
+};
+
+async function runScenarioWithBusinessSteps(page, data, scenarioName, reportScenarioName) {
+  await test.step('Open the Pending Payments page', async () => {
+    await openModule(page);
+  });
+
+  return test.step(businessAssertionStepTitle(reportScenarioName || scenarioName), async () => {
+    return runScenario(page, data, scenarioName);
+  });
+}
+
 module.exports = {
-  mgmtPaymentsPending5daysHelpers: wrapHelperMapWithReadableSteps({
-    openModule,
-    runScenario,
+  mgmtPaymentsPending5daysHelpers: {
+    ...wrapHelperMapWithReadableSteps(helperMap),
+    runScenario: runScenarioWithBusinessSteps,
     selectors: mgmtPaymentsPending5daysSelectors
-  }, {
-    runScenario: 'Run the converted pending payments scenario'
-  })
+  }
 };

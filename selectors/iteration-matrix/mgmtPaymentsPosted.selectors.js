@@ -43,6 +43,14 @@ const mgmtPaymentsPostedSelectors = {
       { type: 'role', role: 'button', options: { name: 'Download Report', exact: true }, name: 'download report button' },
       { type: 'text', value: 'Download Report', options: { exact: true }, name: 'download report text' }
     ],
+    downloadBothButton: [
+      { type: 'role', role: 'button', options: { name: 'Download Both', exact: true }, name: 'download both button' },
+      { type: 'text', value: 'Download Both', options: { exact: true }, name: 'download both text' }
+    ],
+    downloadChartButton: [
+      { type: 'role', role: 'button', options: { name: 'Download Chart', exact: true }, name: 'download chart button' },
+      { type: 'text', value: 'Download Chart', options: { exact: true }, name: 'download chart text' }
+    ],
     showTableButton: [
       { type: 'role', role: 'button', options: { name: 'Show Table', exact: true }, name: 'show table button' },
       { type: 'text', value: 'Show Table', options: { exact: true }, name: 'show table text' }
@@ -72,6 +80,13 @@ const mgmtPaymentsPostedSelectors = {
       { type: 'role', role: 'button', options: { name: 'Search Reset', exact: true }, name: 'search reset button' },
       { type: 'text', value: 'Search Reset', options: { exact: true }, name: 'search reset text' },
       { type: 'custom', name: 'search reset composite button', factory: (page) => page.locator('button').filter({ hasText: /Search Reset/i }).first() }
+    ],
+    pageResetFiltersButton: [
+      { type: 'role', role: 'button', options: { name: 'Reset', exact: true }, name: 'page reset button' },
+      { type: 'text', value: 'Reset', options: { exact: true }, name: 'page reset text' },
+      { type: 'role', role: 'button', options: { name: 'Reset Filters', exact: true }, name: 'page reset filters button' },
+      { type: 'text', value: 'Reset Filters', options: { exact: true }, name: 'page reset filters text' },
+      { type: 'custom', name: 'page reset filters button fallback', factory: (page) => page.locator('button').filter({ hasText: /^(Reset|Reset Filters)$/ }).first() }
     ],
     paginationButton: [
       { type: 'custom', name: 'table pagination combobox', factory: (page) => page.locator('#table-container [role="combobox"], #table-container button[aria-haspopup="listbox"], #table-container button[dir="ltr"]').last() }
@@ -128,6 +143,10 @@ const mgmtPaymentsPostedSelectors = {
     sortHideOption: [
       { type: 'text', value: 'Hide', options: { exact: true }, name: 'hide option' },
       { type: 'text', value: 'Hide column', options: { exact: true }, name: 'hide column option' }
+    ],
+    parentCustomerHeader: [
+      { type: 'custom', name: 'parent customer header', factory: (page) => page.locator('#table-container').getByText('Parent Customer', { exact: true }).first() },
+      { type: 'text', value: 'Parent Customer', options: { exact: true }, name: 'parent customer text' }
     ]
   },
   filters: {
@@ -151,7 +170,24 @@ const mgmtPaymentsPostedSelectors = {
     ],
     monthLabel: [{ type: 'text', value: 'Month:', options: { exact: true }, name: 'month label' }],
     quarterLabel: [{ type: 'text', value: 'Quarter:', options: { exact: true }, name: 'quarter label' }],
+    senderLabel: [{ type: 'text', value: 'Sender:', options: { exact: true }, name: 'sender label' }],
     allModulesSelected: [{ type: 'text', value: 'All modules selected', options: { exact: true }, name: 'all modules selected' }],
+    allCustomersSelected: [
+      { type: 'text', value: 'All customers selected', options: { exact: true }, name: 'all customers selected' },
+      { type: 'text', value: 'All modules customers selected', options: { exact: true }, name: 'all modules customers selected' }
+    ],
+    allMonthsSelected: [{ type: 'text', value: 'All months selected', options: { exact: true }, name: 'all months selected' }],
+    allSendersSelected: [
+      { type: 'text', value: 'All senders selected', options: { exact: true }, name: 'all senders selected' },
+      { type: 'text', value: 'All Senders', options: { exact: true }, name: 'all senders alt text' }
+    ],
+    resetFiltersButton: [
+      { type: 'role', role: 'button', options: { name: 'Reset', exact: true }, name: 'reset button' },
+      { type: 'text', value: 'Reset', options: { exact: true }, name: 'reset text' },
+      { type: 'role', role: 'button', options: { name: 'Reset Filters', exact: true }, name: 'reset filters button' },
+      { type: 'text', value: 'Reset Filters', options: { exact: true }, name: 'reset filters text' },
+      { type: 'custom', name: 'reset filters button fallback', factory: (page) => page.locator('[role="dialog"] button').filter({ hasText: /^(Reset|Reset Filters)$/ }).first() }
+    ],
     selectAllMonthsOption: [{ type: 'text', value: 'Select All Months', options: { exact: true }, name: 'select all months option' }],
     selectAllQuartersOption: [{ type: 'text', value: 'Select All Quarters', options: { exact: true }, name: 'select all quarters option' }],
     clearAllButton: [
@@ -163,6 +199,13 @@ const mgmtPaymentsPostedSelectors = {
       { type: 'placeholder', value: 'Search customers...', name: 'search customers alt placeholder' },
       { type: 'placeholder', value: 'Search customers (min. 3 characters)...', name: 'search customers alt placeholder 2' },
       { type: 'custom', name: 'dialog customer combobox', factory: (page) => page.locator('[role="dialog"] [role="combobox"]').last() }
+    ],
+    customerOptionsDialog: [
+      { type: 'custom', name: 'customer options dialog', factory: (page) => page.locator('[role="dialog"]').filter({ has: page.locator('[role="option"], [role="combobox"]') }).last() }
+    ],
+    customerResetButton: [
+      { type: 'custom', name: 'customer dialog reset button', factory: (page) => page.locator('[role="dialog"] button').filter({ hasText: /^Reset$/ }).first() },
+      { type: 'role', role: 'button', options: { name: 'Reset', exact: true }, name: 'customer reset button' }
     ]
   }
 };

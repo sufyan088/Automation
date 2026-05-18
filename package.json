@@ -53,6 +53,8 @@
     "report:iteration-matrix:criteria-settings:last-failed:client": "node scripts/run-iteration-matrix-criteria-settings-last-failed-client-report.js",
     "report:iteration-matrix:criteria-settings-two:client": "node scripts/run-iteration-matrix-criteria-settings-two-client-report.js",
     "report:iteration-matrix:criteria-settings-two:last-failed:client": "node scripts/run-iteration-matrix-criteria-settings-two-last-failed-client-report.js",
+    "report:iteration-matrix:mgmt-information-system:client": "node scripts/run-iteration-matrix-mgmt-information-system-client-report.js",
+    "report:iteration-matrix:mgmt-information-system:last-failed:client": "node scripts/run-iteration-matrix-mgmt-information-system-last-failed-client-report.js",
     "report:iteration-matrix:customer-management-admin-new:last-failed:client": "node scripts/run-iteration-matrix-customer-management-admin-new-last-failed-client-report.js",
     "report:iteration-matrix:last-failed:client": "node scripts/run-iteration-matrix-last-failed-client-report.js"
   },

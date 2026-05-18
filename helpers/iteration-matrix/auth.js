@@ -174,7 +174,7 @@ async function loginAsRole(page, data, roleKey = 'admin') {
   const baseUrl = requireCredential(data.URL, 'Iteration Matrix base URL');
   const credentials = resolveRoleCredentials(data, roleKey);
 
-  await page.goto(baseUrl, { waitUntil: 'domcontentloaded' });
+  await page.goto(baseUrl, { waitUntil: 'commit', timeout: 30000 });
 
   await waitForLoginSurface(page, 30000);
 
