@@ -195,9 +195,6 @@ async function loginAsRole(page, data, roleKey = 'admin') {
   const baseUrl = requireCredential(data.URL, 'Iteration Matrix base URL');
   const primaryCredentials = resolveRoleCredentials(data, roleKey);
   const credentialAttempts = [primaryCredentials];
-  const requiresLongerReadyWindow = roleKey === 'customerAdmin' || roleKey === 'customerSuperAdmin';
-  const appReadyTimeout = requiresLongerReadyWindow ? 60000 : 30000;
-  const loginAttemptTimeout = requiresLongerReadyWindow ? 90000 : 45000;
 
   if (roleKey === 'customerAdmin' || roleKey === 'customerSuperAdmin') {
     credentialAttempts.push({
@@ -236,8 +233,8 @@ async function loginAsRole(page, data, roleKey = 'admin') {
 
     try {
       await expect(async () => {
-        await waitForAppReady(page, appReadyTimeout);
-      }).toPass({ timeout: loginAttemptTimeout });
+        await waitForAppReady(page, 30000);
+      }).toPass({ timeout: 45000 });
       return;
     } catch (error) {
       const canRetrySupplierAdmin = roleKey === 'supplierAdmin'
