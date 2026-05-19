@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, settingsHelpers } = require('./_shared');
 
 test("TS_04_To_verify_that_the_Ignore_Special_Character_setting_is_working_properly_on_the_statement_recon_settings_page", async ({ page }) => {
   const data = loadRuntimeData();
@@ -12,6 +12,7 @@ test("TS_04_To_verify_that_the_Ignore_Special_Character_setting_is_working_prope
   });
 
   await test.step('Run converted flow', async () => {
+    await settingsHelpers.runScenario(page, data, test.info().title);
   });
 
   await test.step('Logout from the application', async () => {

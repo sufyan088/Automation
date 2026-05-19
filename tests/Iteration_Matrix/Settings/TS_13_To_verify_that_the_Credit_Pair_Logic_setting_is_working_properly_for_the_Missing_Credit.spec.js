@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, settingsHelpers } = require('./_shared');
 
 test("TS_13_To_verify_that_the_Credit_Pair_Logic_setting_is_working_properly_for_the_Missing_Credit", async ({ page }) => {
   const data = loadRuntimeData();
@@ -12,6 +12,7 @@ test("TS_13_To_verify_that_the_Credit_Pair_Logic_setting_is_working_properly_for
   });
 
   await test.step('Run converted flow', async () => {
+    await settingsHelpers.runScenario(page, data, test.info().title);
   });
 
   await test.step('Logout from the application', async () => {
