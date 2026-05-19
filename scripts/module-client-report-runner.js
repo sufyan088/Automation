@@ -210,12 +210,14 @@ function enrichAllureResults(moduleDir) {
 
     const filePath = path.join(resultsDir, entry);
     const result = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-    const metadata = metadataByTitle.get(result.name);
+    const originalName = result.name;
+    const metadata = metadataByTitle.get(originalName);
 
     if (!metadata) {
       continue;
     }
 
+    result.name = humanizeTitle(originalName);
     result.description = metadata.description;
     fs.writeFileSync(filePath, JSON.stringify(result), 'utf8');
     updatedCount += 1;

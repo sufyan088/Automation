@@ -1,5 +1,9 @@
-const { expect } = require('@playwright/test');
+const { expect, test } = require('@playwright/test');
 const { srReportingSelectors } = require('../../selectors/iteration-matrix/srReporting.selectors.js');
+
+async function reportStep(name, action) {
+  return test.step(name, action);
+}
 
 function escapeRegExp(value) {
   return String(value).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -183,117 +187,221 @@ async function openPaginationDropdown(page) {
 async function runScenario(page, data, scenarioName) {
   const scenarioMap = {
     TS_01_To_verify_that_Reporting_button_is_functional: async () => {
-      await openReporting(page);
+      await reportStep('Open the Reporting page', async () => {
+        await openReporting(page);
+      });
     },
     TS_02_To_verify_that_Select_Customer_dropdown_field_is_functional: async () => {
-      await openReporting(page);
-      await selectCustomer(page);
+      await reportStep('Open the Reporting page', async () => {
+        await openReporting(page);
+      });
+      await reportStep('Select a customer from the Reporting customer dropdown', async () => {
+        await selectCustomer(page);
+      });
     },
     TS_03_To_verify_that_Customer_Super_Admin_can_access_reporting_module: async () => {
-      await openReporting(page);
+      await reportStep('Open the Reporting page', async () => {
+        await openReporting(page);
+      });
     },
     TS_04_To_verify_that_Customer_Admin_can_access_reporting_module: async () => {
-      await openReporting(page);
+      await reportStep('Open the Reporting page', async () => {
+        await openReporting(page);
+      });
     },
     TS_05_To_verify_that_Reporting_tab_is_showing_on_left_side_of_all_other_tabs: async () => {
-      await openModule(page);
-      await expectAnyVisible(page, srReportingSelectors.module.reportingLink, 15000);
+      await reportStep('Open the Statement Reconciliation module', async () => {
+        await openModule(page);
+      });
+      await reportStep('Verify the Reporting tab is visible in the module navigation', async () => {
+        await expectAnyVisible(page, srReportingSelectors.module.reportingLink, 15000);
+      });
     },
     TS_06_To_verify_that_when_we_select_report_type_underneath_cards_and_list_are_showing: async () => {
-      await openStatementsReport(page);
-      await expectAnyVisible(page, srReportingSelectors.statements.cards.all, 15000);
-      await expectAnyVisible(page, srReportingSelectors.statements.table.uploadedByHeader, 15000);
+      await reportStep('Open the Statements report for the selected customer', async () => {
+        await openStatementsReport(page);
+      });
+      await reportStep('Verify the Statements report cards are displayed', async () => {
+        await expectAnyVisible(page, srReportingSelectors.statements.cards.all, 15000);
+      });
+      await reportStep('Verify the Statements report table is displayed', async () => {
+        await expectAnyVisible(page, srReportingSelectors.statements.table.uploadedByHeader, 15000);
+      });
     },
     TS_07_To_verify_that_when_we_select_Report_module_cards_and_list_are_showing: async () => {
-      await openStatementsReport(page);
-      await expectAnyVisible(page, srReportingSelectors.statements.cards.all, 15000);
-      await expectAnyVisible(page, srReportingSelectors.statements.table.uploadCountHeader, 15000);
+      await reportStep('Open the Statements report for the selected customer', async () => {
+        await openStatementsReport(page);
+      });
+      await reportStep('Verify the Reporting cards are displayed', async () => {
+        await expectAnyVisible(page, srReportingSelectors.statements.cards.all, 15000);
+      });
+      await reportStep('Verify the Reporting table is displayed', async () => {
+        await expectAnyVisible(page, srReportingSelectors.statements.table.uploadCountHeader, 15000);
+      });
     },
     TS_08_To_verify_that_Reporting_table_is_showing: async () => {
-      await openStatementsReport(page);
-      await expectAnyVisible(page, srReportingSelectors.statements.table.uploadedByHeader, 15000);
-      await expectAnyVisible(page, srReportingSelectors.statements.table.uploadCountHeader, 15000);
+      await reportStep('Open the Statements report for the selected customer', async () => {
+        await openStatementsReport(page);
+      });
+      await reportStep('Verify the Reporting table columns are displayed', async () => {
+        await expectAnyVisible(page, srReportingSelectors.statements.table.uploadedByHeader, 15000);
+        await expectAnyVisible(page, srReportingSelectors.statements.table.uploadCountHeader, 15000);
+      });
     },
     TS_09_To_verify_that_Filter_by_date_range_field_is_functional: async () => {
-      await openStatementsReport(page);
-      await applyDateFilter(page, srReportingSelectors.statements.filters.dateRange);
+      await reportStep('Open the Statements report for the selected customer', async () => {
+        await openStatementsReport(page);
+      });
+      await reportStep('Apply the date range filter on the Statements report', async () => {
+        await applyDateFilter(page, srReportingSelectors.statements.filters.dateRange);
+      });
     },
     TS_10_verify_that_Filter_by_User_Name_field_is_functional: async () => {
-      await openStatementsReport(page);
-      const input = await firstVisibleLocator(page, srReportingSelectors.statements.filters.userName, 10000);
-      await input.fill('');
-      await input.fill('laiba');
-      await expect(input).toHaveValue('laiba');
+      await reportStep('Open the Statements report for the selected customer', async () => {
+        await openStatementsReport(page);
+      });
+      await reportStep('Filter the Statements report by user name', async () => {
+        const input = await firstVisibleLocator(page, srReportingSelectors.statements.filters.userName, 10000);
+        await input.fill('');
+        await input.fill('laiba');
+        await expect(input).toHaveValue('laiba');
+      });
     },
     TS_11_To_verify_that_Export_button_is_functional: async () => {
-      await openExportStatementsModal(page);
-      await expectAnyVisible(page, srReportingSelectors.modal.tabs.columns, 10000);
-      await expectAnyVisible(page, srReportingSelectors.modal.tabs.options, 10000);
-      await expectAnyVisible(page, srReportingSelectors.modal.tabs.delivery, 10000);
+      await reportStep('Open the Statements export modal', async () => {
+        await openExportStatementsModal(page);
+      });
+      await reportStep('Verify the export modal tabs are available', async () => {
+        await expectAnyVisible(page, srReportingSelectors.modal.tabs.columns, 10000);
+        await expectAnyVisible(page, srReportingSelectors.modal.tabs.options, 10000);
+        await expectAnyVisible(page, srReportingSelectors.modal.tabs.delivery, 10000);
+      });
     },
     TS_12_To_verify_that_file_is_downloaded_in_csv_format: async () => {
-      await openExportStatementsModal(page);
-      await clickDownloadReport(page);
+      await reportStep('Open the Statements export modal', async () => {
+        await openExportStatementsModal(page);
+      });
+      await reportStep('Download the Statements report in CSV format', async () => {
+        await clickDownloadReport(page);
+      });
     },
     TS_13_To_verify_that_User_Name_and_of_Statements_columns_are_shown_in_Reporting_table: async () => {
-      await openStatementsReport(page);
-      await expectAnyVisible(page, srReportingSelectors.statements.table.uploadedByHeader, 10000);
-      await expectAnyVisible(page, srReportingSelectors.statements.table.uploadCountHeader, 10000);
+      await reportStep('Open the Statements report for the selected customer', async () => {
+        await openStatementsReport(page);
+      });
+      await reportStep('Verify the User Name and Number of Statements columns are displayed', async () => {
+        await expectAnyVisible(page, srReportingSelectors.statements.table.uploadedByHeader, 10000);
+        await expectAnyVisible(page, srReportingSelectors.statements.table.uploadCountHeader, 10000);
+      });
     },
     TS_14_To_verify_that_Clear_Selection_button_is_functional: async () => {
-      await clickAnyUserSlice(page);
-      await expectAnyVisible(page, srReportingSelectors.statements.clearSelectionButton, 10000);
-      await clickFirstVisible(page, srReportingSelectors.statements.clearSelectionButton);
+      await reportStep('Open a user drilldown from the Statements report', async () => {
+        await clickAnyUserSlice(page);
+      });
+      await reportStep('Clear the selected user drilldown', async () => {
+        await expectAnyVisible(page, srReportingSelectors.statements.clearSelectionButton, 10000);
+        await clickFirstVisible(page, srReportingSelectors.statements.clearSelectionButton);
+      });
     },
     TS_15_To_verify_that_Back_to_User_overview_button_is_functional: async () => {
-      await clickAnyUserSlice(page);
-      await expectAnyVisible(page, srReportingSelectors.statements.backToUserOverviewButton, 10000);
-      await clickFirstVisible(page, srReportingSelectors.statements.backToUserOverviewButton);
+      await reportStep('Open a user drilldown from the Statements report', async () => {
+        await clickAnyUserSlice(page);
+      });
+      await reportStep('Return to the user overview', async () => {
+        await expectAnyVisible(page, srReportingSelectors.statements.backToUserOverviewButton, 10000);
+        await clickFirstVisible(page, srReportingSelectors.statements.backToUserOverviewButton);
+      });
     },
     TS_16_To_verify_that_Settings_button_is_functional: async () => {
-      await openSettingsReport(page);
-      await expectAnyVisible(page, srReportingSelectors.settings.cards.all, 10000);
+      await reportStep('Open the Settings history report for the selected customer', async () => {
+        await openSettingsReport(page);
+      });
+      await reportStep('Verify the Settings history cards are displayed', async () => {
+        await expectAnyVisible(page, srReportingSelectors.settings.cards.all, 10000);
+      });
     },
     TS_17_To_verify_that_Filter_by_date_range_field_is_functional: async () => {
-      await openSettingsReport(page);
-      await applyDateFilter(page, srReportingSelectors.settings.filters.dateRange);
+      await reportStep('Open the Settings history report for the selected customer', async () => {
+        await openSettingsReport(page);
+      });
+      await reportStep('Apply the date range filter on the Settings history report', async () => {
+        await applyDateFilter(page, srReportingSelectors.settings.filters.dateRange);
+      });
     },
     TS_18_To_verify_that_Filter_by_User_Name_field_is_functional: async () => {
-      await openSettingsReport(page);
-      const input = await firstVisibleLocator(page, srReportingSelectors.settings.filters.modifiedBy, 10000);
-      await input.fill('');
-      await input.fill('laiba');
-      await expect(input).toHaveValue('laiba');
+      await reportStep('Open the Settings history report for the selected customer', async () => {
+        await openSettingsReport(page);
+      });
+      await reportStep('Filter the Settings history report by user name', async () => {
+        const input = await firstVisibleLocator(page, srReportingSelectors.settings.filters.modifiedBy, 10000);
+        await input.fill('');
+        await input.fill('laiba');
+        await expect(input).toHaveValue('laiba');
+      });
     },
     TS_19_To_verify_that_file_is_exported_in_csv_format: async () => {
-      await openExportSettingsModal(page);
-      await clickDownloadReport(page);
+      await reportStep('Open the Settings history export modal', async () => {
+        await openExportSettingsModal(page);
+      });
+      await reportStep('Download the Settings history report in CSV format', async () => {
+        await clickDownloadReport(page);
+      });
     },
     TS_20_To_verify_that_following_columns_are_shown_in_table: async () => {
-      await openSettingsReport(page);
-      await expectAnyVisible(page, srReportingSelectors.settings.table.allHeaders, 15000);
+      await reportStep('Open the Settings history report for the selected customer', async () => {
+        await openSettingsReport(page);
+      });
+      await reportStep('Verify the Settings history table columns are displayed', async () => {
+        await expectAnyVisible(page, srReportingSelectors.settings.table.allHeaders, 15000);
+      });
     },
     TS_21_To_verify_that_Clear_All_Filters_button_is_functional: async () => {
-      await openSettingsReport(page);
-      const input = await firstVisibleLocator(page, srReportingSelectors.settings.filters.modifiedBy, 10000);
-      await input.fill('');
-      await input.fill('laiba');
-      await expectAnyVisible(page, srReportingSelectors.settings.clearFiltersButton, 10000);
-      await clickFirstVisible(page, srReportingSelectors.settings.clearFiltersButton);
+      await reportStep('Open the Settings history report for the selected customer', async () => {
+        await openSettingsReport(page);
+      });
+      await reportStep('Apply a user filter on the Settings history report', async () => {
+        const input = await firstVisibleLocator(page, srReportingSelectors.settings.filters.modifiedBy, 10000);
+        await input.fill('');
+        await input.fill('laiba');
+      });
+      await reportStep('Clear all filters on the Settings history report', async () => {
+        await expectAnyVisible(page, srReportingSelectors.settings.clearFiltersButton, 10000);
+        await clickFirstVisible(page, srReportingSelectors.settings.clearFiltersButton);
+      });
     },
     TS_22_To_verify_that_file_is_downloaded_in_csv_format: async () => {
-      await openExportSettingsModal(page);
-      await openModalTab(page, 'delivery');
-      await clickFirstVisible(page, srReportingSelectors.modal.emailMethod);
-      await sendEmailReport(page);
+      await reportStep('Open the Settings history export modal', async () => {
+        await openExportSettingsModal(page);
+      });
+      await reportStep('Open the Delivery tab in the export modal', async () => {
+        await openModalTab(page, 'delivery');
+      });
+      await reportStep('Send the Settings history report by email', async () => {
+        await clickFirstVisible(page, srReportingSelectors.modal.emailMethod);
+        await sendEmailReport(page);
+      });
     },
     TS_23_To_Verify_that_Column_View_dropdown_is_functional: async () => {
-      await toggleFirstColumn(page);
-      await expectAnyVisible(page, srReportingSelectors.statements.table.uploadedByHeader, 10000);
+      await reportStep('Open the Statements report for the selected customer', async () => {
+        await openStatementsReport(page);
+      });
+      await reportStep('Open the Column View dropdown and toggle a column', async () => {
+        await toggleFirstColumn(page);
+      });
+      await reportStep('Verify the Statements table remains visible after updating column view', async () => {
+        await expectAnyVisible(page, srReportingSelectors.statements.table.uploadedByHeader, 10000);
+      });
     },
     TS_24_To_Verify_that_Pagination_dropdown_is_functional: async () => {
-      await openPaginationDropdown(page);
-      await clickFirstVisible(page, srReportingSelectors.statements.pagination.options.hundred);
+      await reportStep('Open the Statements report for the selected customer', async () => {
+        await openStatementsReport(page);
+      });
+      await reportStep('Open the pagination dropdown on the Statements table', async () => {
+        await openPaginationDropdown(page);
+      });
+      await reportStep('Change the Statements table page size to 100 rows', async () => {
+        await clickFirstVisible(page, srReportingSelectors.statements.pagination.options.hundred);
+      });
     }
   };
 

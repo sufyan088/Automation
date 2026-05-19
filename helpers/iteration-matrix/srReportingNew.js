@@ -1,5 +1,9 @@
-const { expect } = require('@playwright/test');
+const { expect, test } = require('@playwright/test');
 const { srReportingNewSelectors } = require('../../selectors/iteration-matrix/srReportingNew.selectors.js');
+
+async function reportStep(name, action) {
+  return test.step(name, action);
+}
 
 function escapeRegExp(value) {
   return String(value).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -169,110 +173,202 @@ async function closeModal(page) {
 }
 
 async function runTs25(page) {
-  await prepareReporting(page);
-  await clickPaginator(page, 'last');
+  await reportStep('Open the Reporting page for the selected customer', async () => {
+    await prepareReporting(page);
+  });
+  await reportStep('Use the Last Page button on the Settings history table', async () => {
+    await clickPaginator(page, 'last');
+  });
 }
 
 async function runTs26(page) {
-  await prepareReporting(page);
-  await clickPaginator(page, 'last');
-  await clickPaginator(page, 'first');
+  await reportStep('Open the Reporting page for the selected customer', async () => {
+    await prepareReporting(page);
+  });
+  await reportStep('Move to the last page on the Settings history table', async () => {
+    await clickPaginator(page, 'last');
+  });
+  await reportStep('Use the First Page button on the Settings history table', async () => {
+    await clickPaginator(page, 'first');
+  });
 }
 
 async function runTs27(page) {
-  await prepareReporting(page);
-  await clickPaginator(page, 'next');
-  await clickPaginator(page, 'previous');
+  await reportStep('Open the Reporting page for the selected customer', async () => {
+    await prepareReporting(page);
+  });
+  await reportStep('Use the Next Page button on the Settings history table', async () => {
+    await clickPaginator(page, 'next');
+  });
+  await reportStep('Return to the previous page on the Settings history table', async () => {
+    await clickPaginator(page, 'previous');
+  });
 }
 
 async function runTs28(page) {
-  await prepareReporting(page);
-  await clickPaginator(page, 'next');
-  await clickPaginator(page, 'previous');
+  await reportStep('Open the Reporting page for the selected customer', async () => {
+    await prepareReporting(page);
+  });
+  await reportStep('Move to the next page on the Settings history table', async () => {
+    await clickPaginator(page, 'next');
+  });
+  await reportStep('Use the Previous Page button on the Settings history table', async () => {
+    await clickPaginator(page, 'previous');
+  });
 }
 
 async function runTs29(page) {
-  await applyTableAction(page, 'asc');
+  await reportStep('Sort the Action column in ascending order', async () => {
+    await applyTableAction(page, 'asc');
+  });
 }
 
 async function runTs30(page) {
-  await applyTableAction(page, 'desc');
+  await reportStep('Sort the Action column in descending order', async () => {
+    await applyTableAction(page, 'desc');
+  });
 }
 
 async function runTs31(page) {
-  await applyTableAction(page, 'hide');
+  await reportStep('Hide the Action column from the Settings history table', async () => {
+    await applyTableAction(page, 'hide');
+  });
 }
 
 async function runTs32(page) {
-  await openExportSettingsModal(page);
+  await reportStep('Open the Settings history export modal', async () => {
+    await openExportSettingsModal(page);
+  });
 }
 
 async function runTs33(page) {
-  await openExportSettingsModal(page);
-  await openModalTab(page, 'options');
-  await expectAnyVisible(page, srReportingNewSelectors.modal.fileOptionsHeading, 10000);
+  await reportStep('Open the Settings history export modal', async () => {
+    await openExportSettingsModal(page);
+  });
+  await reportStep('Open the Options tab in the export modal', async () => {
+    await openModalTab(page, 'options');
+  });
+  await reportStep('Verify the file options section is displayed', async () => {
+    await expectAnyVisible(page, srReportingNewSelectors.modal.fileOptionsHeading, 10000);
+  });
 }
 
 async function runTs34(page) {
-  await openExportSettingsModal(page);
-  await openModalTab(page, 'delivery');
+  await reportStep('Open the Settings history export modal', async () => {
+    await openExportSettingsModal(page);
+  });
+  await reportStep('Open the Delivery tab in the export modal', async () => {
+    await openModalTab(page, 'delivery');
+  });
 }
 
 async function runTs35(page) {
-  await openExportSettingsModal(page);
-  await clickDownloadReport(page);
+  await reportStep('Open the Settings history export modal', async () => {
+    await openExportSettingsModal(page);
+  });
+  await reportStep('Download the Settings history report', async () => {
+    await clickDownloadReport(page);
+  });
 }
 
 async function runTs36(page) {
-  await openExportSettingsModal(page);
-  await openModalTab(page, 'options');
-  await clickDownloadReport(page);
+  await reportStep('Open the Settings history export modal', async () => {
+    await openExportSettingsModal(page);
+  });
+  await reportStep('Open the Options tab in the export modal', async () => {
+    await openModalTab(page, 'options');
+  });
+  await reportStep('Download the Settings history report from the Options tab', async () => {
+    await clickDownloadReport(page);
+  });
 }
 
 async function runTs37(page) {
-  await openExportSettingsModal(page);
-  await setFileName(page);
+  await reportStep('Open the Settings history export modal', async () => {
+    await openExportSettingsModal(page);
+  });
+  await reportStep('Edit the file name in the Options tab', async () => {
+    await setFileName(page);
+  });
 }
 
 async function runTs38(page) {
-  await openExportSettingsModal(page);
-  await openModalTab(page, 'columns');
-  await expectAnyVisible(page, srReportingNewSelectors.modal.selectAll, 10000);
-  await clickFirstVisible(page, srReportingNewSelectors.modal.selectAll);
-  await clickFirstVisible(page, srReportingNewSelectors.modal.selectAll);
+  await reportStep('Open the Settings history export modal', async () => {
+    await openExportSettingsModal(page);
+  });
+  await reportStep('Open the Columns tab in the export modal', async () => {
+    await openModalTab(page, 'columns');
+  });
+  await reportStep('Toggle the Select All checkbox in the Columns tab', async () => {
+    await expectAnyVisible(page, srReportingNewSelectors.modal.selectAll, 10000);
+    await clickFirstVisible(page, srReportingNewSelectors.modal.selectAll);
+    await clickFirstVisible(page, srReportingNewSelectors.modal.selectAll);
+  });
 }
 
 async function runTs39(page) {
-  await openExportSettingsModal(page);
-  await closeModal(page);
-  await expectAnyVisible(page, srReportingNewSelectors.reporting.heading, 15000);
+  await reportStep('Open the Settings history export modal', async () => {
+    await openExportSettingsModal(page);
+  });
+  await reportStep('Close the export modal', async () => {
+    await closeModal(page);
+  });
+  await reportStep('Verify the Reporting page is displayed again', async () => {
+    await expectAnyVisible(page, srReportingNewSelectors.reporting.heading, 15000);
+  });
 }
 
 async function runTs40(page) {
-  await openExportSettingsModal(page);
-  await openModalTab(page, 'delivery');
-  await clickFirstVisible(page, srReportingNewSelectors.modal.downloadMethod);
-  await clickDownloadReport(page);
+  await reportStep('Open the Settings history export modal', async () => {
+    await openExportSettingsModal(page);
+  });
+  await reportStep('Open the Delivery tab in the export modal', async () => {
+    await openModalTab(page, 'delivery');
+  });
+  await reportStep('Select the download delivery method', async () => {
+    await clickFirstVisible(page, srReportingNewSelectors.modal.downloadMethod);
+  });
+  await reportStep('Download the Settings history report', async () => {
+    await clickDownloadReport(page);
+  });
 }
 
 async function runTs41(page) {
-  await openExportSettingsModal(page);
-  await openModalTab(page, 'columns');
+  await reportStep('Open the Settings history export modal', async () => {
+    await openExportSettingsModal(page);
+  });
+  await reportStep('Open the Columns tab in the export modal', async () => {
+    await openModalTab(page, 'columns');
+  });
 }
 
 async function runTs42(page) {
-  await openExportSettingsModal(page);
-  await openModalTab(page, 'delivery');
-  await clickFirstVisible(page, srReportingNewSelectors.modal.emailMethod);
-  await expectAnyVisible(page, srReportingNewSelectors.modal.emailInput, 10000);
+  await reportStep('Open the Settings history export modal', async () => {
+    await openExportSettingsModal(page);
+  });
+  await reportStep('Open the Delivery tab in the export modal', async () => {
+    await openModalTab(page, 'delivery');
+  });
+  await reportStep('Switch the delivery method to email', async () => {
+    await clickFirstVisible(page, srReportingNewSelectors.modal.emailMethod);
+    await expectAnyVisible(page, srReportingNewSelectors.modal.emailInput, 10000);
+  });
 }
 
 async function runTs43(page) {
-  await openExportSettingsModal(page);
-  await openModalTab(page, 'delivery');
-  await clickFirstVisible(page, srReportingNewSelectors.modal.emailMethod);
-  await addEmail(page, 'anfal.liaqat@mammoth-ai.com');
-  await addEmail(page, 'arslan.chattha@mammoth-ai.com');
+  await reportStep('Open the Settings history export modal', async () => {
+    await openExportSettingsModal(page);
+  });
+  await reportStep('Open the Delivery tab in the export modal', async () => {
+    await openModalTab(page, 'delivery');
+  });
+  await reportStep('Switch the delivery method to email', async () => {
+    await clickFirstVisible(page, srReportingNewSelectors.modal.emailMethod);
+  });
+  await reportStep('Add multiple email recipients for the export', async () => {
+    await addEmail(page, 'anfal.liaqat@mammoth-ai.com');
+    await addEmail(page, 'arslan.chattha@mammoth-ai.com');
+  });
 }
 
 async function runScenario(page, data, scenarioName) {

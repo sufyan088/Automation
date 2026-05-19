@@ -1,6 +1,10 @@
 const path = require('path');
-const { expect } = require('@playwright/test');
+const { expect, test } = require('@playwright/test');
 const { mgmtPaymentsPostedSelectors } = require('../../selectors/iteration-matrix/mgmtPaymentsPosted.selectors.js');
+
+async function reportStep(name, action) {
+  return test.step(name, action);
+}
 
 async function waitForFirstVisible(page, selectors, timeout = 15000) {
   const startedAt = Date.now();
@@ -496,131 +500,238 @@ async function verifyCustomersByProgramType(page) {
   await expectCustomerTriggerContains(page, /All imREmit lite customers selected/i);
 }
 
+async function clickShowTableButton(page) {
+  await openModule(page);
+
+  if (await maybeVisible(page, mgmtPaymentsPostedSelectors.mis.tableHeading)
+    || await maybeVisible(page, mgmtPaymentsPostedSelectors.mis.hideTableButton)) {
+    return;
+  }
+
+  await clickFirstVisible(page, mgmtPaymentsPostedSelectors.mis.showTableButton);
+}
+
+async function verifyPaymentsPostedTableVisible(page) {
+  await expectVisible(page, mgmtPaymentsPostedSelectors.mis.tableHeading);
+}
+
 async function runScenario(page, sourceFile) {
   const caseId = path.basename(sourceFile, '.spec.js').match(/^(TS_\d+)/i)?.[1];
 
   switch (caseId) {
     case 'TS_01':
-      await openModule(page);
-      await expectVisible(page, mgmtPaymentsPostedSelectors.mis.showTrendlineCheckbox);
-      await expectVisible(page, mgmtPaymentsPostedSelectors.mis.downloadReportButton);
+      await reportStep('Open the MGMT Payments Posted page', async () => {
+        await openModule(page);
+      });
+      await reportStep('Verify the trendline and report controls are available', async () => {
+        await expectVisible(page, mgmtPaymentsPostedSelectors.mis.showTrendlineCheckbox);
+        await expectVisible(page, mgmtPaymentsPostedSelectors.mis.downloadReportButton);
+      });
       break;
     case 'TS_02':
-      await verifyYearFilter(page);
+      await reportStep('Verify the Year filter is functional on Adjust Filters', async () => {
+        await verifyYearFilter(page);
+      });
       break;
     case 'TS_03':
-      await verifyModuleFilter(page);
+      await reportStep('Verify the Module filter is functional on Adjust Filters', async () => {
+        await verifyModuleFilter(page);
+      });
       break;
     case 'TS_04':
-      await verifyCustomersFilter(page);
+      await reportStep('Verify the Customers filter is functional on Adjust Filters', async () => {
+        await verifyCustomersFilter(page);
+      });
       break;
     case 'TS_05':
-      await verifyMonthFilter(page);
+      await reportStep('Verify the Month filter is functional on Adjust Filters', async () => {
+        await verifyMonthFilter(page);
+      });
       break;
     case 'TS_06':
-      await verifyQuarterFilter(page);
+      await reportStep('Verify the Quarter filter is functional on Adjust Filters', async () => {
+        await verifyQuarterFilter(page);
+      });
       break;
     case 'TS_07':
-      await toggleTrendline(page);
+      await reportStep('Toggle the Show Trendline option', async () => {
+        await toggleTrendline(page);
+      });
       break;
     case 'TS_08':
-      await useReturnToTop(page);
+      await reportStep('Use the Return To Top button on the Payments Posted table', async () => {
+        await useReturnToTop(page);
+      });
       break;
     case 'TS_09':
-      await clickPaginationButton(page, 'next');
+      await reportStep('Use the Next Page button on the Payments Posted table', async () => {
+        await clickPaginationButton(page, 'next');
+      });
       break;
     case 'TS_10':
-      await clickPaginationButton(page, 'previous');
+      await reportStep('Use the Previous Page button on the Payments Posted table', async () => {
+        await clickPaginationButton(page, 'previous');
+      });
       break;
     case 'TS_11':
-      await clickPaginationButton(page, 'first');
+      await reportStep('Use the First Page button on the Payments Posted table', async () => {
+        await clickPaginationButton(page, 'first');
+      });
       break;
     case 'TS_12':
-      await clickPaginationButton(page, 'last');
+      await reportStep('Use the Last Page button on the Payments Posted table', async () => {
+        await clickPaginationButton(page, 'last');
+      });
       break;
     case 'TS_13':
-      await searchAllEntries(page);
+      await reportStep('Search all entries in the Payments Posted table', async () => {
+        await searchAllEntries(page);
+      });
       break;
     case 'TS_14':
-      await changePageSize(page, '25');
+      await reportStep('Change the Payments Posted table page size', async () => {
+        await changePageSize(page, '25');
+      });
       break;
     case 'TS_15':
-      await openColumnView(page);
+      await reportStep('Open the Column View options for the Payments Posted table', async () => {
+        await openColumnView(page);
+      });
       break;
     case 'TS_16':
-      await applyHeaderAction(page, 'PID', 'Asc');
-      await applyHeaderAction(page, 'Customer Name', 'Asc');
+      await reportStep('Sort the PID column in ascending order', async () => {
+        await applyHeaderAction(page, 'PID', 'Asc');
+      });
+      await reportStep('Sort the Customer Name column in ascending order', async () => {
+        await applyHeaderAction(page, 'Customer Name', 'Asc');
+      });
       break;
     case 'TS_17':
-      await applyHeaderAction(page, 'PID', 'Desc');
-      await applyHeaderAction(page, 'Customer Name', 'Desc');
+      await reportStep('Sort the PID column in descending order', async () => {
+        await applyHeaderAction(page, 'PID', 'Desc');
+      });
+      await reportStep('Sort the Customer Name column in descending order', async () => {
+        await applyHeaderAction(page, 'Customer Name', 'Desc');
+      });
       break;
     case 'TS_18':
-      await applyHeaderAction(page, 'PID', 'Hide column');
+      await reportStep('Hide the PID column from the Payments Posted table', async () => {
+        await applyHeaderAction(page, 'PID', 'Hide column');
+      });
       break;
     case 'TS_19':
     case 'TS_39':
-      await clickDownloadOption(page, mgmtPaymentsPostedSelectors.mis.downloadGraphButton);
+      await reportStep('Download the Payments Posted graph', async () => {
+        await clickDownloadOption(page, mgmtPaymentsPostedSelectors.mis.downloadGraphButton);
+      });
       break;
     case 'TS_20':
-      await clickDownloadImageOrFallback(page);
+      await reportStep('Download the Payments Posted image', async () => {
+        await clickDownloadImageOrFallback(page);
+      });
       break;
     case 'TS_21':
-      await openFilters(page);
-      await openAdvancedTabIfPresent(page);
-      await expectVisible(page, mgmtPaymentsPostedSelectors.filters.monthLabel);
+      await reportStep('Open Adjust Filters for the Payments Posted page', async () => {
+        await openFilters(page);
+      });
+      await reportStep('Open the Advanced tab in Adjust Filters', async () => {
+        await openAdvancedTabIfPresent(page);
+      });
+      await reportStep('Verify the Month filter is visible in Adjust Filters', async () => {
+        await expectVisible(page, mgmtPaymentsPostedSelectors.filters.monthLabel);
+      });
       break;
     case 'TS_22':
-      await clickDownloadOption(page, mgmtPaymentsPostedSelectors.mis.downloadBothButton);
+      await reportStep('Download both the Payments Posted graph and table output', async () => {
+        await clickDownloadOption(page, mgmtPaymentsPostedSelectors.mis.downloadBothButton);
+      });
       break;
     case 'TS_23':
     case 'TS_35':
-      await resetFilters(page);
+      await reportStep('Reset the Payments Posted filters', async () => {
+        await resetFilters(page);
+      });
       break;
     case 'TS_24':
-      await clearAllMonths(page);
+      await reportStep('Clear all selected months from the Payments Posted filters', async () => {
+        await clearAllMonths(page);
+      });
       break;
     case 'TS_25':
-      await hideAndShowChart(page);
+      await reportStep('Hide the Payments Posted chart', async () => {
+        await hideAndShowChart(page);
+      });
       break;
     case 'TS_26':
-      await hideTable(page);
+      await reportStep('Hide the Payments Posted table', async () => {
+        await hideTable(page);
+      });
       break;
     case 'TS_27':
-      await verifyQuarterAutoSelection(page, 'Q1', 'Select months from Q1', ['Jan', 'Feb', 'Mar']);
+      await reportStep('Verify that Q1 auto-selects Jan, Feb, and Mar in the Month dropdown', async () => {
+        await verifyQuarterAutoSelection(page, 'Q1', 'Select months from Q1', ['Jan', 'Feb', 'Mar']);
+      });
       break;
     case 'TS_28':
-      await verifyQuarterAutoSelection(page, 'Q2', 'Select months from Q2', ['Apr', 'May', 'Jun']);
+      await reportStep('Verify that Q2 auto-selects Apr, May, and Jun in the Month dropdown', async () => {
+        await verifyQuarterAutoSelection(page, 'Q2', 'Select months from Q2', ['Apr', 'May', 'Jun']);
+      });
       break;
     case 'TS_29':
-      await verifyQuarterAutoSelection(page, 'Q3', 'Select months from Q3', ['Jul', 'Aug', 'Sep']);
+      await reportStep('Verify that Q3 auto-selects Jul, Aug, and Sep in the Month dropdown', async () => {
+        await verifyQuarterAutoSelection(page, 'Q3', 'Select months from Q3', ['Jul', 'Aug', 'Sep']);
+      });
       break;
     case 'TS_30':
-      await verifyQuarterAutoSelection(page, 'Q4', 'Select months from Q4', ['Oct', 'Nov', 'Dec']);
+      await reportStep('Verify that Q4 auto-selects Oct, Nov, and Dec in the Month dropdown', async () => {
+        await verifyQuarterAutoSelection(page, 'Q4', 'Select months from Q4', ['Oct', 'Nov', 'Dec']);
+      });
       break;
     case 'TS_31':
-      await verifyCurrentYearDefault(page);
+      await reportStep('Verify the current year is selected by default', async () => {
+        await verifyCurrentYearDefault(page);
+      });
       break;
     case 'TS_32':
-      await verifyCustomersDefault(page);
+      await reportStep('Verify All Customers is selected by default', async () => {
+        await verifyCustomersDefault(page);
+      });
       break;
     case 'TS_33':
-      await verifyMonthDefault(page);
+      await reportStep('Verify All Months is selected by default', async () => {
+        await verifyMonthDefault(page);
+      });
       break;
     case 'TS_34':
-      await verifyQuarterDefault(page);
+      await reportStep('Verify All Quarters is selected by default', async () => {
+        await verifyQuarterDefault(page);
+      });
       break;
     case 'TS_36':
-      await verifyCustomerDropdownPresence(page);
+      await reportStep('Verify the Customers dropdown list is in alphabetical order', async () => {
+        await verifyCustomerDropdownPresence(page);
+      });
       break;
     case 'TS_37':
-      await verifyCustomersByProgramType(page);
+      await reportStep('Verify customers are shown according to the selected program type', async () => {
+        await verifyCustomersByProgramType(page);
+      });
       break;
     case 'TS_38':
-      await reopenChart(page);
+      await reportStep('Open the Payments Posted chart again after hiding it', async () => {
+        await reopenChart(page);
+      });
       break;
     case 'TS_40':
-      await ensureTableVisible(page);
+      await reportStep('Open the MGMT Payments Posted page', async () => {
+        await openModule(page);
+      });
+      await reportStep('Click the Show Table button', async () => {
+        await clickShowTableButton(page);
+      });
+      await reportStep('Verify the Payments Posted table is displayed', async () => {
+        await verifyPaymentsPostedTableVisible(page);
+      });
       break;
     default:
       throw new Error(`Unsupported MGMT Payments Posted scenario for ${sourceFile}`);

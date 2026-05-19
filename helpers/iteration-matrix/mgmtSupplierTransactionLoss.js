@@ -1,6 +1,10 @@
 const path = require('path');
-const { expect } = require('@playwright/test');
+const { expect, test } = require('@playwright/test');
 const { mgmtSupplierTransactionLossSelectors } = require('../../selectors/iteration-matrix/mgmtSupplierTransactionLoss.selectors.js');
+
+async function reportStep(name, action) {
+  return test.step(name, action);
+}
 
 async function waitForFirstVisible(page, selectors, timeout = 15000) {
   const startedAt = Date.now();
@@ -178,37 +182,98 @@ async function searchAllEntries(page, value = 'Infios') {
   await expectVisible(page, mgmtSupplierTransactionLossSelectors.mis.resultCell('Infios Supply'));
 }
 
+async function clickShowChartButton(page) {
+  await openModule(page);
+
+  if (await maybeVisible(page, mgmtSupplierTransactionLossSelectors.mis.graphHeading)) {
+    return;
+  }
+
+  await clickFirstVisible(page, mgmtSupplierTransactionLossSelectors.mis.showChartButton);
+}
+
+async function clickShowTableButton(page) {
+  await openModule(page);
+
+  if (
+    await maybeVisible(page, mgmtSupplierTransactionLossSelectors.mis.tableHeading)
+    || await maybeVisible(page, mgmtSupplierTransactionLossSelectors.mis.hideTableButton)
+  ) {
+    return;
+  }
+
+  await clickFirstVisible(page, mgmtSupplierTransactionLossSelectors.mis.showTableButton);
+}
+
+async function verifyChartVisible(page) {
+  await expectVisible(page, mgmtSupplierTransactionLossSelectors.mis.graphHeading);
+}
+
+async function verifyTableVisible(page) {
+  await expectVisible(page, mgmtSupplierTransactionLossSelectors.mis.tableHeading);
+}
+
 async function runScenario(page, sourceFile) {
   const caseId = path.basename(sourceFile, '.spec.js').match(/^(TS_\d+)/i)?.[1];
 
   switch (caseId) {
     case 'TS_01':
     case 'TS_02':
-      await openModule(page);
+      await reportStep('Open the MGMT Supplier Transaction Loss page', async () => {
+        await openModule(page);
+      });
       break;
     case 'TS_03':
-      await ensureChartVisible(page);
+      await reportStep('Open the MGMT Supplier Transaction Loss page', async () => {
+        await openModule(page);
+      });
+      await reportStep('Click the Show Chart button', async () => {
+        await clickShowChartButton(page);
+      });
+      await reportStep('Verify the Supplier Transaction Loss chart is displayed', async () => {
+        await verifyChartVisible(page);
+      });
       break;
     case 'TS_04':
-      await hideAndShowTable(page);
+      await reportStep('Open the MGMT Supplier Transaction Loss page', async () => {
+        await openModule(page);
+      });
+      await reportStep('Click the Show Table button', async () => {
+        await clickShowTableButton(page);
+      });
+      await reportStep('Verify the Supplier Transaction Loss table is displayed', async () => {
+        await verifyTableVisible(page);
+      });
       break;
     case 'TS_05':
-      await useReturnToTop(page);
+      await reportStep('Use the Return To Top button on the Supplier Transaction Loss table', async () => {
+        await useReturnToTop(page);
+      });
       break;
     case 'TS_06':
-      await clickPaginationButton(page, 'next');
+      await reportStep('Use the Next Page button on the Supplier Transaction Loss table', async () => {
+        await clickPaginationButton(page, 'next');
+      });
       break;
     case 'TS_07':
-      await clickPaginationButton(page, 'previous');
+      await reportStep('Use the Previous Page button on the Supplier Transaction Loss table', async () => {
+        await clickPaginationButton(page, 'previous');
+      });
       break;
     case 'TS_08':
-      await clickPaginationButton(page, 'last');
+      await reportStep('Use the Last Page button on the Supplier Transaction Loss table', async () => {
+        await clickPaginationButton(page, 'last');
+      });
       break;
     case 'TS_09':
-      await clickPaginationButton(page, 'first');
+      await reportStep('Use the First Page button on the Supplier Transaction Loss table', async () => {
+        await clickPaginationButton(page, 'first');
+      });
       break;
     case 'TS_10':
-      await searchAllEntries(page);
+      await reportStep('Search all entries in the Supplier Transaction Loss table', async () => {
+        await searchAllEntries(page);
+      });
       break;
     default:
       throw new Error(`Unsupported MGMT Supplier Transaction Loss scenario for ${sourceFile}`);

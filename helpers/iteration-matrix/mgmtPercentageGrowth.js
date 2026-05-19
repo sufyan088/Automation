@@ -1,6 +1,10 @@
 const path = require('path');
-const { expect } = require('@playwright/test');
+const { expect, test } = require('@playwright/test');
 const { mgmtPercentageGrowthSelectors } = require('../../selectors/iteration-matrix/mgmtPercentageGrowth.selectors.js');
+
+async function reportStep(name, action) {
+  return test.step(name, action);
+}
 
 async function waitForFirstVisible(page, selectors, timeout = 15000) {
   const startedAt = Date.now();
@@ -269,94 +273,186 @@ async function hideTable(page) {
   await expectVisible(page, mgmtPercentageGrowthSelectors.mis.showTableButton);
 }
 
+async function clickShowChartButton(page) {
+  await openModule(page);
+
+  if (await maybeVisible(page, mgmtPercentageGrowthSelectors.mis.graphHeading)) {
+    return;
+  }
+
+  await clickFirstVisible(page, mgmtPercentageGrowthSelectors.mis.showChartButton);
+}
+
+async function verifyPercentageGrowthChartVisible(page) {
+  await expectVisible(page, mgmtPercentageGrowthSelectors.mis.graphHeading);
+}
+
 async function runScenario(page, sourceFile) {
   const caseId = path.basename(sourceFile, '.spec.js').match(/^(TS_\d+)/i)?.[1];
 
   switch (caseId) {
     case 'TS_01':
-      await openModule(page);
+      await reportStep('Open the MGMT Percentage Growth page', async () => {
+        await openModule(page);
+      });
       break;
     case 'TS_02':
-      await openCustomerDropdown(page);
+      await reportStep('Open the Customers dropdown on Adjust Filters', async () => {
+        await openCustomerDropdown(page);
+      });
       break;
     case 'TS_03':
-      await useReturnToTop(page);
+      await reportStep('Use the Return To Top button on the Percentage Growth table', async () => {
+        await useReturnToTop(page);
+      });
       break;
     case 'TS_04':
-      await clickPaginationButton(page, 'next');
+      await reportStep('Use the Next Page button on the Percentage Growth table', async () => {
+        await clickPaginationButton(page, 'next');
+      });
       break;
     case 'TS_05':
-      await clickPaginationButton(page, 'previous');
+      await reportStep('Use the Previous Page button on the Percentage Growth table', async () => {
+        await clickPaginationButton(page, 'previous');
+      });
       break;
     case 'TS_06':
-      await clickPaginationButton(page, 'first');
+      await reportStep('Use the First Page button on the Percentage Growth table', async () => {
+        await clickPaginationButton(page, 'first');
+      });
       break;
     case 'TS_07':
-      await clickPaginationButton(page, 'last');
+      await reportStep('Use the Last Page button on the Percentage Growth table', async () => {
+        await clickPaginationButton(page, 'last');
+      });
       break;
     case 'TS_08':
-      await searchAllEntries(page);
+      await reportStep('Search all entries in the Percentage Growth table', async () => {
+        await searchAllEntries(page);
+      });
       break;
     case 'TS_09':
-      await changePageSize(page, '5');
-      await changePageSize(page, '25');
+      await reportStep('Change the table page size to 5 rows', async () => {
+        await changePageSize(page, '5');
+      });
+      await reportStep('Change the table page size to 25 rows', async () => {
+        await changePageSize(page, '25');
+      });
       break;
     case 'TS_10':
-      await openColumnView(page);
+      await reportStep('Open the Column View options for the Percentage Growth table', async () => {
+        await openColumnView(page);
+      });
       break;
     case 'TS_11':
-      await applyHeaderAction(page, 'Year', 'Asc');
-      await applyHeaderAction(page, 'Payments Received', 'Asc');
-      await applyHeaderAction(page, 'Diff Received Value', 'Asc');
+      await reportStep('Sort the Year column in ascending order', async () => {
+        await applyHeaderAction(page, 'Year', 'Asc');
+      });
+      await reportStep('Sort the Payments Received column in ascending order', async () => {
+        await applyHeaderAction(page, 'Payments Received', 'Asc');
+      });
+      await reportStep('Sort the Diff Received Value column in ascending order', async () => {
+        await applyHeaderAction(page, 'Diff Received Value', 'Asc');
+      });
       break;
     case 'TS_12':
-      await applyHeaderAction(page, 'Year', 'desc');
-      await applyHeaderAction(page, 'Payments Received', 'desc');
-      await applyHeaderAction(page, 'Diff Received Value', 'desc');
+      await reportStep('Sort the Year column in descending order', async () => {
+        await applyHeaderAction(page, 'Year', 'desc');
+      });
+      await reportStep('Sort the Payments Received column in descending order', async () => {
+        await applyHeaderAction(page, 'Payments Received', 'desc');
+      });
+      await reportStep('Sort the Diff Received Value column in descending order', async () => {
+        await applyHeaderAction(page, 'Diff Received Value', 'desc');
+      });
       break;
     case 'TS_13':
-      await applyHeaderAction(page, 'Year', 'hide');
-      await applyHeaderAction(page, 'Payments Received', 'hide');
-      await applyHeaderAction(page, 'Diff Received Value', 'hide');
+      await reportStep('Hide the Year column from the Percentage Growth table', async () => {
+        await applyHeaderAction(page, 'Year', 'hide');
+      });
+      await reportStep('Hide the Payments Received column from the Percentage Growth table', async () => {
+        await applyHeaderAction(page, 'Payments Received', 'hide');
+      });
+      await reportStep('Hide the Diff Received Value column from the Percentage Growth table', async () => {
+        await applyHeaderAction(page, 'Diff Received Value', 'hide');
+      });
       break;
     case 'TS_14':
-      await clickDownloadOption(page, mgmtPercentageGrowthSelectors.mis.downloadGraphButton);
+      await reportStep('Download the Percentage Growth graph', async () => {
+        await clickDownloadOption(page, mgmtPercentageGrowthSelectors.mis.downloadGraphButton);
+      });
       break;
     case 'TS_15':
-      await openDownloadMenu(page);
-      await expectVisible(page, mgmtPercentageGrowthSelectors.mis.downloadImageButton);
+      await reportStep('Open the Download Report menu on the Percentage Growth page', async () => {
+        await openDownloadMenu(page);
+      });
+      await reportStep('Verify the Download Image option is available', async () => {
+        await expectVisible(page, mgmtPercentageGrowthSelectors.mis.downloadImageButton);
+      });
       break;
     case 'TS_16':
-      await openModule(page);
-      await expectVisible(page, mgmtPercentageGrowthSelectors.mis.showTrendlinesCheckbox);
-      await expectVisible(page, mgmtPercentageGrowthSelectors.mis.showDifferencesCheckbox);
-      await toggleCheckbox(page, mgmtPercentageGrowthSelectors.mis.showDifferencesCheckbox);
+      await reportStep('Open the MGMT Percentage Growth page', async () => {
+        await openModule(page);
+      });
+      await reportStep('Verify the Show Trendlines and Show Difference options are available', async () => {
+        await expectVisible(page, mgmtPercentageGrowthSelectors.mis.showTrendlinesCheckbox);
+        await expectVisible(page, mgmtPercentageGrowthSelectors.mis.showDifferencesCheckbox);
+      });
+      await reportStep('Toggle the Show Difference checkbox', async () => {
+        await toggleCheckbox(page, mgmtPercentageGrowthSelectors.mis.showDifferencesCheckbox);
+      });
       break;
     case 'TS_17':
-      await chooseCustomer(page);
+      await reportStep('Open Adjust Filters and select a customer', async () => {
+        await chooseCustomer(page);
+      });
       break;
     case 'TS_18':
-      await clickDownloadOption(page, mgmtPercentageGrowthSelectors.mis.downloadBothButton);
+      await reportStep('Download both outputs from the Percentage Growth report', async () => {
+        await clickDownloadOption(page, mgmtPercentageGrowthSelectors.mis.downloadBothButton);
+      });
       break;
     case 'TS_19':
-      await resetFilters(page);
+      await reportStep('Reset the Percentage Growth filters', async () => {
+        await resetFilters(page);
+      });
       break;
     case 'TS_20':
     case 'TS_21':
-      await expectCustomerOptionsAlphabetical(page);
+      await reportStep('Verify the Customers dropdown list is in alphabetical order', async () => {
+        await expectCustomerOptionsAlphabetical(page);
+      });
       break;
     case 'TS_22':
     case 'TS_26':
-      await resetFilters(page);
+      await reportStep('Reset the Percentage Growth filters', async () => {
+        await resetFilters(page);
+      });
       break;
     case 'TS_23':
-      await expectDefaultAllCustomers(page);
+      await reportStep('Verify All Customers is selected by default', async () => {
+        await expectDefaultAllCustomers(page);
+      });
       break;
     case 'TS_24':
-      await hideAndShowChart(page);
+      await reportStep('Open the MGMT Percentage Growth page', async () => {
+        await openModule(page);
+      });
+      await reportStep('Hide the Percentage Growth chart', async () => {
+        await clickFirstVisible(page, mgmtPercentageGrowthSelectors.mis.hideChartButton);
+        await expectVisible(page, mgmtPercentageGrowthSelectors.mis.showChartButton);
+      });
+      await reportStep('Click the Show Chart button', async () => {
+        await clickShowChartButton(page);
+      });
+      await reportStep('Verify the Percentage Growth chart is displayed', async () => {
+        await verifyPercentageGrowthChartVisible(page);
+      });
       break;
     case 'TS_25':
-      await hideTable(page);
+      await reportStep('Hide the Percentage Growth table', async () => {
+        await hideTable(page);
+      });
       break;
     default:
       throw new Error(`Unsupported MGMT Percentage Growth scenario for ${sourceFile}`);
