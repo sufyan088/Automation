@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, imremitDashboardPayablesEndingInTheNext7DaysHelpers } = require('./_shared');
 
 test("TS_23_To_verify_that_Dsc_button_is_responsive_for_all_the_entries_present_in_the_border", async ({ page }) => {
   const data = loadRuntimeData();
@@ -11,7 +11,18 @@ test("TS_23_To_verify_that_Dsc_button_is_responsive_for_all_the_entries_present_
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
+  await test.step('Open the payables ending in next 7 days list', async () => {
+    await imremitDashboardPayablesEndingInTheNext7DaysHelpers.openPayablesEndingList(page, data);
+  });
+
+  await test.step('Apply descending order from visible table headers', async () => {
+    for (const label of ['Supplier Name', 'Org Id', 'Facility Name', 'Payment Number']) {
+      await imremitDashboardPayablesEndingInTheNext7DaysHelpers.clickHeaderAndChoose(
+        page,
+        label,
+        imremitDashboardPayablesEndingInTheNext7DaysHelpers.selectors.menus.descending
+      );
+    }
   });
 
   await test.step('Logout from the application', async () => {

@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, supplierManagementImremitPremiumHelpers } = require('./_shared');
 
 test("TS_38_To_verify_that _go_to_first_page_button_is_functional", async ({ page }) => {
   const data = loadRuntimeData();
@@ -11,8 +11,7 @@ test("TS_38_To_verify_that _go_to_first_page_button_is_functional", async ({ pag
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
-  });
+  await supplierManagementImremitPremiumHelpers.runScenario(page, data, test.info().title);
 
   await test.step('Logout from the application', async () => {
     await closeSession(page);

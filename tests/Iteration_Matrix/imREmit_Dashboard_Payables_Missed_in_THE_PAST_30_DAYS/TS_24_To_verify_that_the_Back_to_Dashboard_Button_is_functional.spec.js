@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, imremitDashboardPayablesMissedInThePast30DaysHelpers } = require('./_shared');
 
 test("TS_24_To_verify_that_the_Back_to_Dashboard_Button_is_functional", async ({ page }) => {
   const data = loadRuntimeData();
@@ -11,7 +11,12 @@ test("TS_24_To_verify_that_the_Back_to_Dashboard_Button_is_functional", async ({
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
+  await test.step('Open the payables missed list', async () => {
+    await imremitDashboardPayablesMissedInThePast30DaysHelpers.openPayablesMissedList(page, data);
+  });
+
+  await test.step('Return from payment management to the dashboard', async () => {
+    await imremitDashboardPayablesMissedInThePast30DaysHelpers.clickBackToDashboard(page);
   });
 
   await test.step('Logout from the application', async () => {

@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, runConvertedFlow } = require('./_shared');
 
 test("TS_17_To_verify_that_Missing_Credits_filter_button_is_functional", async ({ page }) => {
   const data = loadRuntimeData();
@@ -11,8 +11,7 @@ test("TS_17_To_verify_that_Missing_Credits_filter_button_is_functional", async (
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
-  });
+  await runConvertedFlow(page, data);
 
   await test.step('Logout from the application', async () => {
     await closeSession(page);

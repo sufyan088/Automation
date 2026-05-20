@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, supplierManagementImremitPremiumHelpers } = require('./_shared');
 
 test("TS_27_To_verify_that_admin_can_choose_pay_by_web_from_remittance_method_and_save_and_submit_the_payment_method", async ({ page }) => {
   const data = loadRuntimeData();
@@ -11,8 +11,7 @@ test("TS_27_To_verify_that_admin_can_choose_pay_by_web_from_remittance_method_an
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
-  });
+  await supplierManagementImremitPremiumHelpers.runScenario(page, data, test.info().title);
 
   await test.step('Logout from the application', async () => {
     await closeSession(page);

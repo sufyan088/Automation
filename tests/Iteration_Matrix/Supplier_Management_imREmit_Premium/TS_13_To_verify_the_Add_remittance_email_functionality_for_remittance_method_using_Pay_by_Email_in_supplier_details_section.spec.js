@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, supplierManagementImremitPremiumHelpers } = require('./_shared');
 
 test("TS_13_To_verify_the_Add_remittance_email_.functionality_for_remittance_method_using_Pay_by_Email_in_supplier_details_section", async ({ page }) => {
   const data = loadRuntimeData();
@@ -11,8 +11,7 @@ test("TS_13_To_verify_the_Add_remittance_email_.functionality_for_remittance_met
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
-  });
+  await supplierManagementImremitPremiumHelpers.runScenario(page, data, test.info().title);
 
   await test.step('Logout from the application', async () => {
     await closeSession(page);

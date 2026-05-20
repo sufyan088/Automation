@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, imremitLiteDashboardPartialPaymentAlreadyTakenHelpers, imremitLiteDashboardPartialPaymentAlreadyTakenSelectors } = require('./_shared');
 
 test("TS_19_To_verify_the_sorting_arrows_in_the_entries_asc", async ({ page }) => {
   const data = loadRuntimeData();
@@ -11,7 +11,12 @@ test("TS_19_To_verify_the_sorting_arrows_in_the_entries_asc", async ({ page }) =
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
+  await test.step('Open the Partial Payment Already Taken review list', async () => {
+    await imremitLiteDashboardPartialPaymentAlreadyTakenHelpers.openPartialPaymentAlreadyTakenList(page, data);
+  });
+
+  await test.step('Apply ascending order from the visible table headers', async () => {
+    await imremitLiteDashboardPartialPaymentAlreadyTakenHelpers.applyHeaderActions(page, imremitLiteDashboardPartialPaymentAlreadyTakenSelectors.menus.ascending, ['Supplier Name', 'Payment Number', 'Sent Amount']);
   });
 
   await test.step('Logout from the application', async () => {

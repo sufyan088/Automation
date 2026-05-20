@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, imremitLiteDashboardPayablesPendingForMoreThan5DaysHelpers } = require('./_shared');
 
 test("TS_17_To_verify_that_next_page_button_is_functional", async ({ page }) => {
   const data = loadRuntimeData();
@@ -11,7 +11,20 @@ test("TS_17_To_verify_that_next_page_button_is_functional", async ({ page }) => 
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
+  await test.step('Open the Payables Pending for More Than 5 Days review list', async () => {
+    await imremitLiteDashboardPayablesPendingForMoreThan5DaysHelpers.openPayablesPendingForMoreThan5DaysList(page, data);
+  });
+
+  await test.step('Use the next-page control when it is enabled', async () => {
+    for (let attempt = 0; attempt < 3; attempt += 1) {
+      const clicked = await imremitLiteDashboardPayablesPendingForMoreThan5DaysHelpers.clickPaginationWhenEnabled(
+        page,
+        imremitLiteDashboardPayablesPendingForMoreThan5DaysHelpers.selectors.pagination.next
+      );
+      if (!clicked) {
+        break;
+      }
+    }
   });
 
   await test.step('Logout from the application', async () => {

@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, imremitDashboardNewSelectMultipleCustomersHelpers } = require('./_shared');
 
 test("TS_05_To_verify_that_selected_customers_remain_persistent_when_we_navigate_to_another_module", async ({ page }) => {
   const data = loadRuntimeData();
@@ -11,8 +11,7 @@ test("TS_05_To_verify_that_selected_customers_remain_persistent_when_we_navigate
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
-  });
+  await imremitDashboardNewSelectMultipleCustomersHelpers.runScenario(page, data, test.info().title);
 
   await test.step('Logout from the application', async () => {
     await closeSession(page);

@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, runConvertedFlow } = require('./_shared');
 
 test("TS_43_To_verify_that_user_can_select_more_than_one_status_from_Invoice_Status_dropdown_field", async ({ page }) => {
   const data = loadRuntimeData();
@@ -11,8 +11,7 @@ test("TS_43_To_verify_that_user_can_select_more_than_one_status_from_Invoice_Sta
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
-  });
+  await runConvertedFlow(page, data);
 
   await test.step('Logout from the application', async () => {
     await closeSession(page);

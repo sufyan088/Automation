@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, imremitDashboardPayablesMissedInThePast30DaysHelpers } = require('./_shared');
 
 test("TS_23_To_verify_that_the_Block_Payment_button_In_Viewing_Payment_Page_is_functional", async ({ page }) => {
   const data = loadRuntimeData();
@@ -11,7 +11,15 @@ test("TS_23_To_verify_that_the_Block_Payment_button_In_Viewing_Payment_Page_is_f
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
+  await test.step('Open payment details from the payables missed list', async () => {
+    await imremitDashboardPayablesMissedInThePast30DaysHelpers.openPaymentDetails(page, data);
+  });
+
+  await test.step('Open the Block Payment action in payment details', async () => {
+    await imremitDashboardPayablesMissedInThePast30DaysHelpers.clickDetailButton(
+      page,
+      imremitDashboardPayablesMissedInThePast30DaysHelpers.selectors.detail.blockPayment
+    );
   });
 
   await test.step('Logout from the application', async () => {

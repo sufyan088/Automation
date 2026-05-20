@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, imremitLiteDashboardSupplierIsInactiveHelpers } = require('./_shared');
 
 test("TS_08_To_verify_that_Actions_Icon_is_functional", async ({ page }) => {
   const data = loadRuntimeData();
@@ -11,7 +11,12 @@ test("TS_08_To_verify_that_Actions_Icon_is_functional", async ({ page }) => {
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
+  await test.step('Open the Supplier is inactive review list', async () => {
+    await imremitLiteDashboardSupplierIsInactiveHelpers.openSupplierIsInactiveList(page, data);
+  });
+
+  await test.step('Open the actions menu for a payment row', async () => {
+    await imremitLiteDashboardSupplierIsInactiveHelpers.openActionsMenu(page);
   });
 
   await test.step('Logout from the application', async () => {

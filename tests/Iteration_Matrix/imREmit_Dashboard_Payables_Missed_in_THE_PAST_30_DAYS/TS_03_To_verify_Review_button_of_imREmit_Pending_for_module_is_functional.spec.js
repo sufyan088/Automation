@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, imremitDashboardPayablesMissedInThePast30DaysHelpers } = require('./_shared');
 
 test("TS_03_To_verify_Review_button_of_imREmit_Pending_for_module_is_functional", async ({ page }) => {
   const data = loadRuntimeData();
@@ -11,7 +11,8 @@ test("TS_03_To_verify_Review_button_of_imREmit_Pending_for_module_is_functional"
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
+  await test.step('Open the payables missed review list', async () => {
+    await imremitDashboardPayablesMissedInThePast30DaysHelpers.openPayablesMissedList(page, data);
   });
 
   await test.step('Logout from the application', async () => {

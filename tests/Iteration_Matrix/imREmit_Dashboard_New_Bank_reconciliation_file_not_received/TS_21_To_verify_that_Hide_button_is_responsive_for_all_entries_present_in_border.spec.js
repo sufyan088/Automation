@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, imremitDashboardNewBankReconciliationFileNotReceivedHelpers } = require('./_shared');
 
 test("TS_21_To_verify_that_Hide_button_is_responsive_for_all_entries_present_in_border", async ({ page }) => {
   const data = loadRuntimeData();
@@ -11,8 +11,7 @@ test("TS_21_To_verify_that_Hide_button_is_responsive_for_all_entries_present_in_
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
-  });
+  await imremitDashboardNewBankReconciliationFileNotReceivedHelpers.runScenario(page, data, test.info().title);
 
   await test.step('Logout from the application', async () => {
     await closeSession(page);

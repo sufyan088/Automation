@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, runConvertedFlow } = require('./_shared');
 
 test("TS_33_To_verify_that_Supplier_Role_Type_will_have_access_to_Dashboard", async ({ page }) => {
   const data = loadRuntimeData();
@@ -11,8 +11,7 @@ test("TS_33_To_verify_that_Supplier_Role_Type_will_have_access_to_Dashboard", as
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
-  });
+  await runConvertedFlow(page, data);
 
   await test.step('Logout from the application', async () => {
     await closeSession(page);

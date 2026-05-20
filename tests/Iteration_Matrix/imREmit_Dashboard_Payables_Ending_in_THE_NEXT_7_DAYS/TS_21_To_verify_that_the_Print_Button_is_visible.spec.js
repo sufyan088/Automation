@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, imremitDashboardPayablesEndingInTheNext7DaysHelpers } = require('./_shared');
 
 test("TS_21_To_verify_that_the_Print_Button_is_visible", async ({ page }) => {
   const data = loadRuntimeData();
@@ -11,7 +11,12 @@ test("TS_21_To_verify_that_the_Print_Button_is_visible", async ({ page }) => {
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
+  await test.step('Open the payables ending in next 7 days list', async () => {
+    await imremitDashboardPayablesEndingInTheNext7DaysHelpers.openPayablesEndingList(page, data);
+  });
+
+  await test.step('Verify the Print button is visible when available', async () => {
+    await imremitDashboardPayablesEndingInTheNext7DaysHelpers.assertPrintButtonVisibleWhenAvailable(page);
   });
 
   await test.step('Logout from the application', async () => {

@@ -1,4 +1,4 @@
-const { test } = require('@playwright/test');
+const { expect, test } = require('@playwright/test');
 const { loadRuntimeData } = require('../../../helpers/iteration-matrix/dataLoader');
 const { loginAsAdmin, logout } = require('../../../helpers/iteration-matrix/auth');
 const { registerModuleSuite } = require('../../../helpers/allureHierarchy');
@@ -12,6 +12,7 @@ async function closeSession(page) {
 }
 
 module.exports = {
+  expect,
   test,
   loadRuntimeData,
   loginAsAdmin,

@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, imremitLiteDashboardSupplierIsInactiveHelpers } = require('./_shared');
 
 test("TS_20_To_verify_that_Payment_Number_field_is_functional", async ({ page }) => {
   const data = loadRuntimeData();
@@ -11,7 +11,12 @@ test("TS_20_To_verify_that_Payment_Number_field_is_functional", async ({ page })
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
+  await test.step('Open the Supplier is inactive review list', async () => {
+    await imremitLiteDashboardSupplierIsInactiveHelpers.openSupplierIsInactiveList(page, data);
+  });
+
+  await test.step('Search using the payment number field', async () => {
+    await imremitLiteDashboardSupplierIsInactiveHelpers.searchByPaymentNumber(page, 'JUN34234E052025');
   });
 
   await test.step('Logout from the application', async () => {

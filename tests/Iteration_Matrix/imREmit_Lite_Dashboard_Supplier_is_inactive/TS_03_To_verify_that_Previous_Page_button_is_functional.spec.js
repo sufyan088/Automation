@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, imremitLiteDashboardSupplierIsInactiveHelpers } = require('./_shared');
 
 test("TS_03_To_verify_that_Previous_Page_button_is_functional", async ({ page }) => {
   const data = loadRuntimeData();
@@ -11,7 +11,13 @@ test("TS_03_To_verify_that_Previous_Page_button_is_functional", async ({ page })
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
+  await test.step('Open the Supplier is inactive review list', async () => {
+    await imremitLiteDashboardSupplierIsInactiveHelpers.openSupplierIsInactiveList(page, data);
+  });
+
+  await test.step('Move to the next page and back to the previous page', async () => {
+    await imremitLiteDashboardSupplierIsInactiveHelpers.clickPaginationWhenEnabled(page, imremitLiteDashboardSupplierIsInactiveHelpers.selectors.pagination.next);
+    await imremitLiteDashboardSupplierIsInactiveHelpers.clickPaginationWhenEnabled(page, imremitLiteDashboardSupplierIsInactiveHelpers.selectors.pagination.previous);
   });
 
   await test.step('Logout from the application', async () => {
