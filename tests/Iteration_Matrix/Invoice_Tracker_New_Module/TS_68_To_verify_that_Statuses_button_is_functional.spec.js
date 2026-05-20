@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsRole, closeSession, invoiceTrackerNewModuleHelpers } = require('./_shared');
 
 test("TS_68_To_verify_that_Statuses_button_is_functional", async ({ page }) => {
   const data = loadRuntimeData();
@@ -8,13 +8,16 @@ test("TS_68_To_verify_that_Statuses_button_is_functional", async ({ page }) => {
   });
 
   await test.step('Login into Application', async () => {
-    await loginAsAdmin(page, data);
+    await loginAsRole(page, { ...data, Username_Supplier_Admin: 'supplieradmin3', Password_Supplier_Admin: '1234' }, 'supplierAdmin');
   });
 
   await test.step('Run converted flow', async () => {
+    await invoiceTrackerNewModuleHelpers.runScenario(page, data, test.info().title);
   });
 
   await test.step('Logout from the application', async () => {
     await closeSession(page);
   });
 });
+
+

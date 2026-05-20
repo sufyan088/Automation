@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, mgmtPaymentsPending5daysHelpers } = require('./_shared');
 
 test("TS_19_To_verify_that_the_Supplier_Name_field_is_functional_on_the_Adjust_Filter_popup", async ({ page }) => {
   const data = loadRuntimeData();
@@ -12,6 +12,7 @@ test("TS_19_To_verify_that_the_Supplier_Name_field_is_functional_on_the_Adjust_F
   });
 
   await test.step('Run converted flow', async () => {
+    await mgmtPaymentsPending5daysHelpers.runScenario(page, data, test.info().title);
   });
 
   await test.step('Logout from the application', async () => {

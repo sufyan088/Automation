@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, settingsHelpers } = require('./_shared');
 
 test("TS_21_Verify_that_the_Hide_button_is_responsive_to_all_the_entries_present_on_the_border", async ({ page }) => {
   const data = loadRuntimeData();
@@ -12,6 +12,7 @@ test("TS_21_Verify_that_the_Hide_button_is_responsive_to_all_the_entries_present
   });
 
   await test.step('Run converted flow', async () => {
+    await settingsHelpers.runScenario(page, data, test.info().title);
   });
 
   await test.step('Logout from the application', async () => {

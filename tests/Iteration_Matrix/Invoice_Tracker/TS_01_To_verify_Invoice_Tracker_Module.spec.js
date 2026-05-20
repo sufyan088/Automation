@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, invoiceTrackerHelpers } = require('./_shared');
 
 test("TS_01_To_verify_Invoice_Tracker_Module", async ({ page }) => {
   const data = loadRuntimeData();
@@ -12,6 +12,7 @@ test("TS_01_To_verify_Invoice_Tracker_Module", async ({ page }) => {
   });
 
   await test.step('Run converted flow', async () => {
+    await invoiceTrackerHelpers.runScenario(page, data, test.info().title);
   });
 
   await test.step('Logout from the application', async () => {

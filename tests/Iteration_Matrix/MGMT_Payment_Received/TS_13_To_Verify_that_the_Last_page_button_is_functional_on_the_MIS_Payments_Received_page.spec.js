@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, mgmtPaymentReceivedHelpers } = require('./_shared');
 
 test("TS_13_To_Verify_that_the_Last_page_button_is_functional_on_the_MIS_Payments_Received_page", async ({ page }) => {
   const data = loadRuntimeData();
@@ -12,6 +12,7 @@ test("TS_13_To_Verify_that_the_Last_page_button_is_functional_on_the_MIS_Payment
   });
 
   await test.step('Run converted flow', async () => {
+    await mgmtPaymentReceivedHelpers.runScenario(page, data, test.info().title);
   });
 
   await test.step('Logout from the application', async () => {

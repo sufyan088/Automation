@@ -13,10 +13,12 @@ function firstNonEmpty(...values) {
 
 function findDefaultCsvFile() {
   const dataDir = path.join(__dirname, '..', '..', 'data', 'iteration-matrix');
+  const rootDataDir = path.join(__dirname, '..', '..', 'data');
   const sourceDir = path.join(__dirname, '..', '..', 'source-aiq');
 
   const candidateFiles = [
     path.join(dataDir, 'IM_DPL1.csv'),
+    path.join(rootDataDir, 'IM_DPL1.csv'),
     path.join(sourceDir, 'IM_DPL1.csv')
   ];
 

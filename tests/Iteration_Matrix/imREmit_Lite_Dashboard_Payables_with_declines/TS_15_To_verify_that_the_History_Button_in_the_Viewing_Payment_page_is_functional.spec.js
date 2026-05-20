@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, imremitLiteDashboardPayablesWithDeclinesHelpers } = require('./_shared');
 
 test("TS_15_To_verify_that_the_History_Button_in_the_Viewing_Payment_page_is_functional", async ({ page }) => {
   const data = loadRuntimeData();
@@ -11,7 +11,12 @@ test("TS_15_To_verify_that_the_History_Button_in_the_Viewing_Payment_page_is_fun
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
+  await test.step('Open payment details from the Payables with Declines list', async () => {
+    await imremitLiteDashboardPayablesWithDeclinesHelpers.openPaymentDetails(page, data);
+  });
+
+  await test.step('Open history in payment details', async () => {
+    await imremitLiteDashboardPayablesWithDeclinesHelpers.clickDetailButton(page, imremitLiteDashboardPayablesWithDeclinesHelpers.selectors.detail.history);
   });
 
   await test.step('Logout from the application', async () => {

@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsRole, closeSession, invoiceTrackerModuleHelpers } = require('./_shared');
 
 test("TS_97_To_verify_that_Customer_is_already_pre_selected_for_Customer_role_users", async ({ page }) => {
   const data = loadRuntimeData();
@@ -8,10 +8,11 @@ test("TS_97_To_verify_that_Customer_is_already_pre_selected_for_Customer_role_us
   });
 
   await test.step('Login into Application', async () => {
-    await loginAsAdmin(page, data);
+    await loginAsRole(page, data, 'customerAdmin');
   });
 
   await test.step('Run converted flow', async () => {
+    await invoiceTrackerModuleHelpers.runScenario(page, data, test.info().title);
   });
 
   await test.step('Logout from the application', async () => {

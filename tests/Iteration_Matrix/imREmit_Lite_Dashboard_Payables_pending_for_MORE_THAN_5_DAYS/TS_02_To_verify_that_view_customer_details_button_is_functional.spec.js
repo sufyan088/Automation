@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, imremitLiteDashboardPayablesPendingForMoreThan5DaysHelpers } = require('./_shared');
 
 test("TS_02_To_verify_that_view_customer_details_button_is_functional", async ({ page }) => {
   const data = loadRuntimeData();
@@ -11,7 +11,18 @@ test("TS_02_To_verify_that_view_customer_details_button_is_functional", async ({
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
+  await test.step('Open the imREmit Lite dashboard workspace', async () => {
+    await imremitLiteDashboardPayablesPendingForMoreThan5DaysHelpers.openDashboardWorkspace(page, data, {
+      preferredCustomer: 'Batch Customer QA'
+    });
+  });
+
+  await test.step('Open customer details from the dashboard', async () => {
+    await imremitLiteDashboardPayablesPendingForMoreThan5DaysHelpers.openCustomerDetails(page);
+  });
+
+  await test.step('Close customer details and return to the dashboard', async () => {
+    await imremitLiteDashboardPayablesPendingForMoreThan5DaysHelpers.closeCustomerDetails(page);
   });
 
   await test.step('Logout from the application', async () => {

@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, srReportingNewHelpers } = require('./_shared');
 
 test("TS_43_To_verify_user_can_add_multiple_email_in_email_delivery_method", async ({ page }) => {
   const data = loadRuntimeData();
@@ -12,6 +12,7 @@ test("TS_43_To_verify_user_can_add_multiple_email_in_email_delivery_method", asy
   });
 
   await test.step('Run converted flow', async () => {
+    await srReportingNewHelpers.runScenario(page, data, 'TS_43_To_verify_user_can_add_multiple_email_in_email_delivery_method');
   });
 
   await test.step('Logout from the application', async () => {

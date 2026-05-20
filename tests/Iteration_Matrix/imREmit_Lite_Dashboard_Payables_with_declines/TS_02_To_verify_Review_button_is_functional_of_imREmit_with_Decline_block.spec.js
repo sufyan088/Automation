@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, imremitLiteDashboardPayablesWithDeclinesHelpers } = require('./_shared');
 
 test("TS_02_To_verify_Review_button_is_functional_of_imREmit_with_Decline_block", async ({ page }) => {
   const data = loadRuntimeData();
@@ -11,7 +11,8 @@ test("TS_02_To_verify_Review_button_is_functional_of_imREmit_with_Decline_block"
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
+  await test.step('Open the Payables with Declines review list', async () => {
+    await imremitLiteDashboardPayablesWithDeclinesHelpers.openPayablesWithDeclinesList(page, data);
   });
 
   await test.step('Logout from the application', async () => {

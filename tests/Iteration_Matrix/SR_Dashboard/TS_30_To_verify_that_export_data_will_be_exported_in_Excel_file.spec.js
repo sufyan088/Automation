@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, runConvertedFlow } = require('./_shared');
 
 test("TS_30_To_verify_that_export_data_will_be_exported_in_Excel_file", async ({ page }) => {
   const data = loadRuntimeData();
@@ -11,8 +11,7 @@ test("TS_30_To_verify_that_export_data_will_be_exported_in_Excel_file", async ({
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
-  });
+  await runConvertedFlow(page, data);
 
   await test.step('Logout from the application', async () => {
     await closeSession(page);

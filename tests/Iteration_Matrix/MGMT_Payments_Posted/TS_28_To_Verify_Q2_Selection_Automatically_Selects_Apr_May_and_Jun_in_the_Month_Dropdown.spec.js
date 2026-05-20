@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, mgmtPaymentsPostedHelpers } = require('./_shared');
 
 test("TS_28_To_Verify_Q2_Selection_Automatically_Selects_Apr_May_and_Jun_in_the_Month_Dropdown", async ({ page }) => {
   const data = loadRuntimeData();
@@ -12,6 +12,7 @@ test("TS_28_To_Verify_Q2_Selection_Automatically_Selects_Apr_May_and_Jun_in_the_
   });
 
   await test.step('Run converted flow', async () => {
+    await mgmtPaymentsPostedHelpers.runScenario(page, __filename);
   });
 
   await test.step('Logout from the application', async () => {

@@ -1,4 +1,5 @@
 const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { mgmtInformationSystemHelpers } = require('../../../helpers/iteration-matrix/mgmtInformationSystem.js');
 
 test("TS_125_To_verify_that_the_Payment_Status_dropdown_list_is_in_the_alphabetical_order_for_Payments_Received", async ({ page }) => {
   const data = loadRuntimeData();
@@ -12,6 +13,7 @@ test("TS_125_To_verify_that_the_Payment_Status_dropdown_list_is_in_the_alphabeti
   });
 
   await test.step('Run converted flow', async () => {
+    await mgmtInformationSystemHelpers.runScenario(page, data, test.info().title);
   });
 
   await test.step('Logout from the application', async () => {

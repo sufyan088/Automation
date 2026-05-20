@@ -1,4 +1,5 @@
 const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { mgmtInformationSystemHelpers } = require('../../../helpers/iteration-matrix/mgmtInformationSystem.js');
 
 test("TS_38_To_Verify_that_the_sorting_arrows_are_functional_Dsc", async ({ page }) => {
   const data = loadRuntimeData();
@@ -12,6 +13,7 @@ test("TS_38_To_Verify_that_the_sorting_arrows_are_functional_Dsc", async ({ page
   });
 
   await test.step('Run converted flow', async () => {
+    await mgmtInformationSystemHelpers.runScenario(page, data, test.info().title);
   });
 
   await test.step('Logout from the application', async () => {

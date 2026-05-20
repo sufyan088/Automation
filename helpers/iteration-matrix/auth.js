@@ -102,6 +102,14 @@ async function waitForAppReady(page, timeout = 30000) {
   const startedAt = Date.now();
 
   while ((Date.now() - startedAt) < timeout) {
+    const loginSurfaceVisible = await isVisible(page, iterationMatrixCommonSelectors.login.username);
+    const currentUrl = page.url();
+
+    if (loginSurfaceVisible || /\/realms\/|\/login-actions\//i.test(currentUrl)) {
+      await page.waitForTimeout(250);
+      continue;
+    }
+
     if (await isVisible(page, iterationMatrixCommonSelectors.app.errorPage)) {
       await clickIfVisible(page, iterationMatrixCommonSelectors.app.errorPageRecovery);
       await page.waitForLoadState('domcontentloaded').catch(() => null);
@@ -153,6 +161,21 @@ function resolveRoleCredentials(data, roleKey) {
       password: data.Password_ProgramManager,
       label: 'Iteration Matrix program manager'
     },
+    customerAdmin: {
+      username: data.UserName_CUSTOMER_ADMIN || data.Username_Customer_Admin || data.Username_CustomerAdmin,
+      password: data.Password_CUSTOMER_ADMIN || data.Password_Customer_Admin || data.Password_CustomerAdmin,
+      label: 'Iteration Matrix customer admin'
+    },
+    supplierAdmin: {
+      username: data.Username_Supplier_Admin,
+      password: data.Password_Supplier_Admin,
+      label: 'Iteration Matrix supplier admin'
+    },
+    supplierUser: {
+      username: data.Username_Supplier_User,
+      password: data.Password_Supplier_User,
+      label: 'Iteration Matrix supplier user'
+    },
     ePayAdmin: {
       username: data.Username_imREmit_Admin,
       password: data.Password_imREmit_Admin,
@@ -202,6 +225,7 @@ async function loginAsRole(page, data, roleKey = 'admin') {
       password: requireCredential(data.Password_Admin, 'Iteration Matrix admin password')
     });
   }
+  await page.goto(baseUrl, { waitUntil: 'commit', timeout: 30000 });
 
   for (let attemptIndex = 0; attemptIndex < credentialAttempts.length; attemptIndex += 1) {
     const credentials = credentialAttempts[attemptIndex];
@@ -220,7 +244,8 @@ async function loginAsRole(page, data, roleKey = 'admin') {
     await clickIfVisible(page, iterationMatrixCommonSelectors.login.rememberMe);
 
     const signInButton = await waitForVisible(page, iterationMatrixCommonSelectors.login.signIn);
-    await signInButton.click({ timeout: 10000 });
+    await clickIfVisible(page, iterationMatrixCommonSelectors.login.rememberMe);
+    await signInButton.click({ timeout: 10000, noWaitAfter: true });
 
     await page.waitForTimeout(1500);
     if (await isInvalidCredentialsVisible(page)) {

@@ -15,6 +15,32 @@ const rootDir = path.resolve(__dirname, '..');
 const isWindows = process.platform === 'win32';
 const resultsDir = path.join(rootDir, 'allure-results');
 const resultIndexPath = path.join(rootDir, 'Result', 'index.html');
+const windowsSystemRoot = process.env.SystemRoot || 'C:\\Windows';
+const cmdExecutable = process.env.ComSpec || path.join(windowsSystemRoot, 'System32', 'cmd.exe');
+const powershellExecutable = path.join(windowsSystemRoot, 'System32', 'WindowsPowerShell', 'v1.0', 'powershell.exe');
+const playwrightCliPath = path.join(rootDir, 'node_modules', '@playwright', 'test', 'cli.js');
+
+function resolveSpawn(command, args) {
+  if (isWindows && command === 'npx' && Array.isArray(args) && args[0] === 'playwright' && fs.existsSync(playwrightCliPath)) {
+    return {
+      command: process.execPath,
+      args: [playwrightCliPath, ...args.slice(1)],
+      usesCmdShell: false,
+    };
+  }
+
+  const resolvedCommand = resolveCommand(command);
+  const spawnArgs = args || [];
+  const usesCmdShell = isWindows && /\.(cmd|bat)$/i.test(resolvedCommand);
+
+  return {
+    command: usesCmdShell ? cmdExecutable : resolvedCommand,
+    args: usesCmdShell
+      ? ['/d', '/s', '/c', buildCmdCommandLine(resolvedCommand, spawnArgs)]
+      : spawnArgs,
+    usesCmdShell,
+  };
+}
 
 function resolveCommand(command) {
   if (!isWindows) {
@@ -25,8 +51,18 @@ function resolveCommand(command) {
     return 'npx.cmd';
   }
 
+  if (command === 'allure') {
+    const bundledAllureBatch = path.join(rootDir, 'node_modules', 'allure-commandline', 'dist', 'bin', 'allure.bat');
+    if (fs.existsSync(bundledAllureBatch)) {
+      return bundledAllureBatch;
+    }
+
+    const localAllure = path.join(rootDir, 'node_modules', '.bin', 'allure.cmd');
+    return fs.existsSync(localAllure) ? localAllure : 'allure';
+  }
+
   if (command === 'powershell') {
-    return 'powershell.exe';
+    return fs.existsSync(powershellExecutable) ? powershellExecutable : 'powershell.exe';
   }
 
   return command;
@@ -45,15 +81,8 @@ function buildCmdCommandLine(command, args) {
 }
 
 function run(command, args, options = {}) {
-  const resolvedCommand = resolveCommand(command);
-  const spawnArgs = args || [];
-  const spawnCommand = isWindows && resolvedCommand.toLowerCase().endsWith('.cmd')
-    ? 'cmd.exe'
-    : resolvedCommand;
-  const finalArgs = isWindows && resolvedCommand.toLowerCase().endsWith('.cmd')
-    ? ['/d', '/s', '/c', buildCmdCommandLine(resolvedCommand, spawnArgs)]
-    : spawnArgs;
-  const result = spawnSync(spawnCommand, finalArgs, {
+  const spawnConfig = resolveSpawn(command, args);
+  const result = spawnSync(spawnConfig.command, spawnConfig.args, {
     cwd: rootDir,
     stdio: 'inherit',
     shell: false,
@@ -68,15 +97,8 @@ function run(command, args, options = {}) {
 }
 
 function runWithResult(command, args, options = {}) {
-  const resolvedCommand = resolveCommand(command);
-  const spawnArgs = args || [];
-  const spawnCommand = isWindows && resolvedCommand.toLowerCase().endsWith('.cmd')
-    ? 'cmd.exe'
-    : resolvedCommand;
-  const finalArgs = isWindows && resolvedCommand.toLowerCase().endsWith('.cmd')
-    ? ['/d', '/s', '/c', buildCmdCommandLine(resolvedCommand, spawnArgs)]
-    : spawnArgs;
-  const result = spawnSync(spawnCommand, finalArgs, {
+  const spawnConfig = resolveSpawn(command, args);
+  const result = spawnSync(spawnConfig.command, spawnConfig.args, {
     cwd: rootDir,
     encoding: 'utf8',
     shell: false,
@@ -210,12 +232,14 @@ function enrichAllureResults(moduleDir) {
 
     const filePath = path.join(resultsDir, entry);
     const result = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-    const metadata = metadataByTitle.get(result.name);
+    const originalName = result.name;
+    const metadata = metadataByTitle.get(originalName);
 
     if (!metadata) {
       continue;
     }
 
+    result.name = humanizeTitle(originalName);
     result.description = metadata.description;
     fs.writeFileSync(filePath, JSON.stringify(result), 'utf8');
     updatedCount += 1;
@@ -237,6 +261,7 @@ function createModuleClientReportRunner(config) {
     workers = 3,
     backupPrefix = 'vision-spring-module-allure-',
     postProcessResults,
+    reporters = ['allure-playwright'],
   } = config;
 
   const moduleDir = path.join(rootDir, modulePath);
@@ -270,7 +295,8 @@ function createModuleClientReportRunner(config) {
       testArgs.push('--last-failed');
     }
 
-    testArgs.push(`--workers=${workers}`, '--reporter=allure-playwright');
+    const reporterValue = Array.isArray(reporters) ? reporters.join(',') : String(reporters || 'allure-playwright');
+    testArgs.push(`--workers=${workers}`, `--reporter=${reporterValue}`);
 
     const testRun = mode === 'last-failed'
       ? runWithResult('npx', testArgs)
@@ -346,8 +372,7 @@ function createModuleClientReportRunner(config) {
       });
     }
 
-    const generateExitCode = run('npx', [
-      'allure',
+    const generateExitCode = run('allure', [
       'generate',
       'allure-results',
       '--clean',

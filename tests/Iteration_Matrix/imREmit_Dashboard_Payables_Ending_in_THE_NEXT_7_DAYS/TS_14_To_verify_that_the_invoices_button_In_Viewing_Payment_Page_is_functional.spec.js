@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, imremitDashboardPayablesEndingInTheNext7DaysHelpers } = require('./_shared');
 
 test("TS_14_To_verify_that_the_invoices_button_In_Viewing_Payment_Page_is_functional", async ({ page }) => {
   const data = loadRuntimeData();
@@ -11,7 +11,15 @@ test("TS_14_To_verify_that_the_invoices_button_In_Viewing_Payment_Page_is_functi
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
+  await test.step('Open payment details from the payables ending list', async () => {
+    await imremitDashboardPayablesEndingInTheNext7DaysHelpers.openPaymentDetails(page, data);
+  });
+
+  await test.step('Open the Invoices view in payment details', async () => {
+    await imremitDashboardPayablesEndingInTheNext7DaysHelpers.clickDetailButton(
+      page,
+      imremitDashboardPayablesEndingInTheNext7DaysHelpers.selectors.detail.invoices
+    );
   });
 
   await test.step('Logout from the application', async () => {

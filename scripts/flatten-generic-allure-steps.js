@@ -9,6 +9,8 @@ const GENERIC_STEP_PATTERNS = [
   /^run to verify\b/i,
   /^run verify\b/i,
   /^run ts\b/i,
+  /^ts[_\s-]*\d+\b/i,
+  /^tc[_\s-]*\d+\b/i,
 ];
 
 function isGenericWrapperStep(step) {

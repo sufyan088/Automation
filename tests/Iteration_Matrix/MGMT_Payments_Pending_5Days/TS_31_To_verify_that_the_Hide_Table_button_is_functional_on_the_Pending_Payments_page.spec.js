@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, mgmtPaymentsPending5daysHelpers } = require('./_shared');
 
 test("TS_31_To_verify_that_the_Hide_Table_button_is_functional_on_the_Pending_Payments_page", async ({ page }) => {
   const data = loadRuntimeData();
@@ -12,6 +12,7 @@ test("TS_31_To_verify_that_the_Hide_Table_button_is_functional_on_the_Pending_Pa
   });
 
   await test.step('Run converted flow', async () => {
+    await mgmtPaymentsPending5daysHelpers.runScenario(page, data, test.info().title);
   });
 
   await test.step('Logout from the application', async () => {

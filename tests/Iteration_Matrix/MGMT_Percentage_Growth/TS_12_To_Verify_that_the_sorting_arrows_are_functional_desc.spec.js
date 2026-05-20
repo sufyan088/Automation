@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, mgmtPercentageGrowthHelpers } = require('./_shared');
 
 test("TS_12_To_Verify_that_the_sorting_arrows_are_functional_desc", async ({ page }) => {
   const data = loadRuntimeData();
@@ -12,6 +12,7 @@ test("TS_12_To_Verify_that_the_sorting_arrows_are_functional_desc", async ({ pag
   });
 
   await test.step('Run converted flow', async () => {
+    await mgmtPercentageGrowthHelpers.runScenario(page, __filename);
   });
 
   await test.step('Logout from the application', async () => {

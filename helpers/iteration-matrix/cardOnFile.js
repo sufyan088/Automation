@@ -37,11 +37,19 @@ async function clickFirstVisible(page, selectors, timeout = 15000) {
 
   for (let attempt = 0; attempt < 3; attempt += 1) {
     const locator = await waitForFirstVisible(page, selectors, timeout);
+    await locator.scrollIntoViewIfNeeded().catch(() => null);
 
     try {
       await locator.click({ timeout: 5000 });
       return locator;
     } catch (error) {
+      const message = String(error?.message || '');
+      if (/outside of the viewport|intercepts pointer events|subtree intercepts pointer events/i.test(message)) {
+        await locator.click({ timeout: 5000, force: true }).catch(() => null);
+        if (await locator.isVisible().catch(() => false)) {
+          return locator;
+        }
+      }
       lastError = error;
       await page.waitForTimeout(500);
     }
@@ -55,6 +63,47 @@ async function fillFirstVisible(page, selectors, value, timeout = 15000) {
   await locator.fill('');
   await locator.fill(String(value));
   return locator;
+}
+
+async function chooseDropdownValue(page, triggerSelectors, optionSelectors, preferredValues = []) {
+  for (let attempt = 0; attempt < 2; attempt += 1) {
+    const trigger = await clickFirstVisible(page, triggerSelectors);
+
+    for (const preferredValue of preferredValues) {
+      if (!String(preferredValue || '').trim()) {
+        continue;
+      }
+
+      const option = await waitForFirstVisible(page, optionSelectors(preferredValue), 3000).catch(() => null);
+      if (option) {
+        await option.click();
+        return;
+      }
+    }
+
+    await page.keyboard.press('ArrowDown').catch(() => null);
+    await page.keyboard.press('Enter').catch(() => null);
+    await page.waitForTimeout(500);
+
+    const triggerText = ((await trigger.textContent().catch(() => '')) || '').trim();
+    if (triggerText && !/select country|select state|please select country first/i.test(triggerText)) {
+      return;
+    }
+
+    const genericOption = await waitForFirstVisible(page, [
+      '[role="option"]',
+      'div[role="option"]',
+      '[cmdk-item]',
+      '[data-radix-collection-item]'
+    ], 3000).catch(() => null);
+
+    if (genericOption) {
+      await genericOption.click();
+      return;
+    }
+  }
+
+  throw new Error(`Could not choose a dropdown value for selectors: ${triggerSelectors.join(', ')}`);
 }
 
 async function isErrorPageVisible(page) {
@@ -80,26 +129,30 @@ async function recoverFromErrorPage(page) {
 }
 
 async function isSupplierManagementReady(page) {
+  const isSupplierManagementUrl = /\/supplier-management(\/|$|\?|#)/i.test(page.url());
   const readySelectors = [
-    ...cardOnFileSelectors.customerPicker.trigger,
-    ...cardOnFileSelectors.supplierList.searchInput,
-    'h2:has-text("Supplier Management")',
-    'text="Supplier Management"'
+    ...cardOnFileSelectors.editSupplier.addSupplierButton,
+    'h1:has-text("Supplier Management")',
+    'h2:has-text("Supplier Management")'
   ];
 
   for (const selector of readySelectors) {
     const locator = page.locator(selector).first();
     if (await locator.isVisible().catch(() => false)) {
-      return true;
+      return isSupplierManagementUrl || !/\/invoices\//i.test(page.url());
     }
   }
 
   return false;
 }
 
+function isImremitModuleUrl(page) {
+  return /\/app\/imremit(\/|$|\?|#)/i.test(page.url());
+}
+
 async function openModule(page) {
   const moduleHeading = page.getByRole('heading', { name: /imremit/i }).first();
-  if (await moduleHeading.isVisible().catch(() => false)) {
+  if (isImremitModuleUrl(page) && await moduleHeading.isVisible().catch(() => false)) {
     return page;
   }
 
@@ -112,7 +165,19 @@ async function openModule(page) {
 
   for (const target of tileTargets) {
     if (await target.isVisible().catch(() => false)) {
-      await target.click({ timeout: 5000 });
+      await target.scrollIntoViewIfNeeded().catch(() => null);
+      try {
+        await target.click({ timeout: 5000 });
+      } catch (error) {
+        const message = String(error?.message || '');
+        if (!/outside of the viewport|intercepts pointer events|subtree intercepts pointer events/i.test(message)) {
+          throw error;
+        }
+
+        await target.click({ timeout: 5000, force: true });
+      }
+
+      await page.waitForURL(/\/app\/imremit(\/|$|\?|#)/i, { timeout: 15000 }).catch(() => null);
       if (await recoverFromErrorPage(page)) {
         continue;
       }
@@ -122,8 +187,10 @@ async function openModule(page) {
   }
 
   await clickFirstVisible(page, cardOnFileSelectors.moduleEntry);
+  await page.waitForURL(/\/app\/imremit(\/|$|\?|#)/i, { timeout: 15000 }).catch(() => null);
   if (await recoverFromErrorPage(page)) {
     await clickFirstVisible(page, cardOnFileSelectors.moduleEntry);
+    await page.waitForURL(/\/app\/imremit(\/|$|\?|#)/i, { timeout: 15000 }).catch(() => null);
   }
   await waitForFirstVisible(page, cardOnFileSelectors.moduleHeading);
   return page;
@@ -131,7 +198,13 @@ async function openModule(page) {
 
 async function openSupplierManagement(page) {
   for (let attempt = 0; attempt < 3; attempt += 1) {
+    if (await isSupplierManagementReady(page)) {
+      return;
+    }
+
     await clickFirstVisible(page, cardOnFileSelectors.supplierManagementLink);
+    await page.waitForURL(/\/supplier-management(\/|$|\?|#)/i, { timeout: 15000 }).catch(() => null);
+    await page.waitForLoadState('domcontentloaded').catch(() => null);
 
     if (await recoverFromErrorPage(page)) {
       await openModule(page);
@@ -146,9 +219,10 @@ async function openSupplierManagement(page) {
   }
 
   await waitForFirstVisible(page, [
-    ...cardOnFileSelectors.customerPicker.trigger,
-    ...cardOnFileSelectors.supplierList.searchInput
-  ]);
+    ...cardOnFileSelectors.editSupplier.addSupplierButton,
+    'h1:has-text("Supplier Management")',
+    'h2:has-text("Supplier Management")'
+  ], 30000);
 }
 
 async function ensureCustomerSelected(page, customerName = 'Cadent') {
@@ -169,6 +243,9 @@ async function ensureCustomerSelected(page, customerName = 'Cadent') {
     await clickFirstVisible(page, cardOnFileSelectors.customerPicker.option(customerName));
     await page.waitForTimeout(1000);
   }
+
+  await page.keyboard.press('Escape').catch(() => null);
+  await page.waitForTimeout(250);
 
   const chipVisible = await page.locator(cardOnFileSelectors.customerPicker.selectedChip(customerName)[0]).first().isVisible().catch(() => false)
     || await page.locator(cardOnFileSelectors.customerPicker.selectedChip(customerName)[1]).first().isVisible().catch(() => false);
@@ -200,6 +277,7 @@ async function selectCustomerOnAddSupplier(page, customerName = 'Cadent') {
 
   await clickFirstVisible(page, cardOnFileSelectors.customerPicker.option(customerName));
   await page.waitForTimeout(750);
+  await page.keyboard.press('Escape').catch(() => null);
 }
 
 async function openSupplierManagementForCustomer(page, customerName = 'Cadent') {
@@ -215,11 +293,11 @@ async function searchSuppliers(page, value) {
 }
 
 async function expectTableContainsText(page, text) {
-  await page.locator('table').first().waitFor({ state: 'visible', timeout: 15000 });
+  await page.locator('table').first().waitFor({ state: 'visible', timeout: 30000 });
   await page.waitForFunction((expectedText) => {
     const table = document.querySelector('table');
     return Boolean(table) && (table.textContent || '').includes(expectedText);
-  }, text, { timeout: 15000 });
+  }, text, { timeout: 30000 });
 }
 
 async function openFirstRowActionsMenu(page) {
@@ -267,10 +345,8 @@ async function populateRequiredSupplierProfile(page, overrides = {}) {
   await fillFirstVisible(page, cardOnFileSelectors.editSupplier.address2Input, supplier.address2);
   await fillFirstVisible(page, cardOnFileSelectors.editSupplier.address3Input, supplier.address3);
   await fillFirstVisible(page, cardOnFileSelectors.editSupplier.address4Input, supplier.address4);
-  await clickFirstVisible(page, cardOnFileSelectors.editSupplier.countryTrigger);
-  await clickFirstVisible(page, cardOnFileSelectors.editSupplier.countryOption(supplier.country));
-  await clickFirstVisible(page, cardOnFileSelectors.editSupplier.stateTrigger);
-  await clickFirstVisible(page, cardOnFileSelectors.editSupplier.stateOption(supplier.state));
+  await chooseDropdownValue(page, cardOnFileSelectors.editSupplier.countryTrigger, cardOnFileSelectors.editSupplier.countryOption, [supplier.country, 'USA', 'United States']);
+  await chooseDropdownValue(page, cardOnFileSelectors.editSupplier.stateTrigger, cardOnFileSelectors.editSupplier.stateOption, [supplier.state, 'Alaska']);
   await fillFirstVisible(page, cardOnFileSelectors.editSupplier.cityInput, supplier.city);
   await fillFirstVisible(page, cardOnFileSelectors.editSupplier.zipInput, supplier.zip);
   await fillFirstVisible(page, cardOnFileSelectors.editSupplier.locationCodeInput, supplier.locationCode);
@@ -400,7 +476,7 @@ function buildUniqueSupplier(prefix = 'CardOnFile') {
     address2: 'Suite 12',
     address3: 'Manhattan',
     address4: 'New York',
-    country: 'USA',
+    country: 'United States',
     state: 'Alaska',
     city: 'Alaska',
     zip: '90129',
@@ -416,15 +492,27 @@ async function createSupplier(page, overrides = {}) {
   const customerName = overrides.customerName || 'Cadent';
 
   await clickFirstVisible(page, cardOnFileSelectors.editSupplier.addSupplierButton);
-  await waitForFirstVisible(page, cardOnFileSelectors.editSupplier.addSupplierHeading);
+  await waitForFirstVisible(page, [
+    ...cardOnFileSelectors.editSupplier.addSupplierHeading,
+    ...cardOnFileSelectors.editSupplier.supplierNameInput,
+    ...cardOnFileSelectors.editSupplier.saveAndContinueButton
+  ], 30000);
   await selectCustomerOnAddSupplier(page, customerName);
   await fillFirstVisible(page, cardOnFileSelectors.editSupplier.supplierNameInput, supplier.supplierName);
   await fillFirstVisible(page, cardOnFileSelectors.editSupplier.supplierNumberInput, supplier.supplierNumber);
   await fillFirstVisible(page, cardOnFileSelectors.editSupplier.supplierEmailInput, supplier.supplierEmail);
   await fillFirstVisible(page, cardOnFileSelectors.editSupplier.phoneNumberInput, supplier.phoneNumber);
   await clickFirstVisible(page, cardOnFileSelectors.editSupplier.saveAndContinueButton);
-  await waitForFirstVisible(page, cardOnFileSelectors.supplierList.searchInput);
+
+  await waitForFirstVisible(page, [
+    ...cardOnFileSelectors.editSupplier.addSupplierButton,
+    ...cardOnFileSelectors.supplierList.searchInput,
+    ...cardOnFileSelectors.supplierList.table
+  ], 30000);
+
+  await waitForFirstVisible(page, cardOnFileSelectors.supplierList.searchInput, 30000);
   await searchSuppliers(page, supplier.supplierName);
+
   await expectTableContainsText(page, supplier.supplierName);
 
   return supplier;

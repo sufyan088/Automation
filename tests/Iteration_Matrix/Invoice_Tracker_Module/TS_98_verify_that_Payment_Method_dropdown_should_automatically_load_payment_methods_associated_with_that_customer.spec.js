@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsRole, closeSession, invoiceTrackerModuleHelpers } = require('./_shared');
 
 test("TS_98_verify_that_Payment_Method_dropdown_should_automatically_load_payment_methods_associated_with_that_customer", async ({ page }) => {
   const data = loadRuntimeData();
@@ -8,10 +8,11 @@ test("TS_98_verify_that_Payment_Method_dropdown_should_automatically_load_paymen
   });
 
   await test.step('Login into Application', async () => {
-    await loginAsAdmin(page, data);
+    await loginAsRole(page, data, 'customerAdmin');
   });
 
   await test.step('Run converted flow', async () => {
+    await invoiceTrackerModuleHelpers.runScenario(page, data, test.info().title);
   });
 
   await test.step('Logout from the application', async () => {

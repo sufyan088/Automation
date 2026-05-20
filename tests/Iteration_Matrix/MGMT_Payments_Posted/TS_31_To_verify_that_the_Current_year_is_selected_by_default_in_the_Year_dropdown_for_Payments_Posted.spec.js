@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, mgmtPaymentsPostedHelpers } = require('./_shared');
 
 test("TS_31_To_verify_that_the_Current_year_is_selected_by_default_in_the_Year_dropdown_for_Payments_Posted", async ({ page }) => {
   const data = loadRuntimeData();
@@ -12,6 +12,7 @@ test("TS_31_To_verify_that_the_Current_year_is_selected_by_default_in_the_Year_d
   });
 
   await test.step('Run converted flow', async () => {
+    await mgmtPaymentsPostedHelpers.runScenario(page, __filename);
   });
 
   await test.step('Logout from the application', async () => {

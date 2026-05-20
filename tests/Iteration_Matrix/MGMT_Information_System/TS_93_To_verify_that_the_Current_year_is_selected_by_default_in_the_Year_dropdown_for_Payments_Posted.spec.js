@@ -1,4 +1,5 @@
 const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { mgmtInformationSystemHelpers } = require('../../../helpers/iteration-matrix/mgmtInformationSystem.js');
 
 test("TS_93_To_verify_that_the_Current_year_is_selected_by_default_in_the_Year_dropdown_for_Payments_Posted", async ({ page }) => {
   const data = loadRuntimeData();
@@ -12,6 +13,7 @@ test("TS_93_To_verify_that_the_Current_year_is_selected_by_default_in_the_Year_d
   });
 
   await test.step('Run converted flow', async () => {
+    await mgmtInformationSystemHelpers.runScenario(page, data, test.info().title);
   });
 
   await test.step('Logout from the application', async () => {

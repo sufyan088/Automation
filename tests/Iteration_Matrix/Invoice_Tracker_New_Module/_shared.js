@@ -1,6 +1,6 @@
 const { test } = require('@playwright/test');
 const { loadRuntimeData } = require('../../../helpers/iteration-matrix/dataLoader');
-const { loginAsAdmin, logout } = require('../../../helpers/iteration-matrix/auth');
+const { loginAsAdmin, loginAsRole, logout } = require('../../../helpers/iteration-matrix/auth');
 const { registerModuleSuite } = require('../../../helpers/allureHierarchy');
 const { invoiceTrackerNewModuleHelpers } = require('../../../helpers/iteration-matrix/invoiceTrackerNewModule.js');
 const { invoiceTrackerNewModuleSelectors } = require('../../../selectors/iteration-matrix/invoiceTrackerNewModule.selectors.js');
@@ -15,6 +15,7 @@ module.exports = {
   test,
   loadRuntimeData,
   loginAsAdmin,
+  loginAsRole,
   closeSession,
   invoiceTrackerNewModuleHelpers,
   invoiceTrackerNewModuleSelectors

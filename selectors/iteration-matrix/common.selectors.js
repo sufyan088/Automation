@@ -36,8 +36,10 @@ const iterationMatrixCommonSelectors = {
       'aside[aria-label="Main navigation"]',
       'text=Management',
       'text=imREmit',
+      'button:has-text("Logout")',
+      'a[href="/app/admin/mis"]',
+      'a[href="/app/imremit/dashboard"]',
       'a:has-text("Admin")',
-      'a:has-text("Supplier Management")',
       'nav[aria-label="Admin Subroute Navigation"]',
       'header'
     ],

@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, srReportingHelpers } = require('./_shared');
 
 test("TS_16_To_verify_that_Settings_button_is_functional", async ({ page }) => {
   const data = loadRuntimeData();
@@ -12,6 +12,7 @@ test("TS_16_To_verify_that_Settings_button_is_functional", async ({ page }) => {
   });
 
   await test.step('Run converted flow', async () => {
+    await srReportingHelpers.runScenario(page, data, test.info().title);
   });
 
   await test.step('Logout from the application', async () => {

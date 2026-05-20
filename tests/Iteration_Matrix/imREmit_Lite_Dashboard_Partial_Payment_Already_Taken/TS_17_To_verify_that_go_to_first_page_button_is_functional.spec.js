@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, imremitLiteDashboardPartialPaymentAlreadyTakenHelpers, imremitLiteDashboardPartialPaymentAlreadyTakenSelectors } = require('./_shared');
 
 test("TS_17_To_verify_that_go_to_first_page_button_is_functional", async ({ page }) => {
   const data = loadRuntimeData();
@@ -11,7 +11,15 @@ test("TS_17_To_verify_that_go_to_first_page_button_is_functional", async ({ page
     await loginAsAdmin(page, data);
   });
 
-  await test.step('Run converted flow', async () => {
+  await test.step('Open the Partial Payment Already Taken review list', async () => {
+    await imremitLiteDashboardPartialPaymentAlreadyTakenHelpers.openPartialPaymentAlreadyTakenList(page, data);
+  });
+
+  await test.step('Move to the last page and return to the first page when possible', async () => {
+    const movedToLast = await imremitLiteDashboardPartialPaymentAlreadyTakenHelpers.clickPaginationWhenEnabled(page, imremitLiteDashboardPartialPaymentAlreadyTakenSelectors.pagination.last);
+    if (movedToLast) {
+      await imremitLiteDashboardPartialPaymentAlreadyTakenHelpers.clickPaginationWhenEnabled(page, imremitLiteDashboardPartialPaymentAlreadyTakenSelectors.pagination.first);
+    }
   });
 
   await test.step('Logout from the application', async () => {

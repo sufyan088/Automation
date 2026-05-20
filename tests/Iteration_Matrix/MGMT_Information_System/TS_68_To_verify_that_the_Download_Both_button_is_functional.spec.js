@@ -1,4 +1,5 @@
 const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { mgmtInformationSystemHelpers } = require('../../../helpers/iteration-matrix/mgmtInformationSystem.js');
 
 test("TS_68_To_verify_that_the_Download_Both_button_is_functional", async ({ page }) => {
   const data = loadRuntimeData();
@@ -12,6 +13,7 @@ test("TS_68_To_verify_that_the_Download_Both_button_is_functional", async ({ pag
   });
 
   await test.step('Run converted flow', async () => {
+    await mgmtInformationSystemHelpers.runScenario(page, data, test.info().title);
   });
 
   await test.step('Logout from the application', async () => {
