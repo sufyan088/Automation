@@ -124,6 +124,11 @@ function resolveRoleCredentials(data, roleKey) {
       password: data.Password_ProgramManager,
       label: 'Iteration Matrix program manager'
     },
+    supplierAdmin: {
+      username: data.Username_Supplier_Admin,
+      password: data.Password_Supplier_Admin,
+      label: 'Iteration Matrix supplier admin'
+    },
     ePayAdmin: {
       username: data.Username_imREmit_Admin,
       password: data.Password_imREmit_Admin,
