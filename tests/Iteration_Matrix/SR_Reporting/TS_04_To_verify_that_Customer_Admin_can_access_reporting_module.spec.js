@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, srReportingHelpers } = require('./_shared');
 
 test("TS_04_To_verify_that_Customer_Admin_can_access_reporting_module", async ({ page }) => {
   const data = loadRuntimeData();
@@ -12,6 +12,7 @@ test("TS_04_To_verify_that_Customer_Admin_can_access_reporting_module", async ({
   });
 
   await test.step('Run converted flow', async () => {
+    await srReportingHelpers.runScenario(page, data, test.info().title);
   });
 
   await test.step('Logout from the application', async () => {

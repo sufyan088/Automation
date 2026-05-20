@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, mgmtPercentageGrowthHelpers } = require('./_shared');
 
 test("TS_23_To_verify_that_the_Select_All_option_is_selected_by_default_in_the_Customers_dropdown_for_Percentage_Growth", async ({ page }) => {
   const data = loadRuntimeData();
@@ -12,6 +12,7 @@ test("TS_23_To_verify_that_the_Select_All_option_is_selected_by_default_in_the_C
   });
 
   await test.step('Run converted flow', async () => {
+    await mgmtPercentageGrowthHelpers.runScenario(page, __filename);
   });
 
   await test.step('Logout from the application', async () => {

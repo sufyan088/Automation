@@ -1,4 +1,4 @@
-const { test, loadRuntimeData, loginAsAdmin, closeSession } = require('./_shared');
+const { test, loadRuntimeData, loginAsAdmin, closeSession, srReportingNewHelpers } = require('./_shared');
 
 test("TS_40_To_Verify_that_download_checkbox_is_functional_on_delivery_button", async ({ page }) => {
   const data = loadRuntimeData();
@@ -12,6 +12,7 @@ test("TS_40_To_Verify_that_download_checkbox_is_functional_on_delivery_button", 
   });
 
   await test.step('Run converted flow', async () => {
+    await srReportingNewHelpers.runScenario(page, data, 'TS_40_To_Verify_that_download_checkbox_is_functional_on_delivery_button');
   });
 
   await test.step('Logout from the application', async () => {
