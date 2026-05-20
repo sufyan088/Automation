@@ -1,3 +1,11 @@
+function countryNames(name) {
+  if (/^usa$/i.test(name)) {
+    return ['USA', 'United States'];
+  }
+
+  return [name];
+}
+
 const cardOnFileSelectors = {
   moduleEntry: [
     'a:has-text("imREmit")',
@@ -10,7 +18,8 @@ const cardOnFileSelectors = {
   ],
   supplierManagementLink: [
     'a:has-text("Supplier Management")',
-    '[role="link"]:has-text("Supplier Management")'
+    '[role="link"]:has-text("Supplier Management")',
+    'a[href*="/supplier-management"]'
   ],
   customerPicker: {
     trigger: [
@@ -59,8 +68,8 @@ const cardOnFileSelectors = {
       'text="Edit Supplier"'
     ],
     addSupplierHeading: [
-      'h2:has-text("Add Supplier")',
-      'text="Add Supplier"'
+      'h1:has-text("Add Supplier")',
+      'h2:has-text("Add Supplier")'
     ],
     addSupplierButton: [
       'button:has-text("Add Supplier")',
@@ -78,10 +87,12 @@ const cardOnFileSelectors = {
       'button:has-text("Back to list")'
     ],
     supplierEnrollmentYes: [
+      'button[value="enrolled-yes"]',
       'label[for="enrolled-yes"]',
       '#enrolled-yes'
     ],
     supplierEnrollmentNo: [
+      'button[value="enrolled-no"]',
       'label[for="enrolled-no"]',
       '#enrolled-no'
     ],
@@ -160,15 +171,18 @@ const cardOnFileSelectors = {
       'input[name="address4"]'
     ],
     countryTrigger: [
-      'button:has-text("Select Country")'
+      'button:has-text("Select Country")',
+      'xpath=//label[contains(normalize-space(),"Country")]/following::button[1]',
+      'button[role="combobox"]'
     ],
-    countryOption: (name) => [
-      `[role="option"]:has-text("${name}")`,
-      `button:has-text("${name}")`,
-      `div:has-text("${name}")`
-    ],
+    countryOption: (name) => countryNames(name).flatMap((countryName) => [
+      `[role="option"]:has-text("${countryName}")`,
+      `button:has-text("${countryName}")`,
+      `div:has-text("${countryName}")`
+    ]),
     stateTrigger: [
-      'button:has-text("Select State")'
+      'button:has-text("Select State")',
+      'xpath=//label[contains(normalize-space(),"State")]/following::button[1]'
     ],
     stateOption: (name) => [
       `[role="option"]:has-text("${name}")`,
